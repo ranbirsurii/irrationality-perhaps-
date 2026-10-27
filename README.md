@@ -78,6 +78,14 @@ circle has exponent zero on every Tate twist, so the circle alone cannot
 separate the odd-zeta weights. The weight cocharacter does separate them; the
 étale and Adams exponents record the same twist index. These are realization
 identities, not evidence that the Apéry family maps to such a Tate class.
+
+For each proposed weight `2r+1`, the same file records the Hodge-circle spectrum
+`2r, 2r-2, ..., -2r` on the candidate `Sym^(2r) H^1(E)`. It proves the action
+is nontrivial for `r ≥ 1`, identifies the zero middle character, and records
+the trivial circle character on the residue Tate graded line of the affine
+curve `E \\ {O,P}`. This is the associated-graded weight calculation for the
+marked affine elliptic curve, not a construction of its regulator class from
+`R_n(t,z)`.
 ## What is still unproved in the chat construction
 
 The two chat texts are the primary specification. The manuscript copy is only

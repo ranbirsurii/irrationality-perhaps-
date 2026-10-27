@@ -80,4 +80,62 @@ This is just the grading dictionary, not a construction of the motivic class.
 theorem odd_zeta_tate_adams_weight (r : ℕ) :
     (tateRealizationData (2 * r + 1)).adamsWeight = 2 * r + 1 := rfl
 
+/-- Hodge-circle character on the `i`th line in `Sym^d H^1(E)` for an
+elliptic curve: the Hodge types contribute exponents `d - 2i`. -/
+def ellipticSymmetricCircleExponent (d i : ℕ) : ℤ :=
+  (d : ℤ) - 2 * (i : ℤ)
+
+/-- Candidate symmetric-power degree associated to the odd weight `2r+1`. -/
+def oddZetaEllipticDegree (r : ℕ) : ℕ := 2 * r
+
+def oddZetaEllipticCircleExponent (r i : ℕ) : ℤ :=
+  ellipticSymmetricCircleExponent (oddZetaEllipticDegree r) i
+
+theorem oddZetaEllipticCircle_top (r : ℕ) :
+    oddZetaEllipticCircleExponent r 0 = 2 * (r : ℤ) := by
+  simp [oddZetaEllipticCircleExponent, ellipticSymmetricCircleExponent,
+    oddZetaEllipticDegree]
+
+theorem oddZetaEllipticCircle_bottom (r : ℕ) :
+    oddZetaEllipticCircleExponent r (2 * r) = -2 * (r : ℤ) := by
+  simp [oddZetaEllipticCircleExponent, ellipticSymmetricCircleExponent,
+    oddZetaEllipticDegree]
+  ring
+
+/-- For each odd zeta weight at least three, its candidate elliptic symmetric
+power has nontrivial Hodge-circle action. -/
+theorem oddZeta_elliptic_circle_nontrivial {r : ℕ} (hr : 0 < r) :
+    oddZetaEllipticCircleExponent r 0 ≠ 0 := by
+  rw [oddZetaEllipticCircle_top]
+  have hrZ : (0 : ℤ) < (r : ℤ) := by exact_mod_cast hr
+  omega
+
+/-- The middle line of an even symmetric power has trivial circle character. -/
+theorem oddZeta_elliptic_circle_middle (r : ℕ) :
+    oddZetaEllipticCircleExponent r r = 0 := by
+  simp [oddZetaEllipticCircleExponent, ellipticSymmetricCircleExponent,
+    oddZetaEllipticDegree]
+
+/-- The residue line in `H^1(E \\ {O,P})` has Tate type `(1,1)` and hence
+trivial Hodge-circle character. The open curve's elliptic graded part still
+has nontrivial characters. -/
+def affineEllipticResidueCircleExponent : ℤ := hodgeCircleExponent 1 1
+
+theorem affineEllipticResidue_circle_trivial :
+    affineEllipticResidueCircleExponent = 0 := by
+  norm_num [affineEllipticResidueCircleExponent, hodgeCircleExponent]
+
+/-- Associated-graded circle characters for the first cohomology of an
+elliptic curve punctured at two marked points: the two elliptic characters
+and the residue Tate character. -/
+def affineEllipticH1AssociatedGradedCircleExponent (i : Fin 3) : ℤ :=
+  if i.val = 0 then 1 else if i.val = 1 then -1 else
+    affineEllipticResidueCircleExponent
+
+theorem affineEllipticH1_circle_nontrivial :
+    ∃ i : Fin 3,
+      affineEllipticH1AssociatedGradedCircleExponent i ≠ 0 := by
+  refine ⟨⟨0, by omega⟩, ?_⟩
+  simp [affineEllipticH1AssociatedGradedCircleExponent]
+
 end OddZeta
