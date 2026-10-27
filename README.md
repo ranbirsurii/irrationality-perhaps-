@@ -57,6 +57,40 @@ characteristic formula once the marked point is specified, while leaving the
 inhomogeneous regulator calculation as the next step. These statements remain
 the status of the chat-derived construction in this project.
 
+## Joint estimate audit
+
+The joint estimate audit is in [ESTIMATE_AUDIT.md](ESTIMATE_AUDIT.md). For the
+specific displayed weight-coordinate form `F_n=-4A_n zeta(5)-7E_n/24`, its
+weighted harmonic-sum analysis gives
+
+`E_n/A_n -> 4 zeta(5)+8 zeta(2) zeta(3)` and
+
+`F_n/A_n -> -(31 zeta(5)/6+7 zeta(2) zeta(3)/3)`.
+
+Thus this particular projected form has eventual same-sign coefficients and
+cannot supply small integer forms, even after arbitrary common-factor
+cancellation. `AperyEstimateAudit.lean` checks the consecutive-weight identity,
+the weighted local algebra, `A_n>=1`, and the sign/normalization bounds. The
+concentration and asymptotic limit proofs are written in the note and are not
+yet formalized in Lean.
+
+The note also tests a genuine integer/half-integer sampling replacement, an
+explicit kernel whose numerator vanishes on both grids, and its combined
+analytic/arithmetic budget. The script `scripts/joint_estimate_audit.py` gives
+reproducible exact rational interval checks of four candidate normalizations.
+Finite tests are kept separate from the asymptotic claims.
+
+`AperyHankel.lean` supplies a different target-isolation mechanism: determinants
+of the moments `zeta(5)-H_(a+k)^(5)` are affine in `zeta(5)`, with rational
+coefficients, because the constant part of their matrix has rank one. Lean
+proves this determinant identity over arbitrary commutative rings and checks
+the rational/real specializations. A positive moment-integral argument in the
+audit note gives nonvanishing. Exact finite tests of the primitive integer
+forms, including shifts proportional to the matrix size, still give a
+negative combined budget. This is a structural alternative to the displayed
+projection, with an explicit arithmetic obstacle rather than an assumed
+preservation of decay.
+
 ## All-weight Adams projector
 
 `OddZeta/AdamsGeneral.lean` formalizes the projector proposed in the chat texts.
