@@ -324,7 +324,9 @@ theorem aperyL1_projected_period_eq_form (n : ℕ) (zeta3 zeta5 : ℝ) :
         aperyProjectedForm n zeta5 := by
   rw [aperyL1_projected_period]
   unfold aperyProjectedForm aperyProjectedB
-  rw [← aperyProjectedA_eq_rationalCoefficient]
+  have hA : (aperyProjectedA n : ℝ) = -4 * (aperyA n : ℝ) := by
+    exact_mod_cast aperyProjectedA_eq_rationalCoefficient n
+  rw [← hA]
   push_cast
   ring
 

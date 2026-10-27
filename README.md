@@ -57,37 +57,55 @@ characteristic formula once the marked point is specified, while leaving the
 inhomogeneous regulator calculation as the next step. These statements remain
 the status of the chat-derived construction in this project.
 
-## Later determinant construction for `zeta(5)`
+## All-weight Adams projector
 
-The mathematical landscape changed after the supplied texts were written. Aabir
-Fauzan's 17 September 2026 preprint claims irrationality of `zeta(5)` by
-constructing integer polynomials `Q_n` of degree `37 n` satisfying
-`0 < Q_n(zeta(5)) < exp(-139 n^2 / 5)` for all sufficiently large `n`. The
-construction uses rationally normalized Hankel determinants of a moment
-functional: a positive moment representation gives strict positivity, local
-prime-adic estimates give an integer polynomial after normalization, and a
-logarithmic-energy estimate gives the rapid decay. See the [Zenodo record](https://zenodo.org/records/22826419).
+`OddZeta/AdamsGeneral.lean` formalizes the projector proposed in the chat texts.
+For target weight `2r + 1`, it uses the Lagrange polynomial
 
-An independent [Lean 4 formalization](https://github.com/mo271/Zeta5) of that
-construction reports a proof with no `sorry` in the theorem path and only
-Lean's standard axioms (`propext`, `Classical.choice`, and `Quot.sound`). It
-imports the prime number theorem from the separate
-[PrimeNumberTheoremAnd](https://github.com/mo271/PrimeNumberTheoremAnd)
-formalization. The proof's main Lean endpoint is `Apery.irrational_five`;
-`Apery/Main.lean` derives it from the polynomial approximation criterion and
-`Apery/MainEstimate.lean`. Its imported PNT development contains two `sorry`s
-outside the theorem's transitive dependency; the final theorem's reported
-`#print axioms` contains only the three standard Lean axioms. The public Zenodo
-v1 describes itself as the initial presentation, with a full manuscript to
-follow, so the formalization is also a useful detailed record of the
-construction and its proof obligations.
+`P_r(X) = prod_{1 <= j < r} (X - 2^(2j+1)) / (2^(2r+1) - 2^(2j+1))`.
 
-This determinant proof is a separate construction. It does not identify its
-`Q_n` with the deformed Apéry forms or the elliptic regulator form formalized
-above. Thus the repo's chat-derived coefficients and elliptic identities are
-formalized, and a complete Lean proof of the individual `zeta(5)` claim exists
-in the linked project, but the bridge from the chat's regulator construction
-to that determinant family is not established here.
+Lean proves the eigenvalues are strictly increasing, the denominator is
+nonzero, the projector kills every lower odd weight, fixes the target weight,
+and gives the exact rational coefficient on the weight-zero coordinate. This
+coefficient is fixed for each target weight and independent of the Apéry index.
 
-All Lean source files in this repository's `OddZeta` modules use ordinary
-visible code and contain no `sorry` or `admit`.
+## Hodge-circle and étale weight bookkeeping
+
+`OddZeta/HodgeEtaleWeights.lean` records the realization data for a Tate
+graded piece `Q(m)`: Hodge type `(-m,-m)`, weight-cocharacter exponent `-2m`,
+étale cyclotomic exponent `m`, and Adams weight `m`. It proves that the Hodge
+circle has exponent zero on every Tate twist, so the circle alone cannot
+separate the odd-zeta weights. The weight cocharacter does separate them; the
+étale and Adams exponents record the same twist index. These are realization
+identities, not evidence that the Apéry family maps to such a Tate class.
+## What is still unproved in the chat construction
+
+The two chat texts are the primary specification. The manuscript copy is only
+a secondary aid and does not supply the missing bridges below.
+
+The finite rational formulas do not yet prove that the infinite differentiated
+series has the stated zeta expansion: termwise differentiation, convergence,
+and the partial-fraction summation remain to be established for the actual
+`R_n(t,z)` family.
+
+The geometric lift is not constructed. The chats propose a marked divisor on a
+level-six elliptic family and a candidate complete third-kind period, but do
+not identify the divisor's actual coordinate in that family or prove that the
+resulting period is the regulator of the deformed Apéry coefficients. They
+explicitly leave the pullback to the inhomogeneous Picard--Fuchs equation and
+the regulator comparison as the next calculation.
+
+The all-weight projector is proved as linear algebra, but its application to
+the proposed zeta forms still needs a constructed class and a proof that the
+class decomposes into the stated Adams eigenspaces. No such class or compatible
+Adams action is defined in the supplied chats or in the manuscript aid.
+
+Finally, the irrationality criterion is conditional on concrete projected
+integer coefficients, arbitrarily-late nonvanishing, and denominator and decay
+bounds. Those estimates have not been derived for the chat's projected forms.
+Consequently, this repository does not claim a proof that every `zeta(2n+1)`
+is irrational.
+
+All Lean source files use ordinary visible code and contain no `sorry` or
+`admit`.
+

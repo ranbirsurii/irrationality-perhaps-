@@ -1,3 +1,5 @@
 import OddZeta.IrrationalityCriterion
 import OddZeta.AperyStructure
 import OddZeta.AperyFive
+import OddZeta.AdamsGeneral
+import OddZeta.HodgeEtaleWeights
