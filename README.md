@@ -123,10 +123,11 @@ models this degree-zero cycle, computes its Abel sum as `P`, and checks the
 finite-pole coefficients of the algebraic third-kind candidate
 `(Y+κ) dx/(2(x-ν)Y)`. Its coefficient is `+1` at `P` and vanishes at the
 conjugate point, unlike the bare Legendre-Π differential, whose pole divisor
-is symmetric. The remaining `-1` residue at `O` follows only after proving
-the local expansion at infinity (or invoking and formalizing the global
-residue theorem); that step and the relative de Rham/Abel--Jacobi comparison
-are still open.
+is symmetric. The cycle computation is an abstract additive-group model; it
+does not establish the geometric identification `Pic⁰(E) ≃ E` for this
+family. The remaining `-1` residue at `O` follows only after proving the local
+expansion at infinity (or invoking and formalizing the global residue theorem);
+that step and the relative de Rham/Abel--Jacobi comparison are still open.
 
 This is still a Picard--Fuchs and fiber-coordinate model. It does not construct
 the horizontal correspondence from the chat's deformed kernel to Kerr's K1
