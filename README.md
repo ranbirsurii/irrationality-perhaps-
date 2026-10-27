@@ -86,6 +86,23 @@ the trivial circle character on the residue Tate graded line of the affine
 curve `E \\ {O,P}`. This is the associated-graded weight calculation for the
 marked affine elliptic curve, not a construction of its regulator class from
 `R_n(t,z)`.
+
+## Apéry K3 regulator source calculation
+
+`OddZeta/AperyRegulatorGeometry.lean` records the coefficients of the
+inhomogeneous Picard--Fuchs operator for the Apéry K3 normal function and
+formalizes a source-side bound for its first forcing coefficient. The central
+binomial estimate gives
+
+`binom(2n,n)^2 / (16^n n(2n+2)) ≤ 1/n - 1/(n+1)`.
+
+Consequently the rational partial forcing coefficients are monotone and lie
+between 10 and 15; their real sequence converges by monotone bounded
+convergence. This checks positivity and convergence for Kerr's K3 forcing
+series. It is not a comparison theorem identifying that normal function with
+the deformed Apéry kernel or the odd-zeta forms in the chat. No regulator
+pairing with `zeta(2r+1)` is obtained from this estimate.
+
 ## What is still unproved in the chat construction
 
 The two chat texts are the primary specification. The manuscript copy is only
@@ -101,7 +118,10 @@ level-six elliptic family and a candidate complete third-kind period, but do
 not identify the divisor's actual coordinate in that family or prove that the
 resulting period is the regulator of the deformed Apéry coefficients. They
 explicitly leave the pullback to the inhomogeneous Picard--Fuchs equation and
-the regulator comparison as the next calculation.
+the regulator comparison as the next calculation. The separately formalized
+Apéry K3 normal function supplies an actual regulator object and an explicit
+inhomogeneous equation, but no morphism or cycle comparison has been proved
+from it to the chat's deformed kernel.
 
 The all-weight projector is proved as linear algebra, but its application to
 the proposed zeta forms still needs a constructed class and a proof that the
