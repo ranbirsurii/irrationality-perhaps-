@@ -91,6 +91,27 @@ negative combined budget. This is a structural alternative to the displayed
 projection, with an explicit arithmetic obstacle rather than an assumed
 preservation of decay.
 
+## All-weight determinant arithmetic
+
+`OddZeta/OddHankelArithmetic.lean` is a self-contained Mathlib-based file for
+every integer weight. It constructs integer coefficients for
+`lcm(1,...,a+2N-2)^(sN) det[zeta(s)-H_(a+i+j)^(s)]`, proves the exact
+prime valuations and an elementary logarithmic lower bound for that scale,
+and verifies division by a certified common divisor. The irrationality
+criteria explicitly require decay and arbitrarily late nonvanishing.
+
+The derivational note in `notes/odd-zeta-arithmetic.tex` and its rendered PDF
+prove positivity and the fixed-shift determinant asymptotic
+`log(Delta)/N^2 -> -log(4)` on paper. They show that the uniform lcm
+normalization grows for every integer `s>1`; this does not exclude sufficient
+primitive gcd cancellation. The moment integrals and asymptotics are not
+formalized in Lean. No unconditional all-odd irrationality theorem is claimed.
+
+`scripts/sparse_hankel_audit.py` performs 700 exact small-space checks and 60
+larger sparse/consecutive family checks at weights 3, 5, 7, and 9. Every larger
+tested form has primitive absolute value greater than one. These finite
+computations do not settle asymptotic smallness for other spaces.
+
 ## All-weight Adams projector
 
 `OddZeta/AdamsGeneral.lean` formalizes the projector proposed in the chat texts.

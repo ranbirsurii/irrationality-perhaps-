@@ -3,3 +3,5 @@
 *.ilean
 *.olean.hash
 *.ilean.hash
+__pycache__/
+*.pyc

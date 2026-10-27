@@ -1,0 +1,13 @@
+import OddZeta.OddHankelArithmetic
+
+#print axioms OddZeta.det_arithmeticMatrixShift_affine
+#print axioms OddZeta.scaledHarmonicPower_cast
+#print axioms OddZeta.harmonicLcm_binomial_bound
+#print axioms OddZeta.oddHankel_arithmetic_prime_cost
+#print axioms OddZeta.oddHankel_arithmetic_log_cost
+#print axioms OddZeta.arithmetic_basis_change_determinant
+#print axioms OddZeta.oddHankel_integer_linear_form
+#print axioms OddZeta.oddHankel_divided_integer_linear_form
+#print axioms OddZeta.oddHankel_gcd_integer_linear_form
+#print axioms OddZeta.oddHankel_irrational_of_divided_decay
+#print axioms OddZeta.oddHankel_irrational_of_cleared_decay

@@ -1,0 +1,304 @@
+\documentclass[11pt]{article}
+\usepackage[left=0.95in,right=0.95in,top=0.8in,bottom=0.8in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\HH}[2]{H_{#1}^{(#2)}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\title{Odd-zeta linear forms and their arithmetic cost}
+\author{A derivational note accompanying the Lean development}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+A positive moment determinant isolates any fixed odd zeta value without a
+weight projector. We derive its nonvanishing, construct explicit integer
+coefficients, and account for denominator clearing. For a fixed moment shift,
+the raw determinant has logarithmic decay rate $\log 4$ on the square of its
+size. An elementary binomial divisibility bound shows that the uniform
+least-common-multiple normalization instead grows at every integer weight
+$s>1$. Exact common-factor cancellation is therefore essential for this
+family. The accompanying Lean file verifies the integer construction and
+its conditional irrationality criterion. No unconditional irrationality
+theorem for all odd zeta values is established.
+\end{abstract}
+
+\section{The quantity an irrationality argument must make small}
+Write a rational linear form as $L=A\alpha+B$, and choose an integer
+$D>0$ such that $a=DA$ and $b=DB$ are integers. If $(a,b)\ne(0,0)$, set
+$g=\gcd(|a|,|b|)$ and
+\begin{equation}
+ \ell=\frac{D}{g}L=\frac ag\alpha+\frac bg .
+ \label{eq:primitive}
+\end{equation}
+Under the hypothesis $\alpha=p/q\in\Q$, every nonzero $\ell$ satisfies
+$|q\ell|\ge1$. Thus arbitrarily late nonzero forms tending to zero imply
+irrationality. The exact arithmetic budget is
+\begin{equation}
+ -\log|\ell|=-\log|L|-\log D+\log g .
+ \label{eq:budget}
+\end{equation}
+An analytic estimate on $L$ alone does not control this budget.
+The common divisor in \eqref{eq:primitive} must be proved, rather than
+inferred from a rational or geometric change of coordinates.
+
+\section{A pure-target construction at every integer weight}
+Fix integers $s>1$, $a\ge0$, and $N\ge1$. Define
+\begin{equation}
+ \HH{k}{s}=\sum_{j=1}^k j^{-s},\qquad
+ \mu_k=\zeta(s)-\HH{k}{s},\qquad
+ \Delta_{N,a}^{(s)}=\det[\mu_{a+i+j}]_{0\le i,j<N}.
+ \label{eq:moment}
+\end{equation}
+The case requested in the chat is $s=2r+1$ with $r\ge1$.
+
+\begin{theorem}
+For these parameters there are explicit $A_{N,a}^{(s)},B_{N,a}^{(s)}\in\Q$
+such that
+\begin{equation}
+ 0<\Delta_{N,a}^{(s)}
+   =A_{N,a}^{(s)}\zeta(s)+B_{N,a}^{(s)}.
+ \label{eq:affine}
+\end{equation}
+In particular, this construction isolates one target and is nonzero.
+\end{theorem}
+\begin{proof}
+Substitute $x=e^{-t}$ in the elementary gamma integral to obtain
+\[
+ \frac1{(j+1)^s}
+ =\frac1{(s-1)!}\int_0^1 x^j(-\log x)^{s-1}\dd x .
+\]
+Summing nonnegative integrands gives
+\begin{equation}
+ \mu_k=\int_0^1 x^k w_s(x)\dd x,\qquad
+ w_s(x)=\frac{(-\log x)^{s-1}}{(s-1)!(1-x)} .
+ \label{eq:weight}
+\end{equation}
+This measure is finite: its total mass is $\zeta(s)<\infty$.
+Expanding the determinant and symmetrizing its product integrals gives
+\begin{equation}
+ \Delta_{N,a}^{(s)}
+ =\frac1{N!}\int_{(0,1)^N}
+  \prod_{i<j}(x_i-x_j)^2
+  \prod_{i=1}^N x_i^a w_s(x_i)\dd x_i>0 .
+ \label{eq:gram}
+\end{equation}
+The integrand is bounded above by the product of the finite measures.
+It is strictly positive when the variables lie in pairwise disjoint
+closed interior intervals, proving strict positivity of the integral.
+
+For the affine identity, put
+\[
+ P(x)=\det[x-\HH{a+i+j}{s}]_{0\le i,j<N}.
+\]
+Subtract row zero from every other row. Only row zero then depends on $x$,
+so determinant multilinearity gives
+$P(x)=(P(1)-P(0))x+P(0)$. Take $A=P(1)-P(0)$ and $B=P(0)$.
+\end{proof}
+
+The coefficient of the target has a useful independent expression:
+\begin{equation}
+ A_{N,a}^{(s)}
+ =\det\left[
+ \frac1{(a+i+j+1)^s}-\frac1{(a+i+j+2)^s}
+ \right]_{0\le i,j<N-1}>0 .
+ \label{eq:coefficient}
+\end{equation}
+Here an empty determinant is $1$. For $N=1$ the coefficient is $1$ directly.
+For $N\ge2$, replace the monomial basis by
+\[
+ 1,\quad(1-x),\quad x(1-x),\quad\ldots,\quad x^{N-2}(1-x).
+\]
+This integer basis change has determinant
+$\pm1$. Only the first polynomial is nonzero at $1$, so the coefficient of
+$\zeta(s)$ is the lower principal minor. Its entries are
+\[
+ \mu_k-2\mu_{k+1}+\mu_{k+2}=(k+1)^{-s}-(k+2)^{-s}.
+\]
+The same positive Gram argument proves the inequality.
+
+\section{Explicit denominator clearing, including its cost}
+Let $M=a+2N-2$, $d_M=\lcm(1,\ldots,M)$, with $d_0=1$, and put
+$Q=d_M^s$. For every $m\le M$,
+\begin{equation}
+ Q\HH{m}{s}
+ =\sum_{j=1}^m(d_M/j)^s\in\Z .
+ \label{eq:hclear}
+\end{equation}
+Define the integer matrix and two integers
+\begin{align}
+ Z_{ij}&=-\sum_{j'=1}^{a+i+j}(d_M/j')^s,\\
+ U&=\det[Q+Z_{ij}]-\det[Z_{ij}],\qquad
+ V=\det[Z_{ij}].
+ \label{eq:integers}
+\end{align}
+Applying the affine determinant identity after scaling gives the exact relation
+\begin{equation}
+ \boxed{Q^N\Delta_{N,a}^{(s)}=U\zeta(s)+V,\qquad U,V\in\Z.}
+ \label{eq:integerform}
+\end{equation}
+Consequently the primitive form is
+$(Q^N/g)\Delta_{N,a}^{(s)}$, where $g=\gcd(|U|,|V|)$.
+These definitions, including \eqref{eq:hclear} and \eqref{eq:integerform},
+are proved in the accompanying Lean module for every natural $s$.
+The positivity statement uses $s>1$ and is proved above in ordinary mathematics.
+
+For $M\ge1$, its exact prime cost is $v_p(Q^N)=sN\lfloor\log_p M\rfloor$.
+The scale $Q^N$ is safe, but it is expensive. To quantify this without the
+prime number theorem, observe that
+\begin{equation}
+ \binom{M}{k}\mid d_M\quad(0\le k\le M),\qquad
+ 2^M\le(M+1)d_M .
+ \label{eq:lcm}
+\end{equation}
+The case $M=0$ is immediate. For $M\ge1$, Legendre's formula gives, for every prime $p$,
+\[
+ v_p\binom{M}{k}
+ =\sum_{\nu\ge1}
+ \left(\left\lfloor\frac M{p^\nu}\right\rfloor
+ -\left\lfloor\frac k{p^\nu}\right\rfloor
+ -\left\lfloor\frac{M-k}{p^\nu}\right\rfloor\right)
+ \le\lfloor\log_p M\rfloor=v_p(d_M).
+\]
+Each summand is $0$ or $1$ and is zero for $p^\nu>M$.
+Summing the $M+1$ binomial coefficients proves the second inequality.
+It follows that
+\begin{equation}
+ \log(Q^N)\ge sN\bigl(M\log2-\log(M+1)\bigr).
+ \label{eq:cost}
+\end{equation}
+
+\section{The exact analytic scale and a normalization obstruction}
+\begin{theorem}
+For every fixed integer $s>1$ and fixed $a\ge0$,
+\begin{equation}
+ \lim_{N\to\infty}\frac{\log\Delta_{N,a}^{(s)}}{N^2}=-\log4 .
+ \label{eq:rate}
+\end{equation}
+Moreover the uniform integer normalization in \eqref{eq:integerform} satisfies
+\begin{equation}
+ \liminf_{N\to\infty}
+ \frac{\log(Q^N\Delta_{N,a}^{(s)})}{N^2}
+ \ge(s-1)\log4>0.
+ \label{eq:obstruction}
+\end{equation}
+Thus this normalization cannot be the small-form sequence.
+\end{theorem}
+\begin{proof}
+Let $\rho(x)=x^a w_s(x)$. Use $p_0=1$ and the monic shifted Chebyshev polynomials
+\[
+ p_j(x)=2^{1-2j}T_j(2x-1)\qquad(j\ge1).
+\]
+The monic basis change preserves the Gram determinant. Hadamard's inequality,
+$|T_j|\le1$ on $[-1,1]$, and $\int\rho=\mu_a$ yield
+\begin{equation}
+ 0<\Delta_{N,a}^{(s)}
+ \le\prod_{j=0}^{N-1}\int_0^1p_j(x)^2\rho(x)\dd x
+ \le\mu_a^N\,2^{-2(N-1)^2}.
+ \label{eq:upper}
+\end{equation}
+This proves the required upper logarithmic limit.
+
+For the lower bound, fix $0<\varepsilon<1/2$, let
+$\lambda=1-2\varepsilon$, and let
+$c_\varepsilon=\min_{[\varepsilon,1-\varepsilon]}\rho>0$.
+Restricting \eqref{eq:gram} to this interval and making an affine substitution
+gives
+\begin{equation}
+ \Delta_{N,a}^{(s)}
+ \ge c_\varepsilon^N\lambda^{N^2} J_N,\qquad
+ J_N=\det[(i+j+1)^{-1}]_{i,j<N}.
+ \label{eq:lower}
+\end{equation}
+The Cauchy determinant formula, obtained by clearing denominators and
+factoring its alternating numerator, gives
+\[
+ J_N=\prod_{j=0}^{N-1}
+ \frac{(j!)^4}{(2j)!(2j+1)!}
+ =\prod_{j=0}^{N-1}
+ \frac1{(2j+1)\binom{2j}{j}^{\,2}} .
+\]
+Since $4^j/(2j+1)\le\binom{2j}{j}\le4^j$, the logarithm of this product is
+$-N(N-1)\log4+O(N\log(N+1))$. Hence
+$\liminf N^{-2}\log\Delta\ge\log\lambda-\log4$.
+Let $\varepsilon$ decrease to zero to prove \eqref{eq:rate}.
+
+Finally, $M=a+2N-2$ and \eqref{eq:cost} imply
+$\liminf N^{-2}\log(Q^N)\ge s\log4$.
+Adding \eqref{eq:rate} proves \eqref{eq:obstruction}.
+\end{proof}
+
+This obstruction concerns the uniform scale $Q^N$. It does not bound the
+primitive common divisor $g$. For this fixed-shift family to yield
+primitive forms tending to zero, the exact requirement is
+\begin{equation}
+ \log g-\log(Q^N)-\log\Delta_{N,a}^{(s)}\longrightarrow+\infty.
+ \label{eq:remaining}
+\end{equation}
+In particular, \eqref{eq:obstruction} forces a saving of at least
+$(s-1)\log4$ on the $N^2$ scale. A rational change of polynomial basis in
+the same space multiplies both coefficients by $(\det T)^2$; after
+primitive reduction it gives the same integer pair up to sign.
+Improving the budget therefore requires additional arithmetic identities
+or a different polynomial space or measure. A shift $a=a_N$ requires a
+new asymptotic calculation; theorem \eqref{eq:rate} assumes $a$ fixed.
+
+\section{Checks, source connections, and formalization boundary}
+The exact rational audit already in the repository clears reduced
+denominators and removes the entire gcd. At $s=5$, $N=20$, $a=0$, it encloses
+the primitive form strictly above $1$ in absolute value. The displayed rates
+$-\log|\Delta|/N^2\approx1.517981$ and
+$-\log|\ell|/N^2\approx-4.772732$ are finite-index diagnostics.
+They are not used in the proofs above and do not exclude eventual
+arithmetic improvements.
+
+An additional exact search replaces the monomials by sparse exponents.
+It checks $700$ small exponent sets and $60$ larger consecutive, even,
+quadratic, gapped, and two-cluster examples across $s=3,5,7,9$.
+Every tested example of the five families at sizes $4,6,8$ has primitive
+absolute value greater than $1$. These are finite checks, not an
+impossibility theorem for sparse spaces. The source chat's earlier weight
+projection and its separate sign obstruction are recorded in the repository audit.
+
+Recent geometric constructions are useful specifically for their
+denominator symmetries. Brown--Zudilin \cite{BZ} exploit a group of order
+$5040$ for cellular integrals, obtaining an effective approximation
+exponent $0.86$ at weight five. Their result does not prove irrationality.
+The $2$-adic construction of Lai--Sprang--Zudilin \cite{LSZ} concerns
+$\zeta_2(5)$; its smallness occurs in a different absolute value.
+Neither result supplies the missing real estimate \eqref{eq:remaining}
+for the present determinant family.
+
+\medskip
+\noindent\textbf{What the Lean file verifies.}
+\texttt{OddHankelArithmetic.lean} defines the harmonic sums, the lcm,
+the integer matrix, and $U,V$. It proves \eqref{eq:hclear},
+\eqref{eq:integerform}, the lcm lower bound, the finite cost \eqref{eq:cost},
+and its exact prime valuations. It also verifies division by any proved
+common divisor and the resulting conditional irrationality criterion.
+The moment integrals, positivity, and asymptotics
+\eqref{eq:rate}--\eqref{eq:obstruction} are paper proofs here, not
+Lean-verified results. No unconditional all-odd irrationality conclusion follows.
+
+\begin{thebibliography}{9}
+\bibitem{BZ}
+F. Brown and W. Zudilin,
+\emph{On cellular rational approximations to $\zeta(5)$},
+arXiv:2210.03391v3, revised 29 January 2026.
+\url{https://arxiv.org/abs/2210.03391v3}.
+\bibitem{LSZ}
+L. Lai, J. Sprang and W. Zudilin,
+\emph{A note on the irrationality of $\zeta_2(5)$},
+International Mathematics Research Notices 2026, rnag180.
+\url{https://arxiv.org/abs/2505.05005v2}.
+\end{thebibliography}
+\end{document}
