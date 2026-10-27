@@ -103,6 +103,23 @@ series. It is not a comparison theorem identifying that normal function with
 the deformed Apéry kernel or the odd-zeta forms in the chat. No regulator
 pairing with `zeta(2r+1)` is obtained from this estimate.
 
+`OddZeta/AperyRegulatorComparison.lean` now gives the operator-level
+identification explicitly. It writes the universal `X₁(6)` Weierstrass cubic
+and verifies its marked section, normalizes the elliptic Picard--Fuchs
+coefficients to the level-six root equation, and computes directly on a
+regulator Taylor jet `A + B t` that the coefficient of `t` in the Apéry K3
+Picard--Fuchs residual is `B - 5A`. The forcing series bounded above is the
+source's expansion for precisely this residual coefficient. Thus the
+Picard--Fuchs “identifier” is now an exact operator calculation, with an
+explicit elliptic section as input data.
+
+This is still a Picard--Fuchs-level model. It does not construct the
+horizontal correspondence from the chat's deformed kernel to Kerr's K1 cycle,
+nor identify the normalized third-kind differential and its period with that
+cycle's normal function. Those are actual geometric/regulator comparison
+claims, not consequences of equality of operator ranks or one Taylor
+coefficient.
+
 ## What is still unproved in the chat construction
 
 The two chat texts are the primary specification. The manuscript copy is only

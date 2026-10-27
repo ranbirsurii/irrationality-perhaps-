@@ -4,3 +4,4 @@ import OddZeta.AperyFive
 import OddZeta.AdamsGeneral
 import OddZeta.HodgeEtaleWeights
 import OddZeta.AperyRegulatorGeometry
+import OddZeta.AperyRegulatorComparison
