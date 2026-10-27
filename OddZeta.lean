@@ -2,6 +2,8 @@ import OddZeta.IrrationalityCriterion
 import OddZeta.AperyStructure
 import OddZeta.AperyFive
 import OddZeta.AperyDeformation
+import OddZeta.AperyZetaPushforward
+import OddZeta.AperyTelescoper
 import OddZeta.AdamsGeneral
 import OddZeta.HodgeEtaleWeights
 import OddZeta.AperyRegulatorGeometry

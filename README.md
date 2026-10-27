@@ -243,6 +243,29 @@ the local formal extension at every deformation order. To use it for the
 zeta linear forms, the residue or infinite-sum pushforward in `t` still has to
 be computed and shown to transport the sources and the arithmetic estimates.
 
+`OddZeta/AperyZetaPushforward.lean` now establishes the first analytic
+pushforward for every deformation order. It identifies
+`[z^m] R_0(t,z) = (-1)^m/t^(2m+2)`, proves its real derivative formula, proves
+summability of the differentiated values at positive integers, and evaluates
+their sum as `(2m+2)(-1)^m ζ(2m+3)`. This uses the convergent Dirichlet-series
+definition of zeta in mathlib, without an irrationality assumption.
+
+`OddZeta/AperyTelescoper.lean` gives explicit polynomial coefficients
+`A(n,z), B(n,z), C(n,z)` and a quadratic certificate `P(n,z,t)` satisfying
+
+`A R_(n+1)(t,z) + B R_n(t,z) + C R_(n-1)(t,z)`
+
+`= P(t+1) R_n(t+1,z) - P(t) R_n(t,z)`.
+
+The polynomial certificate and its application to the actual rational kernel
+are both checked in Lean. Its coefficients at `z=0` reduce, after the common
+factor `6n^4(n+1)^4`, to the usual Apéry coefficients
+`-(n+1)^3`, `(2n+1)(17n²+17n+5)`, and `-n^3`. For nonnegative rational `z`,
+the finite sum over `t=1,...,M` is proved to equal the single upper boundary
+term `P(M+1) R_n(M+1,z)`; the lower boundary is zero. Passing the differentiated
+and coefficient-extracted identity to an infinite sum, and bounding the
+projected forms and their denominators, remain necessary for irrationality.
+
 The candidate ways to connect the chat kernel to an Apéry regulator are:
 
 1. Explicitly transform the marked `X₁(6)` section to Legendre coordinates.
@@ -305,10 +328,11 @@ placeholder.
 The two chat texts are the primary specification. The manuscript copy is only
 a secondary aid and does not supply the missing bridges below.
 
-The finite rational formulas do not yet prove that the infinite differentiated
-series has the stated zeta expansion: termwise differentiation, convergence,
-and the partial-fraction summation remain to be established for the actual
-`R_n(t,z)` family.
+The `n=0` infinite differentiated series has its all-order odd-zeta evaluation
+proved. For general `n`, termwise deformation extraction, convergence, and
+partial-fraction summation remain to be established for the actual `R_n(t,z)`
+family. The finite telescoping certificate keeps its upper boundary term
+explicit until those limiting steps are justified.
 
 The geometric lift is not constructed. The chats propose a marked divisor on a
 level-six elliptic family and a candidate complete third-kind period, but do
