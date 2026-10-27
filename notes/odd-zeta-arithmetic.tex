@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[left=0.95in,right=0.95in,top=0.8in,bottom=0.8in]{geometry}
+\usepackage[left=0.95in,right=0.95in,top=0.65in,bottom=0.65in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -28,7 +28,10 @@ size. An elementary binomial divisibility bound shows that the uniform
 least-common-multiple normalization instead grows at every integer weight
 $s>1$. Exact common-factor cancellation is therefore essential for this
 family. The accompanying Lean file verifies the integer construction and
-its conditional irrationality criterion. No unconditional irrationality
+its conditional irrationality criterion. A Jacobi comparison gives explicit
+two-sided estimates for the approximation error $\Delta/A$, uniformly in
+all nonnegative shifts. The remaining condition becomes a precise bound
+on the primitive target coefficient. No unconditional irrationality
 theorem for all odd zeta values is established.
 \end{abstract}
 
@@ -126,6 +129,78 @@ $\zeta(s)$ is the lower principal minor. Its entries are
 \]
 The same positive Gram argument proves the inequality.
 
+\section{Explicit error estimates, uniform even for growing shifts}
+Put $s=2r+1$, $r\ge1$, and write $(z)_k=z(z+1)\cdots(z+k-1)$.
+The following bounds concern the actual coefficients in \eqref{eq:affine}.
+\begin{theorem}
+For $N>r$ and every integer $a\ge0$,
+\begin{equation}
+ \frac{(2r-1)!}{(N)_{2r}(N+a)_{2r}}
+ \le E_{N,a}:=\frac{\Delta_{N,a}^{(2r+1)}}{A_{N,a}^{(2r+1)}}
+ \le\frac{(2r-1)!}{(N-r)_{2r}(N-r+a)_{2r}}.
+ \label{eq:endpoint}
+\end{equation}
+The lower bound holds for all $N\ge1$. For every sequence $a_N\ge0$,
+\begin{equation}
+ N^{2r}(N+a_N)^{2r}E_{N,a_N}\longrightarrow(2r-1)!.
+ \label{eq:uniformerror}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The positive-functional method of \cite{Ferguson} suggests using the
+approximation error itself. The basis change preceding \eqref{eq:coefficient}
+and the Schur complement of its lower block give the exact minimum
+\begin{equation}
+ E_{N,a}=\min_{\deg P<N,\ P(1)=1}\int_0^1P(x)^2\rho(x)\dd x,
+ \quad\rho(x)=\frac{x^a(-\log x)^{2r}}{(2r)!(1-x)}.
+ \label{eq:christoffel}
+\end{equation}
+Indeed, every admissible $P$ has the unique form $1+(1-x)Q$,
+$\deg Q<N-1$; completing the square in the positive Gram matrix gives
+its determinant divided by the lower-block determinant $A$.
+
+For nonnegative integers $m,b$, the corresponding minimum for
+$x^b(1-x)^m$ is
+\begin{equation}
+ \lambda_N^{(m,b)}(1)=\frac{m!(m+1)!}{(N)_{m+1}(N+b)_{m+1}}.
+ \label{eq:jacobi}
+\end{equation}
+To check the constant, use the shifted Jacobi polynomials
+\[
+ J_j(x)=\frac{(-1)^j}{j!x^b(1-x)^m}
+       \frac{\dd^j}{\dd x^j}\bigl[x^{b+j}(1-x)^{m+j}\bigr].
+\]
+Integrating by parts $j$ times gives orthogonality and, using the beta
+integral, their squared norms
+\[
+ h_j=\frac{(j+m)!(j+b)!}{(2j+m+b+1)j!(j+m+b)!},
+ \qquad J_j(1)=\binom{j+m}{j}.
+\]
+All boundary terms vanish by the endpoint zero orders. Cauchy--Schwarz in
+this basis shows that the minimum is $1/\sum_{j<N}J_j(1)^2/h_j$,
+with equality attained by coefficients proportional to $J_j(1)/h_j$.
+The sum telescopes to
+$(N)_{m+1}(N+b)_{m+1}/(m!(m+1)!)$; subtracting its values at $N=j+1$
+and $N=j$ verifies each summand. This proves \eqref{eq:jacobi}.
+
+The inequalities $1-x\le-\log x\le(1-x)/x$ imply, for
+$q(x)=x^a(1-x)^{2r-1}/(2r)!$, that
+$q\le\rho$ and $x^{2r}\rho\le q$.
+The first gives the lower bound in \eqref{eq:endpoint} by
+\eqref{eq:jacobi}. For the upper bound restrict \eqref{eq:christoffel}
+to $P=x^rQ$, $\deg Q<N-r$, $Q(1)=1$; then
+$\int P^2\rho\le\int Q^2q$. Apply \eqref{eq:jacobi} again.
+
+Finally $N^k\le(N)_k\le(N+k-1)^k$ shows that the scaled expression in
+\eqref{eq:uniformerror} lies between
+\[
+ (2r-1)!\left(\frac N{N+2r-1}\right)^{4r}
+ \quad\text{and}\quad
+ (2r-1)!\left(\frac N{N-r}\right)^{4r}.
+\]
+These bounds are independent of $a\ge0$ and both tend to $(2r-1)!$.
+\end{proof}
+
 \section{Explicit denominator clearing, including its cost}
 Let $M=a+2N-2$, $d_M=\lcm(1,\ldots,M)$, with $d_0=1$, and put
 $Q=d_M^s$. For every $m\le M$,
@@ -148,6 +223,14 @@ Applying the affine determinant identity after scaling gives the exact relation
 \end{equation}
 Consequently the primitive form is
 $(Q^N/g)\Delta_{N,a}^{(s)}$, where $g=\gcd(|U|,|V|)$.
+Writing $u=U/g>0$, it is also exactly $uE_{N,a}$. Thus
+\eqref{eq:uniformerror} proves the sharp equivalent condition
+\begin{equation}
+ \ell_{N,a_N}\to0\quad\Longleftrightarrow\quad
+ \frac{u_{N,a_N}}{N^{2r}(N+a_N)^{2r}}\to0.
+ \label{eq:heightcondition}
+\end{equation}
+This primitive-height estimate is not established here.
 These definitions, including \eqref{eq:hclear} and \eqref{eq:integerform},
 are proved in the accompanying Lean module for every natural $s$.
 The positivity statement uses $s>1$ and is proved above in ordinary mathematics.
@@ -176,6 +259,110 @@ It follows that
  \log(Q^N)\ge sN\bigl(M\log2-\log(M+1)\bigr).
  \label{eq:cost}
 \end{equation}
+
+There is a proved arithmetic improvement to this uniform scale. In row $i$
+all harmonic indices are at most $M_i=a+i+N-1$, so $d_{M_i}^s$ clears
+that entire row. Set
+\begin{equation}
+ D_{\rm row}=\prod_{i=0}^{N-1}d_{M_i}^{s},\qquad
+ G_{\rm row}=\prod_{i=0}^{N-1}(d_M/d_{M_i})^s.
+ \label{eq:rowcost}
+\end{equation}
+Every quotient is integral and $G_{\rm row}D_{\rm row}=Q^N$.
+Define $W(y)_{ij}=d_{M_i}^s y-\sum_{k=1}^{a+i+j}(d_{M_i}/k)^s$, and set
+$U'=\det W(1)-\det W(0)$, $V'=\det W(0)$. Factoring each row gives
+\begin{equation}
+ D_{\rm row}\Delta=U'\zeta(s)+V',\quad
+ U=G_{\rm row}U',\quad V=G_{\rm row}V',\quad
+ g=G_{\rm row}\gcd(|U'|,|V'|).
+ \label{eq:rowfactor}
+\end{equation}
+Thus $G_{\rm row}$ is a constructed common divisor. Its remaining cost is
+explicit, including every prime:
+\[
+ v_p(D_{\rm row})=s\sum_{i=0}^{N-1}\lfloor\log_p M_i\rfloor,
+ \qquad
+ \log D_{\rm row}\ge s\sum_{i=0}^{N-1}
+     \bigl(M_i\log2-\log(M_i+1)\bigr),
+\]
+where a zero index contributes zero to the prime sum. Lean verifies the
+integer coefficient and gcd factorizations and both finite cost formulas.
+The final primitive pair is unchanged; \eqref{eq:heightcondition} still
+requires control of the remaining gcd.
+
+\section{Gcd normalization as a derived lattice operation}
+Keep the integer row $(U,V)$ from \eqref{eq:integers}, and let
+$g=\gcd(|U|,|V|)>0$. Place it in cochain degrees zero and one:
+\[
+ C^\bullet=\bigl[\Z^2\xrightarrow{[U\;V]}\Z\bigr].
+\]
+Write $u=U/g$, $v=V/g$, and choose integers $b,c$ with $bu+cv=1$.
+The matrix
+\[
+ S=\begin{pmatrix}b&-v\\c&u\end{pmatrix},\qquad
+ \det S=1,\qquad [U\;V]S=[g\;0]
+\]
+gives $H^0(C)=\Z$ and $H^1(C)=\Z/g\Z$. Equivalently, the image ideal
+and the zeroth Fitting ideal of its cokernel are $(U,V)=(g)$.
+This is an exact integral presentation, retaining the discrete coefficient data.
+
+For a nonzero integer $d$, the d\'ecalage operation of \cite[Section 6]{BMS}
+is computed on a torsion-free complex by
+\[
+ (\eta_d C)^i=\{x\in d^iC^i:\partial x\in d^{i+1}C^{i+1}\}.
+\]
+Its degree-zero term is all of $\Z^2$ exactly when $d\mid U$ and $d\mid V$;
+its degree-one term is $d\Z$. Thus, whenever these divisibilities hold,
+identifying $d\Z$ with $\Z$ using the basis element $d$ gives
+\begin{equation}
+ \eta_d C\ \cong\ \bigl[\Z^2\xrightarrow{[U/d\;V/d]}\Z\bigr].
+ \label{eq:eta}
+\end{equation}
+In particular, $\eta_g$ implements the primitive normalization itself.
+It changes the complex: its degree-one cohomology is zero, whereas that of
+$C$ is $\Z/g\Z$. Evaluating the divided row on $(\zeta(s),1)$ gives exactly
+the normalized real form in \eqref{eq:primitive}.
+
+For each prime $p$, this bounded free complex has derived completion
+$\widehat C_p=[\Z_p^2\to\Z_p]$. Its torsion length is
+\begin{equation}
+ e_p=\operatorname{length}_{\Z_p}H^1(\widehat C_p)
+     =v_p(g)=\min\{v_p(U),v_p(V)\},\qquad v_p(0)=+\infty.
+ \label{eq:torsion}
+\end{equation}
+The valuation pair is precise tropical data for the coefficient row.
+Exactly $e_p$ successive common-factor divisions by $p$ are available.
+The same Smith calculation works for a complex of completed integral
+coefficient sheaves on a pro-\'etale site. This identifies its cohomology
+sheaves; global cohomology still depends on the space.
+Identifying this coefficient complex with the Ap\'ery family's integral
+regulator complex is an additional comparison.
+An explicit cellular model is an interval with two vertex stalks and one
+edge stalk, all $\Z$, and incidence restriction maps $-U,V$.
+Its cellular coboundary is exactly $[U\;V]$. Relating this coefficient
+system to a geometric tropicalization requires an integral comparison.
+
+Combining all local lengths recovers the entire arithmetic saving:
+\begin{equation}
+ \log g=\sum_p e_p\log p,\qquad
+ -\log|\ell|=-\log\Delta-\log(Q^N)+\sum_p e_p\log p.
+ \label{eq:torsionbudget}
+\end{equation}
+Thus a successful geometric construction must prove a quantitative lower
+bound on these particular torsion lengths while preserving the coefficient
+row and its real evaluation. D\'ecalage computes the division; it does not
+by itself prove that the saving in \eqref{eq:torsionbudget} is sufficient.
+The precise transfer through a framed integral comparison is also elementary:
+if $E\in\operatorname{GL}_2(\Z)$ and
+\[
+ [U\;V]E=d[A\;B],
+ \qquad\text{then}\qquad
+ \gcd(|U|,|V|)=|d|\gcd(|A|,|B|).
+\]
+Indeed, $E$ preserves the image ideal of the row, while multiplication by
+$d$ multiplies its generator by $d$. Thus an identification transfers a
+proved content estimate for the source row, with its multiplier retained.
+This formula, including degenerate rows, is verified in Lean.
 
 \section{The exact analytic scale and a normalization obstruction}
 \begin{theorem}
@@ -260,23 +447,54 @@ $-\log|\Delta|/N^2\approx1.517981$ and
 $-\log|\ell|/N^2\approx-4.772732$ are finite-index diagnostics.
 They are not used in the proofs above and do not exclude eventual
 arithmetic improvements.
+The coefficient-complex audit gives
+$\log(Q^N)/N^2\approx9.053638$ and
+$\sum_p e_p\log p/N^2\approx2.762925$ at this index, recovering the same
+negative budget via \eqref{eq:torsionbudget}.
+At $s=9$, $N=5$, it also detects $e_{11}=2$ although $11>M=8$:
+common factors can arise beyond the primes in the denominator scale.
+All these common factors are included in the primitive normalization.
 
-An additional exact search replaces the monomials by sparse exponents.
-It checks $700$ small exponent sets and $60$ larger consecutive, even,
-quadratic, gapped, and two-cluster examples across $s=3,5,7,9$.
-Every tested example of the five families at sizes $4,6,8$ has primitive
-absolute value greater than $1$. These are finite checks, not an
-impossibility theorem for sparse spaces. The source chat's earlier weight
-projection and its separate sign obstruction are recorded in the repository audit.
+A separate sparse-space audit checks $700$ small exponent sets and $60$
+larger examples across $s=3,5,7,9$. Every larger example at sizes $4,6,8$
+has primitive absolute value greater than $1$. These finite checks make
+no asymptotic assertion about other polynomial spaces.
 
-Recent geometric constructions are useful specifically for their
-denominator symmetries. Brown--Zudilin \cite{BZ} exploit a group of order
-$5040$ for cellular integrals, obtaining an effective approximation
-exponent $0.86$ at weight five. Their result does not prove irrationality.
-The $2$-adic construction of Lai--Sprang--Zudilin \cite{LSZ} concerns
-$\zeta_2(5)$; its smallness occurs in a different absolute value.
-Neither result supplies the missing real estimate \eqref{eq:remaining}
-for the present determinant family.
+There are genuine published Ap\'ery-family identifications. For the
+classical $V_{12}$ family, \cite[Theorem 1.1, Section 5.4]{GKS} constructs
+a regulator period with $LV=-12t$, $v_0=2\zeta(3)$, and
+$v_1=10\zeta(3)-12$. Its operator is
+\[
+ L=\theta^3-t(2\theta+1)(17\theta^2+17\theta+5)+t^2(\theta+1)^3.
+\]
+The integral normal-function cone in \cite[Section 5]{K26} supplies a
+geometric comparison target. These results identify the classical period;
+an all-weight identification of our coefficient presentation and a
+sufficient bound in \eqref{eq:torsionbudget} are still required.
+
+The formal period-identification step is now complete under its explicit
+Picard--Fuchs hypotheses. For $F=\sum f_nt^n$ satisfying $LF=ct$,
+coefficient extraction gives $f_1=5f_0+c$ and
+\[
+ (n+2)^3f_{n+2}
+ =(2n+3)\bigl(17(n+1)^2+17(n+1)+5\bigr)f_{n+1}
+ -(n+1)^3f_n .
+\]
+Over any characteristic-zero field these equations determine every
+coefficient from $c$ and $f_0$. Consequently
+\[
+ \left.
+ \begin{gathered}
+ LA=0,\quad LB=12t,\quad LV=-12t,\\
+ A(0)=1,\quad B(0)=0,\quad V(0)=2z
+ \end{gathered}
+ \right\}
+ \quad\Longrightarrow\quad V=2zA-B .
+\]
+Lean verifies this identity for the actual Euler differential operator
+on formal power series. The published $V_{12}$ calculation supplies
+$z=\zeta(3)$. A geometric source with the analogous higher-weight
+equations and integral estimates has not been constructed here.
 
 \medskip
 \noindent\textbf{What the Lean file verifies.}
@@ -285,20 +503,50 @@ the integer matrix, and $U,V$. It proves \eqref{eq:hclear},
 \eqref{eq:integerform}, the lcm lower bound, the finite cost \eqref{eq:cost},
 and its exact prime valuations. It also verifies division by any proved
 common divisor and the resulting conditional irrationality criterion.
+\texttt{GcdDecalage.lean} constructs the coefficient cochain complex and
+verifies the image ideal, the d\'ecalage source condition, the divided
+boundary and its cochain comparison map over any commutative coefficient ring,
+and the Smith and valuation identities. It does not formalize the general derived functor $L\eta$ or
+pro-\'etale or geometric tropical comparison theorems.
+\texttt{IntegralFramedComparison.lean} verifies the quotient equivalence
+for the coefficient cokernel, surjectivity of the primitive row, and the
+framed content-transfer formula above.
+\texttt{AperyModernIdentification.lean} verifies the displayed operator
+expansion and the coefficient-identification step under explicit recurrence
+and initial-value hypotheses.
+\texttt{AperyFormalPeriod.lean} derives those recurrences from the formal
+Picard--Fuchs equations and proves the resulting full power-series identity.
 The moment integrals, positivity, and asymptotics
 \eqref{eq:rate}--\eqref{eq:obstruction} are paper proofs here, not
-Lean-verified results. No unconditional all-odd irrationality conclusion follows.
+Lean-verified results.
+
+\noindent
+\texttt{HankelEndpointEstimates.lean} verifies the logarithm and pointwise
+weight comparisons used in \eqref{eq:endpoint}, and the ascending-factorial
+bounds. The Schur complement, Jacobi integration, and uniform limit are
+paper proofs. The exact endpoint audit checks $24$ cases, including growing shifts.
+
+\noindent
+\texttt{RowwiseHankelArithmetic.lean} verifies \eqref{eq:rowfactor} and the
+finite prime and logarithmic costs in \eqref{eq:rowcost}.
+No unconditional all-odd irrationality conclusion follows.
 
 \begin{thebibliography}{9}
-\bibitem{BZ}
-F. Brown and W. Zudilin,
-\emph{On cellular rational approximations to $\zeta(5)$},
-arXiv:2210.03391v3, revised 29 January 2026.
-\url{https://arxiv.org/abs/2210.03391v3}.
-\bibitem{LSZ}
-L. Lai, J. Sprang and W. Zudilin,
-\emph{A note on the irrationality of $\zeta_2(5)$},
-International Mathematics Research Notices 2026, rnag180.
-\url{https://arxiv.org/abs/2505.05005v2}.
+\small
+\bibitem{Ferguson}
+T. Ferguson, \emph{Rational Approximations via Hankel Determinants}, 2020.
+\url{https://arxiv.org/abs/2003.10616}.
+\bibitem{GKS}
+V. Golyshev, M. Kerr and T. Sasaki,
+\emph{Ap\'ery Extensions}, Journal of the London Mathematical Society
+109 (2024), e12825.
+\url{https://arxiv.org/abs/2009.14762v3}.
+\bibitem{K26}
+M. Kerr, \emph{Three vignettes on hypergeometric normal functions}, 2026.
+\url{https://arxiv.org/abs/2602.04128}.
+\bibitem{BMS}
+B. Bhatt, M. Morrow and P. Scholze,
+\emph{Integral $p$-adic Hodge theory}, Section 6.
+\url{https://arxiv.org/abs/1602.03148}.
 \end{thebibliography}
 \end{document}

@@ -1,0 +1,40 @@
+import OddZeta.GcdDecalage
+import OddZeta.AperyModernIdentification
+import OddZeta.IntegralFramedComparison
+import OddZeta.AperyFormalPeriod
+import OddZeta.HankelEndpointEstimates
+import OddZeta.RowwiseHankelArithmetic
+
+#print axioms OddZeta.coefficientRow_range
+#print axioms OddZeta.etaZeroLattice_eq_top_iff
+#print axioms OddZeta.coefficientRow_range_base_change
+#print axioms OddZeta.coefficientSmithMatrix_det
+#print axioms OddZeta.coefficientSmith_boundary
+#print axioms OddZeta.content_tropical_weight
+#print axioms OddZeta.coefficientComplex
+#print axioms OddZeta.coefficientDivisionComparison
+#print axioms OddZeta.oddHankelPadicComplex
+#print axioms OddZeta.oddHankelPadicPrimitiveComparison
+#print axioms OddZeta.oddHankel_prime_decalage_eligibility
+#print axioms OddZeta.aperyGKS_operator_expansion
+#print axioms OddZeta.modernApery_recurrence_unique
+#print axioms OddZeta.aperyV12_period_identification_of_recurrences
+#print axioms OddZeta.coefficientCokernelContentEquiv
+#print axioms OddZeta.primitive_coefficientRow_surjective
+#print axioms OddZeta.framed_comparison_content
+#print axioms OddZeta.rational_coefficient_range_loses_content
+#print axioms OddZeta.modernAperyPF_coeff_succ_succ
+#print axioms OddZeta.modernAperyPF_recurrence
+#print axioms OddZeta.aperyV12_identification_from_PF
+#print axioms OddZeta.endpoint_log_power_bounds
+#print axioms OddZeta.endpoint_weight_sandwich
+#print axioms OddZeta.endpoint_ascFactorial_bounds
+#print axioms OddZeta.endpointJacobiBound_pos
+#print axioms OddZeta.endpointJacobiBound_nat_lower
+#print axioms OddZeta.scaledHarmonicPower_change_scale
+#print axioms OddZeta.rowHankelSaving_mul_cost
+#print axioms OddZeta.rowHankel_determinant_factorization
+#print axioms OddZeta.rowHankel_content_factorization
+#print axioms OddZeta.rowHankelSaving_dvd_content
+#print axioms OddZeta.rowHankel_prime_cost
+#print axioms OddZeta.rowHankel_log_cost_lower

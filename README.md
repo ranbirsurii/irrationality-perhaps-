@@ -112,6 +112,58 @@ larger sparse/consecutive family checks at weights 3, 5, 7, and 9. Every larger
 tested form has primitive absolute value greater than one. These finite
 computations do not settle asymptotic smallness for other spaces.
 
+## Integral chain normalization and published identifications
+
+[Exact all-weight endpoint estimates](notes/hankel-christoffel-estimates.md)
+give explicit upper and lower bounds for `Delta/A`, using its Christoffel
+minimum and a Jacobi-polynomial calculation. For `s=2r+1` and any sequence of
+nonnegative shifts, `N^(2r)(N+a_N)^(2r) Delta/A -> (2r-1)!`.
+Consequently the primitive form tends to zero exactly when its positive
+target coefficient `U/gcd(U,V)` is little-o of this polynomial scale.
+This arithmetic height estimate has not been proved.
+`OddZeta/HankelEndpointEstimates.lean` verifies the pointwise logarithm and
+weight comparisons and ascending-factorial bounds. The variational,
+integration, and limiting steps are paper proofs. The exact audit
+`scripts/endpoint_error_audit.py` checks 24 parameter choices.
+
+`OddZeta/RowwiseHankelArithmetic.lean` replaces uniform denominator clearing
+by the product of the separate row denominators. It constructs the smaller
+integer row and proves an explicit common divisor of both old coefficients,
+their exact gcd factorization, and the new prime-by-prime and logarithmic
+arithmetic costs. The finite coefficient audit records this guaranteed saving
+and the remaining gcd separately.
+
+`OddZeta/GcdDecalage.lean` constructs the coefficient cochain complex over
+commutative rings and explicitly over the p-adic integers. It proves the
+content ideal, the source-lattice condition for decalage, the divided
+cochain comparison map, an integral Smith matrix, and prime-power eligibility
+for each common-factor division. The general derived functor, pro-etale
+comparison theorems, and geometric tropical realization are not formalized.
+
+`OddZeta/IntegralFramedComparison.lean` constructs the quotient equivalence
+from the coefficient cokernel to the quotient by its content ideal over any
+commutative ring. It proves that the primitive row is surjective. For an
+integral source-lattice equivalence `e` and a comparison
+`[U,V] e = d [A,B]`, it proves the exact transfer formula
+`gcd(U,V) = abs(d) gcd(A,B)`. Thus the lattice multiplier is accounted for.
+
+`OddZeta/AperyModernIdentification.lean` checks the standard operator in
+Golyshev-Kerr-Sasaki's V12 calculation and proves the coefficient-identification
+step from explicit recurrence and initial-value hypotheses.
+`OddZeta/AperyFormalPeriod.lean` defines the actual Euler differential operator
+on formal power series, derives the recurrence from its differential equation,
+and proves `V = 2 z A - B` from `LA=0`, `LB=12t`, `LV=-12t` and the three
+constant terms. These equations are explicit hypotheses; the geometric
+period construction and the identification `z=zeta(3)` are not Lean axioms.
+[The identification audit](notes/apery-identification-audit.md) records the
+relevant 2024-2026 theorem statements and the integral comparison still
+required for these particular all-weight coefficient forms.
+
+`scripts/coefficient_chain_audit.py` computes exact common divisors and local
+torsion lengths for selected weights and sizes. It includes all common factors,
+including an additional factor 11 squared at weight nine and size five.
+These finite computations do not establish a sufficient asymptotic saving.
+
 ## All-weight Adams projector
 
 `OddZeta/AdamsGeneral.lean` formalizes the projector proposed in the chat texts.

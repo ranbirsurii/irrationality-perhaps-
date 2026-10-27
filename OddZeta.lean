@@ -7,6 +7,12 @@ import OddZeta.AperyTelescoper
 import OddZeta.AperyEstimateAudit
 import OddZeta.AperyHankel
 import OddZeta.OddHankelArithmetic
+import OddZeta.HankelEndpointEstimates
+import OddZeta.GcdDecalage
+import OddZeta.IntegralFramedComparison
+import OddZeta.RowwiseHankelArithmetic
+import OddZeta.AperyModernIdentification
+import OddZeta.AperyFormalPeriod
 import OddZeta.AdamsGeneral
 import OddZeta.HodgeEtaleWeights
 import OddZeta.AperyRegulatorGeometry
