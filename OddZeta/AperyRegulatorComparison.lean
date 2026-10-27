@@ -139,6 +139,22 @@ theorem markedAbelCycle_abel_sum {G : Type} [AddCommGroup G] (P : G) :
     cycleAbelSum markedAbelCycle P = P := by
   simp [cycleAbelSum, markedAbelCycle]
 
+/-- Abel summation of a two-point cycle is natural under an induced map of
+additive realizations. This is the functoriality needed when a geometric
+correspondence induces a map on the realization of the marked cycle. -/
+theorem cycleAbelSum_inducedMap {G H : Type} [AddCommGroup G]
+    [AddCommGroup H] (C : TwoPointZeroCycle) (φ : G →+ H) (P : G) :
+    cycleAbelSum C (φ P) = φ (cycleAbelSum C P) := by
+  simp [cycleAbelSum, map_zsmul]
+
+/-- In particular, every induced homomorphism sends the marked one-motive
+cycle to the image of its marked point. The theorem is abstract: it does not
+construct a correspondence from the Apéry family to the elliptic curve. -/
+theorem markedAbelCycle_inducedMap {G H : Type} [AddCommGroup G]
+    [AddCommGroup H] (φ : G →+ H) (P : G) :
+    cycleAbelSum markedAbelCycle (φ P) = φ P := by
+  rw [markedAbelCycle_abel_sum]
+
 /-- The coefficient multiplying `dx/(x-ν)` in the proposed third-kind form
 `(Y+κ) dx / (2 (x-ν) Y)`. -/
 def markedThirdKindResidueCoefficient (κ Y : ℚ) : ℚ :=

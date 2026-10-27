@@ -129,6 +129,34 @@ family. The remaining `-1` residue at `O` follows only after proving the local
 expansion at infinity (or invoking and formalizing the global residue theorem);
 that step and the relative de Rham/Abel--Jacobi comparison are still open.
 
+The induced-map calculation is now explicit: `cycleAbelSum_inducedMap` proves
+that an additive realization homomorphism commutes with Abel summation, and
+`markedAbelCycle_inducedMap` sends `[P]-[O]` to the image of `P`. This is the
+functoriality law an induced morphism must satisfy. It does not manufacture the
+needed correspondence out of the Apéry family. A Mayer--Vietoris/groupoid
+construction is a plausible way to assemble local horizontal maps into such a
+global correspondence, but it still has to produce those maps and preserve
+the marked residue data.
+
+There is also a direct arithmetic checkpoint. The January 2026, unreviewed
+preprint *On the Irrationality of the Odd Zeta Values* claims irrationality
+for every odd zeta value. Its parameter selection requires
+`g(α) = 1 + q + λα - γ_q(α) < 0`, with `λ=2n+3`. For `λ≥5`, this inequality
+cannot hold: if `q+1≤exp(λ)`, convexity and `g'(0)≥0` give `g(α)≥1+q`; if
+`q+1>exp(λ)`, the unique minimum is at
+`α*=q/(exp(λ)-1)-1`, where
+`g(α*) = q(1+log(1-exp(-λ))) + 1-λ+log(q+1) + q log(1+1/q) > 0`.
+Thus that version's parameter lemma does not establish the required decay for
+the odd-zeta cases. This audit is not a proof that no corrected argument can
+work; it prevents us from importing an invalid estimate as a shortcut.
+
+The geometric and arithmetic paths now have clear independent targets. The
+geometric target is an actual horizontal correspondence, constructed by local
+maps and overlap cocycles. The arithmetic target is an explicit sequence of
+integer forms `A_m ζ(2n+1)-B_m` with certified nonvanishing and decay. Neither
+target follows from the other, and both are needed for an unconditional
+all-odd irrationality proof.
+
 This is still a Picard--Fuchs and fiber-coordinate model. It does not construct
 the horizontal correspondence from the chat's deformed kernel to Kerr's K1
 cycle, nor identify the normalized third-kind differential and its period with
