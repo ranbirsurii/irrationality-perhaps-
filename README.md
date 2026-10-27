@@ -16,37 +16,46 @@ complete third-kind Picard–Fuchs operator.
 `z`. It defines the stated Apéry coefficients `A_n`, harmonic numbers,
 `eta_(n,k)`, and the explicit formula for `C_n`; proves `A_1 = 5` and
 `C_1 = -36`; and verifies the `n=1` forms and the scalar elimination identity
-that cancels the `zeta(3)` term. The Adams projector is formalized as its
-rational eigenvalue polynomial: it kills eigenvalue `8`, fixes `32`, and
-scales eigenvalue `1` by `-7/24`.
+that cancels the `zeta(3)` term. It also gives explicit finite harmonic-sum
+formulas for the rational terms `b_n` and `E_n` by computing the local Laurent
+coefficients of the rational kernel; these yield `b_1 = 12` and `E_1 = 64`.
+The identity for `C_n` is proved again from the second-order Laurent
+coefficient. The Adams projector is formalized on a rational vector space and
+on the specified weight decomposition: it kills weight 3, fixes weight 5,
+and sends a rational weight-0 coordinate to `-7/24` of itself. Thus the
+projected period in the formal weight model is `-4 A_n zeta(5) - 7 E_n/24`.
+The coefficient `-4 A_n` is proved integral; Lean defines the exact reduced
+denominator of `7 E_n/24` and proves that it clears the rational term.
 
-The source gives only existence of rational terms `b_n` and `E_n` in the two
-forms, not a general formula for them, so Lean keeps them as rational inputs.
-The displayed `L_(n,0)` and `L_(n,1)` coefficient identities are recorded as
-definitions; the source text calls them the result of the Apéry/partial-
-fraction calculation but does not supply that derivation. Likewise, the
-third-kind operator coefficients are recorded, but the analytic proof that
-the integral satisfies the operator is not formalized here. The generic
-linear-operator lemma proves the Adams projector kills a weight-3 eigenvector
-and fixes a weight-5 eigenvector; it does not produce the proposed regulator
-class or show that the Apéry family maps to it.
+The supplied text states that partial fractions of the infinite series produce
+the displayed coefficients. Lean formalizes their finite Laurent/harmonic
+algebra, but does not yet prove termwise differentiation and summation of the
+infinite series. Likewise, the third-kind operator coefficients are recorded,
+but the analytic proof that the integral satisfies the operator is not
+formalized here. The weight-space calculation proves the projector once the
+specified Adams eigenspace decomposition is given; it does not itself show
+that the geometric Apéry family realizes that decomposition.
 
 ## Conditional irrationality step
 
 `OddZeta/IrrationalityCriterion.lean` proves that integer-valued multiples
-of a nonzero rational linear form cannot converge to zero. Its odd-zeta
-corollary still requires nonvanishing and denominator-scaled convergence.
+of a nonzero rational linear form cannot converge to zero. It also proves
+that explicit bounds `q_n ≤ C exp(beta n)` and
+`|L_n| ≤ C' exp(-alpha n)` imply `q_n L_n → 0` when `alpha > beta`.
+The manuscript slopes are formalized as
+`alpha_n = 4n log(1+sqrt(2))` and `beta_n = 2n+1`; Lean proves their gap is
+positive for every `n ≥ 1`.
 
-The manuscript's separate large-`N` construction states the target rates
-`alpha_n = 4n log(1+sqrt(2))` and `kappa_n <= 2n+1`, with the gap
-`alpha_n - kappa_n >= 4n log(1+sqrt(2)) - (2n+1) > 0`. Its odd-zeta theorem
-assumes the uniform finite-`N` coefficient theorem that is supposed to supply
-the forms, denominators, and nonvanishing. These rates concern that manuscript
-construction; the text does not show that they apply to the chat's new
-`R_n(t,z)` forms or to the proposed Adams-projected regulator form. The chat
-texts themselves leave the marked-point characteristic and inhomogeneous
-third-kind regulator equation as next calculations. Consequently this Lean
-project does not claim irrationality of `zeta(5)` or of every odd zeta value.
+The manuscript's separate large-`N` construction states the target denominator
+rate `kappa_n <= 2n+1` and decay rate
+`alpha_n = 4n log(1+sqrt(2))`. The slope gap is now proved, and the generic
+Lean theorem turns matching exponential bounds into the required convergence.
+The source does not identify its finite-`N` forms with the chat's `R_n(t,z)`
+family, so those bounds and nonvanishing still need to be proved for the
+concrete deformed and projected forms. The elliptic chat gives the
+characteristic formula once the marked point is specified, while leaving the
+inhomogeneous regulator calculation as the next step. The project therefore
+does not claim irrationality of `zeta(5)` or of every odd zeta value.
 
 All source files use ordinary visible Lean code and contain no `sorry` or
 `admit`.

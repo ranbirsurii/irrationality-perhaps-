@@ -50,17 +50,56 @@ def harmonic (n : ℕ) : ℚ :=
 def harmonicTwo (n : ℕ) : ℚ :=
   ∑ j ∈ Finset.range n, (j + 1 : ℚ)⁻¹ ^ 2
 
+def harmonicThree (n : ℕ) : ℚ :=
+  ∑ j ∈ Finset.range n, (j + 1 : ℚ)⁻¹ ^ 3
+
+def harmonicFour (n : ℕ) : ℚ :=
+  ∑ j ∈ Finset.range n, (j + 1 : ℚ)⁻¹ ^ 4
+
+def harmonicFive (n : ℕ) : ℚ :=
+  ∑ j ∈ Finset.range n, (j + 1 : ℚ)⁻¹ ^ 5
+
 /-- The rational Apéry summand `binom(n,k)^2 binom(n+k,k)^2`. -/
 def aperySummand (n k : ℕ) : ℚ :=
   ((Nat.choose n k : ℚ) ^ 2) * ((Nat.choose (n + k) k : ℚ) ^ 2)
+
+def aperySummandNat (n k : ℕ) : ℕ :=
+  (Nat.choose n k) ^ 2 * (Nat.choose (n + k) k) ^ 2
 
 /-- The Apéry denominator coefficient `A_n`. -/
 def aperyA (n : ℕ) : ℚ :=
   ∑ k ∈ Finset.range (n + 1), aperySummand n k
 
+def aperyANat (n : ℕ) : ℕ :=
+  ∑ k ∈ Finset.range (n + 1), aperySummandNat n k
+
+theorem aperyA_eq_natCast (n : ℕ) : aperyA n = (aperyANat n : ℚ) := by
+  simp [aperyA, aperyANat, aperySummand, aperySummandNat]
+
 /-- The harmonic combination `eta_(n,k)` from the source calculation. -/
 def aperyEta (n k : ℕ) : ℚ :=
   harmonic (n + k) + harmonic (n - k) - 2 * harmonic k
+
+/-- Local logarithmic coefficients of `F_n` at the pole `t = -k`. -/
+def aperyLocalSecond (n k : ℕ) : ℚ :=
+  harmonicTwo (n + k) - 2 * harmonicTwo k - harmonicTwo (n - k)
+
+def aperyLocalThird (n k : ℕ) : ℚ :=
+  -harmonicThree (n + k) + 2 * harmonicThree k - harmonicThree (n - k)
+
+def aperyLocalRegular0 (n k : ℕ) : ℚ :=
+  2 * aperyEta n k ^ 2 - aperyLocalSecond n k
+
+def aperyLocalRegular1 (n k : ℕ) : ℚ :=
+  -(4 : ℚ) / 3 * aperyEta n k ^ 3 +
+    2 * aperyEta n k * aperyLocalSecond n k +
+    (2 : ℚ) / 3 * aperyLocalThird n k
+
+def aperyPoleRegular0 (n k : ℕ) : ℚ :=
+  harmonicTwo k + harmonicTwo (n - k)
+
+def aperyPoleRegular1 (n k : ℕ) : ℚ :=
+  2 * harmonicThree k - 2 * harmonicThree (n - k)
 
 /-- The explicitly stated coefficient of `zeta(3)` in `L_(n,1)`. -/
 def aperyC (n : ℕ) : ℚ :=
@@ -69,6 +108,90 @@ def aperyC (n : ℕ) : ℚ :=
       (2 * aperyEta n k ^ 2 - harmonicTwo (n + k) +
         3 * harmonicTwo k + 2 * harmonicTwo (n - k))
 
+/-- Laurent coefficients of the first deformation coefficient of `R_n` at
+`t = -k`, ordered from the fourth-order pole down to the simple pole. -/
+def aperyR1Pole4 (n k : ℕ) : ℚ :=
+  -aperySummand n k
+
+def aperyR1Pole3 (n k : ℕ) : ℚ :=
+  2 * aperySummand n k * aperyEta n k
+
+def aperyR1Pole2 (n k : ℕ) : ℚ :=
+  -aperySummand n k * (aperyLocalRegular0 n k + aperyPoleRegular0 n k)
+
+def aperyR1Pole1 (n k : ℕ) : ℚ :=
+  -aperySummand n k *
+    (aperyLocalRegular1 n k -
+      2 * aperyEta n k * aperyPoleRegular0 n k + aperyPoleRegular1 n k)
+
+/-- Rational part of the ordinary Apéry form from the pole expansion. -/
+def aperyB (n : ℕ) : ℚ :=
+  ∑ k ∈ Finset.range (n + 1),
+    aperySummand n k *
+      (2 * harmonicThree k - 2 * aperyEta n k * harmonicTwo k)
+
+/-- Rational part of the first deformation form from its Laurent coefficients. -/
+def aperyE (n : ℕ) : ℚ :=
+  -∑ k ∈ Finset.range (n + 1),
+    (4 * aperyR1Pole4 n k * harmonicFive k +
+      3 * aperyR1Pole3 n k * harmonicFour k +
+      2 * aperyR1Pole2 n k * harmonicThree k +
+      aperyR1Pole1 n k * harmonicTwo k)
+
+def aperyProjectedA (n : ℕ) : ℤ :=
+  -4 * (aperyANat n : ℤ)
+
+theorem aperyProjectedA_eq_rationalCoefficient (n : ℕ) :
+    (aperyProjectedA n : ℚ) = -4 * aperyA n := by
+  rw [aperyA_eq_natCast]
+  norm_num [aperyProjectedA]
+
+def aperyProjectedB (n : ℕ) : ℚ :=
+  (7 : ℚ) / 24 * aperyE n
+
+/-- The exact reduced denominator of the projected rational term. -/
+def aperyProjectedDenom (n : ℕ) : ℕ :=
+  (aperyProjectedB n).den
+
+def aperyProjectedForm (n : ℕ) (zeta5 : ℝ) : ℝ :=
+  (aperyProjectedA n : ℝ) * zeta5 - (aperyProjectedB n : ℝ)
+
+theorem aperyProjectedDenom_clears (n : ℕ) :
+    (aperyProjectedDenom n : ℚ) * aperyProjectedB n =
+      (aperyProjectedB n).num := by
+  have hq := (aperyProjectedB n).num_div_den
+  have hd : ((aperyProjectedB n).den : ℚ) ≠ 0 := by
+    exact_mod_cast Rat.den_nz (aperyProjectedB n)
+  have hmul : ((aperyProjectedB n).den : ℚ) * aperyProjectedB n =
+      (aperyProjectedB n).num := by
+    calc
+      ((aperyProjectedB n).den : ℚ) * aperyProjectedB n =
+          ((aperyProjectedB n).den : ℚ) *
+            (((aperyProjectedB n).num : ℚ) / (aperyProjectedB n).den) :=
+        congrArg (fun x : ℚ => ((aperyProjectedB n).den : ℚ) * x) hq.symm
+      _ = (aperyProjectedB n).num := by field_simp [hd]
+  exact hmul
+
+/-- The zeta-five form after the proposed weight projector, in rational
+coefficient form. -/
+theorem aperyC_eq_twice_pole2_sum (n : ℕ) :
+    aperyC n = 2 * ∑ k ∈ Finset.range (n + 1), aperyR1Pole2 n k := by
+  unfold aperyC
+  have hsum :
+      (∑ k ∈ Finset.range (n + 1), aperyR1Pole2 n k) =
+        -(∑ k ∈ Finset.range (n + 1),
+          aperySummand n k *
+            (2 * aperyEta n k ^ 2 - harmonicTwo (n + k) +
+              3 * harmonicTwo k + 2 * harmonicTwo (n - k))) := by
+    rw [← Finset.sum_neg_distrib]
+    apply Finset.sum_congr rfl
+    intro k hk
+    unfold aperyR1Pole2 aperySummand aperyLocalRegular0
+      aperyLocalSecond aperyPoleRegular0
+    ring
+  rw [hsum]
+  ring
+
 theorem aperyA_one : aperyA 1 = 5 := by
   norm_num [aperyA, aperySummand, Finset.sum_range_succ]
 
@@ -76,35 +199,46 @@ theorem aperyC_one : aperyC 1 = -36 := by
   norm_num [aperyC, aperySummand, aperyEta, harmonic, harmonicTwo,
     Finset.sum_range_succ]
 
-/-- The two stated coefficient formulas, with their rational terms exposed. -/
-def aperyL0 (n : ℕ) (zeta3 : ℝ) (b : ℚ) : ℝ :=
-  2 * (aperyA n : ℝ) * zeta3 - (b : ℝ)
+theorem aperyB_one : aperyB 1 = 12 := by
+  norm_num [aperyB, aperySummand, aperyEta, harmonic, harmonicTwo,
+    harmonicThree, Finset.sum_range_succ]
 
-def aperyL1 (n : ℕ) (zeta3 zeta5 : ℝ) (E : ℚ) : ℝ :=
-  -4 * (aperyA n : ℝ) * zeta5 + (aperyC n : ℝ) * zeta3 + (E : ℝ)
+theorem aperyE_one : aperyE 1 = 64 := by
+  norm_num [aperyE, aperySummand, aperyR1Pole4, aperyR1Pole3,
+    aperyR1Pole2, aperyR1Pole1, aperyEta, aperyLocalRegular0,
+    aperyLocalRegular1, aperyLocalSecond, aperyLocalThird,
+    aperyPoleRegular0, aperyPoleRegular1, harmonic, harmonicTwo,
+    harmonicThree, harmonicFour, harmonicFive, Finset.sum_range_succ]
+
+/-- The two stated coefficient formulas, with their rational terms exposed. -/
+def aperyL0 (n : ℕ) (zeta3 : ℝ) : ℝ :=
+  2 * (aperyA n : ℝ) * zeta3 - (aperyB n : ℝ)
+
+def aperyL1 (n : ℕ) (zeta3 zeta5 : ℝ) : ℝ :=
+  -4 * (aperyA n : ℝ) * zeta5 + (aperyC n : ℝ) * zeta3 + (aperyE n : ℝ)
 
 /-- Scalar elimination cancels the `zeta(3)` term exactly. -/
 theorem apery_scalar_elimination
-    (n : ℕ) (zeta3 zeta5 : ℝ) (b E : ℚ) :
-    2 * (aperyA n : ℝ) * aperyL1 n zeta3 zeta5 E -
-        (aperyC n : ℝ) * aperyL0 n zeta3 b =
+    (n : ℕ) (zeta3 zeta5 : ℝ) :
+    2 * (aperyA n : ℝ) * aperyL1 n zeta3 zeta5 -
+        (aperyC n : ℝ) * aperyL0 n zeta3 =
       -8 * (aperyA n : ℝ) ^ 2 * zeta5 +
-        ((2 * aperyA n * E + aperyC n * b : ℚ) : ℝ) := by
+        ((2 * aperyA n * aperyE n + aperyC n * aperyB n : ℚ) : ℝ) := by
   unfold aperyL0 aperyL1
   push_cast
   ring
 
 /-- The `n = 1` first-level forms recorded in the source. -/
 theorem apery_L0_one (zeta3 : ℝ) :
-    aperyL0 1 zeta3 (12 : ℚ) = 10 * zeta3 - 12 := by
+    aperyL0 1 zeta3 = 10 * zeta3 - 12 := by
   unfold aperyL0
-  rw [aperyA_one]
+  rw [aperyA_one, aperyB_one]
   norm_num
 
 theorem apery_L1_one (zeta3 zeta5 : ℝ) :
-    aperyL1 1 zeta3 zeta5 (64 : ℚ) = -20 * zeta5 - 36 * zeta3 + 64 := by
+    aperyL1 1 zeta3 zeta5 = -20 * zeta5 - 36 * zeta3 + 64 := by
   unfold aperyL1
-  rw [aperyA_one, aperyC_one]
+  rw [aperyA_one, aperyC_one, aperyE_one]
   norm_num
   ring
 
@@ -139,6 +273,60 @@ theorem adamsProjector5Apply_fixes_weight5 {V : Type}
     module
   rw [h]
   simp [smul_smul]
+
+/-- The proposed Adams action on the three specified weights `3`, `5`, and
+`0`, with eigenvalues `8`, `32`, and `1`. -/
+def adamsTwoOnWeights : (ℚ × ℚ × ℚ) →ₗ[ℚ] (ℚ × ℚ × ℚ) where
+  toFun v := (8 * v.1, 32 * v.2.1, v.2.2)
+  map_add' v w := by
+    ext <;> simp <;> ring
+  map_smul' c v := by
+    ext <;> simp <;> ring
+
+theorem adamsProjector5_weight_coordinates (v : ℚ × ℚ × ℚ) :
+    adamsProjector5Apply adamsTwoOnWeights v =
+      (0, v.2.1, -(7 : ℚ) / 24 * v.2.2) := by
+  ext <;> simp [adamsProjector5Apply, adamsTwoOnWeights] <;> ring
+
+/-- Period evaluation of the formal weight coordinates. -/
+def weightPeriod (zeta3 zeta5 : ℝ) (v : ℚ × ℚ × ℚ) : ℝ :=
+  (v.1 : ℝ) * zeta3 + (v.2.1 : ℝ) * zeta5 + (v.2.2 : ℝ)
+
+/-- The projector removes the `zeta(3)` coordinate at fixed denominator 24. -/
+theorem adamsProjector5_weightPeriod (zeta3 zeta5 : ℝ)
+    (v : ℚ × ℚ × ℚ) :
+    weightPeriod zeta3 zeta5 (adamsProjector5Apply adamsTwoOnWeights v) =
+      (v.2.1 : ℝ) * zeta5 - (7 : ℝ) / 24 * (v.2.2 : ℝ) := by
+  rw [adamsProjector5_weight_coordinates]
+  unfold weightPeriod
+  push_cast
+  ring
+
+/-- The formal weight decomposition of the first deformed Apéry coefficient.
+This records the proposed grading; it is not a construction of a geometric
+regulator class. -/
+def aperyL1WeightCoordinates (n : ℕ) : ℚ × ℚ × ℚ :=
+  (aperyC n, -4 * aperyA n, aperyE n)
+
+theorem aperyL1_projected_period (n : ℕ) (zeta3 zeta5 : ℝ) :
+    weightPeriod zeta3 zeta5
+      (adamsProjector5Apply adamsTwoOnWeights (aperyL1WeightCoordinates n)) =
+        -4 * (aperyA n : ℝ) * zeta5 -
+          (7 : ℝ) / 24 * (aperyE n : ℝ) := by
+  rw [adamsProjector5_weight_coordinates]
+  unfold weightPeriod aperyL1WeightCoordinates
+  push_cast
+  ring
+
+theorem aperyL1_projected_period_eq_form (n : ℕ) (zeta3 zeta5 : ℝ) :
+    weightPeriod zeta3 zeta5
+      (adamsProjector5Apply adamsTwoOnWeights (aperyL1WeightCoordinates n)) =
+        aperyProjectedForm n zeta5 := by
+  rw [aperyL1_projected_period]
+  unfold aperyProjectedForm aperyProjectedB
+  rw [← aperyProjectedA_eq_rationalCoefficient]
+  push_cast
+  ring
 
 theorem adamsProjector5_kills_weight3 :
     adamsProjector5Eigenvalue 8 = 0 := by
