@@ -33,6 +33,298 @@ def aperyR (n : ℕ) (t z : ℚ) : ℚ :=
   aperyF n t * ∏ j ∈ Finset.range (n + 1),
     (1 + z / (t + (j : ℚ)) ^ 2)⁻¹
 
+theorem aperyNumerator_succ (n : ℕ) (t : ℚ) :
+    aperyNumerator (n + 1) t =
+      aperyNumerator n t * (t - ((n + 1 : ℕ) : ℚ)) := by
+  simp [aperyNumerator, Finset.prod_range_succ]
+
+theorem aperyDenominator_succ (n : ℕ) (t : ℚ) :
+    aperyDenominator (n + 1) t =
+      aperyDenominator n t * (t + ((n + 1 : ℕ) : ℚ)) := by
+  simp [aperyDenominator, Finset.prod_range_succ]
+
+/-- The undeformed Apéry rational function has a first-order term ratio. -/
+theorem aperyF_succ (n : ℕ) (t : ℚ)
+    (hden : aperyDenominator n t ≠ 0)
+    (hshift : t + ((n + 1 : ℕ) : ℚ) ≠ 0) :
+    aperyF (n + 1) t = aperyF n t *
+      (((t - ((n + 1 : ℕ) : ℚ)) / (t + ((n + 1 : ℕ) : ℚ))) ^ 2) := by
+  unfold aperyF
+  rw [aperyNumerator_succ, aperyDenominator_succ]
+  field_simp [hden, hshift]
+
+/-- Creative-telescoping recurrence for the actual finite chat kernel.
+The old deformation factors cancel structurally; only the new index remains. -/
+theorem aperyR_succ (n : ℕ) (t z : ℚ)
+    (hden : aperyDenominator n t ≠ 0)
+    (hshift : t + ((n + 1 : ℕ) : ℚ) ≠ 0) :
+    aperyR (n + 1) t z = aperyR n t z *
+      (((t - ((n + 1 : ℕ) : ℚ)) / (t + ((n + 1 : ℕ) : ℚ))) ^ 2) *
+      (1 + z / (t + ((n + 1 : ℕ) : ℚ)) ^ 2)⁻¹ := by
+  unfold aperyR
+  rw [aperyF_succ n t hden hshift]
+  simp only [Finset.prod_range_succ]
+  ring
+
+/-- On the positive real-parameter region, the recurrence is the simple
+hypergeometric ratio with quadratic denominator. -/
+theorem aperyR_succ_ratio (n : ℕ) (t z : ℚ)
+    (hden : aperyDenominator n t ≠ 0)
+    (hshift : t + ((n + 1 : ℕ) : ℚ) ≠ 0)
+    (hquad : (t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z ≠ 0) :
+    aperyR (n + 1) t z = aperyR n t z *
+      (((t - ((n + 1 : ℕ) : ℚ)) ^ 2) /
+        ((t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z)) := by
+  rw [aperyR_succ n t z hden hshift]
+  field_simp [hshift, hquad]
+
+theorem aperyR_zero_closed_form (t z : ℚ)
+    (ht : t ≠ 0) (hquad : t ^ 2 + z ≠ 0) :
+    aperyR 0 t z = (t ^ 2 + z)⁻¹ := by
+  norm_num [aperyR, aperyF, aperyNumerator, aperyDenominator]
+  field_simp [ht, hquad]
+
+theorem quadratic_kernel_factor_cancel (a b z : ℚ)
+    (hb : b ≠ 0) (hquad : b ^ 2 + z ≠ 0) :
+    (b ^ 2 + z) * (a / b) ^ 2 * (1 + z / b ^ 2)⁻¹ = a ^ 2 := by
+  field_simp [hb, hquad]
+
+noncomputable def eulerPowerSeries (f : PowerSeries ℚ) : PowerSeries ℚ :=
+  PowerSeries.X * PowerSeries.derivative ℚ f
+
+noncomputable def eulerShiftPowerSeries (c : ℚ) (f : PowerSeries ℚ) : PowerSeries ℚ :=
+  eulerPowerSeries f + PowerSeries.C c * f
+
+theorem coeff_eulerPowerSeries (f : PowerSeries ℚ) (n : ℕ) :
+    PowerSeries.coeff n (eulerPowerSeries f) =
+      (n : ℚ) * PowerSeries.coeff n f := by
+  cases n with
+  | zero => simp [eulerPowerSeries]
+  | succ n =>
+      simp [eulerPowerSeries, PowerSeries.coeff_succ_X_mul,
+        PowerSeries.coeff_derivative]
+      ring
+
+theorem coeff_eulerShiftPowerSeries (c : ℚ) (f : PowerSeries ℚ) (n : ℕ) :
+    PowerSeries.coeff n (eulerShiftPowerSeries c f) =
+      ((n : ℚ) + c) * PowerSeries.coeff n f := by
+  simp [eulerShiftPowerSeries, coeff_eulerPowerSeries,
+    PowerSeries.coeff_C_mul]
+  ring
+
+theorem coeff_eulerShiftPowerSeries_sq (c : ℚ) (f : PowerSeries ℚ) (n : ℕ) :
+    PowerSeries.coeff n
+      (eulerShiftPowerSeries c (eulerShiftPowerSeries c f)) =
+      ((n : ℚ) + c) ^ 2 * PowerSeries.coeff n f := by
+  rw [coeff_eulerShiftPowerSeries, coeff_eulerShiftPowerSeries]
+  ring
+
+theorem eulerShiftPowerSeries_sq_expansion (c : ℚ) (f : PowerSeries ℚ) :
+    eulerShiftPowerSeries c (eulerShiftPowerSeries c f) =
+      eulerPowerSeries (eulerPowerSeries f) +
+        PowerSeries.C (2 * c) * eulerPowerSeries f +
+        PowerSeries.C (c ^ 2) * f := by
+  apply PowerSeries.ext
+  intro n
+  rw [coeff_eulerShiftPowerSeries_sq, map_add, map_add,
+    coeff_eulerPowerSeries, PowerSeries.coeff_C_mul,
+    PowerSeries.coeff_C_mul]
+  rw [coeff_eulerPowerSeries]
+  ring
+
+noncomputable def aperyKernelEulerOperator (t z : ℚ)
+    (f : PowerSeries ℚ) : PowerSeries ℚ :=
+  eulerShiftPowerSeries t (eulerShiftPowerSeries t f) +
+    PowerSeries.C z * f
+
+theorem eulerShiftPowerSeries_sub (c : ℚ) (f g : PowerSeries ℚ) :
+    eulerShiftPowerSeries c (f - g) =
+      eulerShiftPowerSeries c f - eulerShiftPowerSeries c g := by
+  simp [eulerShiftPowerSeries, eulerPowerSeries, map_sub]
+  ring
+
+theorem aperyKernelEulerOperator_sub_const (t z : ℚ)
+    (f : PowerSeries ℚ) (c : ℚ) :
+    aperyKernelEulerOperator t z (f - PowerSeries.C c) =
+      aperyKernelEulerOperator t z f -
+        PowerSeries.C ((t ^ 2 + z) * c) := by
+  rw [aperyKernelEulerOperator, eulerShiftPowerSeries_sub,
+    eulerShiftPowerSeries_sub, aperyKernelEulerOperator]
+  simp [eulerShiftPowerSeries, eulerPowerSeries]
+  ring
+
+noncomputable def sequencePowerSeries (a : ℕ → ℚ) : PowerSeries ℚ :=
+  PowerSeries.mk a
+
+@[simp] theorem coeff_sequencePowerSeries (a : ℕ → ℚ) (n : ℕ) :
+    PowerSeries.coeff n (sequencePowerSeries a) = a n := by
+  simp [sequencePowerSeries]
+
+@[simp] theorem coeff_sequencePowerSeries_sub_const_succ
+    (a : ℕ → ℚ) (n : ℕ) :
+    PowerSeries.coeff (n + 1)
+      (sequencePowerSeries a - PowerSeries.C (a 0)) = a (n + 1) := by
+  simp [sequencePowerSeries]
+
+/-- A first-order coefficient recurrence is exactly the second-order
+formal differential equation for its generating series. This is the
+coefficientwise creative-telescoping step. -/
+theorem recurrence_implies_generating_series_equation
+    (a : ℕ → ℚ) (t z : ℚ)
+    (hrec : ∀ n,
+      (((t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z) * a (n + 1) =
+        (t - ((n + 1 : ℕ) : ℚ)) ^ 2 * a n)) :
+    eulerShiftPowerSeries t
+        (eulerShiftPowerSeries t
+          (sequencePowerSeries a - PowerSeries.C (a 0))) +
+      PowerSeries.C z * (sequencePowerSeries a - PowerSeries.C (a 0)) =
+    PowerSeries.X *
+      eulerShiftPowerSeries (1 - t)
+        (eulerShiftPowerSeries (1 - t) (sequencePowerSeries a)) := by
+  apply PowerSeries.ext
+  intro n
+  cases n with
+  | zero =>
+      have hz : PowerSeries.coeff 0
+          (sequencePowerSeries a - PowerSeries.C (a 0)) = 0 := by
+        simp [sequencePowerSeries]
+      rw [map_add, coeff_eulerShiftPowerSeries_sq,
+        PowerSeries.coeff_C_mul, hz]
+      simp
+  | succ n =>
+      have hL : PowerSeries.coeff (n + 1)
+          (eulerShiftPowerSeries t
+            (eulerShiftPowerSeries t
+              (sequencePowerSeries a - PowerSeries.C (a 0))) +
+            PowerSeries.C z * (sequencePowerSeries a -
+              PowerSeries.C (a 0))) =
+          (((t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z) * a (n + 1)) := by
+        rw [map_add, coeff_eulerShiftPowerSeries_sq,
+          PowerSeries.coeff_C_mul, coeff_sequencePowerSeries_sub_const_succ]
+        push_cast
+        ring
+      have hR : PowerSeries.coeff (n + 1)
+          (PowerSeries.X *
+            eulerShiftPowerSeries (1 - t)
+              (eulerShiftPowerSeries (1 - t) (sequencePowerSeries a))) =
+          ((t - ((n + 1 : ℕ) : ℚ)) ^ 2 * a n) := by
+        rw [PowerSeries.coeff_succ_X_mul, coeff_eulerShiftPowerSeries_sq,
+          coeff_sequencePowerSeries]
+        push_cast
+        ring
+      rw [hL, hR]
+      exact hrec n
+
+/-- The generating series of the deformed Apéry kernels obeys the exact
+second-order Euler-operator equation obtained from their certified ratio. -/
+theorem aperyR_generating_series_equation (t z : ℚ)
+    (hden : ∀ n, aperyDenominator n t ≠ 0)
+    (hshift : ∀ n, t + ((n + 1 : ℕ) : ℚ) ≠ 0)
+    (hquad : ∀ n, (t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z ≠ 0) :
+    eulerShiftPowerSeries t
+        (eulerShiftPowerSeries t
+          (sequencePowerSeries (fun n => aperyR n t z) -
+            PowerSeries.C (aperyR 0 t z))) +
+      PowerSeries.C z *
+        (sequencePowerSeries (fun n => aperyR n t z) -
+          PowerSeries.C (aperyR 0 t z)) =
+    PowerSeries.X *
+      eulerShiftPowerSeries (1 - t)
+        (eulerShiftPowerSeries (1 - t)
+          (sequencePowerSeries (fun n => aperyR n t z))) := by
+  apply recurrence_implies_generating_series_equation
+  intro n
+  rw [aperyR_succ n t z (hden n) (hshift n)]
+  let b := t + ((n + 1 : ℕ) : ℚ)
+  have hb : b ≠ 0 := by simpa [b] using hshift n
+  have hquad' : b ^ 2 + z ≠ 0 := by simpa [b] using hquad n
+  calc
+    (b ^ 2 + z) *
+        (aperyR n t z *
+          (((t - ((n + 1 : ℕ) : ℚ)) / b) ^ 2) *
+            (1 + z / b ^ 2)⁻¹) =
+        (t - ((n + 1 : ℕ) : ℚ)) ^ 2 * aperyR n t z := by
+      rw [show (t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z = b ^ 2 + z by rfl]
+      calc
+        (b ^ 2 + z) *
+            (aperyR n t z *
+              (((t - ((n + 1 : ℕ) : ℚ)) / b) ^ 2) *
+                (1 + z / b ^ 2)⁻¹) =
+            aperyR n t z *
+              ((b ^ 2 + z) *
+                (((t - ((n + 1 : ℕ) : ℚ)) / b) ^ 2) *
+                  (1 + z / b ^ 2)⁻¹) := by ring
+        _ = aperyR n t z * (t - ((n + 1 : ℕ) : ℚ)) ^ 2 := by
+          rw [quadratic_kernel_factor_cancel _ b z hb hquad']
+        _ = (t - ((n + 1 : ℕ) : ℚ)) ^ 2 * aperyR n t z := by ring
+
+/-- The same recurrence, expanded at the initial coefficient, is the
+inhomogeneous Euler equation with unit forcing. -/
+theorem aperyR_generating_series_inhomogeneous (t z : ℚ)
+    (ht : t ≠ 0) (hzero : t ^ 2 + z ≠ 0)
+    (hden : ∀ n, aperyDenominator n t ≠ 0)
+    (hshift : ∀ n, t + ((n + 1 : ℕ) : ℚ) ≠ 0)
+    (hquad : ∀ n, (t + ((n + 1 : ℕ) : ℚ)) ^ 2 + z ≠ 0) :
+    aperyKernelEulerOperator t z
+        (sequencePowerSeries (fun n => aperyR n t z)) =
+      PowerSeries.X *
+          eulerShiftPowerSeries (1 - t)
+            (eulerShiftPowerSeries (1 - t)
+              (sequencePowerSeries (fun n => aperyR n t z))) +
+        PowerSeries.C 1 := by
+  let G := sequencePowerSeries (fun n => aperyR n t z)
+  let c := aperyR 0 t z
+  have hcenter : aperyKernelEulerOperator t z (G - PowerSeries.C c) =
+      PowerSeries.X * eulerShiftPowerSeries (1 - t)
+        (eulerShiftPowerSeries (1 - t) G) := by
+    simpa [G, aperyKernelEulerOperator] using
+      aperyR_generating_series_equation t z hden hshift hquad
+  have hforce : (t ^ 2 + z) * c = 1 := by
+    dsimp [c]
+    rw [aperyR_zero_closed_form t z ht hzero]
+    field_simp [hzero]
+  calc
+    aperyKernelEulerOperator t z G =
+        aperyKernelEulerOperator t z (G - PowerSeries.C c) +
+          PowerSeries.C ((t ^ 2 + z) * c) := by
+      rw [aperyKernelEulerOperator_sub_const]
+      abel
+    _ = PowerSeries.X * eulerShiftPowerSeries (1 - t)
+          (eulerShiftPowerSeries (1 - t) G) + PowerSeries.C 1 := by
+      rw [hcenter, hforce]
+
+theorem aperyDenominator_pos (n : ℕ) (t : ℚ) (ht : 0 < t) :
+    0 < aperyDenominator n t := by
+  unfold aperyDenominator
+  apply Finset.prod_pos
+  intro j hj
+  positivity
+
+/-- A concrete nonsingular parameter region for the formal generating-series
+equation: positive `t` and nonnegative `z` discharge every denominator side
+condition used by the term recurrence. -/
+theorem aperyR_generating_series_inhomogeneous_on_positive_region
+    (t z : ℚ) (ht : 0 < t) (hz : 0 ≤ z) :
+    aperyKernelEulerOperator t z
+        (sequencePowerSeries (fun n => aperyR n t z)) =
+      PowerSeries.X *
+          eulerShiftPowerSeries (1 - t)
+            (eulerShiftPowerSeries (1 - t)
+              (sequencePowerSeries (fun n => aperyR n t z))) +
+        PowerSeries.C 1 := by
+  apply aperyR_generating_series_inhomogeneous
+  · exact ne_of_gt ht
+  · positivity
+  · intro n
+    exact ne_of_gt (aperyDenominator_pos n t ht)
+  · intro n
+    positivity
+  · intro n
+    apply ne_of_gt
+    have hn : 0 < t + ((n + 1 : ℕ) : ℚ) := by positivity
+    have hsquare : 0 < (t + ((n + 1 : ℕ) : ℚ)) ^ 2 := sq_pos_of_pos hn
+    exact add_pos_of_pos_of_nonneg hsquare hz
+
 /-- Each integer zero of the numerator remains a zero of the deformed kernel. -/
 theorem aperyR_zero_at_integer (n i : ℕ) (hi : i < n) (z : ℚ) :
     aperyR n (i + 1 : ℚ) z = 0 := by

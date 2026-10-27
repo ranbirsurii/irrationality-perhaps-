@@ -162,12 +162,38 @@ The candidate ways to connect the chat kernel to an Apéry regulator are:
 20. Apply creative telescoping to the actual `R_n(t,z)` kernel and compare its
     inhomogeneous equation and boundary values.
 
-Approach 1 is the implemented first bridge: it determines the marked
-Legendre characteristic and exact transformed cubic by elementary algebra,
-giving a concrete input to approach 6 or 7. The most decisive next test is
-approach 20 on the actual chat kernel, followed by approach 17 or 10 to prove
-that the resulting normal function is the Apéry K3 one. None of these
-comparisons is presently asserted as proved.
+Approaches 1 and 20 are now implemented as explicit calculation stages.
+Approach 1 gives the marked Legendre characteristic and transformed cubic.
+For approach 20, `OddZeta/AperyFive.lean` proves the actual kernel recurrence
+
+`R_(n+1)(t,z) = R_n(t,z) (t-n-1)^2 / ((t+n+1)^2+z)`
+
+under its exact nonvanishing conditions. It then proves coefficientwise that
+`G_(t,z)(q) = sum_n R_n(t,z) q^n` satisfies
+
+`[((theta+t)^2+z) - q(theta+1-t)^2] G_(t,z) = 1`,
+
+where `theta = q d/dq`; the initial coefficient is exactly
+`R_0(t,z)=1/(t^2+z)`. The proof is entirely formal in `PowerSeries`, and a
+positive-`t`, nonnegative-`z` theorem discharges the recurrence's denominator
+conditions. This is a new exact equation for the chat kernel, not yet Kerr's
+Apéry K3 equation: it differentiates in the generating variable `q`, while
+the K3 Picard--Fuchs operator differentiates in the geometric base parameter.
+The next concrete bridge is to prove that the actual residue/period pushforward
+of this equation in `t` (and the deformation coefficient in `z`) yields the
+K3 normal-function equation and its boundary data. That pushforward is not
+proved here.
+
+The Scholze-style p-adic route is not the needed bridge at this stage.
+Perfectoid/pro-étale comparison theorems compare cohomology realizations for
+specified p-adic analytic spaces; the diamonds six-functor formalism supplies
+étale operations on those spaces. Neither theorem constructs the missing
+cycle from `R_n`, identifies its complex regulator period, or forces this
+generating-variable equation to become the K3 equation. A p-adic realization
+could help after the algebraic cycle and its comparison map have been built.
+The current bottleneck is the explicit residue/period pushforward, so the
+formalization keeps its effort there rather than adding an unrelated p-adic
+placeholder.
 
 ## What is still unproved in the chat construction
 
