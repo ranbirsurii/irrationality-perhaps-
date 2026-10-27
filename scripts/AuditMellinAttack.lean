@@ -1,0 +1,28 @@
+import OddZeta.CofactorArithmetic
+import OddZeta.MellinRationalMoments
+import OddZeta.PolynomialSmallnessCriterion
+
+#print axioms OddZeta.det_updateRow_cofactor_expansion
+#print axioms OddZeta.affine_determinant_cofactor_expansion
+#print axioms OddZeta.oddHankel_cofactor_content_divides
+#print axioms OddZeta.cofactorVector_lower_kernel
+#print axioms OddZeta.cofactor_affine_primitive_factorization
+#print axioms OddZeta.cofactor_full_content_factorization
+#print axioms OddZeta.mellinResidue_sum_zero
+#print axioms OddZeta.mellin_partial_fractions
+#print axioms OddZeta.mellin_finite_sum
+#print axioms OddZeta.mellin_finite_sum_error
+#print axioms OddZeta.mellin_series_limit
+#print axioms OddZeta.mellin_rational_hasSum
+#print axioms OddZeta.mellin_zeta_tail_hasSum
+#print axioms OddZeta.toricMellin_distinct
+#print axioms OddZeta.toricMellin_rational_hasSum
+#print axioms OddZeta.toricMellin_diagonal_hasSum
+#print axioms OddZeta.toricMellin_period_hasSum
+#print axioms OddZeta.toricMellin_contiguity
+#print axioms OddZeta.toric_pole_identity
+#print axioms OddZeta.toric_pole_cancellation
+#print axioms OddZeta.balancedMellin_collision
+#print axioms OddZeta.balancedMellin_distinct
+#print axioms OddZeta.integer_polynomial_rational_gap
+#print axioms OddZeta.arithmeticIrrationalOfPolynomialForms

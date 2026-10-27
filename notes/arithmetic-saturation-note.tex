@@ -1,0 +1,463 @@
+\documentclass[11pt]{article}
+\usepackage[left=0.85in,right=0.85in,top=0.7in,bottom=0.7in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\HH}[2]{H_{#1}^{(#2)}}
+\title{Arithmetic saturation and toric Mellin models\\for odd-zeta approximation}
+\author{}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give exact cofactor formulas for the arithmetic content of a tail-moment
+construction and construct an algebraic two-parameter Mellin family whose
+periods lie in $\Q+\Q\zeta(s)$ for every integer $s\ge2$. Partial fractions,
+an explicit remainder estimate, and a pole-cancellation identity identify
+these periods without a conjectural regulator comparison. The corresponding
+integral determinant polynomials and several alternative normalizations are
+computed exactly. The tests do not establish the required arithmetic
+smallness. This note does not prove irrationality of every odd zeta value.
+The accompanying Lean sources verify the stated summation and algebraic
+identities and a conditional polynomial irrationality criterion.
+\end{abstract}
+
+\section{The arithmetic estimate under investigation}
+For $s=2r+1>1$, let
+\[
+ \Delta_{N,a}=\det[\zeta(s)-\HH{a+i+j}{s}]_{0\le i,j<N}
+             =A_{N,a}\zeta(s)+B_{N,a},\qquad A_{N,a}>0 .
+\]
+Set $M=a+2N-2$, $d_M=\operatorname{lcm}(1,\ldots,M)$ with $d_0=1$, $Q=d_M^s$,
+$U=Q^NA_{N,a}$, $V=Q^NB_{N,a}$, and $g=\gcd(|U|,|V|)$.
+The integer linear form is
+\[
+ \ell_{N,a}=\frac Ug\zeta(s)+\frac Vg
+           =\frac Ug\,\frac{\Delta_{N,a}}{A_{N,a}}.
+\]
+The endpoint calculation in Appendix~\ref{app:endpoint} gives, for $N>r$,
+\[
+ \frac{(2r-1)!}{(N)_{2r}(N+a)_{2r}}
+ \le \frac{\Delta_{N,a}}{A_{N,a}}
+ \le \frac{(2r-1)!}{(N-r)_{2r}(N-r+a)_{2r}},
+ \qquad (z)_k=\prod_{j=0}^{k-1}(z+j).
+\]
+It follows uniformly for arbitrary nonnegative shifts $a=a_N$ that
+\begin{equation}
+ \ell_{N,a_N}\longrightarrow0
+ \quad\Longleftrightarrow\quad
+ \frac{U/g}{N^{2r}(N+a_N)^{2r}}\longrightarrow0 .
+ \label{eq:height}
+\end{equation}
+This is the unproved arithmetic estimate. In particular, the already
+normalized coefficient, rather than an unnormalized determinant, is the
+quantity that must be bounded. Since $U/g$ is a positive integer, the
+displayed lower bound also prevents positive exponential decay in $N$
+for this family when the shifts grow at most polynomially. Polynomial
+smallness could still suffice; that assertion is not ruled out.
+
+\section{An exact cofactor presentation}
+Let $Z\in M_N(\Z)$ and write $J$ for the all-ones matrix. Define $B$ by
+$B_{0j}=Z_{0j}$ and $B_{ij}=Z_{ij}-Z_{0j}$ for $i>0$, and put
+$c_j=\operatorname{adj}(B)_{j0}$.
+\begin{proposition}
+For every scalar $x$,
+\begin{equation}
+ \det(Z+xJ)=x\sum_jc_j+\sum_j Z_{0j}c_j.
+ \label{eq:cofactor}
+\end{equation}
+Consequently, if
+$U=\det(Z+QJ)-\det Z$, $V=\det Z$, and
+$d=\gcd_j|c_j|$, then $d$ divides both $U$ and $V$.
+\end{proposition}
+\begin{proof}
+Subtract the first row from the other rows of $Z+xJ$. Only the first
+row depends on $x$. Expanding along it gives \eqref{eq:cofactor};
+the cofactors do not depend on that row. Each term in both sums is
+divisible by $d$.
+\end{proof}
+The $c_j$ are the signed maximal minors of the lower $(N-1)\times N$
+matrix. They satisfy $Lc=0$, by expanding a determinant with a repeated
+row. When $d>0$, $\widehat c=c/d$ is its primitive integer kernel vector.
+Writing
+\[
+ S=\sum_j\widehat c_j,\qquad C=\sum_jZ_{0j}\widehat c_j,\qquad
+ h=\gcd(|QS|,|C|),
+\]
+gives $g=dh$ and, whenever $g>0$, the exact refinements
+\begin{equation}
+ g=dh,\qquad \frac Ug=\frac{QS}{h}.
+ \label{eq:kernelheight}
+\end{equation}
+Thus divisibility of the maximal minors supplies an actual common
+factor. A successful estimate must also control the functional $S$
+and the remaining factor $h$. The Smith or Fitting interpretation of
+the minors does not alone give that quantitative bound.
+Lean verifies \eqref{eq:cofactor}, the lower-row kernel identity,
+the common-divisor statement, and the full content factorization in
+\eqref{eq:kernelheight}.
+
+\section{A toric family with only the target zeta period}
+Fix $s\ge2$, put $T=\prod_{i=0}^{s-1}x_i$, and define polynomial functions
+\[
+ A=\prod_{i=0}^{s-1}x_i^{\,i},\qquad
+ B=\prod_{i=0}^{s-1}x_i^{\,s-1-i}.
+\]
+They give a morphism defined over $\Z$ and satisfy
+\begin{equation}
+ AB=T^{s-1}.
+ \label{eq:toric}
+\end{equation}
+On the open cube, use the positive measure
+$\omega=\dd x_0\cdots\dd x_{s-1}/(1-T)$ and set
+\[
+ I_s(j,k)=\int_{(0,1)^s} A^jB^k\,\omega,\qquad j,k\ge0 .
+\]
+The measure is finite: Tonelli's theorem and the geometric series give
+$\int\omega=\sum_{q\ge0}(q+1)^{-s}=\zeta(s)$.
+
+\begin{theorem}
+For every $j,k\ge0$, $I_s(j,k)\in\Q+\Q\zeta(s)$. More precisely,
+\begin{equation}
+ I_s(j,j)=\zeta(s)-\HH{(s-1)j}{s}.
+ \label{eq:diag}
+\end{equation}
+If $j\ne k$, let $e_i=ij+(s-1-i)k$ and
+$c_i=\prod_{h\ne i}(e_h-e_i)^{-1}$. Then
+\begin{equation}
+ I_s(j,k)=-\sum_{i=0}^{s-1}c_iH_{e_i}\in\Q .
+ \label{eq:rational}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Expanding the positive geometric series under the integral gives
+\[
+ I_s(j,k)=\sum_{q=0}^{\infty}
+              \prod_{i=0}^{s-1}(q+1+e_i)^{-1}.
+\]
+For $j=k$, all exponents equal $(s-1)j$, proving \eqref{eq:diag}.
+Otherwise the exponents are distinct. Lagrange interpolation gives
+\[
+ \frac1{\prod_i(z+e_i)}=\sum_i\frac{c_i}{z+e_i},
+ \qquad \sum_i c_i=0 .
+\]
+Summing through $q=L-1$ yields
+\begin{equation}
+ \sum_{q=0}^{L-1}\frac1{\prod_i(q+1+e_i)}
+ =-\sum_i c_iH_{e_i}
+   +\sum_i c_i\bigl(H_{L+e_i}-H_L\bigr).
+ \label{eq:remainder}
+\end{equation}
+The remainder has the explicit bound
+\[
+ \left|\sum_i c_i(H_{L+e_i}-H_L)\right|
+ \le\frac{\sum_i|c_i|e_i}{L+1},
+\]
+because $0\le H_{L+e_i}-H_L\le e_i/(L+1)$. It tends to zero.
+This proves \eqref{eq:rational}, including convergence.
+\end{proof}
+Lean verifies the partial fractions, zero residue sum,
+\eqref{eq:remainder}, its bound, the limit, and the resulting
+\texttt{HasSum} statements. It also verifies \eqref{eq:diag} as a series
+identity for the real part of the actual Riemann zeta function.
+
+\subsection{An integral denominator and a pole-cancellation identity}
+For distinct exponents in $[0,M]$, $d_M^{s-1}c_i$ is integral: every
+nonzero difference has absolute value at most $M$ and divides $d_M$.
+Since $d_MH_{e_i}$ is integral, $d_M^s I_s(j,k)\in\Z$.
+On the diagonal, the same factor clears the rational term of
+\eqref{eq:diag}. This gives an unconditional entrywise denominator
+bound; it is not asserted to be sharp.
+
+The defining relation \eqref{eq:toric} gives
+\[
+ \frac{AB-1}{1-T}=-\sum_{\ell=0}^{s-2}T^\ell.
+\]
+It follows, either by this identity or by shifting the convergent series,
+that
+\begin{equation}
+ I_s(j+1,k+1)-I_s(j,k)
+ =-\sum_{q=1}^{s-1}\prod_{i=0}^{s-1}(q+e_i)^{-1}.
+ \label{eq:contiguity}
+\end{equation}
+Thus differences in the common diagonal direction have a finite rational
+evaluation. Lean verifies both pole cancellation and
+\eqref{eq:contiguity}. No assumption about a motivic lift is used in
+these summation identities.
+
+\section{Larger spaces and their integer determinant polynomials}
+Brown's multi-parameter Mellin framework \cite{Brown} motivates using
+many monomials at once. For the rectangular space
+\[
+ \mathcal M_n=\operatorname{span}_{\Q}
+             \{A^jB^k:0\le j,k\le n\},
+\]
+let $G_n(X)$ be the matrix of pairings, with $\zeta(s)$ replaced by $X$
+using \eqref{eq:diag}--\eqref{eq:rational}.
+The monomials are independent: the exponent vectors of $A,B$ are
+linearly independent. Consequently $G_n(\zeta(s))$ is positive definite.
+
+The coefficient of $X$ in a pairing is one exactly when
+$(j-k)+(j'-k')=0$. For every $j,k>0$, replace $A^jB^k$ by
+$A^jB^k-A^{j-1}B^{k-1}$. This basis change has determinant one.
+Equation \eqref{eq:contiguity} makes every pairing involving one such
+difference rational. The remaining boundary basis
+$1,A,\ldots,A^n,B,\ldots,B^n$ has $2n+1$ elements. Its coefficient
+matrix is the permutation pairing opposite values of $j-k$.
+The lower rational block is a positive Gram matrix, so
+\[
+ \deg\det G_n(X)=2n+1,
+ \qquad \dim\mathcal M_n=(n+1)^2.
+\]
+This constructs a larger period space, while retaining the two periods
+$1,\zeta(s)$.
+
+The audit also uses balanced spaces
+\[
+ f_{t,u}=\prod_{i=0}^{s-1}
+          x_i^{K+t+(i-r)u},\qquad
+ s=2r+1,\quad |u|\le n,\quad 0\le t\le L,\quad K\ge rn .
+\]
+Products have either all equal or all distinct exponents, according as
+$u+u'=0$ or not. Their Gram determinant has degree $2n+1$ and size
+$(2n+1)(L+1)$. Indeed, replace $f_{t,u}$ for $t>0$ by
+$f_{t,u}-f_{t-1,u}=(T-1)f_{t-1,u}$. Pairing a difference cancels
+the denominator $1-T$, so the lower block is rational and positive.
+The coefficient matrix on the remaining $f_{0,u}$ is the permutation
+pairing $u$ with $-u$, proving the degree assertion.
+A monic shifted-Chebyshev basis in $T$ and Hadamard's
+inequality give the valid coarse analytic bound
+\[
+ 0<\det G_{n,L}(\zeta(s))
+   \le \zeta(s)^{(2n+1)(L+1)}\,2^{-2(2n+1)L^2}.
+\]
+Indeed each fixed-$u$ base monomial is bounded by one on the cube, and
+the monic degree-$t$ factor has supremum at most $2^{1-2t}$ for $t\ge1$.
+This estimate must be combined with the actual arithmetic multiplier.
+It is not by itself an irrationality estimate.
+
+Here that multiplier can be bounded row by row. Put $m=2n+1$,
+$N=m(L+1)$, and
+\[
+ M_{t,u}=2K+t+L+r(|u|+n),\qquad
+ D=\prod_{u=-n}^{n}\prod_{t=0}^{L}d_{M_{t,u}}^{\,s}.
+\]
+Every exponent in a product involving row $(t,u)$ lies between zero
+and $M_{t,u}$. The denominator argument above therefore makes
+$\widetilde P(X)=D\det G_{n,L}(X)$ an integer polynomial.
+Let $g$ be the gcd of all its coefficients and set $P=\widetilde P/g$.
+The analytic bound becomes the explicit arithmetic inequality
+\begin{equation}
+ 0<P(\zeta(s))\le \frac Dg\,2^{N-2mL^2},
+ \label{eq:mellinbudget}
+\end{equation}
+where $\zeta(s)\le2$ for $s\ge2$ follows from the integral test.
+Consequently a proved bound
+\[
+ \frac{\log(D/g)+(N-2mL^2)\log2}{m}\longrightarrow-\infty
+\]
+along a sequence of these spaces would suffice for the polynomial
+criterion below. This states both the full denominator cost and the
+precise common-factor saving required; no such saving is assumed.
+
+\subsection{The precise polynomial criterion}
+Clear the coefficient denominators of a determinant polynomial and
+divide out their entire integer gcd, obtaining $P_n\in\Z[X]$.
+A rational change of basis multiplies the determinant by a nonzero
+rational square, so this primitive polynomial is unchanged up to sign.
+
+\begin{proposition}
+Let $\alpha\in\R$. If for every integer $q>0$ there exists $P\in\Z[X]$
+such that
+\[
+ 0<|P(\alpha)|,\qquad q^{\deg P}|P(\alpha)|<1,
+\]
+then $\alpha$ is irrational.
+\end{proposition}
+\begin{proof}
+If $\alpha=p/d$ with $d\ne0$, then
+$d^{\deg P}P(p/d)$ is an integer. Nonvanishing forces its absolute value
+to be at least one. Take $q=|d|$.
+\end{proof}
+For example, $\log|P_n(\alpha)|/\deg P_n\to-\infty$ with nonzero
+evaluations is sufficient. Lean verifies the integer gap and the
+proposition. This condition has not been established for the families
+above; the degree factor cannot be omitted.
+
+\section{Exact checks and the remaining bound}
+All numbers below are finite certificates. Fraction-free integer
+elimination constructs $U,V$; exact gcd reduction gives $u=U/g$.
+The reported integer $b$ satisfies the checked inequality
+\[
+ u_{N,0}\ge 2^b N^{2(s-1)} .
+\]
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+Weight $s$ & $N=30$ & $N=40$ & $N=60$\\
+\midrule
+3 & 3325 & 6030 & 13726\\
+5 & 6566 & 11876 & 27500\\
+7 & 9797 & 17816 & 41008\\
+9 & 12917 & 23580 & 54333\\
+\bottomrule
+\end{tabular}
+\end{center}
+The cofactor calculation was independently checked at twelve smaller
+indices by the certificate $Bc=(\det B)e_0$, together with
+\eqref{eq:cofactor}. It includes all common factors, not just primes
+in the lcm scale.
+
+For the balanced and toric spaces, all $57$ tested primitive determinant
+polynomials have values strictly greater than one. The tested weights
+are $3,5,7$, with matrix sizes up to $21$ and several base shifts.
+A further pure-target multiple-Mellin construction was checked at $32$
+weight/index pairs, through index $40$; its tested primitive absolute
+values also exceed one. These computations do not rule out later
+smallness or other spaces.
+
+For completeness, this last construction is the explicit integer polynomial
+\[
+ F_{s,n}(x)=\sum_{k=0}^{sn}c_kx^k,\qquad
+ c_k=(-1)^{sn-k}\binom{sn}{k}\binom{n+k}{n}^{s}.
+\]
+It gives the pure-target linear form
+\[
+ \int_0^1 F_{s,n}(x)\frac{(-\log x)^{s-1}}{(s-1)!(1-x)}\dd x
+ =a_{s,n}\zeta(s)+b_{s,n},\quad
+ a_{s,n}=\frac{(sn)!}{(n!)^s},\quad
+ b_{s,n}=-\sum_kc_k\HH{k}{s}.
+\]
+The formula for $a_{s,n}=F_{s,n}(1)$ follows by taking the $sn$th
+finite difference of the degree-$sn$ polynomial $\binom{n+k}{n}^{s}$,
+whose leading coefficient is $(n!)^{-s}$. Its actual primitive
+normalization is used in the audit; no decay is assumed.
+
+\subsection{Rational certification of the evaluations}
+The evaluations use rational intervals, not floating-point cancellation.
+For integer $s\ge2$, Euler--Maclaurin summation through the $K$th
+Bernoulli term gives
+\[
+ \zeta(s)=H_{M-1}^{(s)}+\frac{M^{1-s}}{s-1}+\frac1{2M^s}
+ +\sum_{k=1}^K
+    \frac{B_{2k}(s)_{2k-1}}{(2k)!\,M^{s+2k-1}}+R_K .
+\]
+The integral remainder and the Fourier bound
+$|\widetilde B_{2K}(x)|\le |B_{2K}|$ imply
+\[
+ |R_K|\le
+ \frac{|B_{2K}|(s)_{2K-1}}{(2K)!\,M^{s+2K-1}}.
+\]
+The bound is the absolute value of the final included term.
+The scripts use $M=10K$, exact Bernoulli numbers, and rational interval
+Horner evaluation. Increasing $K$ resolves the sign of any nonzero evaluation.
+The derivation and the separate coarse integral enclosure provide
+explicit checks on the normalization.
+
+\subsection{What the files establish}
+The Lean cofactor module verifies the expansion, kernel identity,
+divisibility, and exact content factorization. The Mellin module verifies
+the residue algebra, finite remainder, convergence, real zeta
+identification, and toric contiguity. The polynomial module verifies
+the conditional integer-polynomial criterion.
+The integral geometry, positivity, degree argument, and Chebyshev
+estimate are paper proofs here.
+Neither \eqref{eq:height} nor the sufficient smallness condition for
+the alternative polynomial families has been proved.
+A full irrationality proof still requires one of these quantitative
+arithmetic conclusions.
+
+\paragraph{Scope of the arithmetic literature.}
+Ferguson's positive-functional construction \cite{Ferguson} yields rational
+Hankel approximations and explicitly stops short of arithmetic conclusions.
+The denominator results of Krattenthaler--Rivoal \cite{KR} concern
+specified hypergeometric coefficients. Applying their extra common
+factors here would require an identity with those coefficients.
+Brown's arithmetic refinements \cite{Brown} likewise require proved
+denominator or congruence bounds for the chosen Mellin family. None of
+these statements supplies the still-unproved estimate \eqref{eq:height}.
+
+\appendix
+\section{Derivation of the uniform endpoint estimate}
+\label{app:endpoint}
+The gamma integral and a nonnegative geometric series give
+\[
+ \zeta(s)-\HH{k}{s}=\int_0^1 x^k w_s(x)\dd x,
+ \qquad w_s(x)=\frac{(-\log x)^{s-1}}{(s-1)!(1-x)}.
+\]
+These are moments of a finite positive measure. Every finite monomial
+Gram matrix is positive definite, since a nonzero polynomial is nonzero
+on an interior interval. In the basis
+$1,(1-x),x(1-x),\ldots,x^{N-2}(1-x)$, the change-of-basis determinant
+is $\pm1$. Only the first basis element is nonzero at $1$; the lower
+block has entries
+$\mu_k-2\mu_{k+1}+\mu_{k+2}=(k+1)^{-s}-(k+2)^{-s}$.
+It is a positive Gram matrix and its determinant is $A_{N,a}>0$.
+The Schur complement, or completion of the square in that basis, gives
+\[
+ E_{N,a}:=\frac{\Delta_{N,a}}{A_{N,a}}
+ =\min_{\deg P<N,\ P(1)=1}\int_0^1P(x)^2x^aw_s(x)\dd x.
+\]
+For the Jacobi measure $x^b(1-x)^m\dd x$, with integers $m,b\ge0$,
+the corresponding minimum is
+\[
+ \lambda_N^{(m,b)}(1)=\frac{m!(m+1)!}{(N)_{m+1}(N+b)_{m+1}}.
+\]
+Here is a direct check of the constant. The polynomials
+\[
+ J_j(x)=\frac{(-1)^j}{j!x^b(1-x)^m}
+ \frac{\dd^j}{\dd x^j}[x^{b+j}(1-x)^{m+j}]
+\]
+are orthogonal by $j$ integrations by parts. Their squared norms and
+endpoint values, obtained by the beta integral, are
+\[
+ h_j=\frac{(j+m)!(j+b)!}{(2j+m+b+1)j!(j+m+b)!},\qquad
+ J_j(1)=\binom{j+m}{j}.
+\]
+All integration boundary terms vanish by the endpoint zero orders.
+Cauchy--Schwarz gives the minimum
+$1/\sum_{j<N}J_j(1)^2/h_j$, attained by coefficients proportional to
+$J_j(1)/h_j$. The sum equals
+$(N)_{m+1}(N+b)_{m+1}/[m!(m+1)!]$; subtracting its values at
+$N=j+1$ and $N=j$ checks each summand.
+
+For $s=2r+1$, put $q(x)=x^a(1-x)^{2r-1}/(2r)!$ and
+$\rho=x^aw_s$. The elementary inequalities
+$1-x\le-\log x\le(1-x)/x$ give $q\le\rho$ and
+$x^{2r}\rho\le q$. The first yields the lower endpoint bound by
+the Jacobi formula. For the upper bound restrict the minimum to
+$P=x^rQ$, with $\deg Q<N-r$ and $Q(1)=1$, and use the second inequality.
+Finally the scaled quantity $N^{2r}(N+a)^{2r}E_{N,a}$ lies between
+\[
+ (2r-1)!\left(\frac N{N+2r-1}\right)^{4r}
+ \quad\hbox{and}\quad
+ (2r-1)!\left(\frac N{N-r}\right)^{4r}.
+\]
+These bounds are uniform in $a\ge0$ and both tend to $(2r-1)!$,
+proving \eqref{eq:height}.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{Brown}
+F. Brown, \emph{Mellin transforms, transfinite diameter and rational
+approximations of integrals}, 2026.
+\url{https://arxiv.org/abs/2604.20741}.
+\bibitem{Ferguson}
+T. Ferguson, \emph{Rational Approximations via Hankel Determinants}, 2020.
+\url{https://arxiv.org/abs/2003.10616}.
+\bibitem{KR}
+C. Krattenthaler and T. Rivoal,
+\emph{Hyperg\'eom\'etrie et fonction z\^eta de Riemann},
+Memoirs of the American Mathematical Society 186 (2007), no. 875.
+\url{https://arxiv.org/abs/math/0311114}.
+\end{thebibliography}
+\end{document}

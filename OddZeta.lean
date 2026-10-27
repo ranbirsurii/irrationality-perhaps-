@@ -11,6 +11,9 @@ import OddZeta.HankelEndpointEstimates
 import OddZeta.GcdDecalage
 import OddZeta.IntegralFramedComparison
 import OddZeta.RowwiseHankelArithmetic
+import OddZeta.CofactorArithmetic
+import OddZeta.MellinRationalMoments
+import OddZeta.PolynomialSmallnessCriterion
 import OddZeta.AperyModernIdentification
 import OddZeta.AperyFormalPeriod
 import OddZeta.AdamsGeneral

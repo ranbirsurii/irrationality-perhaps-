@@ -3,6 +3,38 @@
 This project formalizes exact algebraic pieces from both supplied chat texts,
 plus the integer-smallness argument needed for an irrationality proof.
 
+## Current arithmetic and Mellin results
+
+The derivational paper is [Arithmetic saturation and toric Mellin models](notes/arithmetic-saturation-note.pdf),
+with [TeX source](notes/arithmetic-saturation-note.tex). It is a research draft;
+the arithmetic smallness needed to prove every odd zeta irrational remains unproved.
+
+`CofactorArithmetic.lean` proves the exact cofactor expansion, its lower-row
+kernel identity, and the full coefficient-content factorization. Writing
+the primitive cofactor vector as `c/d`, this gives
+`gcd(U,V) = d * gcd(Q sum(c/d), sum(Z[0,j] c[j]/d))` for positive content `d`.
+This identifies the remaining arithmetic quantities after the maximal-minor
+common factor has been removed.
+
+`MellinRationalMoments.lean` proves the partial fractions, finite remainder
+bound, convergence, and zeta evaluation for an explicit all-weight toric
+family. For `s >= 2`, put `T = product(x_i)`, `A = product(x_i^i)`,
+`B = product(x_i^(s-1-i))`. The series for the period of `A^j B^k/(1-T)`
+is rational when `j != k` and is `zeta(s)-H_((s-1)j)^(s)` when `j = k`.
+The identity `AB=T^(s-1)` gives an exact finite rational contiguity relation.
+The integral interpretation and determinant estimates are proved in the paper.
+
+`PolynomialSmallnessCriterion.lean` proves the integer-polynomial rational
+gap and the resulting conditional irrationality criterion. For a polynomial
+of degree `m`, the necessary denominator factor is `q^m`.
+
+The four exact audits cover 12 larger primitive Hankel coefficients, 57
+balanced/toric determinant polynomials, 32 multiple-Mellin linear forms,
+and 12 cofactor certificates. The tested alternative primitive evaluations
+all have absolute value greater than one. These finite results do not
+establish an asymptotic impossibility theorem. The data, reproducible scripts,
+and [verification record](notes/mellin-verification-summary.md) are included.
+
 ## Formalized from the chat texts
 
 `OddZeta/AperyStructure.lean` verifies the symmetric-square coefficient
