@@ -104,4 +104,142 @@ theorem aperyK3PF_first_regulator_jet (A B : ℚ) :
   rw [hpoly]
   simp [Polynomial.coeff_mul_X_pow']
 
+def x16LegendreLambda (α β : ℚ) : ℚ := (β - α) / β
+
+def x16LegendreModulus (α β : ℚ) : ℚ := β / (β - α)
+
+/-- In the Legendre cubic coordinate, this is the marked section's x-coordinate.
+It is the algebraic characteristic of the associated third-kind period. -/
+def x16LegendreCharacteristic (α β : ℚ) : ℚ := (β - 1) / (β - α)
+
+def x16LegendreX (α β x : ℚ) : ℚ :=
+  β * (x - α) / (x * (β - α))
+
+def legendreCubic (m z : ℚ) : ℚ := z * (z - 1) * (z - m)
+
+/-- A two-point zero-cycle, retaining its coefficients at the marked point
+and at the identity. -/
+structure TwoPointZeroCycle where
+  markedCoefficient : ℤ
+  originCoefficient : ℤ
+
+def cycleDegree (C : TwoPointZeroCycle) : ℤ :=
+  C.markedCoefficient + C.originCoefficient
+
+def cycleAbelSum {G : Type} [AddCommGroup G] (C : TwoPointZeroCycle)
+    (P : G) : G := C.markedCoefficient • P + C.originCoefficient • (0 : G)
+
+/-- The cycle in the chat's one-motive `[Z -> E]`, `1 |-> P - O`. -/
+def markedAbelCycle : TwoPointZeroCycle := ⟨1, -1⟩
+
+theorem markedAbelCycle_degree_zero : cycleDegree markedAbelCycle = 0 := by
+  rfl
+
+theorem markedAbelCycle_abel_sum {G : Type} [AddCommGroup G] (P : G) :
+    cycleAbelSum markedAbelCycle P = P := by
+  simp [cycleAbelSum, markedAbelCycle]
+
+/-- The coefficient multiplying `dx/(x-ν)` in the proposed third-kind form
+`(Y+κ) dx / (2 (x-ν) Y)`. -/
+def markedThirdKindResidueCoefficient (κ Y : ℚ) : ℚ :=
+  (Y + κ) / (2 * Y)
+
+theorem markedThirdKind_residue_at_P (κ : ℚ) (hκ : κ ≠ 0) :
+    markedThirdKindResidueCoefficient κ κ = 1 := by
+  unfold markedThirdKindResidueCoefficient
+  field_simp [hκ]
+  ring
+
+theorem markedThirdKind_cancels_conjugate_pole (κ : ℚ) :
+    markedThirdKindResidueCoefficient κ (-κ) = 0 := by
+  unfold markedThirdKindResidueCoefficient
+  simp
+
+theorem x16_marked_characteristic (t α β : ℚ)
+    (hprod : α * β = t) (hα : α ≠ 0) (hβ : β ≠ 0)
+    (hsep : β ≠ α) :
+    x16LegendreX α β (x16SectionX t) =
+      x16LegendreCharacteristic α β := by
+  unfold x16LegendreX x16LegendreCharacteristic x16SectionX
+  rw [← hprod]
+  field_simp [hα, hβ, sub_ne_zero.mpr hsep]
+
+/-- The Möbius coordinate above sends the marked Weierstrass point to the
+Legendre characteristic; the inverse map is `x = α/(1-λz)`. -/
+theorem x16_legendre_coordinate_inverse (α β z : ℚ)
+    (hα : α ≠ 0) (hβ : β ≠ 0) (hsep : β ≠ α)
+    (hden : 1 - x16LegendreLambda α β * z ≠ 0) :
+    x16LegendreX α β
+        (α / (1 - x16LegendreLambda α β * z)) = z := by
+  have hden' : 1 - (β - α) / β * z ≠ 0 := by
+    simpa [x16LegendreLambda] using hden
+  have hdenprod : β - (β - α) * z ≠ 0 := by
+    intro hz
+    apply hden'
+    field_simp [hβ]
+    nlinarith [hz]
+  have hden'' : β - β * z + α * z ≠ 0 := by
+    have heq : β - β * z + α * z = β - (β - α) * z := by ring
+    rw [heq]
+    exact hdenprod
+  unfold x16LegendreX x16LegendreLambda
+  field_simp [hα, hβ, sub_ne_zero.mpr hsep, hden'']
+  ring
+
+/-- Root-parameter form of the Weierstrass-to-Legendre substitution. -/
+theorem weierstrass_root_cubic_to_legendre (α β lam m z : ℚ)
+    (hroot : β * lam = β - α) (hmod : lam * m = 1)
+    (hden : 1 - lam * z ≠ 0) :
+    (α / (1 - lam * z)) *
+        (α / (1 - lam * z) - α) *
+        (α / (1 - lam * z) - β) * (1 - lam * z) ^ 4 =
+      -(α ^ 2 * β * lam ^ 3) * legendreCubic m z := by
+  have hα : α - β = -(β * lam) := by linarith [hroot]
+  have hdenfactor : 1 - lam * z = -(lam * (z - m)) := by
+    calc
+      1 - lam * z = lam * m - lam * z := by rw [hmod]
+      _ = -(lam * (z - m)) := by ring
+  have hleft : α / (1 - lam * z) - α = α * lam * z / (1 - lam * z) := by
+    field_simp [hden]
+    ring
+  have hnum : α - (1 - lam * z) * β = lam * β * (z - 1) := by
+    calc
+      α - (1 - lam * z) * β = (α - β) + β * lam * z := by ring
+      _ = lam * β * (z - 1) := by linear_combination hroot
+  have hright : α / (1 - lam * z) - β = lam * β * (z - 1) / (1 - lam * z) := by
+    field_simp [hden]
+    exact hnum
+  rw [hleft, hright, hdenfactor]
+  unfold legendreCubic
+  field_simp [hden]
+
+/-- The roots of the `X₁(6)` cubic give the exact Legendre cubic and twist. -/
+theorem x16_weierstrass_to_legendre (t α β z : ℚ)
+    (hA : x16WeierstrassA t = -(α + β))
+    (ht : α * β = t) (hβ : β ≠ 0)
+    (hsep : β ≠ α)
+    (hden : 1 - x16LegendreLambda α β * z ≠ 0) :
+    x16WeierstrassRhs t
+        (α / (1 - x16LegendreLambda α β * z)) *
+        (1 - x16LegendreLambda α β * z) ^ 4 =
+      -(α ^ 2 * β * (x16LegendreLambda α β) ^ 3) *
+        legendreCubic (x16LegendreModulus α β) z := by
+  have hroot : β * x16LegendreLambda α β = β - α := by
+    unfold x16LegendreLambda
+    field_simp [hβ]
+  have hmod : x16LegendreLambda α β * x16LegendreModulus α β = 1 := by
+    unfold x16LegendreLambda x16LegendreModulus
+    field_simp [hβ, sub_ne_zero.mpr hsep]
+  have hfactor (x : ℚ) :
+      x16WeierstrassRhs t x = x * (x - α) * (x - β) := by
+    unfold x16WeierstrassRhs
+    calc
+      x * (x ^ 2 + x16WeierstrassA t * x + t) =
+          x * (x ^ 2 - (α + β) * x + α * β) := by rw [hA, ← ht]; ring
+      _ = x * (x - α) * (x - β) := by ring
+  rw [hfactor]
+  exact weierstrass_root_cubic_to_legendre α β
+    (x16LegendreLambda α β) (x16LegendreModulus α β) z
+    hroot hmod hden
+
 end OddZeta

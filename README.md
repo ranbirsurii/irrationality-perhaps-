@@ -113,12 +113,60 @@ source's expansion for precisely this residual coefficient. Thus the
 Picard--Fuchs “identifier” is now an exact operator calculation, with an
 explicit elliptic section as input data.
 
-This is still a Picard--Fuchs-level model. It does not construct the
-horizontal correspondence from the chat's deformed kernel to Kerr's K1 cycle,
-nor identify the normalized third-kind differential and its period with that
-cycle's normal function. Those are actual geometric/regulator comparison
+The same file now carries out an explicit algebraic bridge on the elliptic
+fiber. If `α, β` are distinct nonzero roots of `x² + A(t)x + t`, it uses
+`z = β(x-α)/(x(β-α))`, with inverse `x = α/(1-λz)` and
+`λ=(β-α)/β`. Lean verifies the marked section's Legendre coordinate
+`ν=(β-1)/(β-α)` and the transformed cubic, including its twist factor. I
+also used the chat's explicit one-motive cycle identity `[P]-[O]`: Lean
+models this degree-zero cycle, computes its Abel sum as `P`, and checks the
+finite-pole coefficients of the algebraic third-kind candidate
+`(Y+κ) dx/(2(x-ν)Y)`. Its coefficient is `+1` at `P` and vanishes at the
+conjugate point, unlike the bare Legendre-Π differential, whose pole divisor
+is symmetric. The remaining `-1` residue at `O` follows only after proving
+the local expansion at infinity (or invoking and formalizing the global
+residue theorem); that step and the relative de Rham/Abel--Jacobi comparison
+are still open.
+
+This is still a Picard--Fuchs and fiber-coordinate model. It does not construct
+the horizontal correspondence from the chat's deformed kernel to Kerr's K1
+cycle, nor identify the normalized third-kind differential and its period with
+that cycle's normal function. Those are actual geometric/regulator comparison
 claims, not consequences of equality of operator ranks or one Taylor
 coefficient.
+
+## Bridge approaches considered
+
+The candidate ways to connect the chat kernel to an Apéry regulator are:
+
+1. Explicitly transform the marked `X₁(6)` section to Legendre coordinates.
+2. Find a rational gauge transformation between the two scalar operators.
+3. Construct an isomorphism of their first-order companion systems.
+4. Compare local exponents and monodromy representations.
+5. Match their modular Hauptmodul and theta-series expansions.
+6. Build the relative de Rham residue sequence for `E minus {O,P}`.
+7. Normalize the third-kind form using the theta/Poincaré biextension.
+8. Identify the class with an elliptic-polylogarithm Eisenstein class.
+9. Compute its Rankin--Eisenstein regulator pairing.
+10. Construct the Apéry K3 higher-Chow cycle and its normal function.
+11. Use a Kummer or Shioda--Inose correspondence to compare the K3 and elliptic motives.
+12. Compare the classes through the elliptic-fibration Leray spectral sequence.
+13. Match Picard--Lefschetz thimbles and vanishing cycles.
+14. Compare limiting mixed Hodge structures at a cusp.
+15. Prove uniqueness of the inhomogeneous solution from its boundary expansion.
+16. Match boundary residues, then separately control the parabolic kernel.
+17. Construct an algebraic correspondence and prove it is horizontal.
+18. Compare integral lattices through `p`-adic/étale realizations.
+19. Use Frobenius congruences and the Dwork unit-root splitting.
+20. Apply creative telescoping to the actual `R_n(t,z)` kernel and compare its
+    inhomogeneous equation and boundary values.
+
+Approach 1 is the implemented first bridge: it determines the marked
+Legendre characteristic and exact transformed cubic by elementary algebra,
+giving a concrete input to approach 6 or 7. The most decisive next test is
+approach 20 on the actual chat kernel, followed by approach 17 or 10 to prove
+that the resulting normal function is the Apéry K3 one. None of these
+comparisons is presently asserted as proved.
 
 ## What is still unproved in the chat construction
 
