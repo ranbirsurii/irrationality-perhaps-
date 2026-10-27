@@ -54,8 +54,40 @@ The source does not identify its finite-`N` forms with the chat's `R_n(t,z)`
 family, so those bounds and nonvanishing still need to be proved for the
 concrete deformed and projected forms. The elliptic chat gives the
 characteristic formula once the marked point is specified, while leaving the
-inhomogeneous regulator calculation as the next step. The project therefore
-does not claim irrationality of `zeta(5)` or of every odd zeta value.
+inhomogeneous regulator calculation as the next step. These statements remain
+the status of the chat-derived construction in this project.
 
-All source files use ordinary visible Lean code and contain no `sorry` or
-`admit`.
+## Later determinant construction for `zeta(5)`
+
+The mathematical landscape changed after the supplied texts were written. Aabir
+Fauzan's 17 September 2026 preprint claims irrationality of `zeta(5)` by
+constructing integer polynomials `Q_n` of degree `37 n` satisfying
+`0 < Q_n(zeta(5)) < exp(-139 n^2 / 5)` for all sufficiently large `n`. The
+construction uses rationally normalized Hankel determinants of a moment
+functional: a positive moment representation gives strict positivity, local
+prime-adic estimates give an integer polynomial after normalization, and a
+logarithmic-energy estimate gives the rapid decay. See the [Zenodo record](https://zenodo.org/records/22826419).
+
+An independent [Lean 4 formalization](https://github.com/mo271/Zeta5) of that
+construction reports a proof with no `sorry` in the theorem path and only
+Lean's standard axioms (`propext`, `Classical.choice`, and `Quot.sound`). It
+imports the prime number theorem from the separate
+[PrimeNumberTheoremAnd](https://github.com/mo271/PrimeNumberTheoremAnd)
+formalization. The proof's main Lean endpoint is `Apery.irrational_five`;
+`Apery/Main.lean` derives it from the polynomial approximation criterion and
+`Apery/MainEstimate.lean`. Its imported PNT development contains two `sorry`s
+outside the theorem's transitive dependency; the final theorem's reported
+`#print axioms` contains only the three standard Lean axioms. The public Zenodo
+v1 describes itself as the initial presentation, with a full manuscript to
+follow, so the formalization is also a useful detailed record of the
+construction and its proof obligations.
+
+This determinant proof is a separate construction. It does not identify its
+`Q_n` with the deformed Apéry forms or the elliptic regulator form formalized
+above. Thus the repo's chat-derived coefficients and elliptic identities are
+formalized, and a complete Lean proof of the individual `zeta(5)` claim exists
+in the linked project, but the bridge from the chat's regulator construction
+to that determinant family is not established here.
+
+All Lean source files in this repository's `OddZeta` modules use ordinary
+visible code and contain no `sorry` or `admit`.
