@@ -138,6 +138,31 @@ construction is a plausible way to assemble local horizontal maps into such a
 global correspondence, but it still has to produce those maps and preserve
 the marked residue data.
 
+The induced differential-module map is now explicit as well. On the open set
+where its denominators do not vanish, the base change is
+`x = r(1-9r)/(1-r)`, with formal derivative expressions
+`x' = (1-18r+9r²)/(1-r)²` and `x'' = -16/(1-r)³`. Substituting these into
+the pullback of the Apéry root equation gives coefficients
+`(18r-1)/(r(9r-1))` and
+`(10-11r+9r²)/(4(r-1)² r(9r-1))`. The gauge logarithmic derivative is
+`h = 1/(2(r-1))`; Lean proves that the transformed coefficients
+`P + 2h` and `Q + Ph + h' + h²` are exactly `levelSixGaugeP` and
+`levelSixGaugeQ`. Those coefficients are the level-six elliptic root
+Picard--Fuchs equation after `t=9r`. Thus the rank-two solution equations
+are related by an explicit base-change-and-gauge map; the earlier symmetric
+square calculation then gives the rank-three Apéry operator.
+
+This closes the operator-coefficient comparison, not the arithmetic theorem.
+The derivative expressions are supplied as rational formulas in Lean and the
+coefficient identities are proved algebraically; real-analytic derivative
+and square-root branch statements are not formalized. More substantially,
+the map has not been lifted to a morphism of the inhomogeneous normal-function
+extensions, nor paired with an integral cycle to produce integer linear forms
+in `ζ(2r+1)`. The next rigorous step is to construct that extension morphism
+and compute its period pairing. Until it yields certified nonzero integer
+forms with denominator growth slower than their decay, the conditional
+irrationality criterion below cannot be applied.
+
 There is also a direct arithmetic checkpoint. The January 2026, unreviewed
 preprint *On the Irrationality of the Odd Zeta Values* claims irrationality
 for every odd zeta value. Its parameter selection requires

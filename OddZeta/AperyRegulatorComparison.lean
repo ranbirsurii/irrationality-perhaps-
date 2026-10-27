@@ -37,6 +37,149 @@ def x16PFDerivativeCoeff (t : ℚ) : ℚ := 3 * t ^ 2 - 20 * t + 9
 
 def x16PFConstantCoeff (t : ℚ) : ℚ := t - 3
 
+/-! The explicit induced pullback from the level-six elliptic root equation to
+the Apéry root equation. The base map is `x = r(1-9r)/(1-r)`; its first two
+derivative expressions are recorded below, and the gauge is
+`u(x(r)) = sqrt(1-r) v(r)`. The coefficient identities verify the resulting
+chain-rule and gauge expressions algebraically once those derivative formulas
+are inserted. -/
+
+def levelSixXQ (r : ℚ) : ℚ := r * (1 - 9 * r) / (1 - r)
+
+def levelSixXQPrime (r : ℚ) : ℚ := (1 - 18 * r + 9 * r ^ 2) / (1 - r) ^ 2
+
+def levelSixXQSecond (r : ℚ) : ℚ := -16 / (1 - r) ^ 3
+
+def aperyRootPullbackP (r : ℚ) : ℚ :=
+  aperyRootP (levelSixXQ r) * levelSixXQPrime r -
+    levelSixXQSecond r / levelSixXQPrime r
+
+def aperyRootPullbackQ (r : ℚ) : ℚ :=
+  aperyRootQ (levelSixXQ r) * (levelSixXQPrime r) ^ 2
+
+def levelSixGaugeLogDerivative (r : ℚ) : ℚ := 1 / (2 * (r - 1))
+
+def levelSixGaugeLogDerivativePrime (r : ℚ) : ℚ :=
+  -1 / (2 * (r - 1) ^ 2)
+
+theorem levelSixXQ_prime_formula (r : ℚ) (hr : r ≠ 1) :
+    ((1 - 18 * r + 9 * r ^ 2) / (1 - r) ^ 2) = levelSixXQPrime r := by
+  rfl
+
+theorem levelSixXQ_second_formula (r : ℚ) (hr : r ≠ 1) :
+    (-16 / (1 - r) ^ 3) = levelSixXQSecond r := by
+  rfl
+
+theorem levelSixXQ_discriminant_pullback (r : ℚ) (hr1 : r ≠ 1) :
+    aperyDelta (levelSixXQ r) * (1 - r) ^ 2 =
+      (1 - 18 * r + 9 * r ^ 2) ^ 2 := by
+  unfold aperyDelta levelSixXQ
+  field_simp [hr1]
+  ring
+
+theorem levelSixXQ_delta_formula (r : ℚ) (hr1 : r ≠ 1) :
+    aperyDelta (levelSixXQ r) =
+      (1 - 18 * r + 9 * r ^ 2) ^ 2 / (1 - r) ^ 2 := by
+  have hpull := levelSixXQ_discriminant_pullback r hr1
+  have hden : (1 - r) ^ 2 ≠ 0 := pow_ne_zero 2 (sub_ne_zero.mpr (Ne.symm hr1))
+  calc
+    aperyDelta (levelSixXQ r) =
+        (aperyDelta (levelSixXQ r) * (1 - r) ^ 2) / (1 - r) ^ 2 := by
+          field_simp [hden]
+    _ = (1 - 18 * r + 9 * r ^ 2) ^ 2 / (1 - r) ^ 2 := by rw [hpull]
+
+theorem aperyRoot_pullbackP_formula (r : ℚ)
+    (hr1 : r ≠ 1) (hr0 : r ≠ 0) (hr9 : 9 * r ≠ 1)
+    (hN : 1 - 18 * r + 9 * r ^ 2 ≠ 0) :
+    aperyRootPullbackP r = (18 * r - 1) / (r * (9 * r - 1)) := by
+  have hN' : 1 - r * 18 + r ^ 2 * 9 ≠ 0 := by
+    convert hN using 1 <;> ring
+  have h9a : 1 - r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  have h9b : -1 + r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  unfold aperyRootPullbackP aperyRootP levelSixXQPrime
+    levelSixXQSecond
+  rw [levelSixXQ_delta_formula r hr1]
+  unfold levelSixXQ
+  field_simp [hr1, hr0, h9a, h9b, hN']
+  ring_nf
+  field_simp [h9b]
+  <;> ring
+
+theorem aperyRoot_pullbackQ_formula (r : ℚ)
+    (hr1 : r ≠ 1) (hr0 : r ≠ 0) (hr9 : 9 * r ≠ 1)
+    (hN : 1 - 18 * r + 9 * r ^ 2 ≠ 0) :
+    aperyRootPullbackQ r =
+      (10 - 11 * r + 9 * r ^ 2) /
+        (4 * (r - 1) ^ 2 * r * (9 * r - 1)) := by
+  have hN' : 1 - r * 18 + r ^ 2 * 9 ≠ 0 := by
+    convert hN using 1 <;> ring
+  have h9a : 1 - r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  have h9b : -1 + r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  unfold aperyRootPullbackQ aperyRootQ levelSixXQPrime
+  rw [levelSixXQ_delta_formula r hr1]
+  unfold levelSixXQ
+  field_simp [hr1, hr0, h9a, h9b, hN']
+  ring_nf
+  field_simp [h9b]
+  <;> ring
+
+theorem levelSix_induced_gaugeP (r : ℚ)
+    (hr1 : r ≠ 1) (hr0 : r ≠ 0) (hr9 : 9 * r ≠ 1)
+    (hN : 1 - 18 * r + 9 * r ^ 2 ≠ 0) :
+    aperyRootPullbackP r + 2 * levelSixGaugeLogDerivative r =
+      levelSixGaugeP r := by
+  rw [aperyRoot_pullbackP_formula r hr1 hr0 hr9 hN]
+  have h9a : 1 - r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  have h9b : -1 + r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  unfold levelSixGaugeLogDerivative levelSixGaugeP
+  field_simp [hr1, hr0, h9a, h9b]
+  ring_nf
+  field_simp [h9b]
+  <;> ring_nf <;> ring
+
+theorem levelSix_induced_gaugeQ (r : ℚ)
+    (hr1 : r ≠ 1) (hr0 : r ≠ 0) (hr9 : 9 * r ≠ 1)
+    (hN : 1 - 18 * r + 9 * r ^ 2 ≠ 0) :
+    aperyRootPullbackQ r +
+        aperyRootPullbackP r * levelSixGaugeLogDerivative r +
+        levelSixGaugeLogDerivativePrime r +
+        (levelSixGaugeLogDerivative r) ^ 2 =
+      levelSixGaugeQ r := by
+  rw [aperyRoot_pullbackQ_formula r hr1 hr0 hr9 hN,
+    aperyRoot_pullbackP_formula r hr1 hr0 hr9 hN]
+  have h9a : 1 - r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  have h9b : -1 + r * 9 ≠ 0 := by
+    intro h
+    apply hr9
+    nlinarith
+  unfold levelSixGaugeLogDerivative levelSixGaugeLogDerivativePrime
+    levelSixGaugeQ
+  field_simp [hr1, hr0, h9a, h9b]
+  ring_nf
+  field_simp [h9b]
+  <;> ring_nf <;> ring
+
 theorem x16PFLeading_derivative (t : ℚ) :
     (t - 1) * (t - 9) + t * (t - 9) + t * (t - 1) =
       x16PFDerivativeCoeff t := by
