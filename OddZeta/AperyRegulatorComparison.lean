@@ -217,6 +217,30 @@ noncomputable def aperyK3PFPolynomialOperator (p : Polynomial ℚ) : Polynomial 
     3 * Polynomial.X * (Polynomial.X - 9) * aperyK3Theta p +
     Polynomial.X * (Polynomial.X - 5) * p
 
+noncomputable def aperyStandardPFPolynomialOperator (p : Polynomial ℚ) :
+    Polynomial ℚ :=
+  (Polynomial.X ^ 2 - 34 * Polynomial.X + 1) *
+      aperyK3Theta (aperyK3Theta (aperyK3Theta p)) +
+    3 * Polynomial.X * (Polynomial.X - 17) *
+      aperyK3Theta (aperyK3Theta p) +
+    3 * Polynomial.X * (Polynomial.X - 9) * aperyK3Theta p +
+    Polynomial.X * (Polynomial.X - 5) * p
+
+theorem aperyStandardPF_vs_encodedKerr (p : Polynomial ℚ) :
+    aperyStandardPFPolynomialOperator p =
+      aperyK3PFPolynomialOperator p +
+        Polynomial.X * (Polynomial.X - 17) *
+          aperyK3Theta (aperyK3Theta p) := by
+  unfold aperyStandardPFPolynomialOperator aperyK3PFPolynomialOperator
+  ring
+
+theorem aperyStandardPF_inhomogeneous_correction
+    (p source : Polynomial ℚ)
+    (hsource : aperyK3PFPolynomialOperator p = source) :
+    aperyStandardPFPolynomialOperator p = source +
+      Polynomial.X * (Polynomial.X - 17) * aperyK3Theta (aperyK3Theta p) := by
+  rw [aperyStandardPF_vs_encodedKerr, hsource]
+
 /-- The first coefficient of the Picard--Fuchs residual of a normal-function
 jet `A + B t` is `B - 5 A`. -/
 theorem aperyK3PF_first_regulator_jet (A B : ℚ) :

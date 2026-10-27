@@ -150,7 +150,15 @@ the pullback of the Apéry root equation gives coefficients
 `levelSixGaugeQ`. Those coefficients are the level-six elliptic root
 Picard--Fuchs equation after `t=9r`. Thus the rank-two solution equations
 are related by an explicit base-change-and-gauge map; the earlier symmetric
-square calculation then gives the rank-three Apéry operator.
+square calculation then gives the standard rank-three Apéry operator.
+
+There is a coefficient discrepancy that must be tracked explicitly. The
+standard Apéry Euler operator has `3x(x-17) theta²`, whereas the operator
+printed in [Kerr's two-cycles paper](https://www.math.wustl.edu/~matkerr/TwoCycles091712.pdf)
+and encoded here has `2x(x-17) theta²`. Lean now proves the exact defect
+`L_standard f = L_Kerr f + x(x-17) theta² f`. Thus an inhomogeneous source
+must receive that correction when changing between these encoded operators.
+The root-equation calculation alone does not identify their normal functions.
 
 This closes the operator-coefficient comparison, not the arithmetic theorem.
 The derivative expressions are supplied as rational formulas in Lean and the
@@ -190,6 +198,50 @@ claims, not consequences of equality of operator ranks or one Taylor
 coefficient.
 
 ## Bridge approaches considered
+
+The ten strongest next methods, ranked for the data actually available here,
+are as follows. The ranking is a choice of research route, not a theorem that
+the methods will prove irrationality.
+
+| Rank | Method | Concrete calculation required |
+| --- | --- | --- |
+| 1 | All-order deformation and creative telescoping | Construct every `z` coefficient of the actual kernel and its forced extension equation. Implemented below. |
+| 2 | Inhomogeneous companion-system map | Extend the homogeneous gauge matrix and match the entire forcing vector. |
+| 3 | Formal recurrence and boundary uniqueness | Show a proposed pushforward agrees with the uniquely specified local solution. Implemented for the kernel tower below. |
+| 4 | Relative de Rham residue sequence | Construct the class of the marked third-kind differential and its boundary map. |
+| 5 | Modular expansion comparison | Match the normalized full expansions of the periods and sources at a cusp. |
+| 6 | Kummer or Shioda-Inose correspondence | Give equations for the correspondence and transport the marked cycle. |
+| 7 | Picard-Lefschetz thimble pushforward | Transport the actual integration chain and compute its boundary contributions. |
+| 8 | Elliptic-polylogarithm residue comparison | Match the class, including the kernel invisible to residues. |
+| 9 | Adams action on a constructed extension | Prove that the geometric action induces the proposed eigenspace decomposition and preserves the required estimates. |
+| 10 | Integral-lattice comparison | Transport a specified integral class and calculate its denominator after comparison. |
+
+The selected route now has a construction in `OddZeta/AperyDeformation.lean`.
+For each nonsingular rational parameter `t`, it constructs the formal Taylor
+series of every finite kernel by multiplying explicit inverses of
+`(t+j)²+z`. Both the formal kernel and the original rational `R_n(t,z)` satisfy
+the same denominator identity, with numerator `aperyNumerator(n,t)²`.
+Its coefficient of order zero is proved equal to the original `aperyF`.
+
+Write `r_(n,m)` for the coefficient of `z^m` in that finite kernel and
+`G_m(q)=sum_n r_(n,m) q^n`. With
+`D_t=(theta+t)²-q(theta+1-t)²`, Lean proves at every order
+
+`D_t G_0 = 1`, and `D_t G_(m+1) = -G_m`.
+
+The induced lifting map is explicit. For any source `s(q)`, its coefficients
+are constructed recursively by
+
+`h_0=s_0/t²`,
+
+`h_(n+1)=(s_(n+1)+(t-n-1)² h_n)/(t+n+1)²`.
+
+Lean proves that this gives a rational linear map `H_t`, that
+`D_t H_t(s)=s`, that `D_t` is injective on these formal series, and therefore
+that `G_(m+1)=H_t(-G_m)` and the entire forced tower is unique. This constructs
+the local formal extension at every deformation order. To use it for the
+zeta linear forms, the residue or infinite-sum pushforward in `t` still has to
+be computed and shown to transport the sources and the arithmetic estimates.
 
 The candidate ways to connect the chat kernel to an Apéry regulator are:
 
