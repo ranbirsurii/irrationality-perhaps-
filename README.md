@@ -5,7 +5,22 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
-The latest [research note](notes/symmetric-pade-note.pdf)
+The [proposal refinement](notes/proposal-arithmetic-refinement.md) applies
+the new denominator and telescoping proposals to these specific kernels.
+The concise derivation is in the [three-page note](notes/pade-arithmetic-note.pdf)
+([TeX](notes/pade-arithmetic-note.tex)).
+It proves on paper that `d_n^(s-q)` clears every normalized partial-fraction
+coefficient at even n and m<=n, and that `d_n^s` clears the rational constant.
+An explicit rational telescoper identifies that constant as `G(1)`.
+The [exact audit](scripts/pade_arithmetic_budget.py) passes 18,600 coefficient
+checks and 19 full-gcd combined-form ledgers, all with one-sign weights.
+`PadeArithmeticBudget.lean` proves the leading-magnitude binomial identity,
+the block recurrence, positivity for convergent nonnegative combinations,
+and invariance of primitive cost under extra common denominator clearing.
+The complete denominator theorem is a paper proof; the winning limiting
+primitive-cost bound and all-index one-sign nullvector theorem are unproved.
+
+The [symmetric-kernel note](notes/symmetric-pade-note.pdf)
 ([TeX](notes/symmetric-pade-note.tex)) gives the actual harmonic/polylog
 differential equation and a symmetric gamma-ratio kernel with a Barnes
 integral. It constructs subsidiary linear conditions that eliminate lower

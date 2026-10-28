@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\title{Denominator bounds and rational telescopers\\for symmetric zeta forms}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We derive a uniform denominator bound for the normalized symmetric kernels,
+construct their rational telescoping certificates after lower-period
+cancellation, and retain the full gcd in the resulting arithmetic cost.
+The denominator theorem is a paper proof. Lean verifies the leading
+binomial identity, block recurrence, positivity implication, and invariance
+under excess clearing. No all-odd irrationality theorem is claimed.
+\end{abstract}
+
+\section{An explicit denominator budget}
+Fix an odd $s=2r+1\ge3$, an even $n\ge0$, and $0\le m\le n$. Define
+\[
+ T_{n,m}(t)=\frac{(n!)^s}{(m!)^2}
+ \frac{\prod_{v=1}^m(t-v)(t+n+v)}
+      {\prod_{j=0}^n(t+j)^s},\qquad
+ d_n=\operatorname{lcm}(1,\ldots,n),\quad d_0=1.
+\]
+This proper rational function has a unique expansion
+\[
+ T_{n,m}(t)=\sum_{j=0}^n\sum_{q=1}^s\frac{c_{j,q}}{(t+j)^q}.
+\]
+\begin{proposition}
+For every displayed $j,q$,
+\begin{equation}
+ d_n^{s-q}c_{j,q}\in\Z.
+ \label{eq:budget}
+\end{equation}
+Consequently the convergent sum has the form
+\[
+ \mathcal A_{n,m}:=\sum_{k\ge1}T_{n,m}(k)
+   =b_{n,m}+\sum_{\substack{3\le q\le s\\q\ {\rm odd}}}
+                  a_{q,n,m}\zeta(q),
+\]
+where $d_n^{s-q}a_{q,n,m}\in\Z$ and $d_n^s b_{n,m}\in\Z$.
+\end{proposition}
+\begin{proof}
+Factor $T_{n,m}=P_m Q_n^s$, where
+\[
+ P_m(t)=\binom{t-1}{m}\binom{t+n+m}{m},
+ \qquad Q_n(t)=\frac{n!}{\prod_{h=0}^n(t+h)}.
+\]
+For any integer $a$, Vandermonde's polynomial identity and
+\[
+ \binom{a+x}{m}=\sum_{i=0}^m\binom{a}{m-i}\binom{x}{i},
+ \qquad
+ \binom{x}{i}=\frac{(-1)^{i-1}x}{i}
+                  \prod_{h=1}^{i-1}(1-x/h)\quad(i\ge1)
+\]
+show that $d_m^\ell$ clears its coefficient of $x^\ell$. Indeed each
+contributing denominator is a product of $\ell$ integers from $1,\ldots,i$.
+The coefficients $\binom a k$ are integral also for negative $a$, by
+$\binom{-b}{k}=(-1)^k\binom{b+k-1}{k}$. Products retain the weighted
+Taylor bound. Since $m\le n$, it holds with $d_n$ for $P_m(-j+x)$.
+
+At a pole,
+\[
+ [xQ_n(-j+x)]^s=(-1)^{js}\binom nj^s
+                    \prod_{h\ne j}(1+x/(h-j))^{-s}.
+\]
+The coefficient of $x^\ell$ in each factor is
+$(-1)^\ell\binom{s+\ell-1}{\ell}(h-j)^{-\ell}$; $d_n^\ell$ clears it.
+Thus the coefficient of $x^{s-q}$ in
+$P_m(-j+x)[xQ_n(-j+x)]^s$ satisfies \eqref{eq:budget}. That coefficient
+is exactly $c_{j,q}$.
+
+Reflection gives $c_{n-j,q}=(-1)^{q+1}c_{j,q}$, canceling even zeta
+coefficients. Proper decay gives $\sum_jc_{j,1}=0$, and partial-fraction
+summation yields
+\[
+ a_{q,n,m}=\sum_jc_{j,q},\qquad
+ b_{n,m}=-\sum_{j=0}^n\sum_{q=1}^s c_{j,q}H_j^{(q)}.
+\]
+For $q=1$, subtract $H_K\sum_jc_{j,1}=0$ from the $K$-th partial sum;
+the remaining upper boundary tends to zero since
+$0\le H_{K+j}-H_K\le n/(K+1)$. No value of $\zeta(1)$ is used.
+Finally $d_n^q H_j^{(q)}\in\Z$, proving the assertion about $b_{n,m}$.
+The case $n=0$ follows directly from $T_{0,0}(t)=t^{-s}$.
+\end{proof}
+
+This is an explicit application to our kernels of the
+integral-valued-polynomial arithmetic appearing in \cite[Section 2]{Zudilin}.
+It reduces the clearing range from $n+m$ to $n$. In particular,
+\[
+ c_{j,s}=(-1)^{m+j}\binom nj^s\binom{j+m}{m}\binom{n-j+m}{m}.
+\]
+Lean verifies the factorial-to-binomial magnitude identity and integrality.
+Its identification with the Laurent coefficient is part of the paper proof.
+
+\section{The combined form and its actual arithmetic cost}
+Use the $r$ blocks $m=n-j$, $0\le j<r$, for sufficiently large even $n$.
+Choose nonzero integer weights $w_j$ canceling the $r-1$ lower odd periods.
+Put $M_n=\sum_j|w_j|$ and
+\[
+ J_n=d_n^s\sum_jw_j\mathcal A_{n,n-j}=A_n\zeta(s)+B_n,\qquad
+ h_n=\gcd(|A_n|,|B_n|).
+\]
+When $h_n>0$, the primitive form is $J_n/h_n$, with the bound
+\begin{equation}
+ \left|\frac{J_n}{h_n}\right|
+ \le K_n\max_j\mathcal A_{n,n-j},
+ \qquad K_n=\frac{d_n^s M_n}{h_n}.
+ \label{eq:cost}
+\end{equation}
+This keeps the cancellation weights and the complete gcd in the same
+calculation. Replacing the clearing factor by $c\,d_n^s$ multiplies
+$A_n,B_n,h_n$ by $c$, so $K_n$ is unchanged. Lean verifies this invariance:
+sharper clearing can improve an upper bound that ignores the gcd, but
+cannot alter an already primitive form.
+
+The companion note's saddle theorem \cite[Section 5]{Companion} gives,
+for every fixed $j$,
+\[
+ \frac1n\log\mathcal A_{n,n-j}\longrightarrow\lambda_s<0
+ \quad(n\longrightarrow\infty,\ n\ {\rm even}).
+\]
+For $s=5$, $\lambda_5\in(-4.970794,-4.970793)$. Hence a sufficient
+arithmetic estimate would be
+\[
+ \limsup_{n\to\infty,\ n\ {\rm even}}\frac{\log K_n}{n}<-\lambda_s.
+\]
+This strict inequality is not established here. Nonvanishing is also
+required. At positive integers $T_{n,m}(k)=0$ for $k\le m$ and
+$T_{n,m}(k)>0$ thereafter. Therefore weights of one sign give a nonzero
+combined sum. Lean proves the corresponding convergent-series implication;
+the existence of one-sign nullvectors at all indices is not proved.
+
+\section{A rational telescoping certificate}
+Write any combined kernel after cancellation as
+$F(t)=\sum_{j,q}c_{j,q}(t+j)^{-q}$, so that
+$\sum_jc_{j,q}=a$ for $q=s$ and zero otherwise. Using the Kronecker delta, define
+\[
+ \beta_{j,q}=\sum_{h=0}^j c_{h,q}-a\,\delta_{q,s},\qquad
+ G(t)=\sum_{j=0}^{n-1}\sum_{q=1}^s\frac{\beta_{j,q}}{(t+j)^q}.
+\]
+Then the exact certificate is
+\begin{equation}
+ F(t)=\frac a{t^s}+G(t)-G(t+1),\qquad
+ \sum_{k\ge1}F(k)=a\zeta(s)+G(1).
+ \label{eq:telescoper}
+\end{equation}
+At the first pole the recovered coefficient is
+$a\delta_{q,s}+\beta_{0,q}$; at an interior pole it is
+$\beta_{j,q}-\beta_{j-1,q}$; at the last it is $-\beta_{n-1,q}$.
+These are exactly the $c_{j,q}$. The rational difference has no poles
+and vanishes at infinity, proving the first identity. Telescoping and
+$G(k)\to0$ prove the second. This identifies the rational constant
+constructively; it does not itself improve its arithmetic.
+
+The actual block deformation also has the exact recurrence
+\[
+ T_{n,m+1}(t)=
+ \frac{(t-m-1)(t+n+m+1)}{(m+1)^2}\,T_{n,m}(t).
+\]
+Lean verifies the unnormalized kernel version. These are identities in the
+summation variable and block parameter, not a new recurrence in $n$.
+
+\paragraph{Verified scope.}
+The exact audit checks all $m\le n$ at weights $3,5,7,9$ and
+$n=0,2,4,6,8,12,20$: $236$ kernels and $18\,600$ coefficient assertions.
+It also certifies $19$ combined-form ledgers, all with one-sign weights,
+including every pole coefficient of their telescopers and the equality
+of $G(1)$ with the rational constant. Changing the clearing range leaves
+their primitive costs exactly unchanged. Five new Lean foundation
+reports use only standard foundations, with no added axioms or placeholders.
+The general denominator theorem and telescoper derivation are paper proofs.
+
+These finite certificates do not prove an asymptotic cost bound. For example,
+the weight-five ledger with $m=n,n-1$ has
+$\log K_n/n\approx7.286432$ at $n=20$, compared with the limiting analytic
+decay rate $-\lambda_5\approx4.970794$. This is a finite comparison, not an
+impossibility theorem. The winning inequality in \eqref{eq:cost} remains
+unproved, so no all-odd irrationality conclusion follows.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{Companion}
+\emph{Explicit symmetric Pad\'e kernels and exact odd-zeta cancellation},
+companion research note, Section 5.
+\url{https://github.com/ranbirsurii/irrationality-perhaps-/blob/74629b3/notes/symmetric-pade-note.pdf}.
+\bibitem{Zudilin}
+W. Zudilin, \emph{Arithmetic of linear forms involving odd zeta values},
+Journal de Th\'eorie des Nombres de Bordeaux 16 (2004), 251--291.
+\url{https://www.numdam.org/item/JTNB_2004__16_1_251_0.pdf}.
+\end{thebibliography}
+\end{document}

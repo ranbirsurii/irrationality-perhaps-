@@ -1,0 +1,5 @@
+'OddZeta.normalizedPoisedTopMagnitude_eq_choose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.normalizedPoisedTopMagnitude_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.poisedRationalKernel_block_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.poised_nonnegative_combination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.primitive_clearing_cost_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]

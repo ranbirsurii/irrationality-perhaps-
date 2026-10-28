@@ -1,0 +1,7 @@
+import OddZeta.PadeArithmeticBudget
+
+#print axioms OddZeta.normalizedPoisedTopMagnitude_eq_choose
+#print axioms OddZeta.normalizedPoisedTopMagnitude_integral
+#print axioms OddZeta.poisedRationalKernel_block_succ
+#print axioms OddZeta.poised_nonnegative_combination
+#print axioms OddZeta.primitive_clearing_cost_invariant

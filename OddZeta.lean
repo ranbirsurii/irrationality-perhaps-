@@ -22,6 +22,7 @@ import OddZeta.SymmetricPadePeriods
 import OddZeta.PoisedKernelPositivity
 import OddZeta.PadeNormalizedElimination
 import OddZeta.PadeCombinedFive
+import OddZeta.PadeArithmeticBudget
 import OddZeta.AperyModernIdentification
 import OddZeta.AperyFormalPeriod
 import OddZeta.AdamsGeneral
