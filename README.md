@@ -3,6 +3,35 @@
 This project formalizes exact algebraic pieces from both supplied chat texts,
 plus the integer-smallness argument needed for an irrationality proof.
 
+## Growth comparisons and a proved large-shift obstruction
+
+The new four-page [growth note](notes/height-growth-note.pdf)
+([TeX](notes/height-growth-note.tex)) applies the proposed polynomial and
+logarithmic comparisons and includes the arithmetic cost of changing the shift.
+`HeightGrowthComparison.lean` proves the squeeze conclusions with an explicit
+numerator bound as a hypothesis. That bound is not established for the actual
+primitive coefficient at smaller shifts.
+
+`HarmonicDenominatorGrowth.lean` and `ThirdIntervalPrimeCost.lean` prove the
+prime-power divisibility of the reduced harmonic denominator. If
+`T_s(a)` is the product of primes `a/3 < p <= a` excluding `p | 2^s+1`,
+then `T_s(a)^s` divides that denominator. The modules also prove that an
+identity `H_a^(s) = p/u + c/m` forces `T_s(a)^s | u*m`.
+
+Centering the actual Hankel matrix gives this identity with
+`0 < m <= D^N`, where `D = product_(k=1..2N-2) (a+k)^s`.
+The paper proves the centered determinant bound and combines it with
+elementary Chebyshev estimates. For any fixed odd weight, shifts satisfying
+`N^2 log(a_N+2N) / a_N -> 0` force the normalized primitive height to
+diverge. Thus superquadratic power shifts and exponential shifts do not
+prove the desired smallness for this family. No prime number theorem is used.
+
+The [exact audit](scripts/shift_growth_audit.py) verifies 16 centered
+identities and 28 larger prime-cost certificates. The three added Lean
+modules and their 28 foundation checks are recorded in
+[the growth verification record](notes/growth-verification-summary.md).
+The all-odd irrationality theorem is still unproved.
+
 ## Current arithmetic and Mellin results
 
 The derivational paper is [Arithmetic saturation and toric Mellin models](notes/arithmetic-saturation-note.pdf),

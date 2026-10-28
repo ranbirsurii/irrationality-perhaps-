@@ -1,0 +1,32 @@
+import OddZeta.HeightGrowthComparison
+import OddZeta.HarmonicDenominatorGrowth
+import OddZeta.ThirdIntervalPrimeCost
+
+#print axioms OddZeta.growthBase_pos
+#print axioms OddZeta.growthBase_tendsto
+#print axioms OddZeta.power_gap_limit
+#print axioms OddZeta.logarithmic_power_gap_limit
+#print axioms OddZeta.quotient_zero_of_power_bounds
+#print axioms OddZeta.quotient_zero_of_log_power_bounds
+#print axioms OddZeta.shifted_height_denominator_lower
+#print axioms OddZeta.shifted_height_zero_of_polynomial_bound
+#print axioms OddZeta.shifted_height_zero_of_log_polynomial_bound
+#print axioms OddZeta.shifted_height_denominator_power_lower
+#print axioms OddZeta.shifted_height_zero_of_log_bound_power_shift
+#print axioms OddZeta.critical_logarithmic_limit
+#print axioms OddZeta.quotient_zero_of_critical_log_bound
+#print axioms OddZeta.nat_coprime_finset_prod_dvd
+#print axioms OddZeta.prime_not_dvd_sum_den
+#print axioms OddZeta.upper_half_prime_not_dvd_other
+#print axioms OddZeta.reciprocal_power_den
+#print axioms OddZeta.upper_half_prime_power_dvd_harmonic_den
+#print axioms OddZeta.upperHalfPrimeProduct_pow_dvd_harmonic_den
+#print axioms OddZeta.rational_sum_den_dvd
+#print axioms OddZeta.shifted_harmonic_prime_cost
+#print axioms OddZeta.shifted_harmonic_height_lower
+#print axioms OddZeta.scaled_reciprocal_prime_den
+#print axioms OddZeta.upper_third_prime_not_dvd_other
+#print axioms OddZeta.upper_third_prime_power_dvd_harmonic_den
+#print axioms OddZeta.upperThirdPrimeProduct_pow_dvd_harmonic_den
+#print axioms OddZeta.shifted_harmonic_third_prime_cost
+#print axioms OddZeta.shifted_harmonic_third_height_lower

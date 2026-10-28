@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+\usepackage[left=0.85in,right=0.85in,top=0.7in,bottom=0.7in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\HH}[2]{H_{#1}^{(#2)}}
+\newcommand{\dd}{\,\mathrm{d}}
+\title{Growth comparisons and the arithmetic cost\\of shifting odd-zeta forms}
+\author{}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We apply polynomial and logarithmic growth comparisons to the actual
+primitive coefficients of tail-moment determinants for odd zeta values.
+An elementary prime-denominator argument gives an explicit lower bound
+for the primitive target coefficient, including the full gcd reduction.
+It proves that shifts satisfying
+$N^2\log(a_N+2N)=o(a_N)$ make the normalized height diverge rather than
+vanish. Thus increasing the shift sufficiently rapidly cannot supply the
+missing irrationality estimate. Lean verifies the growth-comparison and
+rational-denominator lemmas described below. The estimate required for
+smaller shifts remains unproved, and no all-odd irrationality conclusion
+is claimed.
+\end{abstract}
+
+\section{The coefficients to be compared}
+Fix $s=2r+1$, $r\ge1$, $N\ge1$, and $a\ge0$. Put
+\[
+ H_k^{(s)}=\sum_{j=1}^k j^{-s},\qquad
+ \Delta_{N,a}=\det[\zeta(s)-H_{a+i+j}^{(s)}]_{0\le i,j<N}
+             =A_{N,a}\zeta(s)+B_{N,a}.
+\]
+Subtracting row zero from every other row proves the affine identity.
+The gamma integral gives the positive weight
+\[
+ w_s(x)=\frac{(-\log x)^{s-1}}{(s-1)!(1-x)},\qquad
+ \zeta(s)-H_k^{(s)}=\int_0^1x^k w_s(x)\dd x .
+\]
+In the basis $1,1-x,x(1-x),\ldots,x^{N-2}(1-x)$, whose change-of-basis
+determinant is $\pm1$, the target coefficient is the lower Gram determinant
+\begin{equation}
+ A_{N,a}=
+ \det[(a+i+j+1)^{-s}-(a+i+j+2)^{-s}]_{0\le i,j<N-1}.
+ \label{eq:A}
+\end{equation}
+It is positive. Hadamard's inequality and diagonal entries at most one
+give $A_{N,a}\le1$; for $N=1$, the empty determinant is one.
+
+Write the rational approximation in lowest terms as
+\[
+ -\frac{B_{N,a}}{A_{N,a}}=\frac{p_{N,a}}{u_{N,a}},\qquad
+ p_{N,a}\in\Z,\quad u_{N,a}\in\Z_{>0}.
+\]
+Put $Q=\operatorname{lcm}(1,\ldots,a+2N-2)^s$, with an empty lcm equal to one.
+Then $U=Q^NA$ and $V=Q^NB$ are integers. For
+$g=\gcd(|U|,|V|)$, we have $u=U/g$ and $p=-V/g$. Thus the following bounds
+concern the fully reduced coefficient, not an unnormalized presentation.
+
+The endpoint calculation has the exact minimum
+\[
+ E_{N,a}:=\frac{\Delta_{N,a}}{A_{N,a}}
+ =\min_{\deg P<N,\ P(1)=1}\int_0^1P(x)^2x^aw_s(x)\dd x .
+\]
+Comparing $1-x\le-\log x\le(1-x)/x$ with the Jacobi minimum
+\[
+ \min_{\deg P<N,\ P(1)=1}\int_0^1P^2x^b(1-x)^m\dd x
+ =\frac{m!(m+1)!}{(N)_{m+1}(N+b)_{m+1}}
+\]
+gives, for $N>r$,
+\[
+ \frac{(2r-1)!}{(N)_{2r}(N+a)_{2r}}
+ \le E_{N,a}\le
+ \frac{(2r-1)!}{(N-r)_{2r}(N-r+a)_{2r}},
+ \qquad (z)_k=\prod_{j=0}^{k-1}(z+j).
+\]
+The lower comparison uses $m=2r-1$, $b=a$; the upper one restricts
+$P=x^rQ$. Consequently
+$N^{2r}(N+a_N)^{2r}E_{N,a_N}\to(2r-1)!$ uniformly for nonnegative shifts.
+Small primitive forms therefore require exactly
+\begin{equation}
+ \frac{u_{N,a_N}}{N^{2r}(N+a_N)^{2r}}\longrightarrow0.
+ \label{eq:target}
+\end{equation}
+
+\section{What growth comparison proves}
+If $a_N\ge0$ and $|u_N|\le C N^p$ eventually, then
+\[
+ \left|\frac{u_N}{N^{2r}(N+a_N)^{2r}}\right|
+ \le C N^{p-4r}\longrightarrow0\qquad(p<4r).
+\]
+More generally, a bound $|u_N|\le C N^p(\log N)^k$ with real $k$ still
+suffices when $p<4r$, since $(\log N)^k=o(N^\epsilon)$ for every
+$\epsilon>0$. Lean verifies both conclusions with the numerator bounds
+as explicit hypotheses.
+
+A useful general form, also verified in Lean, assumes a lower envelope
+$N+a_N\ge cN^\beta$, $c>0$. Then
+\[
+ N^{2r}(N+a_N)^{2r}\ge c^{2r}N^{2r(1+\beta)},
+\]
+so $|u_N|\le CN^p(\log N)^k$ suffices when $p<2r(1+\beta)$.
+At equality a negative logarithmic exponent still suffices. This also
+handles fluctuating shifts that satisfy the same lower envelope.
+When $a_N=o(N)$, the denominator is asymptotic to $N^{4r}$.
+For a fixed negative lower bound on $a_N$, it is eventually at least
+$2^{-2r}N^{4r}$; the stronger inequality with constant one requires
+$a_N\ge0$. If $a_N\asymp N^\beta$, $\beta>1$, the denominator instead
+has order $N^{2r(1+\beta)}$. Every comparison must evaluate $u_{N,a_N}$
+at that same shift. A numerator estimate for $a=0$ is not uniform in $a$.
+
+A saddle-point calculation for a determinant can estimate its absolute
+size, but it does not estimate its coefficient gcd. Likewise a recurrence
+must first be proved for the reduced sequence before a recurrence
+asymptotic theorem can be applied to it. The next calculation exposes
+an arithmetic contribution that these substitutions must retain.
+
+\section{An exact centered denominator budget}
+Let
+\[
+ \delta_k=H_{a+k}^{(s)}-H_a^{(s)},\qquad
+ D=\prod_{k=1}^{2N-2}(a+k)^s,\qquad Z_{ij}=-D\delta_{i+j}.
+\]
+An empty product is one. Each $Z_{ij}$ is an integer, because every
+denominator in $\delta_{i+j}$ divides $D$. With $J$ the all-ones matrix,
+define
+\[
+ m=\det(Z+DJ)-\det Z=D^NA_{N,a},\qquad c=\det Z.
+\]
+The centered determinant identity is
+\[
+ D^N\Delta_{N,a}=m(\zeta(s)-H_a^{(s)})+c.
+\]
+Since $0<A_{N,a}\le1$, $m$ is a positive integer and $m\le D^N$.
+Combining this identity with the reduced rational approximation yields
+\begin{equation}
+ H_a^{(s)}=\frac pu+\frac cm.
+ \label{eq:center}
+\end{equation}
+If $b$ is the reduced denominator of $H_a^{(s)}$, then
+$b\mid um$: multiply \eqref{eq:center} by $um$.
+This divisibility is unaffected by any common factor already removed
+from $U,V$.
+
+\begin{lemma}
+Put
+\[
+ T_s(a)=\prod_{\substack{p\le a,\ p\ \mathrm{prime}\\a<3p\\p\nmid 2^s+1}}p.
+\]
+Then
+\begin{equation}
+ T_s(a)^s\mid b,\qquad T_s(a)^s\mid um,\qquad
+ u\ge\frac{T_s(a)^s}{D^N}.
+ \label{eq:primecost}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix a prime in the displayed product. If $a<2p$, the unique summand
+whose denominator is divisible by $p$ is $p^{-s}$. All other summands
+have denominators prime to $p$. Hence the reduced denominator contains
+$p^s$.
+
+If $2p\le a<3p$, isolate the two summands
+\[
+ \frac1{p^s}+\frac1{(2p)^s}
+ =\frac{2^s+1}{2^s p^s}.
+\]
+Their reduced denominator contains $p^s$, since $p\nmid2^s+1$.
+Adding a rational with denominator prime to $p$ cannot remove that
+prime power: if $q-R$ has denominator divisible by $p^s$ and
+$p\nmid\operatorname{den}(R)$, the divisibility
+$\operatorname{den}(q-R)\mid
+ \operatorname{den}(q)\operatorname{den}(R)$ forces
+$p^s\mid\operatorname{den}(q)$.
+Distinct prime powers are coprime, so their product divides $b$.
+Now use $b\mid um$, $0<m\le D^N$, and positivity.
+\end{proof}
+
+\section{A proved obstruction to rapidly growing shifts}
+Write $\vartheta(x)=\sum_{p\le x}\log p$. The exceptional primes
+$p\mid2^s+1$ have product at most $2^s+1$. Therefore
+\[
+ \log T_s(a)\ge\vartheta(a)-\vartheta(a/3)-\log(2^s+1).
+\]
+The elementary Chebyshev inequalities, also proved in the pinned
+mathlib source \cite{Chebyshev}, are
+\[
+ \vartheta(a)\ge a\log2-\log(a+1)-2\sqrt a\log a,\qquad
+ \vartheta(x)\le x\log4\quad(x\ge0).
+\]
+They give the explicit estimate
+\begin{equation}
+ \boxed{\;
+ \log u_{N,a}\ge s\left[
+ \frac{a\log2}{3}-\log(a+1)-2\sqrt a\log a-\log(2^s+1)
+ -N(2N-2)\log(a+2N)\right].
+ \;}
+ \label{eq:lower}
+\end{equation}
+Here we used $D^N\le(a+2N)^{sN(2N-2)}$.
+No prime number theorem is needed.
+
+\begin{theorem}
+For a fixed odd weight $s=2r+1>1$, suppose $a_N\ge1$ and
+\[
+ \frac{N^2\log(a_N+2N)}{a_N}\longrightarrow0.
+\]
+Then
+\[
+ \liminf_{N\to\infty}\frac{\log u_{N,a_N}}{a_N}
+ \ge\frac{s\log2}{3},\qquad
+ \frac{u_{N,a_N}}{N^{2r}(N+a_N)^{2r}}\longrightarrow+\infty.
+\]
+In particular, this applies to $a_N=\lfloor N^\beta\rfloor$ for
+$\beta>2$, and to exponential shifts.
+\end{theorem}
+\begin{proof}
+The hypothesis implies $a_N/N^2\to\infty$, since
+$\log(a_N+2N)\ge1$ eventually. In particular $a_N\to\infty$ and
+$a_N\ge N^2$ eventually.
+Divide \eqref{eq:lower} by $a_N$. The determinant cost tends to zero
+by hypothesis; the other errors do so because
+$\log a/a\to0$ and $\log a/\sqrt a\to0$.
+This proves the lower limit.
+Moreover $\log N+\log(N+a_N)=O(\log a_N)=o(a_N)$.
+Subtracting the logarithm of the denominator in \eqref{eq:target}
+therefore leaves a quantity tending to $+\infty$.
+\end{proof}
+
+\section{Exact certificates and formalization boundary}
+The audit checks \eqref{eq:center} and \eqref{eq:primecost} by exact
+rational arithmetic at $16$ weight/size/shift choices. It also verifies
+$28$ larger certificates of
+\[
+ u_{N,a}\ge 2^b N^{2r}(N+a)^{2r}
+\]
+directly from $T_s(a)^s\ge2^bD^NN^{2r}(N+a)^{2r}$.
+For the cubic shift $a=N^3$:
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$s$ & $N=30$ & $N=40$ & $N=60$\\
+\midrule
+3 & 873 & 34965 & 245818\\
+5 & 1442 & 58260 & 409681\\
+7 & 2011 & 81556 & 573545\\
+9 & 2580 & 104852 & 737408\\
+\bottomrule
+\end{tabular}
+\end{center}
+These are exact finite lower certificates, not fitted growth rates.
+
+The Lean growth module verifies power and logarithmic comparison limits
+and their squeeze applications. The harmonic modules verify both the
+upper-half and upper-third prime-power divisibilities, their prime-product
+versions, and the rational denominator budget. The centered determinant
+estimate and asymptotic large-shift theorem are paper proofs here.
+Neither the polynomial upper bound for the actual
+$u_{N,a_N}$ at smaller shifts nor \eqref{eq:target} has been proved.
+The all-odd irrationality result remains outside the conclusions.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{Chebyshev}
+mathlib contributors, \emph{Chebyshev functions and estimates},
+Lean source at the project's pinned revision, theorems
+\texttt{theta\_ge} and \texttt{theta\_le\_log4\_mul\_x}.
+\url{https://github.com/leanprover-community/mathlib4/blob/85e3a25e006c35636f0e53b0e9296caca2685bc0/Mathlib/NumberTheory/Chebyshev.lean}.
+\end{thebibliography}
+\end{document}

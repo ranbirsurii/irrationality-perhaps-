@@ -14,6 +14,9 @@ import OddZeta.RowwiseHankelArithmetic
 import OddZeta.CofactorArithmetic
 import OddZeta.MellinRationalMoments
 import OddZeta.PolynomialSmallnessCriterion
+import OddZeta.HeightGrowthComparison
+import OddZeta.HarmonicDenominatorGrowth
+import OddZeta.ThirdIntervalPrimeCost
 import OddZeta.AperyModernIdentification
 import OddZeta.AperyFormalPeriod
 import OddZeta.AdamsGeneral
