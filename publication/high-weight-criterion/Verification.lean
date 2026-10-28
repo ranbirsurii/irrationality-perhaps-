@@ -1,0 +1,19 @@
+import OddZeta
+import OddZeta.HighWeightRelativeCost
+import OddZeta.KernelProjectorContent
+import OddZeta.PositiveCancellationCost
+
+#check OddZeta.highWeightDecay_gap
+#check OddZeta.smallness_of_eventual_relative_cost
+#check OddZeta.oddZeta_irrational_of_relative_cost
+#check OddZeta.dvd_projectedRowsContent_iff
+#check OddZeta.balanced_positive_kernel_mass_lower
+
+#print axioms OddZeta.highWeightDecay_gap
+#print axioms OddZeta.smallness_of_eventual_relative_cost
+#print axioms OddZeta.highWeight_irrational_of_relative_cost
+#print axioms OddZeta.oddZeta_irrational_of_relative_cost
+#print axioms OddZeta.dvd_projectedRowsContent_iff
+#print axioms OddZeta.projectedRowsContent_independent_of_section
+#print axioms OddZeta.balanced_positive_kernel_mass_lower
+#print axioms OddZeta.balanced_kernel_target_content_is_unit

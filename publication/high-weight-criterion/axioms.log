@@ -1,0 +1,34 @@
+OddZeta.highWeightDecay_gap (s : ℕ) (hs : 7 ≤ s) : ↑s + 1 / 3 < OddZeta.highWeightDecay s
+OddZeta.smallness_of_eventual_relative_cost (s : ℕ) (hs : 7 ≤ s) (index : ℕ → ℕ)
+  (hindex : Filter.Tendsto index Filter.atTop Filter.atTop) (D W S L : ℕ → ℝ) (hD : ∀ (n : ℕ), 0 ≤ D n)
+  (hW : ∀ (n : ℕ), 0 ≤ W n) (hbound : ∀ᶠ (n : ℕ) in Filter.atTop, |L n| ≤ D n * W n * S n)
+  (hden : ∀ (ε : ℝ), 0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, D n ≤ Real.exp ((↑s + ε) * ↑(index n)))
+  (hcost : ∀ (ε : ℝ), 0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, W n ≤ Real.exp (ε * ↑(index n)))
+  (hraw :
+    ∀ (ε : ℝ), 0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, S n ≤ Real.exp ((-OddZeta.highWeightDecay s + ε) * ↑(index n))) :
+  Filter.Tendsto L Filter.atTop (nhds 0)
+OddZeta.oddZeta_irrational_of_relative_cost (k : ℕ) (hk : 3 ≤ k) (A B : ℕ → ℤ) (index : ℕ → ℕ)
+  (hindex : Filter.Tendsto index Filter.atTop Filter.atTop) (d M Γ : ℕ → ℕ) (S : ℕ → ℝ)
+  (hbound :
+    ∀ᶠ (n : ℕ) in Filter.atTop, |↑(A n) * oddZetaValue k - ↑(B n)| ≤ ↑(d n) ^ (2 * k + 1) * (↑(M n) / ↑(Γ n)) * S n)
+  (hden :
+    ∀ (ε : ℝ), 0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, ↑(d n) ^ (2 * k + 1) ≤ Real.exp ((↑(2 * k + 1) + ε) * ↑(index n)))
+  (hcost : ∀ (ε : ℝ), 0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, ↑(M n) / ↑(Γ n) ≤ Real.exp (ε * ↑(index n)))
+  (hraw :
+    ∀ (ε : ℝ),
+      0 < ε → ∀ᶠ (n : ℕ) in Filter.atTop, S n ≤ Real.exp ((-OddZeta.highWeightDecay (2 * k + 1) + ε) * ↑(index n)))
+  (hnonzero : ∀ (N : ℕ), ∃ n ≥ N, ↑(A n) * oddZetaValue k - ↑(B n) ≠ 0) : Irrational (oddZetaValue k)
+OddZeta.dvd_projectedRowsContent_iff {n m : ℕ} (ell u : Fin n → ℤ) (F : Fin m → Fin n → ℤ) (c : ℤ)
+  (hu : OddZeta.integralPairing ell u = 1) :
+  c ∣ OddZeta.projectedRowsContent ell u F ↔
+    ∀ (v : Fin n → ℤ), OddZeta.integralPairing ell v = 0 → ∀ (a : Fin m), c ∣ OddZeta.integralPairing (F a) v
+OddZeta.balanced_positive_kernel_mass_lower (t a b c : ℤ) (ht : 2 ≤ t) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
+  (hne : 0 < a + b + c) (hker : t * a - (t - 1) * b + t * c = 0) : 2 * t - 1 ≤ a + b + c
+'OddZeta.highWeightDecay_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.smallness_of_eventual_relative_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.highWeight_irrational_of_relative_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.oddZeta_irrational_of_relative_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.dvd_projectedRowsContent_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.projectedRowsContent_independent_of_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.balanced_positive_kernel_mass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.balanced_kernel_target_content_is_unit' depends on axioms: [propext, Quot.sound]

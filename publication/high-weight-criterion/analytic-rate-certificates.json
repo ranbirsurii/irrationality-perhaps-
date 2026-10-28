@@ -1,0 +1,22 @@
+{
+  "scope": "Global scalar saddle and rate certificates; no finite-index extrapolation.",
+  "saddle_x_interval": [
+    "1056126503577/1000000000000",
+    "528063251789/500000000000"
+  ],
+  "lambda5_outward_interval": [
+    "-2485396930179/500000000000",
+    "-4970793860341/1000000000000"
+  ],
+  "lambda5_six_decimal_interval_proved": [
+    "-4.970794",
+    "-4.970793"
+  ],
+  "weight7_coarse_cost_budget_interval": [
+    "714231144849/1000000000000",
+    "14284622897/20000000000"
+  ],
+  "coarse_cofactor_upper_rate_less_than": "0.058358",
+  "sharp_cofactor_upper_rate_less_than": "0.029207",
+  "log_certificate": "32-term atanh series after powers-of-two reduction, with explicit geometric tail."
+}

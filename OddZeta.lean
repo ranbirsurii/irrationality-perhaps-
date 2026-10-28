@@ -31,3 +31,6 @@ import OddZeta.AdamsGeneral
 import OddZeta.HodgeEtaleWeights
 import OddZeta.AperyRegulatorGeometry
 import OddZeta.AperyRegulatorComparison
+import OddZeta.HighWeightRelativeCost
+import OddZeta.KernelProjectorContent
+import OddZeta.PositiveCancellationCost

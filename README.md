@@ -3,6 +3,25 @@
 This project formalizes exact algebraic pieces from both supplied chat texts,
 plus the integer-smallness argument needed for an irrationality proof.
 
+## Higher weights and the new supplied notes
+
+The [organized manuscript source](publication/high-weight-criterion/main.tex)
+gives an exact Smith-content reduction and a direct comparison extending
+the raw weight-five bound to every fixed higher weight. The new
+`HighWeightRelativeCost.lean` proves a uniform analytic rate margin greater
+than one third for weights at least seven, and irrationality conditional
+on eventual bounds for the integral forms and their relative arithmetic
+cost. It does not prove that cost bound for the constructed family.
+
+`KernelProjectorContent.lean` proves the exact integral-projection and
+divisibility criteria, including independence from the Bezout section.
+`PositiveCancellationCost.lean` proves that bounded row balance and
+positive integral cancellation can coexist with exponential minimum
+positive mass and unit content. That example is not the zeta family;
+it identifies why these structural properties alone do not imply the
+remaining estimate. Neither all odd zeta values at least seven nor zeta
+five have an unconditional irrationality proof in this project.
+
 ## Explicit symmetric Padé cancellation
 
 The [Gram and integral-projector derivation](notes/gram-plucker-and-kernel-projector.md)
@@ -91,7 +110,8 @@ The [independent arithmetic audit](notes/primitive-normalization-audit.md)
 checks both primitive normalization procedures through index 160. It also
 gives exact positive lower bounds exceeding one at the six audited indices
 8,12,20,40,80,160. These finite results establish no limiting arithmetic
-rate. Further compilation is paused pending the requested complete bound.
+rate. The new modules and integrated entry point compile successfully;
+their dependency report is in the publication folder.
 The [determinantal reformulation](notes/determinantal-arithmetic-budget.md)
 expresses h_n/M_n as the gcd of two explicit coefficient minors divided
 by the lower-period row mass. It also checks why analytic bounds on S_n

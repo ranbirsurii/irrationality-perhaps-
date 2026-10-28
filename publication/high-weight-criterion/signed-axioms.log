@@ -1,0 +1,3 @@
+'OddZeta.signed_combination_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.two_forms_not_both_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.cofactor_strict_saving_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]

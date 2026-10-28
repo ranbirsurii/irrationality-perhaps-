@@ -1,0 +1,659 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\la}{\lambda}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\covol}{covol}
+\DeclareMathOperator{\diag}{diag}
+\title{Relative arithmetic content in symmetric odd-zeta forms\\
+\large Exact reductions, higher-weight decay, and a conditional irrationality criterion}
+\author{}
+\date{28 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We separate analytic decay from integral normalization in symmetric Pad\'e
+forms for odd zeta values. Smith reduction gives an exact formula for the
+content of the target and rational rows on the cancellation lattice.
+A direct kernel comparison extends the weight-five decay estimate to every
+fixed higher weight. An elementary logarithm inequality gives a uniform
+exponential margin greater than one third for weights at least seven.
+Consequently, nonzero integral forms with subexponential relative arithmetic
+cost imply irrationality. The Lean companion proves this conditional
+implication, including eventual bounds and arbitrary unbounded indexing,
+and an exact integral-projector divisibility criterion.
+Signed combinations are also allowed. A target-eliminating cofactor
+combination gives an integer lower bound that rules out an overstrong
+cofactor-norm saving proposed in the supplied note.
+The construction-specific relative-cost bound and the existence of suitable
+positive integral cancellation vectors in every higher weight are hypotheses,
+not conclusions. This paper does not prove the unconditional irrationality
+of every odd zeta value at least seven, or of \(\zeta(5)\).
+\end{abstract}
+
+\section{Construction and the arithmetic quantity}
+Fix \(s=2r+1\ge5\). Let \(n\ge2r\) be even and select
+\(m_j=n-j\), \(0\le j\le r\). Write
+\[
+ d_n=\operatorname{lcm}(1,\ldots,n),\qquad
+ T_{s,n,m}(t)=\frac{(n!)^s}{(m!)^2}
+ \frac{\prod_{v=1}^{m}(t-v)(t+n+v)}
+      {\prod_{h=0}^{n}(t+h)^s}.
+\]
+The convergent positive sums are
+\[
+ \cA_{s,n,m}=\sum_{k=m+1}^{\infty}T_{s,n,m}(k).
+\]
+Every summand is positive in this range. Partial fractions, reflection
+\(t\mapsto-n-t\), and the vanishing total simple-pole residue give
+\begin{equation}
+ \cA_{s,n,m}=b_{n,m}+
+    \sum_{q=1}^{r} a_{q,n,m}\zeta(2q+1).
+ \label{eq:expansion}
+\end{equation}
+The coefficients are rational. Weighted Taylor expansion at each pole
+shows
+\[
+ d_n^{s-(2q+1)}a_{q,n,m}\in\Z,\qquad d_n^s b_{n,m}\in\Z.
+\]
+For completeness, factor \(T=P_mQ_n^s\), where
+\[
+ P_m(t)=\binom{t-1}{m}\binom{t+n+m}{m},\qquad
+ Q_n(t)=\frac{n!}{\prod_{h=0}^{n}(t+h)}.
+\]
+Vandermonde expansion shows that \(d_n^\ell\) clears the coefficient
+of \(x^\ell\) in \(P_m(-j+x)\). The same statement holds for
+\([xQ_n(-j+x)]^s\), since its factors are
+\((1+x/(h-j))^{-s}\), apart from an integral leading coefficient.
+Thus \(d_n^{s-k}\) clears each coefficient of \((t+j)^{-k}\).
+Summing the partial fractions proves the displayed denominator bounds.
+
+Clear all rows by \(D_n=d_n^s\). Let \(C_{s,n}\) be the
+\((r-1)\)-by-\((r+1)\) integer matrix of coefficients of the lower
+periods \(\zeta(3),\ldots,\zeta(s-2)\), and let \(Y_{s,n},Z_{s,n}\)
+be the cleared target and constant rows. Whenever \(C_{s,n}\) has full
+row rank, its integral kernel
+\[
+ \Lambda_{s,n}=\ker_{\Z} C_{s,n}
+\]
+is a saturated lattice of rank two. For an integral basis \(a,b\), define
+\begin{equation}
+ \Gamma_{s,n}=\gcd\bigl(Y a,Y b,Z a,Z b\bigr).
+ \label{eq:gamma}
+\end{equation}
+Here and below gcds are nonnegative; we require \(\Gamma_{s,n}>0\)
+when dividing by it. This gcd is independent of the lattice basis.
+
+\begin{proposition}[Kernel rank and saturation]
+If \(\operatorname{rank}_{\Q}C=r-1\), then
+\(\ker_{\Z}C\cong\Z^2\), and this kernel is saturated in \(\Z^{r+1}\).
+\end{proposition}
+\begin{proof}
+Smith normal form supplies unimodular matrices \(U,V\) with
+\[
+ UCV=(\diag(d_1,\ldots,d_{r-1})\mid0\mid0),\qquad d_i>0.
+\]
+The equation \(Cv=0\) says precisely that the first \(r-1\) coordinates
+of \(V^{-1}v\) are zero. The final two coordinates are arbitrary integers,
+so the final two columns of \(V\) give an integral kernel basis.
+If \(kv\) belongs to this kernel, with \(k\in\Z\setminus\{0\}\), then
+\(0=C(kv)=kCv\). Torsion-freeness of \(\Z^{r-1}\) gives \(Cv=0\),
+which proves saturation.
+\end{proof}
+
+At weight five the established adjacent-sign theorem gives
+\(x_{0,n}x_{1,n}<0\) for the single lower-period row at every even
+\(n\ge2\). That row is nonzero and therefore has rational rank one;
+its integral kernel has rank two by the proposition.
+For higher weights, counting the \(r-1\) rows is not a proof of their
+independence. The supplied rank argument explicitly retains that hypothesis.
+
+\begin{proposition}[Exact content by Smith reduction]
+Let \(\Delta_k(B)\) be the nonnegative gcd of all \(k\)-minors of an
+integer matrix \(B\), with \(\Delta_0(B)=1\).
+For a full-row-rank matrix \(C\) with \(r-1\) rows and \(r+1\) columns,
+\begin{equation}
+ \Gamma=
+ \frac{\gcd\bigl(\Delta_r(C;Y),\Delta_r(C;Z)\bigr)}
+      {\Delta_{r-1}(C)}.
+ \label{eq:smith}
+\end{equation}
+The notation \((C;Y)\) means append the row \(Y\).
+\end{proposition}
+\begin{proof}
+Choose unimodular \(U,V\) with
+\(UCV=(\diag(d_1,\ldots,d_{r-1})\mid0)\).
+The last two columns of \(V\) are a basis of the integral kernel.
+The gcd of the maximal minors of \(C\) is \(\prod_i d_i\).
+The only possibly nonzero \(r\)-minors after appending \(Y\) are
+\((\prod_i d_i)Ya\) and \((\prod_i d_i)Yb\), up to sign.
+Unimodular row and column transformations preserve determinantal
+divisors. Repeat with \(Z\) and take the gcd.
+\end{proof}
+Consequently, with the convention \(v_p(0)=+\infty\),
+\begin{equation}
+ v_p(\Gamma)=
+ \min\{v_p(\Delta_r(C;Y)),v_p(\Delta_r(C;Z))\}
+       -v_p(\Delta_{r-1}(C)).
+ \label{eq:valuation}
+\end{equation}
+This is a divisibility problem, distinct from the real growth of the minors.
+
+\section{The exact integer-form bound}
+Suppose \(w_{s,n}\in\Lambda_{s,n}\cap\Z_{\ge0}^{r+1}\) is nonzero.
+Put \(M_{s,n}=\|w_{s,n}\|_1\) and
+\[
+ h(w)=\gcd(Yw,Zw),\qquad
+ L_{s,n}=\frac{(Yw)\zeta(s)+Zw}{h(w)}.
+\]
+The numerator equals \(D_n\sum_j w_j\cA_{s,n,n-j}>0\).
+In particular \(h(w)>0\). Since \(\Gamma_{s,n}\mid h(w)\), we obtain
+\begin{equation}
+ 0<L_{s,n}\le
+ d_n^s\frac{M_{s,n}}{\Gamma_{s,n}}\,
+ S_{s,n},\qquad
+ S_{s,n}=\max_{0\le j\le r}\cA_{s,n,n-j}.
+ \label{eq:bound}
+\end{equation}
+Both coefficients of \(L_{s,n}\) are integers.
+Rational normalization of a kernel vector to mass one does not prove
+a bound for \(M_{s,n}/\Gamma_{s,n}\), since clearing its denominator
+must still be included in \eqref{eq:bound}.
+
+\section{A direct analytic extension to higher weights}
+The following argument makes the weight dependence explicit without a
+new saddle computation at each weight.
+
+\begin{lemma}[Extra powers of the kernel]
+For \(n\ge2r\), \(0\le j\le r\), and \(k\ge n-j+1\),
+\[
+ Q_n(k)\le3^j4^{-n},\qquad
+ T_{s,n,n-j}(k)=Q_n(k)^{s-5}T_{5,n,n-j}(k).
+\]
+\end{lemma}
+\begin{proof}
+The binomial sum and maximality of the central binomial coefficient give
+\(4^n\le(2n+1)\binom{2n}{n}\), hence
+\[
+ Q_n(n+1)=\frac{1}{(2n+1)\binom{2n}{n}}\le4^{-n}.
+\]
+The function \(Q_n(k)\) decreases for positive \(k\).
+Also \(Q_n(k)/Q_n(k+1)=(k+n+1)/k\).
+For \(k\ge n-j+1\), \(n\ge2j\), this ratio is at most three.
+At most \(j\) backward steps from \(n+1\) suffice.
+The identity follows by cancellation of the definitions.
+\end{proof}
+
+For comparison of the fixed shifts at weight five, exact factorial
+cancellation gives
+\begin{align}
+ \frac{T_{5,n,n-j}(k)}{T_{5,n,n}(k+j)}
+ &=
+ \left(\frac{n!}{(n-j)!}\right)^2
+ \prod_{h=1}^j\left(\frac{k+n+h}{k+h-1}\right)^6
+ \left(\prod_{h=1}^{2j}(k+2n-j+h)\right)^{-1} \notag\\
+ &\le (3^6/4)^j. \label{eq:shift}
+\end{align}
+Indeed the first factorial ratio is at most \(n^j\), each middle ratio
+is at most three, and each final factor is at least \(2n\).
+The change \(k\mapsto k+j\) carries the summation range onto \(k+j\ge n+1\).
+
+The elementary weight-five estimate, proved in Appendix A, is
+\begin{equation}
+ \cA_{5,n,n}\le C_0(n+1)^{12}140^{-n},
+ \qquad C_0=12\cdot3^{12}\cdot5^{10}e^{10}.
+ \label{eq:base}
+\end{equation}
+It is not a Lean theorem in the present companion. Appendix A also proves
+the sharp bound \(\cA_{5,n,n}\le C_0(n+1)^{12}e^{\la_5n}\).
+The derivation locates
+the unique maximum of
+\[
+ 6[x\log x-(x+1)\log(x+1)]
+ +(x+2)\log(x+2)-(x-1)\log(x-1).
+\]
+Writing \(y=x(x+1)\), its stationary equation is
+\(3y^3-4y^2-5y-1=0\).
+The maximum occurs below \(1057/1000\), where the resulting exponential
+base is below \(1/140\). The complete summation and tail estimates in
+Appendix A supply the prefactor in \eqref{eq:base} and certify the sharper
+interval \(-4.970794<\la_5<-4.970793\).
+
+\begin{proposition}[Higher-weight raw decay]
+For each fixed odd \(s=2r+1\ge7\) and
+even \(n\ge2r\),
+\begin{equation}
+ S_{s,n}\le C_s(n+1)^{12}\exp(-a_s n),\qquad
+ a_s=\log140+(s-5)\log4,\qquad
+ C_s=C_0\,3^{r(s+1)}.
+ \label{eq:raw}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Apply the lemma termwise, sum, and use \eqref{eq:shift}.
+For the shift \(j\), the constant obtained is
+\(3^{j(s-5)}(3^6/4)^j\le3^{r(s+1)}\).
+The powers \(140^{-n}4^{-(s-5)n}\) equal \(\exp(-a_s n)\).
+\end{proof}
+
+\begin{lemma}[Explicit margin, checked in Lean]
+For every integer \(s\ge7\),
+\begin{equation}
+ a_s>s+\tfrac13.
+ \label{eq:margin}
+\end{equation}
+\end{lemma}
+\begin{proof}
+The elementary inequality \(2x/(x+2)<\log(1+x)\), applied at \(x=1\),
+gives \(\log2>2/3\). Also
+\(\log140>7\log2>14/3\) and \(\log4=2\log2>4/3\).
+Thus
+\[
+ a_s>\frac{14}{3}+\frac43(s-5)=\frac{4s-6}{3}
+ \ge s+\frac13.
+\]
+\end{proof}
+
+\section{The precise conditional irrationality theorem}
+All limits in this section may be restricted to an unbounded sequence
+of eligible even indices. Write \(\log^+x=\max(0,\log x)\) for \(x>0\).
+
+\begin{theorem}[Relative arithmetic cost]
+Fix an odd \(s\ge7\). Suppose that the full-rank cancellation setup,
+the positive integral vectors, and the integer forms in
+\eqref{eq:bound} exist along an unbounded sequence of even indices.
+Suppose \eqref{eq:raw} holds and
+\begin{equation}
+ \log^+(M_{s,n}/\Gamma_{s,n})=o(n).
+ \label{eq:cost}
+\end{equation}
+Then \(\zeta(s)\) is irrational.
+\end{theorem}
+\begin{proof}
+The prime number theorem yields \(\log d_n=n+o(n)\).
+For fixed \(s\), the denominator term has upper exponential rate \(s\).
+The polynomial factor in \eqref{eq:raw} has rate zero.
+By \eqref{eq:cost} the relative arithmetic cost also has upper rate
+at most zero. Taking logarithms in \eqref{eq:bound} therefore gives
+\[
+ \limsup\frac{\log L_{s,n}}n\le s-a_s<-\tfrac13.
+\]
+Hence the nonzero integer linear forms tend to zero.
+If \(\zeta(s)=p/q\), \(p,q\in\Z\), \(q\ne0\), then
+\(qL_{s,n}\) is a nonzero integer and has absolute value at least one,
+contradicting convergence to zero.
+\end{proof}
+
+For clarity, the Lean theorem uses eventual exponential envelopes
+instead of a quotient of logarithms. With \(D_n=d_n^s\),
+\(W_n=M_{s,n}/\Gamma_{s,n}\), its assumptions are, for every
+\(\varepsilon>0\), eventually
+\[
+ D_n\le e^{(s+\varepsilon)n},\qquad
+ W_n\le e^{\varepsilon n},\qquad
+ S_n\le e^{(-a_s+\varepsilon)n}.
+\]
+These are supplied as hypotheses to the theorem, together with
+\eqref{eq:bound} and arbitrarily late nonvanishing. Choosing
+\(\varepsilon=1/12\) proves the explicit eventual bound
+\[
+ |L_n|\le e^{-n/12}\longrightarrow0.
+\]
+The formal theorem permits any index map tending to infinity, including
+the even subsequence; no finite-index extrapolation is used.
+
+\section{An integral projector for the divisibility obligation}
+At weight five the cancellation row is a nonzero integer row \(x\).
+Put \(g=\gcd(x_1,x_2,x_3)\), \(\ell=x/g\), so that \(\ell\) is primitive.
+Choose \(u\in\Z^3\) with \(\ell u=1\). Define
+\[
+ \Pi=I-u\ell.
+\]
+Then \(\Pi^2=\Pi\), \(\ell\Pi=0\), and
+\(\Pi v=v\) whenever \(\ell v=0\). Its integral image is exactly
+\(\Lambda=\ker_\Z\ell\).
+
+\begin{proposition}[Universal congruence test, checked in Lean]
+For any integer matrix \(F\) with three columns and any \(c\in\Z\),
+\begin{equation}
+ c\mid(F\Pi)_{ij}\ \text{for every }i,j
+ \quad\Longleftrightarrow\quad
+ c\mid(Fv)_i\ \text{for every }v\in\Lambda\text{ and every }i.
+ \label{eq:projector}
+\end{equation}
+The gcd of the entries of \(F\Pi\) is independent of the choice of \(u\),
+up to multiplication by a unit.
+\end{proposition}
+\begin{proof}
+If the left side holds, write \(v=\Pi v\) and expand \(F\Pi v\)
+as an integral linear combination of its columns.
+Conversely apply the right side to each column \(\Pi e_j\), which
+lies in \(\Lambda\). The equivalence characterizes all divisors of
+the entry gcd and is independent of the section \(u\).
+\end{proof}
+Taking \(F\) to have rows \(Y,Z\) identifies its entry gcd with
+\(\Gamma\) in \eqref{eq:gamma}. This formulation accounts for division
+by \(g\) before imposing higher-order congruences. For \(c=p^e\), it
+is an exact reformulation of the local obligation, not a lower bound
+for its exponent.
+
+\section{Shape control and the weight-five boundary}
+The augmented-rank condition used here has the following exact proof.
+Choose an integral kernel basis \(a,b\), under the lower-row rank condition,
+and put
+\[
+ B=\begin{pmatrix}Y(a)&Y(b)\\ Z(a)&Z(b)\end{pmatrix}.
+\]
+Apply the Smith transformations from Section 1 to the augmented matrix.
+Its first rows have diagonal entries \(d_1,\ldots,d_{r-1}\), and its
+lower right corner is \(B\). Unimodular transformations change determinant
+only by a sign. Expansion along the first rows proves
+\begin{equation}
+ |\det(C;Y;Z)|=\Delta_{r-1}(C)|\det B|.
+ \label{eq:augmented}
+\end{equation}
+Thus the augmented square matrix has full rational rank if and only if
+\(\det B\ne0\). This proves the equivalence; it does not assert determinant
+nonvanishing for every member of the higher-weight Pad\'e family.
+
+Let \(a,b\) be a Gauss-reduced basis of a saturated rank-two cancellation
+lattice, \(\la_1=\|a\|\le\la_2=\|b\|\), and
+\(H=\|a\wedge b\|\). Set
+\[
+ U_Y=Y(a)b-Y(b)a,\qquad
+ U_Z=Z(a)b-Z(b)a,\qquad
+ \cM=\max(\|U_Y\|,\|U_Z\|).
+\]
+Assume the augmented square matrix \((C;Y;Z)\) has nonzero determinant.
+
+\begin{proposition}[Cofactor comparison]
+Under these assumptions,
+\[
+ \la_2\le\frac{\cM}{\Gamma},\qquad
+ \kappa=\frac{\la_2}{\la_1}
+       \le\frac{\cM^2}{\Gamma^2 H},\qquad
+ \frac{\Gamma}{\la_2}\ge\frac{\Gamma^2}{\cM}.
+\]
+\end{proposition}
+\begin{proof}
+The vectors \(U_Y/\Gamma,U_Z/\Gamma\) are independent lattice vectors.
+The second successive minimum is therefore at most
+\(\cM/\Gamma\); for a Gauss-reduced rank-two basis it equals \(\la_2\).
+Since \(H=\la_1\la_2\sin\theta\) and \(\sin\theta\le1\),
+\(\kappa\le\la_2^2/H\). Combine the two inequalities.
+\end{proof}
+
+In weight five, positive rounding gives the separate sufficient bound
+\[
+ M_{5,n}\le3(1+2R_n)\la_{2,n}.
+\]
+The row-balance result \(\log R_n=o(n)\) removes this factor from
+the exponential budget, but not the factor \(\la_{2,n}/\Gamma_{5,n}\).
+Using only the explicit base \(140\), a sufficient joint estimate is
+\[
+ \Gamma_{5,n}\ge e^{0.06n}\la_{2,n}.
+\]
+The sharper saddle value
+\(-4.970794<\la_5<-4.970793\), certified in Appendix A,
+reduces \(0.06\) to \(0.03\).
+The sharper constant enclosure and this sufficient joint estimate are
+not formalized in the new Lean modules. Neither joint arithmetic
+estimate has been proved for the constructed family.
+In particular this section supplies no unconditional theorem for
+\(\zeta(5)\).
+
+\section{Signed cancellation and a cofactor restriction}
+For real weights of either sign, the triangle inequality gives
+\begin{equation}
+ \left|\sum_j w_j\cA_j\right|
+       \le\left(\sum_j|w_j|\right)\max_j|\cA_j|.
+ \label{eq:signed}
+\end{equation}
+Thus nonnegativity is not essential to the upper estimate. Its role in
+Section 2 is to guarantee nonvanishing. A different guarantee is available
+for two coefficient pairs: if \(ad-bc\ne0\), the forms
+\(a\alpha+c\) and \(b\alpha+d\) cannot both vanish, since
+\[
+ a(b\alpha+d)-b(a\alpha+c)=ad-bc.
+\]
+One may therefore work with a pair of independent signed forms, provided
+both satisfy the required arithmetic bounds. These two elementary
+assertions are proved in the signed Lean companion.
+
+However, a signed combination that eliminates the target itself is a
+nonzero rational period and has an integral lower bound after clearing.
+In the notation of Section 6, put
+\[
+ \delta=Y(a)Z(b)-Y(b)Z(a)\ne0.
+\]
+Then \(C U_Y=0\), \(Y(U_Y)=0\), and \(Z(U_Y)=\delta\).
+Since \(\Gamma\) divides all four displayed evaluations,
+\(\Gamma^2\mid\delta\), so \(|\delta|\ge\Gamma^2\).
+Applying the cleared period identity and \eqref{eq:signed} gives
+\begin{equation}
+ \boxed{\Gamma_{s,n}^2
+  \le |\delta|
+  =d_n^s\left|\sum_j(U_Y)_j\cA_{s,n,n-j}\right|
+  \le d_n^s\sqrt{r+1}\,\cM_{s,n}S_{s,n}.}
+ \label{eq:cofactorlower}
+\end{equation}
+Here \(\|U_Y\|_1\le\sqrt{r+1}\|U_Y\|_2\le\sqrt{r+1}\cM\).
+The determinant divisibility, signed bound, and integer-divisor lower
+bound are proved in \texttt{SignedCancellation.lean}; their application
+to these coefficient rows is the displayed paper derivation.
+
+It follows from \eqref{eq:raw} and \(\log d_n=n+o(n)\) that
+\[
+ \limsup\frac1n\log\frac{\Gamma_{s,n}^2}{\cM_{s,n}}
+       \le s-a_s.
+\]
+In particular, for \(s\ge7\) this upper rate is less than \(-1/3\).
+At weight five the coarse base \(140\) gives the upper rate
+\(5-\log140<0.058358\); the sharper saddle rate gives
+\(5+\la_5<0.029207\).
+Consequently the sufficient cofactor strengthenings
+\(\Gamma_{5,n}^2\ge e^{0.06n}\cM_{5,n}\), or
+\(\Gamma_{5,n}^2\ge e^{0.03n}\cM_{5,n}\) with the sharp saddle bound,
+cannot hold along an unbounded sequence with nonzero augmented determinant.
+This restriction does not invalidate the comparison in Section 6.
+It shows that using its cofactor upper bound in place of the actual
+second minimum is too strong for that proposed arithmetic target.
+The weaker bound for a selected primitive form remains a separate problem.
+
+\section{Row balance and positive integral cost}
+The relative-cost estimate needs arithmetic information about the specified
+family. In particular it does not follow from row balance and the existence
+of a positive integral kernel vector alone. This can be proved exactly,
+without extrapolating from numerical examples.
+
+For an integer \(t\ge2\), take
+\[
+ C=(t,-(t-1),t),\qquad Y=(1,0,0),\qquad Z=(0,0,1).
+\]
+The cancellation row is primitive, has full row rank, and its positive to
+negative row-sum ratio is \(2t/(t-1)\le4\).
+The integral kernel contains \((1,0,-1)\), on which \(Y\) evaluates to one,
+so its target-and-constant content is \(\Gamma=1\).
+If \(w=(a,b,c)\ge0\) is a nonzero integral kernel vector, then
+\[
+ t(a+c)=(t-1)b,\qquad k=b-a-c\in\Z_{\ge1}.
+\]
+It follows that \(a+c=(t-1)k\), \(b=tk\), and
+\[
+ \|w\|_1=(2t-1)k\ge2t-1.
+\]
+Equality is attained by \((t-1,t,0)\).
+Choosing \(t=2^n\) gives a bounded row-balance ratio but forces every
+nonzero nonnegative cancellation vector to have exponentially growing
+\(M/\Gamma\). The lower bound, its attaining vector, the row-ratio bound,
+and the unit-content implication are checked in Lean.
+This family is not the odd-zeta family: it proves a non-implication between
+the general structural properties and the desired arithmetic estimate.
+
+\section{Formalization and reproducibility}
+The archive contains the pinned Lean project and every source module.
+The three additions are:
+\begin{itemize}
+\item \texttt{OddZeta/HighWeightRelativeCost.lean}:
+the logarithm margin, convergence from eventual rate bounds, and the
+conditional irrationality theorem for \texttt{oddZetaValue k},
+\(k\ge3\), meaning the real part of \(\zeta(2k+1)\).
+\item \texttt{OddZeta/KernelProjectorContent.lean}:
+the integral projection, idempotence, universal divisibility equivalence,
+and independence of the content from the section.
+\item \texttt{OddZeta/PositiveCancellationCost.lean}:
+the exact minimal positive mass calculation above, with the row-ratio and
+unit-content assertions.
+\end{itemize}
+The publication folder also contains \texttt{SignedCancellation.lean}
+and exact cancellation examples at weight seven and indices six and eight.
+Two independent rational coefficient algorithms agree at these indices,
+and Lean verifies the four resulting integer cancellation identities.
+They confirm actual cancellation, with no extrapolation to all indices.
+All parameters of the irrationality criterion remain explicit.
+In particular the cost bound and nonvanishing are hypotheses, and no
+axiom asserts their existence for the Pad\'e family.
+The complete source declaration, rather than its theorem name alone,
+specifies the mathematical assertion checked by Lean.
+
+A successful Lean compilation verifies these formal statements relative
+to the pinned library. It does not verify paper-only derivations such
+as \eqref{eq:smith}, \eqref{eq:base}, or the Gauss-reduction comparison.
+The accompanying verification report distinguishes these scopes.
+Rebuild with the pinned toolchain, using
+\texttt{lake exe cache get} and \texttt{lake build}.
+The provided lock file records the library revisions.
+
+An unconditional application to all odd weights would require a proof
+of \eqref{eq:cost} for explicitly constructed nonnegative integral
+cancellation vectors at each fixed weight. The exact projector criterion
+and the Smith formula specify the arithmetic content entering that task.
+
+\appendix
+\section{Global decay with the sharp saddle constant}
+Here is the full analytic proof of \eqref{eq:base} and its sharper version.
+For \(x>1\), define
+\[
+ \Phi(x)=6[x\log x-(x+1)\log(x+1)]
+       +(x+2)\log(x+2)-(x-1)\log(x-1).
+\]
+Its derivative has the sign of
+\(x^6(x+2)-(x-1)(x+1)^6\). With \(y=x(x+1)\), the negative of this
+expression is \(p(y)=3y^3-4y^2-5y-1\).
+For \(y\ge2\), \(p'(y)=9y^2-8y-5>0\), while \(p(2)=-3\).
+Therefore \(\Phi\) increases to a unique \(x_*>1\) and decreases thereafter.
+Subtracting \(x_*\Phi'(x_*)=0\) from its value gives
+\[
+ \la_5=\Phi(x_*)=\log q(x_*),\qquad
+ q(x)=\frac{(x+2)^2(x-1)}{(x+1)^6}.
+\]
+Set \(a=1057/1000\). Exact integer arithmetic proves
+\begin{align*}
+ 1000^6p(a(a+1))&=54685013669880747>0,\\
+ 2057^6-140\cdot3057^2\cdot57\cdot1000^3
+       &=1178944474661131249>0.
+\end{align*}
+Hence \(1<x_*<a\). On this interval
+\[
+ (\log q)'=\frac2{x+2}+\frac1{x-1}-\frac6{x+1}
+           >\frac{1000}{57}-3>0.
+\]
+The second integer inequality is exactly \(q(a)<1/140\), so
+\(\la_5<-\log140\) is a global bound.
+
+For the sharp certificate put
+\[
+ x_- =\frac{1056126503577}{10^{12}},\qquad
+ x_+ =\frac{1056126503578}{10^{12}}.
+\]
+Exact rational evaluation gives \(p(x_-(x_-+1))<0\) and
+\(p(x_+(x_++1))>0\). Thus \(x_-<x_*<x_+\), and monotonicity
+of \(q\) encloses \(\la_5\) between the logarithms of these rational values.
+For \(1\le u\le2\), let \(z=(u-1)/(u+1)\). The convergent series gives
+\[
+ 0\le\log u-2\sum_{k=0}^{L-1}\frac{z^{2k+1}}{2k+1}
+ \le\frac{2z^{2L+1}}{(2L+1)(1-z^2)}.
+\]
+For any positive rational argument, first factor out an integral power of
+two. Applying this formula with \(L=32\) and outward rational rounding
+proves
+\[
+ -4.970793860358<\la_5<-4.970793860341.
+\]
+The signs and rational enclosures are reproduced by
+\texttt{check\_high\_weight\_rates.py}. They certify a single global maximum,
+without extrapolation from indices.
+
+To bound the infinite sum, write \(T=T_{5,n,n}\). For \(t\ge2n\),
+logarithmic differentiation gives
+\[
+ \frac{d}{dt}\log(t^2T(t))\le-\frac{E}{t}+\frac{B}{t^2},
+ \qquad E=3n+3,\quad B=7n^2+5n.
+\]
+Indeed apply \(1/(t-v)\le1/t+2v/t^2\),
+\(1/(t+n+v)\le1/t\), and \(1/(t+h)\ge1/t-h/t^2\)
+to its finite logarithmic derivative. Set
+\(K=\max(2n,n+1,\lceil B/E\rceil)\le3n\).
+Then \(t^2T(t)\) is decreasing for \(t\ge K\), so
+\(T(k)\le T(K)(K/k)^2\) there. The maximum summand \(P_n\)
+is attained at some \(n+1\le k\le K\). An integral comparison of the
+tail of \(\sum k^{-2}\) gives
+\[
+ \cA_{5,n,n}\le(2K+1)P_n\le(6n+1)P_n.
+\]
+
+For \(f(v)=v\log v-v\), \(f(0)=0\), integral comparison also gives
+\[
+ f(h)\le\log(h!)\le f(h)+1+\log(h+1)\qquad(h\in\Z_{\ge0}).
+\]
+At a maximizing index \(n+1\le k\le3n\), the exact factorial identity is
+\[
+ T(k)=\frac{(n!)^3((k-1)!)^6(k+2n)!}
+             {(k-n-1)!((k+n)!)^6}.
+\]
+Apply the upper factorial bound to the ten numerator factors and the lower
+bound to the denominator. The total error is at most
+\(10[1+\log(5n+1)]\). In the main terms,
+\(f(k-1)-f(k)\le0\) and
+\(f(k-n)-f(k-n-1)\le\log(k-n)\le\log(2n)\), including \(k-n=1\).
+Replacing these arguments accordingly leaves exactly
+\(n\Phi(k/n)\le n\la_5\), apart from error at most \(\log(2n)\).
+Consequently, for every even \(n\ge4\),
+\begin{align*}
+ \cA_{5,n,n}
+ &\le2e^{10}n(6n+1)(5n+1)^{10}e^{\la_5n}\\
+ &\le12\cdot5^{10}e^{10}(n+1)^{12}e^{\la_5n}
+ \le C_0(n+1)^{12}140^{-n}.
+\end{align*}
+This proves the complete raw decay estimate. Section 3 extends it to every
+higher fixed weight. The primitive integer normalization cost remains in
+\eqref{eq:bound}; no analytic step here discards that factor.
+
+\begin{thebibliography}{9}
+\bibitem{smithnote}
+\emph{A Smith-content reduction for odd-zeta Pad\'e forms},
+user-supplied technical note, 28 October 2026, five pages.
+
+\bibitem{collected}
+\emph{Odd-zeta collected notes},
+user-supplied compilation of six working notes, thirty pages.
+
+\bibitem{repository}
+Companion Lean project and derivation notes,
+\href{https://github.com/ranbirsurii/irrationality-perhaps-}{GitHub repository}.
+The archive contains a source snapshot and a verification report.
+\end{thebibliography}
+\end{document}
