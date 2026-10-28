@@ -5,13 +5,25 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [augmented-rank proof](notes/augmented-rank-discrete-residue-proof.md)
+now proves, on paper, full augmented rank r+1 and lower-row rank r-1 for
+every odd s=2r+1>=5 and even n>=2r in the actual consecutive-block profile.
+A zero coefficient combination has an explicit rational antidifference;
+its numerator has degree at most 2(n-r), but the boundary and reflection
+force 2(n-r)+2 distinct roots. This closes the previous rank obligation.
+The note compares ten methods and develops the discrete-residue method.
+The Lean root-count companion verifies the corresponding polynomial core;
+the full family-specific coefficient identification remains a paper proof.
+The primitive arithmetic cost needed for irrationality is still unproved.
+
 The [individual primitive normalization](notes/individual-primitive-pair.md)
 replaces the common content by each selected form's own coefficient gcd.
 `PrimitivePairNormalization.lean` proves the exact integer division,
 primitive-pair nonvanishing, and the weighted Gram and trace bounds without
 assuming that unequal scaling preserves Gauss reduction. The manuscript
 includes the full derivation. The required asymptotic estimate for that
-sharper cost and uniform higher-weight augmented rank remain unproved.
+sharper cost remains unproved; the new rational-antidifference proof
+supplies the higher-weight augmented rank.
 
 The [normalized Gram spectral calculation](notes/normalized-gram-spectral-bound.md)
 applies the two-dimensional eigenvalue estimates to the actual cancellation

@@ -5,6 +5,13 @@ seven. The present result is a conditional criterion, not that theorem.
 This record distinguishes the estimates actually derived from those still
 required for the specified Padé family.
 
+Subsequent update: `augmented-rank-discrete-residue-proof.md` now proves
+full augmented rank and lower-row rank on paper for every actual
+consecutive-block profile at even n>=2r. Consequently a pair of primitive
+signed kernel forms cannot both vanish. This supplies the alternative to
+positive-weight nonvanishing; the normalized arithmetic cost is still
+required. The older route-specific discussion below is retained.
+
 ## A direct higher-weight analytic comparison
 
 For the normalized kernels in the manuscript, put

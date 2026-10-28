@@ -1,6 +1,7 @@
 # Relative arithmetic content: manuscript and Lean companion
 
-This package is a conditional arithmetic reduction. It is not a proof of
+This package includes an unconditional augmented-rank proof and a
+conditional arithmetic reduction. It is not a proof of
 unconditional irrationality of all odd zeta values at least seven or of
 zeta five. The theorem statements retain the precise construction-specific
 hypotheses. No proof holes, added axioms, hidden text, or commented-out
@@ -8,9 +9,12 @@ assumptions are used to replace them.
 
 ## Contents
 
-- `main.tex`: ten-page manuscript source, with complete proofs of the stated
+- `main.tex`: current manuscript source, with complete proofs of the stated
   reductions and explicit distinctions between paper and Lean results.
-- `odd-zeta-relative-content.pdf`: rendered manuscript.
+- `odd-zeta-relative-content.pdf`: the ten-page rendered snapshot at
+  revision `16a63c3`, preceding the new rank section. The open editor's
+  current preview compiles the revised source in place; no separate PDF
+  was compiled in response to the rank-proof request.
 - `Verification.lean`: integrated theorem and axiom-dependency checks.
 - `verification-report.md`: compiler results, scope, and independent checks.
 - `axioms.log`: output of the integrated Lean checks.
@@ -27,7 +31,12 @@ assumptions are used to replace them.
 - `VerifyPrimitivePair.lean`, `primitive-pair-axioms.log`, and
   `primitive-pair-verification.md`: individually normalized integer forms,
   nonvanishing, and the weighted Gram bound. The derivation is in
-  `notes/individual-primitive-pair.md` and manuscript Proposition 7.1.
+  `notes/individual-primitive-pair.md` and the manuscript proposition
+  entitled Individual primitive normalization.
+- `VerifyAugmentedRankRoots.lean` and `augmented-rank-verification.md`:
+  scope and formal checks for the polynomial root-count core. The complete
+  paper proof is Theorem 2.1 and
+  `notes/augmented-rank-discrete-residue-proof.md`.
 - The repository's `OddZeta` directory: complete Lean library sources.
 
 The downloadable source archive additionally contains the pinned Lean
@@ -68,10 +77,10 @@ integral vectors cancelling all lower-period rows, and prove that their
 mass divided by the actual image content has an upper exponential rate
 strictly below the analytic budget. Subexponential relative cost would
 suffice, but has not been established for these constructions.
-Alternatively one may prove full augmented rank and the signed-pair trace
-rate in Proposition 7.1. The individual-content substitution weakens the
-shared-content sufficient condition; that new rate is also unproved for
-the actual family.
+Alternatively one may use the signed-pair trace rate. Theorem 2.1 now
+supplies full augmented rank for every specified consecutive-block profile.
+The individual-content substitution weakens the shared-content sufficient
+condition; that new rate is still unproved for the actual family.
 
 The Smith formula and the projector identify the integer content exactly.
 Neither identity is a lower asymptotic bound for that content. The

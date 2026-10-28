@@ -2,6 +2,12 @@
 
 Date: 28 October 2026.
 
+Historical scope: this record describes the ten-page snapshot at revision
+16a63c3. The subsequent rational-antidifference proof in manuscript
+Theorem 2.1 closes the rank obligation on paper; see
+`augmented-rank-verification.md`. The individual-normalization statements
+verified below are unchanged.
+
 `OddZeta/PrimitivePairNormalization.lean` compiles with exit code zero.
 The first verification checked its eight initial algebraic statements.
 After adding the actual gcd specialization, a clean second build checked

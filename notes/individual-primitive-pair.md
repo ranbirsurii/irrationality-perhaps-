@@ -6,7 +6,8 @@ of the kernel of the lower-period matrix. Assume that
   delta = Y(a) Z(b) - Y(b) Z(a) != 0.
 
 This assumption follows from full augmented rank by the Smith identity.
-It is not asserted here for every index of the actual higher-weight family.
+The subsequent proof in `augmented-rank-discrete-residue-proof.md` supplies
+it, on paper, for every actual consecutive-block profile with even n>=2r.
 
 Set h_a=gcd(Y(a),Z(a)) and h_b=gcd(Y(b),Z(b)). Neither can be zero,
 because that would make one column of the coefficient determinant zero.
@@ -70,6 +71,7 @@ deduction from the established analytic estimates and the displayed
 algebraic bound. The asymptotic inequality for tau_sharp itself has not
 been proved for the Padé family. This refinement replaces a potentially
 overstrong shared-content requirement; it does not resolve that remaining
-arithmetic estimate or the all-index higher-weight augmented-rank proof.
+arithmetic estimate. The subsequent discrete-residue argument closes
+the all-index higher-weight augmented-rank proof on paper.
 
 No unconditional irrationality theorem follows from this substitution alone.

@@ -1,0 +1,16 @@
+OddZeta.augmentedRankRoot_injective (n m : ℕ) : Function.Injective (OddZeta.augmentedRankRoot n m)
+OddZeta.polynomial_zero_of_augmented_rank_roots (P : Polynomial ℚ) (n m : ℕ) (hdegree : P.natDegree ≤ 2 * m)
+  (hpositive : ∀ (i : Fin (m + 1)), Polynomial.eval (↑↑i + 1) P = 0)
+  (hnegative : ∀ (i : Fin (m + 1)), Polynomial.eval (-↑n - ↑↑i) P = 0) : P = 0
+OddZeta.polynomial_zero_of_reflected_rank_roots (P : Polynomial ℚ) (n m : ℕ) (hdegree : P.natDegree ≤ 2 * m)
+  (hpositive : ∀ (i : Fin (m + 1)), Polynomial.eval (↑↑i + 1) P = 0)
+  (hreflect : ∀ (t : ℚ), Polynomial.eval (1 - ↑n - t) P = Polynomial.eval t P) : P = 0
+OddZeta.polynomial_zero_of_reflected_difference_chain (P : Polynomial ℚ) (n m s : ℕ) (hdegree : P.natDegree ≤ 2 * m)
+  (hstart : Polynomial.eval 1 P = 0) (hreflect : ∀ (t : ℚ), Polynomial.eval (1 - ↑n - t) P = Polynomial.eval t P)
+  (hstep :
+    ∀ (k : ℕ), 1 ≤ k → k ≤ m → ↑k ^ s * Polynomial.eval (↑k + 1) P - (↑k + ↑n) ^ s * Polynomial.eval (↑k) P = 0) :
+  P = 0
+'OddZeta.augmentedRankRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.polynomial_zero_of_augmented_rank_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.polynomial_zero_of_reflected_rank_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.polynomial_zero_of_reflected_difference_chain' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -26,7 +26,9 @@
 \maketitle
 \begin{abstract}
 We separate analytic decay from integral normalization in symmetric Pad\'e
-forms for odd zeta values. Smith reduction gives an exact formula for the
+forms for odd zeta values. An explicit rational antidifference and a
+polynomial zero count prove full augmented rank for every consecutive
+block profile used here. Smith reduction gives an exact formula for the
 content of the target and rational rows on the cancellation lattice.
 A direct kernel comparison extends the weight-five decay estimate to every
 fixed higher weight. An elementary logarithm inequality gives a uniform
@@ -40,9 +42,9 @@ combination gives an integer lower bound that rules out an overstrong
 cofactor-norm saving proposed in the supplied note.
 Individual primitive normalization gives a sharper signed-pair criterion,
 using each form's own coefficient gcd instead of the common content.
-The construction-specific relative-cost bound and the existence of suitable
-positive integral cancellation vectors in every higher weight are hypotheses,
-not conclusions. This paper does not prove the unconditional irrationality
+The construction-specific relative-cost bound is a hypothesis, not a
+conclusion. Signed pairs provide nonvanishing without a positivity
+assumption. This paper does not prove the unconditional irrationality
 of every odd zeta value at least seven, or of \(\zeta(5)\).
 \end{abstract}
 
@@ -120,8 +122,9 @@ At weight five the established adjacent-sign theorem gives
 \(x_{0,n}x_{1,n}<0\) for the single lower-period row at every even
 \(n\ge2\). That row is nonzero and therefore has rational rank one;
 its integral kernel has rank two by the proposition.
-For higher weights, counting the \(r-1\) rows is not a proof of their
-independence. The supplied rank argument explicitly retains that hypothesis.
+For higher weights, counting the rows alone is not a proof of independence.
+The following construction-specific argument supplies it, together with
+the stronger augmented-rank assertion.
 
 \begin{proposition}[Exact content by Smith reduction]
 Let \(\Delta_k(B)\) be the nonnegative gcd of all \(k\)-minors of an
@@ -154,7 +157,121 @@ Consequently, with the convention \(v_p(0)=+\infty\),
 \end{equation}
 This is a divisibility problem, distinct from the real growth of the minors.
 
+\section{Unconditional augmented rank by rational summation}
+\begin{theorem}[Consecutive-block augmented rank]
+\label{thm:rank}
+For every \(s=2r+1\ge5\) and even \(n\ge2r\), the rational coefficient
+columns of the blocks \(m=n-r,\ldots,n\), in the order
+\(\zeta(3),\ldots,\zeta(s),1\), are linearly independent over \(\Q\).
+Consequently
+\[
+ \det(C_{s,n};Y_{s,n};Z_{s,n})\ne0,\qquad
+ \operatorname{rank}_{\Q}C_{s,n}=r-1.
+\]
+\end{theorem}
+\begin{proof}
+Suppose a rational combination of these coefficient columns is zero.
+Apply its weights to the kernels and write
+\[
+ F(t)=\frac{H(t)}{\prod_{j=0}^n(t+j)^s}
+     =\sum_{q=1}^s\sum_{j=0}^n\frac{c_{j,q}}{(t+j)^q},
+ \qquad \deg H\le2n.
+\]
+Put \(m_0=n-r\). Every block numerator vanishes at
+\(1,\ldots,m_0\), so \(F\) does too. Since \(n\) is even and \(s\)
+is odd, \(F(-n-t)=-F(t)\). Uniqueness of partial fractions gives
+\(c_{n-j,q}=(-1)^{q+1}c_{j,q}\). In particular the total coefficient
+\(\sum_jc_{j,q}\) is zero for even \(q\). It is zero for odd
+\(q=3,\ldots,s\) by the assumed zero period coordinates. For \(q=1\)
+it is zero because \(F(t)=O(t^{-2})\) at infinity. Thus
+\begin{equation}
+ \sum_{j=0}^n c_{j,q}=0\quad(1\le q\le s),\qquad
+ Z(F)=-\sum_{q=1}^s\sum_{j=0}^n c_{j,q}H_j^{(q)}=0,
+ \label{eq:zero-residues}
+\end{equation}
+where \(H_j^{(q)}=\sum_{k=1}^j k^{-q}\). The second equality is the
+rational-coordinate hypothesis, not an assumed independence of zeta values.
+
+Define explicitly
+\[
+ b_{h,q}=-\sum_{j=0}^h c_{j,q},\qquad
+ G(t)=\sum_{q=1}^s\sum_{h=0}^{n-1}\frac{b_{h,q}}{(t+h)^q}.
+\]
+The coefficients of \(G(t+1)-G(t)\) at the first pole, the interior
+poles, and the last pole are respectively
+\(-b_{0,q}=c_{0,q}\),
+\(b_{j-1,q}-b_{j,q}=c_{j,q}\), and
+\(b_{n-1,q}=c_{n,q}\). The last equality uses
+\eqref{eq:zero-residues}. Hence
+\begin{equation}
+ G(t+1)-G(t)=F(t).
+ \label{eq:antidifference}
+\end{equation}
+Finite summation and reflection of the prefix sums give
+\begin{align}
+ G(1)&=-\sum_{q,j}c_{j,q}(H_n^{(q)}-H_j^{(q)})=-Z(F)=0,
+ \label{eq:rank-boundary}\\
+ b_{n-1-h,q}&=(-1)^q b_{h,q},\qquad G(1-n-t)=G(t).
+ \label{eq:rank-reflection}
+\end{align}
+For the first equality the term with \(j=n\) may be added because its
+harmonic difference is zero. For the second, replace a prefix sum by
+the complementary tail using \(\sum_jc_{j,q}=0\), then use
+\(c_{n-j,q}=(-1)^{q+1}c_{j,q}\). Substitution in the finite expression
+for \(G\) proves its reflection identity.
+
+Let \(Q(t)=\prod_{h=0}^{n-1}(t+h)\) and combine the fractions as
+\(G=P/Q^s\). If \(P\ne0\), its degree \(d\) is at most \(sn-1\).
+Clearing \eqref{eq:antidifference} gives the polynomial identity
+\begin{equation}
+ H(t)=t^sP(t+1)-(t+n)^sP(t).
+ \label{eq:rank-degree}
+\end{equation}
+Write \(a\ne0\) for the leading coefficient of \(P\). The degree
+\(d+s\) terms cancel, and the coefficient of \(t^{d+s-1}\) is
+\((d-sn)a\ne0\). Indeed the next coefficient of \(P\) cancels
+between the two products; translation of its leading term contributes
+\(da\), while multiplication by \((t+n)^s\) contributes \(sna\).
+The same formula holds directly when \(d=0\). Therefore
+\[
+ d+s-1=\deg H\le2n,\qquad d\le2n-s+1=2m_0.
+\]
+
+Starting from \(G(1)=0\), equation \eqref{eq:antidifference} and
+\(F(k)=0\), \(1\le k\le m_0\), imply
+\(G(1)=\cdots=G(m_0+1)=0\).
+Reflection supplies the further zeros
+\(G(-n)=\cdots=G(-n-m_0)=0\).
+These \(2m_0+2\) points are distinct and avoid the possible poles
+\(0,-1,\ldots,1-n\). Hence \(P\) has \(2m_0+2\) distinct zeros,
+contradicting \(\deg P\le2m_0\). Thus \(P=0\), so \(G=F=0\).
+
+The normalized numerator polynomials of the original blocks have
+distinct degrees \(2(n-r),2(n-r+1),\ldots,2n\), with nonzero leading
+coefficients. A nonzero rational combination could not cancel its
+largest-degree term. All original weights are therefore zero.
+The square rational coefficient matrix is invertible. Clearing by
+\(d_n^s\), or reversing the column order, preserves rank. Its first
+\(r-1\) rows are independent as a subset of the rows of an invertible
+matrix, proving the lower-period assertion as well.
+\end{proof}
+
+This is a complete rational-function proof for the specified family.
+It is the one-pole-orbit discrete-residue approach to rational
+summability; the general theory is discussed in
+\cite{discrete-residues,discrete-residues-new}. The antidifference,
+boundary value, and degree drop needed here have all been derived
+explicitly, so no identification with an external family is assumed.
+The theorem settles rank and signed-pair nonvanishing. It does not
+bound the primitive arithmetic cost.
+In particular \(\ker_{\Z}C_{s,n}\) is now unconditionally a saturated
+rank-two lattice. For any integral basis \(a,b\), the Smith determinant
+identity below gives \(Y(a)Z(b)-Y(b)Z(a)\ne0\); thus an unproved
+positivity assertion is not needed to ensure that at least one of the
+two primitive signed forms survives.
+
 \section{The exact integer-form bound}
+\label{sec:integer-forms}
 Suppose \(w_{s,n}\in\Lambda_{s,n}\cap\Z_{\ge0}^{r+1}\) is nonzero.
 Put \(M_{s,n}=\|w_{s,n}\|_1\) and
 \[
@@ -176,6 +293,7 @@ a bound for \(M_{s,n}/\Gamma_{s,n}\), since clearing its denominator
 must still be included in \eqref{eq:bound}.
 
 \section{A direct analytic extension to higher weights}
+\label{sec:higher-decay}
 The following argument makes the weight dependence explicit without a
 new saddle computation at each weight.
 
@@ -274,8 +392,8 @@ All limits in this section may be restricted to an unbounded sequence
 of eligible even indices. Write \(\log^+x=\max(0,\log x)\) for \(x>0\).
 
 \begin{theorem}[Relative arithmetic cost]
-Fix an odd \(s\ge7\). Suppose that the full-rank cancellation setup,
-the positive integral vectors, and the integer forms in
+Fix an odd \(s\ge7\). Suppose that the positive integral vectors
+in the cancellation lattice and the integer forms in
 \eqref{eq:bound} exist along an unbounded sequence of even indices.
 Suppose \eqref{eq:raw} holds and
 \begin{equation}
@@ -353,6 +471,7 @@ is an exact reformulation of the local obligation, not a lower bound
 for its exponent.
 
 \section{Shape control and the weight-five boundary}
+\label{sec:shape}
 The augmented-rank condition used here has the following exact proof.
 Choose an integral kernel basis \(a,b\), under the lower-row rank condition,
 and put
@@ -368,8 +487,8 @@ only by a sign. Expansion along the first rows proves
  \label{eq:augmented}
 \end{equation}
 Thus the augmented square matrix has full rational rank if and only if
-\(\det B\ne0\). This proves the equivalence; it does not assert determinant
-nonvanishing for every member of the higher-weight Pad\'e family.
+\(\det B\ne0\). Theorem~\ref{thm:rank} now supplies that nonvanishing
+for every eligible member of the specified higher-weight Pad\'e family.
 
 Let \(a,b\) be a Gauss-reduced basis of a saturated rank-two cancellation
 lattice, \(\la_1=\|a\|\le\la_2=\|b\|\), and
@@ -425,7 +544,7 @@ For real weights of either sign, the triangle inequality gives
  \label{eq:signed}
 \end{equation}
 Thus nonnegativity is not essential to the upper estimate. Its role in
-Section 2 is to guarantee nonvanishing. A different guarantee is available
+Section~\ref{sec:integer-forms} is to guarantee nonvanishing. A different guarantee is available
 for two coefficient pairs: if \(ad-bc\ne0\), the forms
 \(a\alpha+c\) and \(b\alpha+d\) cannot both vanish, since
 \[
@@ -492,15 +611,15 @@ Indeed the upper exponential rate in \eqref{eq:individual} is
 A rate at most \(1/2\) would suffice at every such weight, since
 \(a_s>s+1/3\). This substitution permits additional divisibility
 in each selected vector; it does not require a separate lower bound
-for \(\Gamma\). Neither \eqref{eq:individual-rate} nor uniform
-augmented determinant nonvanishing has been proved for the actual
-higher-weight family. No Loewner comparison between
+for \(\Gamma\). Theorem~\ref{thm:rank} supplies uniform augmented
+nonvanishing, but \eqref{eq:individual-rate} remains unproved for the
+actual family. No Loewner comparison between
 \(G^\sharp\) and \(G/\Gamma^2\) is asserted: unequal diagonal
 scalings need not commute with \(G\).
 
 However, a signed combination that eliminates the target itself is a
 nonzero rational period and has an integral lower bound after clearing.
-In the notation of Section 6, put
+In the notation of Section~\ref{sec:shape}, put
 \[
  \delta=Y(a)Z(b)-Y(b)Z(a)\ne0.
 \]
@@ -533,7 +652,7 @@ Consequently the sufficient cofactor strengthenings
 \(\Gamma_{5,n}^2\ge e^{0.06n}\cM_{5,n}\), or
 \(\Gamma_{5,n}^2\ge e^{0.03n}\cM_{5,n}\) with the sharp saddle bound,
 cannot hold along an unbounded sequence with nonzero augmented determinant.
-This restriction does not invalidate the comparison in Section 6.
+This restriction does not invalidate the comparison in Section~\ref{sec:shape}.
 It shows that using its cofactor upper bound in place of the actual
 second minimum is too strong for that proposed arithmetic target.
 The weaker bound for a selected primitive form remains a separate problem.
@@ -589,6 +708,12 @@ bounds, condition-number bounds, and the uniform integral spectral gap.
 the eigenvalue bounds for a general positive-semidefinite two-by-two
 Gram matrix, its individual scaling and trace bound, exact division of
 integer forms, and determinant-based primitive-pair nonvanishing.
+\item \texttt{OddZeta/AugmentedRankRootCount.lean}:
+injectivity of the two root lists, the polynomial zero count, reflection,
+and propagation of zeros along the polynomial difference equation.
+Its degree and reflection assumptions are derived in the paper proof
+of Theorem~\ref{thm:rank}; the complete family identification is not
+claimed as a Lean theorem.
 \end{itemize}
 The publication folder also contains \texttt{SignedCancellation.lean}
 and exact cancellation examples at weight seven and indices six and eight.
@@ -596,14 +721,17 @@ Two independent rational coefficient algorithms agree at these indices,
 and Lean verifies the four resulting integer cancellation identities.
 They confirm actual cancellation, with no extrapolation to all indices.
 All parameters of the irrationality criterion remain explicit.
-In particular the cost bound and nonvanishing are hypotheses, and no
-axiom asserts their existence for the Pad\'e family.
+In the abstract Lean criterion the cost bound and nonvanishing are
+explicit hypotheses, and no axiom asserts their existence for the Pad\'e
+family. Theorem~\ref{thm:rank} supplies signed-pair nonvanishing in the
+paper application; the cost bound is still required.
 The complete source declaration, rather than its theorem name alone,
 specifies the mathematical assertion checked by Lean.
 
 A successful Lean compilation verifies these formal statements relative
 to the pinned library. It does not verify paper-only derivations such
-as \eqref{eq:smith}, \eqref{eq:base}, or the Gauss-reduction comparison.
+as the full Pad\'e coefficient identification in Theorem~\ref{thm:rank},
+\eqref{eq:smith}, \eqref{eq:base}, or the Gauss-reduction comparison.
 The accompanying verification report distinguishes these scopes.
 Rebuild with the pinned toolchain, using
 \texttt{lake exe cache get} and \texttt{lake build}.
@@ -612,7 +740,7 @@ The provided lock file records the library revisions.
 An unconditional application to all odd weights would require a proof
 of \eqref{eq:cost} for explicitly constructed nonnegative integral
 cancellation vectors at each fixed weight, or alternatively the signed
-pair rank and rate hypotheses in \eqref{eq:individual-rate}.
+pair rate hypothesis in \eqref{eq:individual-rate}.
 The exact projector criterion and the Smith formula specify the
 arithmetic content entering the first route. Individual normalization
 weakens that route's shared-content requirement but does not establish
@@ -714,11 +842,23 @@ Consequently, for every even \(n\ge4\),
  &\le12\cdot5^{10}e^{10}(n+1)^{12}e^{\la_5n}
  \le C_0(n+1)^{12}140^{-n}.
 \end{align*}
-This proves the complete raw decay estimate. Section 3 extends it to every
+This proves the complete raw decay estimate. Section~\ref{sec:higher-decay} extends it to every
 higher fixed weight. The primitive integer normalization cost remains in
 \eqref{eq:bound}; no analytic step here discards that factor.
 
 \begin{thebibliography}{9}
+\bibitem{discrete-residues}
+C. E. Arreche and H. P. Sitaula,
+\emph{Computing discrete residues of rational functions},
+Proceedings of ISSAC 2024, 65--73,
+\href{https://arxiv.org/abs/2402.07328}{arXiv:2402.07328}.
+
+\bibitem{discrete-residues-new}
+C. E. Arreche and H. P. Sitaula,
+\emph{A computational approach to rational summability and its
+applications via discrete residues}, 2025,
+\href{https://arxiv.org/abs/2503.15636}{arXiv:2503.15636}.
+
 \bibitem{smithnote}
 \emph{A Smith-content reduction for odd-zeta Pad\'e forms},
 user-supplied technical note, 28 October 2026, five pages.

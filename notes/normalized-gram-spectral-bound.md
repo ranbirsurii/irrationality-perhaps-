@@ -3,8 +3,10 @@
 Fix an odd weight s=2r+1 and set N=r+1. The input hypotheses are the
 full row rank of C_(s,n), full rank of the augmented matrix (C;Y;Z),
 the established denominator bound, and the raw analytic decay estimate.
-These hypotheses are not replaced here by an unconditional theorem for
-all higher weights.
+The subsequent `augmented-rank-discrete-residue-proof.md` now proves both
+rank assertions on paper for the actual consecutive-block family at every
+even n>=2r. The quantitative normalized spectral estimate below remains
+an explicit hypothesis.
 
 ## The correct Gram matrix and its exact eigenvalue bounds
 

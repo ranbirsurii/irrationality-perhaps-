@@ -2,6 +2,12 @@
 
 Date: 28 October 2026.
 
+Update: The subsequent Theorem 2.1 now proves the actual all-index
+augmented rank and lower-row rank on paper by explicit rational summation.
+See `augmented-rank-verification.md` for its proof checks and the precise
+Lean scope. The compiler and PDF presentation records below describe the
+earlier rendered snapshot and are retained as verification history.
+
 ## Mathematical conclusion
 
 Unconditional irrationality of every odd zeta value at least seven, or
@@ -67,9 +73,10 @@ proofs and reproducible rational certificates, not new Lean theorems.
 The supplied Smith-normal-form kernel-rank proof and the augmented-rank
 determinant identity are also written out in the manuscript. The former
 assumes the lower rows have full rank. The established sign result supplies
-that rank at weight five. As the supplied rank argument explicitly states,
-the uniform higher-weight and augmented-rank assertions are not supplied
-by those general linear-algebra implications alone.
+that rank at weight five. Those general linear-algebra implications alone
+do not prove uniform rank. The new construction-specific rational
+antidifference proof in Theorem 2.1 now supplies both rank assertions
+on paper.
 
 At weight seven and n=6,8 the normalized coefficients were computed in two
 ways: direct truncated multiplication at each pole and logarithmic Laurent

@@ -1,0 +1,11 @@
+import OddZeta.AugmentedRankRootCount
+
+#check OddZeta.augmentedRankRoot_injective
+#check OddZeta.polynomial_zero_of_augmented_rank_roots
+#check OddZeta.polynomial_zero_of_reflected_rank_roots
+#check OddZeta.polynomial_zero_of_reflected_difference_chain
+
+#print axioms OddZeta.augmentedRankRoot_injective
+#print axioms OddZeta.polynomial_zero_of_augmented_rank_roots
+#print axioms OddZeta.polynomial_zero_of_reflected_rank_roots
+#print axioms OddZeta.polynomial_zero_of_reflected_difference_chain
