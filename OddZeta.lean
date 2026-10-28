@@ -47,3 +47,4 @@ import OddZeta.CombinedKernelCubic
 import OddZeta.WeightSevenElementaryBounds
 import OddZeta.CubicArithmeticFrame
 import OddZeta.ParametricWeightShift
+import OddZeta.MomentMajorant

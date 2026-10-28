@@ -1,0 +1,14 @@
+OddZeta.moment_cost_common_factor_invariant (D mu nu h : ℝ) (hh : h ≠ 0) :
+  (D / h) ^ 2 * mu * (h ^ 2 * nu) = D ^ 2 * mu * nu
+'OddZeta.moment_cost_common_factor_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.reduced_moment_quadratic_bound (a b v h k : ℝ) (ha : a ≤ v) (hb : 2 * |b| ≤ v) :
+  a * h ^ 2 + 2 * b * h * k + v * k ^ 2 ≤ 3 / 2 * v * (h ^ 2 + k ^ 2)
+OddZeta.shifted_polynomial_exp_limit (C k alpha : ℝ) (ha : 0 < alpha) :
+  Filter.Tendsto (fun n => C * (↑n + 1) ^ k * Real.exp (-alpha * ↑n)) Filter.atTop (nhds 0)
+OddZeta.moment_rhs_limit_of_majorant (R : ℕ → ℝ) (C k alpha : ℝ) (ha : 0 < alpha)
+  (hR : ∀ᶠ (n : ℕ) in Filter.atTop, 0 ≤ R n)
+  (hbound : ∀ᶠ (n : ℕ) in Filter.atTop, R n ≤ C * (↑n + 1) ^ k * Real.exp (-alpha * ↑n)) :
+  Filter.Tendsto R Filter.atTop (nhds 0)
+'OddZeta.reduced_moment_quadratic_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.shifted_polynomial_exp_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.moment_rhs_limit_of_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]

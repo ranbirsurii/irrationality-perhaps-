@@ -1745,6 +1745,109 @@ at the required exponential rate here. Exact tests verify eighteen
 primitive transition identities; their complete majorants remain above
 one at those indices. No limiting conclusion is extrapolated from them.
 
+\section{Signed moment reduction and a polynomial--exponential majorant}
+Fix any integer \(r\ge3\), \(s=2r+1\), and even \(n\ge2r\).
+Put \(m=n-r\), \(K=3n\), \(D=d_n^s\), and
+\(w(t)=t(t+n)/(12n^2)\). Let \(F\) map a target-and-constant
+pair \(y=(a,b)\) to its weighted polynomial profile \(z\), so that
+\[
+ L(y)=D\sum_{k=m+1}^{\infty}T_{s,n,m}(k)
+                  \sum_{i=0}^r z_i w(k)^i,\qquad z=Fy.
+\]
+The inverse coefficient matrix and the Newton profile map define \(F\)
+over \(\Q\); full augmented rank makes its two columns independent.
+This construction applies to every cancelling form in the specified span.
+
+\begin{proposition}[A certified moment metric]
+Write \(T=T_{s,n,m}\). Define, for \(0\le\ell\le2r\),
+\[
+ c_\ell=\sum_{m<k\le K}T(k)w(k)^\ell,\qquad
+ t_\ell=\frac{T(K)((K+n)/K)^\ell K^{2\ell+1}}
+ {(12n^2)^\ell(4r+1-2\ell)}.
+\]
+Set \(\mu=c_0+t_0\) and
+\[
+ G_{ij}=c_{i+j}+\mathbf1_{i=j}(r+1)t_{2i},\qquad S=F^{\mathsf T}GF.
+\]
+Then \(G,S\) are positive definite rational matrices and
+\begin{equation}
+ |L(y)|^2\le D^2\mu\,y^{\mathsf T}Sy\qquad(y\in\R^2).
+ \label{eq:moment-metric-bound}
+\end{equation}
+\end{proposition}
+\begin{proof}
+For \(t\ge2n\), logarithmic differentiation gives
+\[
+ (\log(t^{4r+2}T(t)))'\le-E/t+B/t^2,
+ \quad E=(2r-1)n-1,\quad B=2m^2+sn(n+1).
+\]
+Here \(E>0\) and
+\(EK-B=(4r-6)n^2+(2r-4)n-2r^2>0\).
+Thus \(t^{4r+2}T(t)\) decreases beyond \(K\). Since
+\(k+n\le ((K+n)/K)k\) there, comparison with the integral
+of \(t^{-(4r+2-2\ell)}\) proves
+\(\sum_{k>K}T(k)w(k)^\ell\le t_\ell\).
+The finite squared polynomial moment retains all cross terms
+\(c_{i+j}\). On the tail, Cauchy--Schwarz bounds its square by
+\((r+1)\sum_i z_i^2w(k)^{2i}\). Hence the complete squared
+moment is at most \(z^{\mathsf T}Gz\), while total mass is at most
+\(\mu\). A second Cauchy--Schwarz inequality gives
+\eqref{eq:moment-metric-bound}. All sums converge by the tail estimates.
+The finite sum contains at least \(r+1\) distinct positive-weight
+evaluation points. A nonzero polynomial of degree at most \(r\)
+cannot vanish at all of them. This proves positive definiteness of
+\(G\), and independence of the columns of \(F\) proves it for \(S\).
+\end{proof}
+
+Choose \(U\in\mathrm{GL}_2(\Z)\) by rational binary Gauss reduction,
+with
+\[
+ U^{\mathsf T}SU=\begin{pmatrix}\alpha&\beta\\\beta&\nu\end{pmatrix},
+ \quad 0<\alpha\le\nu,\quad 2|\beta|\le\alpha.
+\]
+Its two columns give primitive forms that cannot both vanish, since
+their coefficient determinant is \(\pm1\). Both satisfy
+\[
+ |L(Ue_i)|^2\le D^2\mu\nu.
+\]
+For every real pair \((h,k)\), the homogeneous version is
+\[
+ |L(U(h,k))|^2\le D^2\mu(\alpha h^2+2\beta hk+\nu k^2)
+ \le\tfrac32D^2\mu\nu(h^2+k^2).
+\]
+The last step uses \(2|hk|\le h^2+k^2\). An estimate independent
+of unbounded \((h,k)\) would contradict scaling of a nonzero form.
+
+\begin{lemma}[Polynomial--exponential comparison]
+If, for a fixed weight, constants \(C>0\), \(q\in\R\), and
+\(\eta>0\) satisfy eventually
+\begin{equation}
+ 0\le d_n^{2s}\mu_{s,n}\nu_{s,n}
+       \le C(n+1)^q e^{-\eta n},
+ \label{eq:moment-majorant-obligation}
+\end{equation}
+then the left-hand side tends to zero.
+\end{lemma}
+\begin{proof}
+For \(x\to\infty\), \(x^q e^{-\eta x}\to0\).
+Substitute \(x=n+1\) and multiply by \(Ce^\eta\), then apply
+the squeeze theorem. This also works along any unbounded sequence of
+eligible even indices.
+\end{proof}
+The existence of constants in \eqref{eq:moment-majorant-obligation}
+has not been established for this family. In particular the analytic
+bound for \(\mu\) does not bound \(\nu\). The latter still requires
+an arithmetic estimate; the comparison lemma does not assume it silently.
+Exact rational checks cover 42 selected forms across weights
+\(7,9,11,13,15,17,21\), including index \(160\) at weight seven.
+Forty certified squared bounds are below one; the two at weight
+\(21\), index \(20\), exceed one. These finite checks imply no
+all-index limiting assertion.
+The companion Lean module \texttt{MomentMajorant.lean} checks the reduced
+quadratic estimate and the majorant-to-limit implication. The actual
+moment-family identification and the sufficient arithmetic majorant
+remain separate from those abstract formal statements.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

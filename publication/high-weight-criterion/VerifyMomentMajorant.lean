@@ -1,0 +1,11 @@
+import OddZeta.MomentMajorant
+
+#check OddZeta.moment_cost_common_factor_invariant
+#print axioms OddZeta.moment_cost_common_factor_invariant
+
+#check OddZeta.reduced_moment_quadratic_bound
+#check OddZeta.shifted_polynomial_exp_limit
+#check OddZeta.moment_rhs_limit_of_majorant
+#print axioms OddZeta.reduced_moment_quadratic_bound
+#print axioms OddZeta.shifted_polynomial_exp_limit
+#print axioms OddZeta.moment_rhs_limit_of_majorant
