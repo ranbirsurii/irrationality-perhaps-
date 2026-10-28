@@ -43,3 +43,4 @@ import OddZeta.DualCoefficientGram
 import OddZeta.BinaryGaussCertificate
 import OddZeta.CramerKernelEnvelope
 import OddZeta.FiniteFieldTranslationTrace
+import OddZeta.CombinedKernelCubic

@@ -1125,6 +1125,132 @@ arithmetic content entering the first route. Individual normalization
 weakens that route's shared-content requirement but does not establish
 the remaining construction-specific estimates.
 
+\section{A direct combined-kernel construction at weight seven}
+\label{sec:combined-seven}
+Here is an all-index algorithm for the primitive pair, followed by an
+estimate of its combined kernel. This completes the construction and its
+normalization; convergence of the finite signed part below is not proved.
+Let \(n\ge6\) be even, \(D=d_n^7\), and let \(M\) be the four-by-four
+integer matrix whose rows are the cleared coefficients of
+\(\zeta(3),\zeta(5),\zeta(7),1\). Its columns are the four blocks
+\(m=n,n-1,n-2,n-3\). Theorem~\ref{thm:rank} gives \(\det M\ne0\).
+Let \(e_Y,e_Z\) be the final two coordinate vectors and set
+\[
+ a=\operatorname{adj}(M)e_Y,\qquad b=\operatorname{adj}(M)e_Z,
+ \qquad \delta=\det M.
+\]
+Reduce the positive integral Gram form of \(a,b\) by an integer
+unimodular matrix \(U\). For either column \((p,q)^T\) of \(U\), define
+\[
+ v=(pa+qb)/\delta,\qquad
+ t=\operatorname{lcm}\{\text{denominators of the coordinates of }v\},
+ \qquad w=tv.
+\]
+All these operations are exact rational or integer operations at each
+eligible index. The inverse-matrix identities give
+\[
+ Mv=(0,0,p,q)^T,\qquad Mw=(0,0,tp,tq)^T.
+\]
+Since a column of a unimodular matrix is primitive,
+\(\gcd(tp,tq)=t\). Thus \(w\) is an integer cancellation vector,
+its coefficient content is exactly \(t\), and its primitive form is
+\[
+ L_{n,i}=p_i\zeta(7)+q_i=D\sum_jv_{i,j}\cA_{7,n,n-j}.
+\]
+The two coefficient columns have determinant \(\pm1\). Consequently
+these two forms cannot both vanish, at every eligible index. Reduction
+also ensures \(\|v_i\|_2\le\lambda_2(\Lambda^{\rm coeff})\).
+No lower bound for a separately chosen shared gcd is needed in this
+construction; the actual cost remains to be estimated.
+
+Put \(m_0=n-3\), \(u=t(t+n)\), and define the cubic
+\begin{equation}
+ Q_{n,i}(u)=\sum_{j=0}^3 v_{i,j}
+       \left(\frac{m_0!}{(n-j)!}\right)^2
+       \prod_{h=m_0+1}^{n-j}\bigl(u-h(n+h)\bigr).
+ \label{eq:combined-cubic}
+\end{equation}
+The empty product is one. The four products have distinct degrees
+\(3,2,1,0\), so the cubic is nonzero. Factor cancellation proves
+\begin{equation}
+ L_{n,i}=D\sum_{k=n-2}^{\infty}
+       T_{7,n,n-3}(k)Q_{n,i}(k(k+n)).
+ \label{eq:combined-seven-sum}
+\end{equation}
+Indeed \((t-h)(t+n+h)=u-h(n+h)\), and the initial terms of each
+longer block vanish at its positive integer zeros. Thus this identity
+preserves the signed cancellation before any norm bound is applied.
+The cubic expansion, reflection identity, triangular coefficient
+injectivity, and scalar absolute bound are checked in
+\texttt{CombinedKernelCubic.lean}.
+
+\begin{proposition}[A uniform combined-tail bound]
+\label{prop:combined-tail}
+Write \(Q_{n,i}(u)=\sum_{\ell=0}^3q_{\ell,n,i}u^\ell\).
+For \(K\ge\max(2m_0,m_0+1)\) with
+\[
+ K(7(n+1)-2m_0-8)\ge2m_0^2+7n(n+1),
+\]
+the absolute tail of \eqref{eq:combined-seven-sum} from \(K\) onward
+is at most
+\begin{equation}
+ R_{n,i}(K)=D T_{7,n,n-3}(K)
+  \sum_{\ell=0}^3|q_{\ell,n,i}|[K(K+n)]^\ell
+                     \left(1+\frac K{7-2\ell}\right).
+ \label{eq:combined-tail-bound}
+\end{equation}
+For the constructed reduced pair, \(R_{n,i}(n^2)\to0\), and in fact
+\[
+ \limsup\frac{\log R_{n,i}(n^2)}{n\log n}\le-3.
+\]
+\end{proposition}
+\begin{proof}
+Logarithmic differentiation, using the same reciprocal inequalities as
+in Appendix A, shows that \(t^8T_{7,n,m_0}(t)\) is nonincreasing for
+\(t\ge K\). Thus \(T(k)\le T(K)(K/k)^8\). Also
+\(k(k+n)\le(1+n/K)k^2\), and integral comparison gives
+\[
+ \sum_{k=K}^{\infty}(K/k)^{8-2\ell}
+       \le1+K/(7-2\ell).
+\]
+These inequalities prove \eqref{eq:combined-tail-bound}.
+
+For \(K=n^2\), all cutoff conditions hold for \(n\ge6\).
+Let \(A_n=\|v_i\|_1\). Each factorial ratio in
+\eqref{eq:combined-cubic} is at most one and every root has absolute
+value at most \(2n^2\). Consequently
+\(\sum_\ell|q_{\ell,n,i}|\le27n^6A_n\).
+Since \(K(K+n)\le2n^4\) and \(1+K\le2n^2\), the sum in
+\eqref{eq:combined-tail-bound} is at most \(432n^{20}A_n\).
+Directly from the product formula, discarding the factorial denominator,
+\[
+ T_{7,n,n-3}(n^2)
+ \le\frac{n^{7n}(2n^2)^{2n}}{(n^2)^{7(n+1)}}
+ =4^n n^{-3n-14}.
+\]
+Thus \(R_{n,i}(n^2)\le432n^6D A_n4^n n^{-3n}\).
+The unconditional cost envelope in
+Proposition~\ref{prop:elementary-cost} gives \(\log A_n=O(n)\),
+because \(A_n\le2\lambda_2(\Lambda^{\rm coeff})\).
+Also \(\log D=O(n)\). Taking logarithms proves the stated bound.
+\end{proof}
+
+The exact remaining analytic assertion for this approach is therefore
+\begin{equation}
+ D\sum_{k=n-2}^{n^2-1}
+       T_{7,n,n-3}(k)Q_{n,i}(k(k+n))\longrightarrow0
+       \qquad(i=1,2).
+ \label{eq:combined-finite-target}
+\end{equation}
+The tail theorem does not imply this finite signed estimate. At
+\(n=6,8,12,20,40\), exact joint-kernel intervals enclose both primitive
+forms strictly between \(-1\) and \(1\) and exclude zero. Independent
+Euler--Maclaurin intervals for \(p_i\zeta(7)+q_i\) lie inside them.
+These are reproducible checks, not a proof of
+\eqref{eq:combined-finite-target}. The construction, normalization,
+and tail estimate above are all-index paper arguments. The actual
+kernel identity and the tail convergence are not yet formalized in Lean.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

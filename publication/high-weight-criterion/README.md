@@ -9,6 +9,13 @@ assumptions are used to replace them.
 
 ## Contents
 
+The latest continuation is documented in `combined-kernel-verification.md`.
+It constructs the exact primitive weight-seven pair, identifies its cubic
+combined kernel, and proves decay of the tail beyond n^2 on paper. The
+finite signed sum remains unresolved. `VerifyCombinedCubic.lean` checks
+five supporting identities; the actual family and tail theorem are not
+fully formalized by those identities.
+
 - `main.tex`: current manuscript source, with complete proofs of the stated
   reductions and explicit distinctions between paper and Lean results.
 - `odd-zeta-relative-content.pdf`: the ten-page rendered snapshot at

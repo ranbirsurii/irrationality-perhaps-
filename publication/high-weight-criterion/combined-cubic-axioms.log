@@ -1,0 +1,17 @@
+OddZeta.combined_cubic_expansion (a b c w x y z u : ℝ) :
+  OddZeta.combinedCubic a b c w x y z u =
+    w * u ^ 3 + (x - w * (a + b + c)) * u ^ 2 + (w * (a * b + a * c + b * c) - x * (a + b) + y) * u +
+      (-w * a * b * c + x * a * b - y * a + z)
+OddZeta.quadratic_pair_factor (n t v : ℝ) : (t - v) * (t + n + v) = t * (t + n) - v * (n + v)
+OddZeta.combined_cubic_reflection (a b c w x y z n t : ℝ) :
+  OddZeta.combinedCubic a b c w x y z ((-n - t) * (-n - t + n)) = OddZeta.combinedCubic a b c w x y z (t * (t + n))
+OddZeta.combined_cubic_coefficients_injective (a b c w x y z : ℝ) (h3 : w = 0) (h2 : x - w * (a + b + c) = 0)
+  (h1 : w * (a * b + a * c + b * c) - x * (a + b) + y = 0) (h0 : -w * a * b * c + x * a * b - y * a + z = 0) :
+  w = 0 ∧ x = 0 ∧ y = 0 ∧ z = 0
+OddZeta.cubic_absolute_majorant (a b c d u : ℝ) :
+  |a * u ^ 3 + b * u ^ 2 + c * u + d| ≤ |a| * |u| ^ 3 + |b| * |u| ^ 2 + |c| * |u| + |d|
+'OddZeta.combined_cubic_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.quadratic_pair_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.combined_cubic_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.combined_cubic_coefficients_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.cubic_absolute_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]

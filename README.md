@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [direct combined-kernel construction](publication/high-weight-criterion/combined-kernel-verification.md)
+now specifies the weight-seven primitive pair at every even index n>=6,
+including its exact gcd normalization. Its shared kernel has a cubic
+profile in t(t+n). The manuscript proves that the absolute tail beyond
+n^2 tends to zero faster than exponentially using the coarse cost bound.
+The finite signed part still needs a decay proof. Five supporting cubic
+identities are checked in Lean, and ten finite joint-kernel intervals
+agree with independent Euler--Maclaurin enclosures. These additions do
+not conclude irrationality.
+
 The [fifty-strategy research pass](notes/fifty-uniform-cost-strategies.md)
 adds a proved all-weight common-prime divisor for the actual lower-period
 rows, a uniform coefficient envelope, and a divisor-refined Cramer cost
