@@ -18,6 +18,13 @@ has explicit polynomial coefficients with proved signs. It shows that
 the last three blocks generate the whole positive rational cone for
 0<=m<=n and states a quantified sufficient arithmetic saving for decay.
 That saving is certified at selected finite indices, not proved eventually.
+The [prime-divisibility argument](notes/lower-column-prime-divisibility.md)
+proves a uniform first-order congruence and an explicit divisor of the
+lower-period row gcd. It gives a lower rate above 4.277409 for that gcd
+and an upper rate below 6.097870 for the primitive row height. The
+stronger image-content prime bound was falsified at n=480, p=47; it is
+not used as a theorem. The image-content and lattice-shape estimates
+needed for irrationality remain unproved.
 
 The [global sign proof](notes/global-coefficient-sign.md) establishes
 `(-1)^(n/2)*alpha_(n,n)>0` and `(-1)^(n/2+1)*alpha_(n,n-1)>0`

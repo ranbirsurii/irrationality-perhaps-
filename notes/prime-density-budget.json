@@ -1,0 +1,31 @@
+{
+  "scope": "Rigorous constant enclosures. The lower-column divisor and primitive-normal upper bounds have paper proofs. The pointwise image-content candidate is false; an aggregate repair and subexponential lattice shape are unproved.",
+  "proof_status": {
+    "lower_column_divisor_constant": "proved on paper",
+    "primitive_normal_upper_rate_constant": "proved on paper",
+    "image_content_constant": "reference constant; aggregate bound unproved",
+    "balanced_lattice_cost_constant": "conditional only"
+  },
+  "constants": {
+    "lower_column_divisor_constant": [
+      "4277409057559/1000000000000",
+      "106935226439/25000000000"
+    ],
+    "image_content_constant": [
+      "1573959216501/500000000000",
+      "3147918433003/1000000000000"
+    ],
+    "primitive_normal_upper_rate_constant": [
+      "1524467337531/250000000000",
+      "48782954801/8000000000"
+    ],
+    "balanced_lattice_cost_constant": [
+      "245050812103/50000000000",
+      "4901016242061/1000000000000"
+    ],
+    "conditional_decay_margin": [
+      "69776757939/1000000000000",
+      "3488887897/50000000000"
+    ]
+  }
+}
