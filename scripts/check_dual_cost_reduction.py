@@ -7,6 +7,8 @@ from math import gcd
 from pathlib import Path
 import sys
 
+from integer_determinants import adjugate_column
+
 
 def dot(x, y):
     return sum(a * b for a, b in zip(x, y))
@@ -76,6 +78,14 @@ def analyze(row):
     common_square = Fraction(C, gamma * gamma)
     coarse_dual_square = Fraction(4 * H2, 3 * eta)
     assert optimal_square < common_square < coarse_dual_square
+    augmented = [list(v) for v in zip(*data)]
+    full_delta, preimage_y = adjugate_column(augmented, 1)
+    full_delta_again, preimage_z = adjugate_column(augmented, 2)
+    assert full_delta == full_delta_again
+    full_primal = (dot(preimage_y, preimage_y), dot(preimage_y, preimage_z),
+                   dot(preimage_z, preimage_z))
+    full_reduced, _, _ = reduce_binary_form(*full_primal)
+    assert Fraction(full_reduced[2], full_delta * full_delta) == optimal_square
     return {
         'index': row['index'], 'gauss_steps': steps,
         'dual_integral_gram': list(map(str, (S11, S12, S22))),
@@ -86,6 +96,7 @@ def analyze(row):
         'optimal_pair_strictly_improves_common_content': True,
         'coarse_gcd_dual_bound_is_strictly_weaker': True,
         'ambient_primal_and_dual_gram_checks_agree': True,
+        'full_augmented_matrix_inverse_agrees': True,
         'scope': 'Exact existing record only; no asymptotic inference.'
     }
 

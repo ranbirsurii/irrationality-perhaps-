@@ -31,6 +31,7 @@
       "optimal_pair_strictly_improves_common_content": true,
       "coarse_gcd_dual_bound_is_strictly_weaker": true,
       "ambient_primal_and_dual_gram_checks_agree": true,
+      "full_augmented_matrix_inverse_agrees": true,
       "scope": "Exact existing record only; no asymptotic inference."
     },
     {
@@ -62,6 +63,7 @@
       "optimal_pair_strictly_improves_common_content": true,
       "coarse_gcd_dual_bound_is_strictly_weaker": true,
       "ambient_primal_and_dual_gram_checks_agree": true,
+      "full_augmented_matrix_inverse_agrees": true,
       "scope": "Exact existing record only; no asymptotic inference."
     },
     {
@@ -93,6 +95,7 @@
       "optimal_pair_strictly_improves_common_content": true,
       "coarse_gcd_dual_bound_is_strictly_weaker": true,
       "ambient_primal_and_dual_gram_checks_agree": true,
+      "full_augmented_matrix_inverse_agrees": true,
       "scope": "Exact existing record only; no asymptotic inference."
     }
   ]

@@ -70,6 +70,14 @@ The full formalized growth estimate requested by the user is not present.
 These check the implementation. The manuscript's all-index proofs do not
 rely on extrapolating them.
 
+An additional independent normalization check reuses the existing
+weight-five records at indices 20, 80, and 1280. Inverting the full
+augmented matrix by integer adjugate columns and reducing its primal
+Gram form gives exactly the same optimal squared cost as the saturated
+kernel and dual-form construction. This check is reproduced by
+`scripts/check_dual_cost_reduction.py`; it adds no family indices and
+supplies no asymptotic extrapolation.
+
 ## Manuscript and rendering
 
 The existing `main.tex` was edited in place and successfully checked with
