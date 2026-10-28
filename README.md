@@ -5,6 +5,15 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [Gram and integral-projector derivation](notes/gram-plucker-and-kernel-projector.md)
+gives exact min-max comparisons for the cancellation-lattice Gram
+matrix and an all-index integer formula for Gamma_n using a Bezout
+projector. This incorporates division by g_n before taking the image
+content. Locally it reduces that content to four normalized residues.
+The Grassmannian calculation adds no independent Plucker equations
+in dimension three. These identities do not yet prove the required
+content-to-basis-length growth rate.
+
 The [row-balance theorem](notes/row-balance-and-kappa.md) proves
 `log(R_n)/n -> 0` for the actual three-block family. A new universal
 third-block recurrence certificate has the same limiting operator as
