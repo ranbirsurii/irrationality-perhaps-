@@ -5,6 +5,14 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [quotient-prime loss argument](notes/quotient-prime-loss-and-content.md)
+proves that bounded valuation losses supported on divisors of fixed,
+nonzero smaller-quotient coefficients total o(n). This handles the
+asymptotic size of that particular exceptional set. The local content
+bound outside the set and the positive-weight cost remain unproved.
+A strictly positive unimodular matrix family also shows why Perron
+growth and Mahler measure alone cannot supply a gcd lower bound.
+
 The [analytic large-index extension](notes/analytic-large-index-extension.md)
 proves an explicit bound `S_n <= C_0 (n+1)^12 / 140^n` for every even
 n>=4, using factorial inequalities, a global saddle bound, and uniform

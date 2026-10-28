@@ -259,10 +259,13 @@ Thus local vanishing in the smaller coefficient can add a factor to the
 lower-row gcd without supplying the asserted additional image-content
 factor. The exact falsification record includes the actual gcds.
 
-A possible aggregate repair would bound the weighted sum of these
-valuation deficits by o(n), rather than asserting the false pointwise
-bound. That loss estimate has not been proved. The reference density
-constant 3/2+(3/2)log3 for Gamma_n is therefore not an established
+A partial aggregate repair is now proved in
+[the quotient-prime loss argument](quotient-prime-loss-and-content.md):
+bounded deficits supported on primes dividing a nonzero coefficient
+at an even smaller quotient have total weighted loss o(n). It remains
+unproved that all eligible local deficits are supported on that set,
+or that the candidate bound holds outside it. The reference density
+constant 3/2+(3/2)log3 for Gamma_n is therefore still not an established
 estimate for this construction.
 
 The constant computations in `prime-density-budget.json` show that this
