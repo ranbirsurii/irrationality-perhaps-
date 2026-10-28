@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [row-balance theorem](notes/row-balance-and-kappa.md) proves
+`log(R_n)/n -> 0` for the actual three-block family. A new universal
+third-block recurrence certificate has the same limiting operator as
+the first two. Poincare-Perron theory and the proved growth cones
+give the result, with no finite-index extrapolation. The primitive
+normal upper rate improves to less than 5.877168. The actual Gram
+discriminant also gives a bound on kappa_n, but its required rate at
+most 0.30 is unproved. That rate would suffice conditional on the
+still unproved image-content rate; the content obligation is not removed.
+
 The [local-jet and positive-rounding derivation](notes/local-jets-and-positive-rounding.md)
 constructs strictly positive integer weights at every even index and
 proves an upper bound using the longer reduced-basis length and the

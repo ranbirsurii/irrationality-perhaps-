@@ -33,13 +33,20 @@ def generate(offset):
     raw = [S.expand(q[ell]*S.prod((n+i)**3 for i in range(2*ell+1, 7)))
            for ell in range(4)]
     common = S.gcd_list(raw)
-    expected = S.prod((n+i)**3 for i in range(3-offset, 7))
+    expected = ((n+1)*S.prod((n+i)**3 for i in range(2, 7)) if offset == 2
+                else S.prod((n+i)**3 for i in range(3-offset, 7)))
     assert S.expand(common-expected) == 0
     p = [S.cancel(value/common) for value in raw]
     omega = 10**6*p[2]-10**9*p[3]-1000*p[1]+p[0]
     def coefficients(value):
         polynomial = S.Poly(S.expand(value), n)
         return [int(polynomial.nth(k)) for k in range(polynomial.degree()+1)]
+    if offset == 2:
+        return {'offset': 2, 'step': 2, 'order': 3,
+                'q': list(map(coefficients, q)),
+                'x': list(map(coefficients, vector[:-4])),
+                'p': list(map(coefficients, p)),
+                'common_factor_coefficients': coefficients(common)}
     positive = [coefficients(value.subs(n, n+2))
                 for value in (-p[0], p[1], p[2], p[3], omega)]
     assert all(cs[0] > 0 and all(c >= 0 for c in cs) for cs in positive)
@@ -51,13 +58,15 @@ def generate(offset):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--offset', type=int, choices=(0, 1), required=True)
+    parser.add_argument('--offset', type=int, choices=(0, 1, 2), required=True)
     parser.add_argument('--output-dir', type=Path,
                         default=Path(__file__).resolve().parent.parent/'notes')
     args = parser.parse_args()
     data = generate(args.offset)
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    path = args.output_dir/f'pade-sign-recurrence-{args.offset}.json'
+    filename = ('pade-offset-two-recurrence.json' if args.offset == 2
+                else f'pade-sign-recurrence-{args.offset}.json')
+    path = args.output_dir/filename
     path.write_text(json.dumps(data, indent=2), encoding='utf-8')
     print('wrote', path, flush=True)
 

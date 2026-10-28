@@ -1,0 +1,25 @@
+{
+  "scope": "Exact constant enclosures using the proved row-balance recurrence. The normal upper rate uses the paper-proved lower-column divisor. The content rate for Gamma and the required kappa upper rate are unproved.",
+  "constants": {
+    "raw_coefficient_rate": [
+      "5154559656711/1000000000000",
+      "1288644080081/250000000000"
+    ],
+    "primitive_normal_upper_rate_bound": [
+      "5877150599151/1000000000000",
+      "1175433452553/200000000000"
+    ],
+    "conditional_balanced_cost_rate": [
+      "1197664216643/250000000000",
+      "4790665198381/1000000000000"
+    ],
+    "conditional_margin_vs_log140": [
+      "150977224229/1000000000000",
+      "150985556037/1000000000000"
+    ],
+    "sufficient_kappa_rate_threshold": [
+      "150977224229/500000000000",
+      "301971112073/1000000000000"
+    ]
+  }
+}
