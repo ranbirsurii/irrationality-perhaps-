@@ -5,6 +5,14 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [individual primitive normalization](notes/individual-primitive-pair.md)
+replaces the common content by each selected form's own coefficient gcd.
+`PrimitivePairNormalization.lean` proves the exact integer division,
+primitive-pair nonvanishing, and the weighted Gram and trace bounds without
+assuming that unequal scaling preserves Gauss reduction. The manuscript
+includes the full derivation. The required asymptotic estimate for that
+sharper cost and uniform higher-weight augmented rank remain unproved.
+
 The [normalized Gram spectral calculation](notes/normalized-gram-spectral-bound.md)
 applies the two-dimensional eigenvalue estimates to the actual cancellation
 lattice. `GramSpectralBounds.lean` proves the explicit eigenvalue formulas,

@@ -38,6 +38,8 @@ and an exact integral-projector divisibility criterion.
 Signed combinations are also allowed. A target-eliminating cofactor
 combination gives an integer lower bound that rules out an overstrong
 cofactor-norm saving proposed in the supplied note.
+Individual primitive normalization gives a sharper signed-pair criterion,
+using each form's own coefficient gcd instead of the common content.
 The construction-specific relative-cost bound and the existence of suitable
 positive integral cancellation vectors in every higher weight are hypotheses,
 not conclusions. This paper does not prove the unconditional irrationality
@@ -433,6 +435,69 @@ One may therefore work with a pair of independent signed forms, provided
 both satisfy the required arithmetic bounds. These two elementary
 assertions are proved in the signed Lean companion.
 
+\begin{proposition}[Individual primitive normalization]
+Let \(a,b\) be any integral kernel basis, and suppose
+\(\delta=Y(a)Z(b)-Y(b)Z(a)\ne0\). Put
+\[
+ h_a=\gcd(Y(a),Z(a)),\quad h_b=\gcd(Y(b),Z(b)),\quad
+ A=\|a\|_2^2,\ B=\langle a,b\rangle,\ C=\|b\|_2^2.
+\]
+Both gcds are positive. The two primitive integer forms
+\[
+ L_a=\frac{Y(a)\zeta(s)+Z(a)}{h_a},\qquad
+ L_b=\frac{Y(b)\zeta(s)+Z(b)}{h_b}
+\]
+cannot both vanish. Define
+\[
+ G^\sharp=\begin{pmatrix}
+ A/h_a^2&B/(h_a h_b)\\ B/(h_a h_b)&C/h_b^2
+ \end{pmatrix},\qquad
+ \tau^\sharp=A/h_a^2+C/h_b^2.
+\]
+Writing \(N=r+1\) and \(\mu^\sharp\) for the larger eigenvalue,
+\begin{equation}
+ \max(|L_a|,|L_b|)
+ \le\sqrt N\,d_n^s S_{s,n}\sqrt{\mu^\sharp}
+ \le\sqrt N\,d_n^s S_{s,n}\sqrt{\tau^\sharp},
+ \qquad
+ \tau^\sharp\le\frac{A+C}{\Gamma^2}.
+ \label{eq:individual}
+\end{equation}
+No reduction condition on the individually scaled basis is required.
+\end{proposition}
+\begin{proof}
+A zero gcd would make the corresponding coefficient column zero,
+contradicting \(\delta\ne0\). Dividing each column by its gcd gives
+integer coefficients and determinant \(\delta/(h_a h_b)\ne0\).
+The preceding determinant identity proves nonvanishing of at least one
+form. The signed bound and Cauchy--Schwarz give
+\( |L_a|\le\sqrt N\,d_n^s S_{s,n}\sqrt A/h_a\), and similarly
+for \(b\). The matrix \(G^\sharp\) is the Gram matrix of
+\(a/h_a,b/h_b\). Thus its diagonal entries are at most
+\(\mu^\sharp\), and \(\mu^\sharp\le\operatorname{tr}G^\sharp\).
+Equivalently these inequalities follow directly from the quadratic
+root formula and \(B^2\le AC\). Finally \(\Gamma\mid h_a,h_b\)
+implies \(h_a,h_b\ge\Gamma\), proving the last inequality.
+\end{proof}
+
+For every fixed \(s\ge7\), a sufficient condition for the nonzero
+selected primitive forms in \eqref{eq:individual} to tend to zero is
+\begin{equation}
+ \limsup_{n\to\infty}\frac1n\log\tau^\sharp_{s,n}
+       <2(a_s-s).
+ \label{eq:individual-rate}
+\end{equation}
+Indeed the upper exponential rate in \eqref{eq:individual} is
+\(s-a_s+\tfrac12\limsup n^{-1}\log\tau^\sharp\).
+A rate at most \(1/2\) would suffice at every such weight, since
+\(a_s>s+1/3\). This substitution permits additional divisibility
+in each selected vector; it does not require a separate lower bound
+for \(\Gamma\). Neither \eqref{eq:individual-rate} nor uniform
+augmented determinant nonvanishing has been proved for the actual
+higher-weight family. No Loewner comparison between
+\(G^\sharp\) and \(G/\Gamma^2\) is asserted: unequal diagonal
+scalings need not commute with \(G\).
+
 However, a signed combination that eliminates the target itself is a
 nonzero rational period and has an integral lower bound after clearing.
 In the notation of Section 6, put
@@ -505,7 +570,7 @@ the general structural properties and the desired arithmetic estimate.
 
 \section{Formalization and reproducibility}
 The archive contains the pinned Lean project and every source module.
-The three additions are:
+The principal additions are:
 \begin{itemize}
 \item \texttt{OddZeta/HighWeightRelativeCost.lean}:
 the logarithm margin, convergence from eventual rate bounds, and the
@@ -517,6 +582,13 @@ and independence of the content from the section.
 \item \texttt{OddZeta/PositiveCancellationCost.lean}:
 the exact minimal positive mass calculation above, with the row-ratio and
 unit-content assertions.
+\item \texttt{OddZeta/GramSpectralBounds.lean}:
+the two-dimensional characteristic roots, reduced-basis eigenvalue
+bounds, condition-number bounds, and the uniform integral spectral gap.
+\item \texttt{OddZeta/PrimitivePairNormalization.lean}:
+the eigenvalue bounds for a general positive-semidefinite two-by-two
+Gram matrix, its individual scaling and trace bound, exact division of
+integer forms, and determinant-based primitive-pair nonvanishing.
 \end{itemize}
 The publication folder also contains \texttt{SignedCancellation.lean}
 and exact cancellation examples at weight seven and indices six and eight.
@@ -539,8 +611,12 @@ The provided lock file records the library revisions.
 
 An unconditional application to all odd weights would require a proof
 of \eqref{eq:cost} for explicitly constructed nonnegative integral
-cancellation vectors at each fixed weight. The exact projector criterion
-and the Smith formula specify the arithmetic content entering that task.
+cancellation vectors at each fixed weight, or alternatively the signed
+pair rank and rate hypotheses in \eqref{eq:individual-rate}.
+The exact projector criterion and the Smith formula specify the
+arithmetic content entering the first route. Individual normalization
+weakens that route's shared-content requirement but does not establish
+the remaining construction-specific estimates.
 
 \appendix
 \section{Global decay with the sharp saddle constant}

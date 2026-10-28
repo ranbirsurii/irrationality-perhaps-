@@ -1,0 +1,32 @@
+OddZeta.psd_gram_eigenmax_bounds (A B C : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) :
+  A ≤ OddZeta.gramEigenMax A B C ∧ C ≤ OddZeta.gramEigenMax A B C ∧ OddZeta.gramEigenMax A B C ≤ A + C
+OddZeta.individually_scaled_gram_psd (A B C h k : ℝ) (hBC : B ^ 2 ≤ A * C) (hh : 0 < h) (hk : 0 < k) :
+  (B / (h * k)) ^ 2 ≤ A / h ^ 2 * (C / k ^ 2)
+OddZeta.primitive_pair_spectral_bounds (A B C h k : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) (hh : 0 < h)
+  (hk : 0 < k) :
+  A / h ^ 2 ≤ OddZeta.primitivePairSpectralCost A B C h k ∧
+    C / k ^ 2 ≤ OddZeta.primitivePairSpectralCost A B C h k ∧
+      OddZeta.primitivePairSpectralCost A B C h k ≤ A / h ^ 2 + C / k ^ 2
+OddZeta.primitive_pair_trace_le_common_content (A C h k Γ : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hΓ : 0 < Γ) (hh : Γ ≤ h)
+  (hk : Γ ≤ k) : A / h ^ 2 + C / k ^ 2 ≤ (A + C) / Γ ^ 2
+OddZeta.primitive_pair_form_bounds (A B C h k P La Lb : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) (hh : 0 < h)
+  (hk : 0 < k) (hP : 0 ≤ P) (ha : |La| ≤ P * √A / h) (hb : |Lb| ≤ P * √C / k) :
+  |La| ≤ P * √(OddZeta.primitivePairSpectralCost A B C h k) ∧ |Lb| ≤ P * √(OddZeta.primitivePairSpectralCost A B C h k)
+OddZeta.integral_normalized_form (a c h : ℤ) (α : ℝ) (ha : h ∣ a) (hc : h ∣ c) (hh : ↑h ≠ 0) :
+  ↑(a / h) * α + ↑(c / h) = (↑a * α + ↑c) / ↑h
+OddZeta.integral_normalized_pair_nonvanishing (a b c d h k : ℤ) (α : ℝ) (ha : h ∣ a) (hc : h ∣ c) (hb : k ∣ b)
+  (hd : k ∣ d) (hh : ↑h ≠ 0) (hk : ↑k ≠ 0) (hdet : a * d - b * c ≠ 0) :
+  ↑(a / h) * α + ↑(c / h) ≠ 0 ∨ ↑(b / k) * α + ↑(d / k) ≠ 0
+OddZeta.pair_gcd_positive_of_determinant (a b c d : ℤ) (hdet : a * d - b * c ≠ 0) : 0 < a.gcd c ∧ 0 < b.gcd d
+OddZeta.primitive_gcd_pair_nonvanishing (a b c d : ℤ) (α : ℝ) (hdet : a * d - b * c ≠ 0) :
+  (↑(a / ↑(a.gcd c)) * α + ↑(c / ↑(a.gcd c)) ≠ 0 ∨ ↑(b / ↑(b.gcd d)) * α + ↑(d / ↑(b.gcd d)) ≠ 0) ∧
+    (a / ↑(a.gcd c)).gcd (c / ↑(a.gcd c)) = 1 ∧ (b / ↑(b.gcd d)).gcd (d / ↑(b.gcd d)) = 1
+'OddZeta.psd_gram_eigenmax_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.individually_scaled_gram_psd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.primitive_pair_spectral_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.primitive_pair_trace_le_common_content' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.primitive_pair_form_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integral_normalized_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integral_normalized_pair_nonvanishing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.pair_gcd_positive_of_determinant' depends on axioms: [propext, Quot.sound]
+'OddZeta.primitive_gcd_pair_nonvanishing' depends on axioms: [propext, Classical.choice, Quot.sound]

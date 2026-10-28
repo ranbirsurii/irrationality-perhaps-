@@ -8,7 +8,7 @@ assumptions are used to replace them.
 
 ## Contents
 
-- `main.tex`: nine-page manuscript source, with complete proofs of the stated
+- `main.tex`: ten-page manuscript source, with complete proofs of the stated
   reductions and explicit distinctions between paper and Lean results.
 - `odd-zeta-relative-content.pdf`: rendered manuscript.
 - `Verification.lean`: integrated theorem and axiom-dependency checks.
@@ -24,6 +24,10 @@ assumptions are used to replace them.
   `gram-spectral-verification.md`: verified Gram eigenvalue estimates and
   their scope. The continuation is derived in
   `notes/normalized-gram-spectral-bound.md` in the repository.
+- `VerifyPrimitivePair.lean`, `primitive-pair-axioms.log`, and
+  `primitive-pair-verification.md`: individually normalized integer forms,
+  nonvanishing, and the weighted Gram bound. The derivation is in
+  `notes/individual-primitive-pair.md` and manuscript Proposition 7.1.
 - The repository's `OddZeta` directory: complete Lean library sources.
 
 The downloadable source archive additionally contains the pinned Lean
@@ -51,6 +55,12 @@ content from that section up to a unit.
 showing that row balance alone does not control positive integral cost.
 The example is not the zeta family.
 
+`PrimitivePairNormalization.lean` proves nine algebraic theorems, including
+nonvanishing and coprimality after dividing each coefficient pair by its
+own gcd. For Gram entries A,B,C, the new trace is A/h_a^2+C/h_b^2,
+bounded above by (A+C)/Gamma^2. This permits extra selected-vector savings
+without imposing the reduced-basis hypotheses after unequal scaling.
+
 ## Remaining application
 
 For each fixed higher odd weight one must construct nonzero nonnegative
@@ -58,6 +68,10 @@ integral vectors cancelling all lower-period rows, and prove that their
 mass divided by the actual image content has an upper exponential rate
 strictly below the analytic budget. Subexponential relative cost would
 suffice, but has not been established for these constructions.
+Alternatively one may prove full augmented rank and the signed-pair trace
+rate in Proposition 7.1. The individual-content substitution weakens the
+shared-content sufficient condition; that new rate is also unproved for
+the actual family.
 
 The Smith formula and the projector identify the integer content exactly.
 Neither identity is a lower asymptotic bound for that content. The
@@ -86,6 +100,7 @@ From the Lean project directory, with the pinned toolchain installed:
 lake exe cache get
 lake build
 lake env lean publication/high-weight-criterion/Verification.lean
+lake env lean publication/high-weight-criterion/VerifyPrimitivePair.lean
 ```
 
 From the manuscript directory:

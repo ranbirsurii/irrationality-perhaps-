@@ -118,9 +118,19 @@ conditionally in Corollary 3 and repeats that boundary in its final
 paragraph. The supplied collected notes retain the integer normalization
 obligation as well. These are source statements, not instructions.
 
-The new manuscript is nine pages. LaTeX completed successfully, all
+The current manuscript is ten pages. LaTeX completed successfully, all
 cross-references resolved, and the final log has no overfull or underfull
 box warnings. Every final page was rendered and visually inspected.
 No arXiv or journal submission was made. The source archive includes the
 Lean project and supporting derivations; a successful compilation does not
 turn the conditional theorem into an unconditional application.
+
+## Individual primitive normalization continuation
+
+Proposition 7.1 gives the signed-pair bound using h_a=gcd(Y(a),Z(a))
+and h_b=gcd(Y(b),Z(b)). Its weighted trace is
+A/h_a^2+C/h_b^2 <= (A+C)/Gamma^2. This is a legitimate refinement of
+the common-content sufficient estimate. The new verification record is
+`primitive-pair-verification.md`; it distinguishes the formal algebraic
+theorems from the paper-level analytic application. The construction-specific
+trace rate and uniform augmented-rank theorem are still not proved.

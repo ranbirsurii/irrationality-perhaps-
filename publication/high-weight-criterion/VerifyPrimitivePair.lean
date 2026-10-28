@@ -1,0 +1,21 @@
+import OddZeta.PrimitivePairNormalization
+
+#check OddZeta.psd_gram_eigenmax_bounds
+#check OddZeta.individually_scaled_gram_psd
+#check OddZeta.primitive_pair_spectral_bounds
+#check OddZeta.primitive_pair_trace_le_common_content
+#check OddZeta.primitive_pair_form_bounds
+#check OddZeta.integral_normalized_form
+#check OddZeta.integral_normalized_pair_nonvanishing
+#check OddZeta.pair_gcd_positive_of_determinant
+#check OddZeta.primitive_gcd_pair_nonvanishing
+
+#print axioms OddZeta.psd_gram_eigenmax_bounds
+#print axioms OddZeta.individually_scaled_gram_psd
+#print axioms OddZeta.primitive_pair_spectral_bounds
+#print axioms OddZeta.primitive_pair_trace_le_common_content
+#print axioms OddZeta.primitive_pair_form_bounds
+#print axioms OddZeta.integral_normalized_form
+#print axioms OddZeta.integral_normalized_pair_nonvanishing
+#print axioms OddZeta.pair_gcd_positive_of_determinant
+#print axioms OddZeta.primitive_gcd_pair_nonvanishing
