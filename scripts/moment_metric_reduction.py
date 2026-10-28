@@ -52,6 +52,9 @@ def construct(r, n):
     gram = pairing(u,G,u), pairing(u,G,v), pairing(v,G,v)
     reduced, U, steps = reduce_binary_form(*gram)
     alpha, beta, nu = reduced
+    raw_reduced, raw_U, _ = reduce_binary_form(*(D*D*x for x in gram))
+    assert raw_reduced == tuple(D*D*x for x in reduced)
+    assert raw_U == U
     for h,k in ((Q(0),Q(0)),(Q(1),Q(0)),(Q(0),Q(1)),
                 (Q(2),Q(-3)),(Q(2,3),Q(-5,7))):
         p,q = U[0][0]*h+U[0][1]*k, U[1][0]*h+U[1][1]*k
@@ -77,6 +80,9 @@ def construct(r, n):
     return {'weight':s,'index':n,'cutoff':K,'enclosure_order':enclosure_order,
             'rational_combination_checks':5,
             'reduced_gram':list(map(str,reduced)),
+            'kernel_mass_majorant':str(mu),
+            'raw_reduced_second':str(D*D*nu),
+            'full_moment_bound':str(mu*D*D*nu),
             'gauss_steps':steps,'forms':forms}
 
 

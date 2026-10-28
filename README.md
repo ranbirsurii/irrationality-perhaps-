@@ -843,6 +843,12 @@ All Lean source files use ordinary visible code and contain no `sorry` or
 
 # Exact transition-norm follow-up
 
+The [analytic kernel transition](notes/analytic-kernel-transition.md)
+rewrites the complete bound exactly as a kernel mass times the reduced
+raw moment coefficient, eliminating the explicit lcm factor. It also
+derives an exact index-shift multiplier for the original kernel. The
+remaining decay assertion is unchanged and still unproved.
+
 The [signed moment metric](notes/moment-metric-reduction.md) retains
 polynomial cross terms, includes a certified infinite tail, and chooses
 primitive pairs by a rational moment Gram form. Its homogeneous bound
