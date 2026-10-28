@@ -1,0 +1,117 @@
+OddZeta.integer_square_ge_abs (z : ℤ) : |↑z| ≤ ↑z ^ 2
+OddZeta.reduced_binary_cross_bound (A B x y : ℝ) (hB : 2 * |B| ≤ A) : -(A * |x| * |y|) ≤ 2 * B * x * y
+OddZeta.reduced_binary_half_diagonal (A B C x y : ℝ) (hA : 0 ≤ A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) :
+  (A * x ^ 2 + C * y ^ 2) / 2 ≤ OddZeta.binaryQuadratic A B C x y
+OddZeta.reduced_binary_second_coordinate_minimum (A B C : ℝ) (hA : 0 < A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) (u v : ℤ)
+  (hv : v ≠ 0) : C ≤ OddZeta.binaryQuadratic A B C ↑u ↑v
+OddZeta.reduced_binary_first_minimum (A B C : ℝ) (hA : 0 < A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) (u v : ℤ)
+  (hnonzero : u ≠ 0 ∨ v ≠ 0) : A ≤ OddZeta.binaryQuadratic A B C ↑u ↑v
+OddZeta.reduced_binary_independent_pair_minimum (A B C : ℝ) (hA : 0 < A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) (u v w z : ℤ)
+  (hdet : u * z - v * w ≠ 0) : C ≤ max (OddZeta.binaryQuadratic A B C ↑u ↑v) (OddZeta.binaryQuadratic A B C ↑w ↑z)
+OddZeta.reduced_binary_coordinate_attainment (A B C : ℝ) :
+  OddZeta.binaryQuadratic A B C 1 0 = A ∧ OddZeta.binaryQuadratic A B C 0 1 = C
+OddZeta.reduced_binary_transference_squared (A B C : ℝ) (hA : 0 < A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) :
+  0 < A * C - B ^ 2 ∧ 1 ≤ A * C / (A * C - B ^ 2) ∧ A * C / (A * C - B ^ 2) ≤ 4 / 3
+OddZeta.reduced_binary_cost_sandwich (mu beta nu H2 delta : ℝ) (hmu : 0 < mu) (horder : mu ≤ nu)
+  (hbeta : 2 * |beta| ≤ mu) (hdelta : delta ≠ 0) (hidentity : mu * nu - beta ^ 2 = delta ^ 2 * H2) :
+  H2 / mu ≤ nu / delta ^ 2 ∧ nu / delta ^ 2 ≤ 4 * H2 / (3 * mu)
+OddZeta.dual_gram_determinant_identity (A B C ya yb za zb : ℝ) :
+  OddZeta.dualGramFirst A B C ya yb * OddZeta.dualGramSecond A B C za zb - OddZeta.dualGramCross A B C ya yb za zb ^ 2 =
+    (ya * zb - yb * za) ^ 2 * (A * C - B ^ 2)
+OddZeta.dual_gram_pullback_identity (A B C ya yb za zb p q : ℝ) :
+  OddZeta.binaryQuadratic (OddZeta.dualGramFirst A B C ya yb) (OddZeta.dualGramCross A B C ya yb za zb)
+      (OddZeta.dualGramSecond A B C za zb) p q =
+    OddZeta.binaryQuadratic C (-B) A (p * ya + q * za) (p * yb + q * zb)
+OddZeta.dual_gram_primal_adjugate_identity (A B C ya yb za zb : ℝ) :
+  OddZeta.binaryQuadratic A B C zb (-za) = OddZeta.dualGramSecond A B C za zb ∧
+    A * zb * -yb + B * (zb * ya + -za * -yb) + C * -za * ya = -OddZeta.dualGramCross A B C ya yb za zb ∧
+      OddZeta.binaryQuadratic A B C (-yb) ya = OddZeta.dualGramFirst A B C ya yb
+OddZeta.binary_adjugate_quarter_turn (A B C x y : ℝ) :
+  OddZeta.binaryQuadratic C (-B) A x y = OddZeta.binaryQuadratic A B C (-y) x
+OddZeta.binary_quadratic_positive (A B C x y : ℝ) (hA : 0 < A) (hdet : 0 < A * C - B ^ 2) (hnonzero : x ≠ 0 ∨ y ≠ 0) :
+  0 < OddZeta.binaryQuadratic A B C x y
+OddZeta.coefficient_row_pair_nonzero (ya yb za zb p q : ℝ) (hdet : ya * zb - yb * za ≠ 0) (hnonzero : p ≠ 0 ∨ q ≠ 0) :
+  p * ya + q * za ≠ 0 ∨ p * yb + q * zb ≠ 0
+OddZeta.dual_gram_quadratic_positive (A B C ya yb za zb p q : ℝ) (hC : 0 < C) (hgram : 0 < A * C - B ^ 2)
+  (hdet : ya * zb - yb * za ≠ 0) (hnonzero : p ≠ 0 ∨ q ≠ 0) :
+  0 <
+    OddZeta.binaryQuadratic (OddZeta.dualGramFirst A B C ya yb) (OddZeta.dualGramCross A B C ya yb za zb)
+      (OddZeta.dualGramSecond A B C za zb) p q
+OddZeta.unimodular_integer_preimage (a b c d : ℤ) (hdet : a * d - b * c = 1 ∨ a * d - b * c = -1) (x y : ℤ) :
+  ∃ u v, a * u + b * v = x ∧ c * u + d * v = y
+OddZeta.binary_change_of_variables (A B C a b c d x y : ℝ) :
+  OddZeta.binaryQuadratic A B C (a * x + b * y) (c * x + d * y) =
+    OddZeta.binaryQuadratic (OddZeta.binaryQuadratic A B C a c) (A * a * b + B * (a * d + b * c) + C * c * d)
+      (OddZeta.binaryQuadratic A B C b d) x y
+OddZeta.binary_certificate_first_minimum (A B C mu beta nu : ℝ) (a b c d : ℤ)
+  (hdet : a * d - b * c = 1 ∨ a * d - b * c = -1) (hfirst : mu = OddZeta.binaryQuadratic A B C ↑a ↑c)
+  (hcross : beta = A * ↑a * ↑b + B * (↑a * ↑d + ↑b * ↑c) + C * ↑c * ↑d)
+  (hsecond : nu = OddZeta.binaryQuadratic A B C ↑b ↑d) (hmu : 0 < mu) (horder : mu ≤ nu) (hbeta : 2 * |beta| ≤ mu)
+  (x y : ℤ) (hne : x ≠ 0 ∨ y ≠ 0) : mu ≤ OddZeta.binaryQuadratic A B C ↑x ↑y
+OddZeta.binary_certificate_independent_pair_minimum (A B C mu beta nu : ℝ) (a b c d : ℤ)
+  (hdet : a * d - b * c = 1 ∨ a * d - b * c = -1) (hfirst : mu = OddZeta.binaryQuadratic A B C ↑a ↑c)
+  (hcross : beta = A * ↑a * ↑b + B * (↑a * ↑d + ↑b * ↑c) + C * ↑c * ↑d)
+  (hsecond : nu = OddZeta.binaryQuadratic A B C ↑b ↑d) (hmu : 0 < mu) (horder : mu ≤ nu) (hbeta : 2 * |beta| ≤ mu)
+  (p q r s : ℤ) (hpairs : p * s - q * r ≠ 0) :
+  nu ≤ max (OddZeta.binaryQuadratic A B C ↑p ↑q) (OddZeta.binaryQuadratic A B C ↑r ↑s)
+OddZeta.binary_certificate_attainment (A B C mu nu : ℝ) (a b c d : ℤ) (hdet : a * d - b * c = 1 ∨ a * d - b * c = -1)
+  (hfirst : mu = OddZeta.binaryQuadratic A B C ↑a ↑c) (hsecond : nu = OddZeta.binaryQuadratic A B C ↑b ↑d) :
+  ∃ x y z t, x * t - y * z ≠ 0 ∧ OddZeta.binaryQuadratic A B C ↑x ↑y = mu ∧ OddZeta.binaryQuadratic A B C ↑z ↑t = nu
+'OddZeta.integer_square_ge_abs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_cross_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_half_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_second_coordinate_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_first_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_independent_pair_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_coordinate_attainment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_transference_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_binary_cost_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.dual_gram_determinant_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.dual_gram_pullback_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.dual_gram_primal_adjugate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binary_adjugate_quarter_turn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binary_quadratic_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.coefficient_row_pair_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.dual_gram_quadratic_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.unimodular_integer_preimage' depends on axioms: [propext, Quot.sound]
+'OddZeta.binary_change_of_variables' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binary_certificate_first_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binary_certificate_independent_pair_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binary_certificate_attainment' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.integer_det_row_envelope.{u_1} {n : Type u_1} [Fintype n] [DecidableEq n] (A : Matrix n n ℤ) (H : n → ℤ)
+  (hA : ∀ (i j : n), |A i j| ≤ H i) : |A.det| ≤ ↑(Fintype.card n).factorial * ∏ i, H i
+OddZeta.integer_cramer_row_envelope.{u_1} {n : Type u_1} [Fintype n] [DecidableEq n] (A : Matrix n n ℤ) (b H : n → ℤ)
+  (hA : ∀ (i j : n), |A i j| ≤ H i) (hb : ∀ (i : n), |b i| ≤ H i) (j : n) :
+  |A.cramer b j| ≤ ↑(Fintype.card n).factorial * ∏ i, H i
+OddZeta.integer_cramer_cancellation.{u_1} {n : Type u_1} [Fintype n] [DecidableEq n] (A : Matrix n n ℤ) (b : n → ℤ)
+  (i : n) : ∑ j, A i j * -A.cramer b j + b i * A.det = 0
+OddZeta.integer_cramer_mass_envelope.{u_1} {n : Type u_1} [Fintype n] [DecidableEq n] (A : Matrix n n ℤ) (b H : n → ℤ)
+  (hA : ∀ (i j : n), |A i j| ≤ H i) (hb : ∀ (i : n), |b i| ≤ H i) :
+  ∑ j, |(-A.cramer b j)| + |A.det| ≤ (↑(Fintype.card n) + 1) * (↑(Fintype.card n).factorial * ∏ i, H i)
+OddZeta.integer_two_free_coordinates_independent (delta u v : ℤ) (hdelta : delta ≠ 0) (hu : u * delta = 0)
+  (hv : v * delta = 0) : u = 0 ∧ v = 0
+'OddZeta.integer_det_row_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integer_cramer_row_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integer_cramer_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integer_cramer_mass_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integer_two_free_coordinates_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.finite_field_sum_eval_zero.{u_1} {K : Type u_1} [Field K] [Fintype K] (P : Polynomial K)
+  (hdegree : P.natDegree < Fintype.card K - 1) : ∑ a, Polynomial.eval a P = 0
+OddZeta.translation_trace_coefficient.{u_1} {K : Type u_1} [Field K] [Fintype K] (P : Polynomial K) (k : ℕ) :
+  (OddZeta.polynomialTranslationTrace P).coeff k = ∑ a, Polynomial.eval a ((Polynomial.hasseDeriv k) P)
+OddZeta.translation_trace_coefficient_vanishes.{u_1} {K : Type u_1} [Field K] [Fintype K] (P : Polynomial K) (k : ℕ)
+  (hdegree : P.natDegree < k + (Fintype.card K - 1)) : (OddZeta.polynomialTranslationTrace P).coeff k = 0
+OddZeta.translation_trace_small_polynomial_zero.{u_1} {K : Type u_1} [Field K] [Fintype K] (P : Polynomial K)
+  (hdegree : P.natDegree < Fintype.card K - 1) : OddZeta.polynomialTranslationTrace P = 0
+OddZeta.translation_trace_composition_coefficient_vanishes.{u_1} {K : Type u_1} [Field K] [Fintype K]
+  (P R F : Polynomial K) (k : ℕ) (hk : 0 < k) (hF : 0 < F.natDegree)
+  (hidentify : OddZeta.polynomialTranslationTrace P = R.comp F)
+  (hdegree : P.natDegree < k * F.natDegree + (Fintype.card K - 1)) : R.coeff k = 0
+OddZeta.translation_trace_pade_degree_inequality (s n m p k : ℤ) (hs : 2 ≤ s) (hm : m ≤ n)
+  (hinterval : (k - 1) * p ≤ (s - 2) * n) : (s - 1) * p + 2 * m - s * n - s + 1 < (s - k) * p
+'OddZeta.finite_field_sum_eval_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.translation_trace_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.translation_trace_coefficient_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.translation_trace_small_polynomial_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.translation_trace_composition_coefficient_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.translation_trace_pade_degree_inequality' depends on axioms: [propext, Classical.choice, Quot.sound]

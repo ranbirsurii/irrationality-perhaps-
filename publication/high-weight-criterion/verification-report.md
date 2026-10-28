@@ -2,6 +2,12 @@
 
 Date: 28 October 2026.
 
+Latest addition: `uniform-cost-verification.md` records thirty-two new
+Lean theorems, exact binary reduction certificates, an all-index coefficient
+envelope, and the all-weight translation-trace prime divisor. The current
+manuscript compiles in place. The sufficient uniform cost rate is still
+unproved; the old PDF below remains a labelled historical snapshot.
+
 Update: The subsequent Theorem 2.1 now proves the actual all-index
 augmented rank and lower-row rank on paper by explicit rational summation.
 See `augmented-rank-verification.md` for its proof checks and the precise

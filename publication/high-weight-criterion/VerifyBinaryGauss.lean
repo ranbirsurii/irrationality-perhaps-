@@ -1,0 +1,74 @@
+import OddZeta.BinaryGaussCertificate
+import OddZeta.DualCoefficientGram
+import OddZeta.CramerKernelEnvelope
+import OddZeta.FiniteFieldTranslationTrace
+
+#check OddZeta.integer_square_ge_abs
+#check OddZeta.reduced_binary_cross_bound
+#check OddZeta.reduced_binary_half_diagonal
+#check OddZeta.reduced_binary_second_coordinate_minimum
+#check OddZeta.reduced_binary_first_minimum
+#check OddZeta.reduced_binary_independent_pair_minimum
+#check OddZeta.reduced_binary_coordinate_attainment
+#check OddZeta.reduced_binary_transference_squared
+#check OddZeta.reduced_binary_cost_sandwich
+#check OddZeta.dual_gram_determinant_identity
+#check OddZeta.dual_gram_pullback_identity
+#check OddZeta.dual_gram_primal_adjugate_identity
+#check OddZeta.binary_adjugate_quarter_turn
+#check OddZeta.binary_quadratic_positive
+#check OddZeta.coefficient_row_pair_nonzero
+#check OddZeta.dual_gram_quadratic_positive
+#check OddZeta.unimodular_integer_preimage
+#check OddZeta.binary_change_of_variables
+#check OddZeta.binary_certificate_first_minimum
+#check OddZeta.binary_certificate_independent_pair_minimum
+#check OddZeta.binary_certificate_attainment
+
+#print axioms OddZeta.integer_square_ge_abs
+#print axioms OddZeta.reduced_binary_cross_bound
+#print axioms OddZeta.reduced_binary_half_diagonal
+#print axioms OddZeta.reduced_binary_second_coordinate_minimum
+#print axioms OddZeta.reduced_binary_first_minimum
+#print axioms OddZeta.reduced_binary_independent_pair_minimum
+#print axioms OddZeta.reduced_binary_coordinate_attainment
+#print axioms OddZeta.reduced_binary_transference_squared
+#print axioms OddZeta.reduced_binary_cost_sandwich
+#print axioms OddZeta.dual_gram_determinant_identity
+#print axioms OddZeta.dual_gram_pullback_identity
+#print axioms OddZeta.dual_gram_primal_adjugate_identity
+#print axioms OddZeta.binary_adjugate_quarter_turn
+#print axioms OddZeta.binary_quadratic_positive
+#print axioms OddZeta.coefficient_row_pair_nonzero
+#print axioms OddZeta.dual_gram_quadratic_positive
+#print axioms OddZeta.unimodular_integer_preimage
+#print axioms OddZeta.binary_change_of_variables
+#print axioms OddZeta.binary_certificate_first_minimum
+#print axioms OddZeta.binary_certificate_independent_pair_minimum
+#print axioms OddZeta.binary_certificate_attainment
+
+#check OddZeta.integer_det_row_envelope
+#check OddZeta.integer_cramer_row_envelope
+#check OddZeta.integer_cramer_cancellation
+#check OddZeta.integer_cramer_mass_envelope
+#check OddZeta.integer_two_free_coordinates_independent
+
+#print axioms OddZeta.integer_det_row_envelope
+#print axioms OddZeta.integer_cramer_row_envelope
+#print axioms OddZeta.integer_cramer_cancellation
+#print axioms OddZeta.integer_cramer_mass_envelope
+#print axioms OddZeta.integer_two_free_coordinates_independent
+
+#check OddZeta.finite_field_sum_eval_zero
+#check OddZeta.translation_trace_coefficient
+#check OddZeta.translation_trace_coefficient_vanishes
+#check OddZeta.translation_trace_small_polynomial_zero
+#check OddZeta.translation_trace_composition_coefficient_vanishes
+#check OddZeta.translation_trace_pade_degree_inequality
+
+#print axioms OddZeta.finite_field_sum_eval_zero
+#print axioms OddZeta.translation_trace_coefficient
+#print axioms OddZeta.translation_trace_coefficient_vanishes
+#print axioms OddZeta.translation_trace_small_polynomial_zero
+#print axioms OddZeta.translation_trace_composition_coefficient_vanishes
+#print axioms OddZeta.translation_trace_pade_degree_inequality

@@ -43,7 +43,13 @@ cofactor-norm saving proposed in the supplied note.
 Individual primitive normalization gives a sharper signed-pair criterion,
 using each form's own coefficient gcd instead of the common content.
 The full rational preimage of integer coefficient pairs identifies the
-optimal independent-pair Euclidean primitive cost exactly.
+optimal independent-pair Euclidean primitive cost exactly. An integral
+binary form and a unimodular reduction certificate compute that cost;
+twenty-one additional Lean theorems verify the underlying minimum and
+Gram identities. An elementary all-index coefficient bound gives an
+explicit cost envelope. A finite-field translation trace gives a common
+prime-product divisor for every lower row at every weight, and improves
+that envelope; its exponent still does not close the required budget.
 The construction-specific relative-cost bound is a hypothesis, not a
 conclusion. Signed pairs provide nonvanishing without a positivity
 assumption. This paper does not prove the unconditional irrationality
@@ -708,6 +714,242 @@ saving: replacing \(D,\Phi\) by \(cD,c\Phi\), \(c>0\), scales
 \(\Lambda^{\rm coeff}\) by \(1/c\) and leaves
 \(D\lambda_2(\Lambda^{\rm coeff})\) unchanged.
 
+\subsection{The exact reduced binary form}
+The preceding optimization has an explicit two-by-two certificate.
+Write the Gram matrix of the source basis as
+\[
+ G=\begin{pmatrix}A&B_0\\B_0&C_0\end{pmatrix},\qquad
+ H^2=AC_0-B_0^2>0,
+ \qquad K=\begin{pmatrix}y_a&y_b\\z_a&z_b\end{pmatrix},
+ \quad\delta=\det K\ne0.
+\]
+Here \(K\) is the coefficient matrix called \(B\) in
+Proposition~\ref{prop:coefficient-lattice}. Put
+\begin{align*}
+ S&=K\operatorname{adj}(G)K^T,\\
+ S_{11}&=C_0y_a^2-2B_0y_ay_b+Ay_b^2,\\
+ S_{12}&=C_0y_az_a-B_0(y_az_b+y_bz_a)+Ay_bz_b,\\
+ S_{22}&=C_0z_a^2-2B_0z_az_b+Az_b^2.
+\end{align*}
+This is a positive definite integral matrix and
+\(\det S=\delta^2H^2\). Choose an integral unimodular matrix \(U\)
+such that
+\[
+ U^TSU=\begin{pmatrix}\mu&\beta\\\beta&\nu\end{pmatrix},\qquad
+ 0<\mu\le\nu,\qquad 2|\beta|\le\mu.
+\]
+\begin{proposition}[Exact minimum certificate]
+\label{prop:binary-minimum}
+For these data,
+\begin{equation}
+ \lambda_2(\Lambda^{\rm coeff})^2=\frac\nu{\delta^2},\qquad
+ \lambda_1((\Lambda^{\rm coeff})^*)^2=\frac\mu{H^2},
+ \qquad
+ \frac{H^2}{\mu}\le\frac\nu{\delta^2}
+                 \le\frac{4H^2}{3\mu}.
+ \label{eq:binary-minima}
+\end{equation}
+All integer directions are covered by the reduction certificate; this is
+not a minimum over a finite search region. Consequently the precise
+remaining rate condition is
+\begin{equation}
+ \limsup_{n\to\infty}
+ \frac{\log\nu_{s,n}-2\log|\delta_{s,n}|}{2n}<a_s-s.
+ \label{eq:binary-rate}
+\end{equation}
+The limits here and below run through the eligible even indices.
+\end{proposition}
+\begin{proof}
+For a reduced form \(Q(p,q)=\mu p^2+2\beta pq+\nu q^2\),
+\[
+ Q(p,q)\ge\frac{\mu p^2+\nu q^2}{2}.
+\]
+If \(p,q\in\Z\) and \(|q|=1\), use
+\(p^2\ge|p|\) and \(2|\beta|\le\mu\) to get \(Q(p,q)\ge\nu\).
+If \(|q|\ge2\), the displayed bound is at least \(2\nu\).
+If \(q=0\) and \(p\ne0\), then \(Q(p,0)\ge\mu\).
+Thus the first integer minimum is \(\mu\); two independent integer
+vectors cannot both have second coordinate zero, so their maximum
+value is at least \(\nu\). The coordinate basis attains both minima.
+The inverse integral matrix \(U^{-1}\) transports these statements to
+every integer vector for the original form \(S\).
+
+The adjoint of \(\Phi\) identifies the dual lattice with
+\(\Z P_VY+\Z P_VZ\), whose Gram matrix is \(S/H^2\).
+The primal coefficient basis has Gram matrix
+\[
+ K^{-T}GK^{-1}
+   =\frac1{\delta^2}\operatorname{adj}(K)^TG\operatorname{adj}(K)
+   =\frac1{\delta^2}\operatorname{adj}(S).
+\]
+For a two-by-two symmetric matrix, its adjugate is integrally equivalent
+to itself by a quarter turn. It therefore has the same two integer
+minimum values. This proves the first two equalities in
+\eqref{eq:binary-minima}. Finally
+\(\mu\nu-\beta^2=\delta^2H^2\), and reduction gives
+\(0\le\beta^2\le\mu^2/4\le\mu\nu/4\).
+Hence \(1\le\mu\nu/(\mu\nu-\beta^2)\le4/3\), which is the
+two-sided comparison in \eqref{eq:binary-minima}.
+Equation~\eqref{eq:binary-rate} is exactly
+\eqref{eq:coefficient-rate} after taking logarithms.
+\end{proof}
+
+In particular the planar transference product lies between \(1\) and
+\(2/\sqrt3\). An upper bound by \(1\), without an angle factor, would
+reverse the lower inequality. The integer certificate proves the
+minimum identities but supplies no uniform estimate for \(\mu/H^2\)
+or \(\nu/\delta^2\).
+
+\subsection{An unconditional all-index coefficient and cost bound}
+It is useful to compute what follows from elementary height estimates
+alone, with no assumed divisibility improvement. Define
+\[
+ P_s(n)=(n+1)((s+2)n+s)^{s-1},\qquad
+ E_s(n)=P_s(n)2^{(s+3)n}.
+\]
+\begin{proposition}[Explicit elementary cost envelope]
+\label{prop:elementary-cost}
+For \(0\le m\le n\), every odd-period coefficient in
+\eqref{eq:expansion} has absolute value at most \(E_s(n)\).
+For the consecutive-block cancellation lattice,
+\begin{equation}
+ \lambda_2(\Lambda^{\rm coeff}_{s,n})
+ \le r!\,d_n^{r(r-1)}E_s(n)^{r-1}.
+ \label{eq:coarse-cost}
+\end{equation}
+Consequently its upper exponential rate is at most
+\[
+ B_s=r(r-1)+(s+3)(r-1)\log2.
+\]
+This upper bound is unconditional, but \(B_s>a_s-s\) for every
+\(s\ge7\). It does not establish \eqref{eq:binary-rate}.
+\end{proposition}
+\begin{proof}
+At the pole \(-j\), the leading Laurent coefficient has absolute value
+\[
+ |c_{j,s}|=\binom nj^s\binom{j+m}m\binom{n-j+m}m
+       \le2^{sn+j+m+n-j+m}\le2^{(s+3)n}.
+\]
+After this nonzero coefficient is factored out, the local Taylor product
+has \(2m\) numerator factors \(1\pm x/k\) and \(sn\) inverse
+linear factors, each with \(|k|\ge1\), counting multiplicity.
+Taking absolute coefficients, it is majorized coefficient by coefficient
+by
+\[
+ (1+x)^{2m}(1-x)^{-sn}\preccurlyeq(1-x)^{-(s+2)n}.
+\]
+For \(0\le u\le s-1\), the coefficient of \(x^u\) in the last
+series is \(\binom{(s+2)n+u-1}{u}\), at most
+\(((s+2)n+s)^{s-1}\). Thus every Laurent coefficient is bounded
+by \(2^{(s+3)n}((s+2)n+s)^{s-1}\). Summing over \(j=0,\ldots,n\)
+proves the asserted period-coefficient bound.
+
+Use the natural integer lower rows
+\(d_n^{s-(2q+1)}a_{q,n,m_j}\), \(1\le q\le r-1\).
+Their row bounds are \(d_n^{s-(2q+1)}E_s(n)\).
+Theorem~\ref{thm:rank} supplies a nonzero \((r-1)\)-column minor.
+For each of the two remaining columns, Cramer's rule constructs an
+integer kernel vector: its free coordinate is that minor, the other
+free coordinate is zero, and its pivot coordinates are signed minors.
+It has at most \(r\) nonzero coordinates. The determinant expansion
+bounds each minor by \((r-1)!\) times the product of the row bounds.
+Both vectors therefore have absolute mass at most
+\[
+ r!\prod_{q=1}^{r-1}
+       \bigl(d_n^{s-(2q+1)}E_s(n)\bigr)
+   =r!d_n^{r(r-1)}E_s(n)^{r-1}.
+\]
+Their two distinct nonzero free coordinates prove independence.
+Full augmented rank implies that each nonzero vector has a nonzero
+coefficient pair, whose integer gcd is at least one. Primitive division
+can only decrease their norms. Proposition~\ref{prop:coefficient-lattice}
+now gives \eqref{eq:coarse-cost}.
+
+Since \(\log d_n/n\to1\) and \(\log P_s(n)/n\to0\), the
+stated exponent follows. To compare the budgets, use
+\(\log140<5\) and \(\log4<2\):
+\[
+ a_s-s<s-5=2r-4<r(r-1)\le B_s\qquad(r\ge3).
+\]
+The failed comparison concerns this particular envelope; it is not a
+lower bound for the optimal cost and does not exclude sharper savings.
+\end{proof}
+
+\begin{proposition}[A common prime divisor at every weight]
+\label{prop:uniform-prime-divisor}
+For odd \(3\le k\le s-2\), define
+\[
+ G_{s,k,n}=\prod_{n<p\le (s-2)n/(k-1)}p,
+\]
+where the product is over primes. For every \(0\le m\le n\),
+\begin{equation}
+ G_{s,k,n}\mid d_n^{s-k}a_{(k-1)/2,n,m}.
+ \label{eq:uniform-prime-divisor}
+\end{equation}
+Consequently \eqref{eq:coarse-cost} improves to
+\begin{equation}
+ \lambda_2(\Lambda^{\rm coeff}_{s,n})
+ \le\frac{r!d_n^{r(r-1)}E_s(n)^{r-1}}
+              {\prod_{q=1}^{r-1}G_{s,2q+1,n}}.
+ \label{eq:prime-refined-cost}
+\end{equation}
+If \(H_j=\sum_{i=1}^j1/i\), the resulting upper exponential rate is
+\[
+ B'_s=B_s-\left(\frac{s-2}{2}H_{r-1}-(r-1)\right).
+\]
+This is a uniform arithmetic gain; its exponent still exceeds \(a_s-s\).
+\end{proposition}
+\begin{proof}
+Fix a prime in the defining interval. Since \(p>n\ge s-1\), we
+have \(p\ge s\), and all Laurent coefficients are \(p\)-integral.
+In \(\mathbb F_p[t]\), put \(F=t^p-t\). The reduced denominator
+of \(T=T_{s,n,m}\) divides \(F^s\), so \(P=F^s\overline T\)
+is a polynomial of degree at most \(sp+2m-s(n+1)\).
+
+The translation trace \(\operatorname{Tr}P=\sum_{a\in\mathbb F_p}P(t+a)\)
+has degree at most \(\deg P-(p-1)\), or is zero. Indeed, in the
+binomial expansion, \(\sum_a a^h=0\) for \(0\le h<p-1\),
+including \(h=0\) in characteristic \(p\). Also \(F(t+a)=F(t)\),
+and differentiation of \(F'/F=-1/F\) gives
+\[
+ \sum_{a\in\mathbb F_p}(t-a)^{-\ell}
+     =(-1)^\ell F^{-\ell}\qquad(1\le\ell\le s).
+\]
+The differentiating factorials are invertible, since \(\ell-1<p\).
+Write \(a_\ell=\sum_jc_{j,\ell}\) for the raw period-coefficient sum.
+Reducing the partial fractions and using translation invariance yields
+\[
+ \operatorname{Tr}P=\sum_{\ell=1}^s(-1)^\ell\overline{a_\ell}F^{s-\ell}.
+\]
+On the other hand its degree is strictly less than \((s-k)p\), because
+\[
+ (s-1)p+2m-sn-s+1
+ \le(s-1)p-(s-2)n-s+1
+ \le(s-k)p-s+1<(s-k)p.
+\]
+The powers of the monic polynomial \(F\) have distinct degrees. Starting
+with the largest nonzero power shows that all \(\overline{a_\ell}\)
+with \(\ell\le k\) vanish. In particular \(a_k\) vanishes modulo \(p\).
+The naturally cleared coefficient is an integer; since \(p>n\),
+its clearing factor is a local unit. It is therefore divisible by \(p\).
+Multiplying the distinct prime divisors proves
+\eqref{eq:uniform-prime-divisor}.
+
+Divide each natural lower row by its common divisor \(G_{s,2q+1,n}\).
+This preserves its kernel. The same Cramer construction used above now
+has the smaller row bounds and proves \eqref{eq:prime-refined-cost}.
+The prime number theorem gives
+\(\log G_{s,k,n}/n\to(s-2)/(k-1)-1\), so summing proves the
+formula for \(B'_s\). At weight seven the improvement is \(7/4\).
+For \(r\ge3\), the subtracted contribution is less than \(r(r-1)\);
+therefore
+\[
+ B'_s>(s+3)(r-1)\log2>s-5>a_s-s.
+\]
+Thus this valid elementary upper envelope does not yet give the strict
+upper rate required in \eqref{eq:binary-rate}.
+\end{proof}
+
 However, a signed combination that eliminates the target itself is a
 nonzero rational period and has an integral lower bound after clearing.
 In the notation of Section~\ref{sec:shape}, put
@@ -810,6 +1052,30 @@ the two-sided coefficient-map inverse, the integral-image characterization,
 integer adjugate lifts, their exact primitive content, and normalization.
 The lattice covolume and successive-minimum statements in
 Proposition~\ref{prop:coefficient-lattice} are paper proofs.
+\item \texttt{OddZeta/BinaryGaussMinimum.lean},
+\texttt{OddZeta/DualCoefficientGram.lean}, and
+\texttt{OddZeta/BinaryGaussCertificate.lean}:
+twenty-one theorems prove the first and independent-pair integer minimum
+bounds, their attainment, the sharp squared transference comparison,
+the dual determinant and adjugate identities, positivity, and soundness
+of an arbitrary unimodular reduction certificate. These are the algebraic
+and discrete minimum steps of Proposition~\ref{prop:binary-minimum}.
+The realization as an abstract Euclidean lattice and the family rate
+in \eqref{eq:binary-rate} are not asserted by these modules.
+\item \texttt{OddZeta/CramerKernelEnvelope.lean}:
+five theorems verify the determinant row-product bound, bounds for every
+Cramer coordinate, exact cancellation, the absolute-mass envelope, and
+the independence check at two free coordinates. The actual Laurent
+coefficient majorant in Proposition~\ref{prop:elementary-cost} is a
+paper derivation.
+\item \texttt{OddZeta/FiniteFieldTranslationTrace.lean}:
+six theorems verify finite-field polynomial evaluation sums, the
+translation-trace coefficient formula, vanishing above the degree cutoff,
+vanishing for small-degree polynomials, the composition coefficient
+test, and the exact Pad\'e degree inequality. These are the trace and
+degree steps of Proposition~\ref{prop:uniform-prime-divisor}; the
+identification with the reduced rational kernel and the prime-product
+asymptotic remain paper proofs.
 \end{itemize}
 The publication folder also contains \texttt{SignedCancellation.lean}
 and exact cancellation examples at weight seven and indices six and eight.
@@ -827,7 +1093,7 @@ specifies the mathematical assertion checked by Lean.
 A successful Lean compilation verifies these formal statements relative
 to the pinned library. It does not verify paper-only derivations such
 as the full Pad\'e coefficient identification in Theorem~\ref{thm:rank},
-\eqref{eq:smith}, \eqref{eq:base}, or the Gauss-reduction comparison.
+\eqref{eq:smith}, \eqref{eq:base}, or the family cost estimate.
 The accompanying verification report distinguishes these scopes.
 Rebuild with the pinned toolchain, using
 \texttt{lake exe cache get} and \texttt{lake build}.

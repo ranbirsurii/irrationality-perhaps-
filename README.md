@@ -5,6 +5,19 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [fifty-strategy research pass](notes/fifty-uniform-cost-strategies.md)
+adds a proved all-weight common-prime divisor for the actual lower-period
+rows, a uniform coefficient envelope, and a divisor-refined Cramer cost
+bound. At weight seven the prime saving is exactly 7/4 in that envelope's
+exponent. The envelope still exceeds the required budget.
+The [new verification record](publication/high-weight-criterion/uniform-cost-verification.md)
+documents thirty-two additional Lean theorems in five modules: exact
+Gauss minimum certificates, dual Gram identities, determinant and Cramer
+mass bounds, and finite-field translation traces. All five modules, their
+combined theorem/dependency driver, and the complete library entry point
+compiled successfully. The updated manuscript compiles in the existing
+desktop editor. The all-odd irrationality theorem remains unproved.
+
 The [dual-lattice continuation](notes/dual-transference-and-new-proposals.md)
 applies the new proposals through planar transference and exact binary-form
 Gauss reduction. It identifies the optimal primitive-pair Euclidean
@@ -13,7 +26,8 @@ nu/delta^2, with nu the second reduced diagonal of the explicit integral
 dual form. The implementation checks exact unimodular witnesses and the
 ambient primal Gram construction on three existing stored records. These
 finite comparisons improve the earlier common-content bounds but do not
-establish a uniform rate or add a new Lean theorem.
+establish a uniform rate. Its binary minimum and Gram algebra now have the
+Lean proofs described in the latest verification record above.
 
 The [twenty-method cost comparison](notes/twenty-cost-methods.md) develops
 the full rational lattice of integer coefficient pairs as an exact

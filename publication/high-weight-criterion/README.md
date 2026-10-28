@@ -44,6 +44,11 @@ assumptions are used to replace them.
   All primitive coefficient pairs identifies the optimal independent-pair
   cost. `notes/twenty-cost-methods.md` records the twenty-route comparison.
 - The repository's `OddZeta` directory: complete Lean library sources.
+- `VerifyBinaryGauss.lean`, `binary-gauss-axioms.log`, and
+  `uniform-cost-verification.md`: thirty-two new verified statements for
+  exact binary minimum certificates, dual Gram identities, Cramer mass
+  bounds, and finite-field translation traces. The manuscript additionally
+  proves an all-weight common-prime divisor and its cost improvement.
 
 The downloadable source archive additionally contains the pinned Lean
 project, supporting derivation notes, both supplied PDFs, and an integrity
@@ -89,8 +94,10 @@ The individual-content substitution weakens the shared-content sufficient
 condition; that new rate is still unproved for the actual family.
 Optimizing over the full rational coefficient lattice further weakens the
 condition to a bound for its second successive minimum. Its exact cost
-identity does not prove that bound. No route in the twenty-method
-comparison is presented as having completed the all-odd theorem.
+identity does not prove that bound. No route in the fifty-method comparison
+in `notes/fifty-uniform-cost-strategies.md` completes the all-odd theorem.
+The uniform prime divisors improve the elementary envelope but still do
+not establish the sharper reduced-form rate required for that conclusion.
 
 The Smith formula and the projector identify the integer content exactly.
 Neither identity is a lower asymptotic bound for that content. The

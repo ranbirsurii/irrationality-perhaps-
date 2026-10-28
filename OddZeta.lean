@@ -38,3 +38,8 @@ import OddZeta.GramSpectralBounds
 import OddZeta.PrimitivePairNormalization
 import OddZeta.AugmentedRankRootCount
 import OddZeta.PrimitiveCoefficientLattice
+import OddZeta.BinaryGaussMinimum
+import OddZeta.DualCoefficientGram
+import OddZeta.BinaryGaussCertificate
+import OddZeta.CramerKernelEnvelope
+import OddZeta.FiniteFieldTranslationTrace
