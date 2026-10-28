@@ -1,0 +1,27 @@
+OddZeta.coefficientPairMap_inverse (a b c d : ℚ) (y : ℚ × ℚ) (hdet : a * d - b * c ≠ 0) :
+  OddZeta.coefficientPairMap a b c d (OddZeta.coefficientPairInverse a b c d y) = y
+OddZeta.coefficientPairInverse_map (a b c d : ℚ) (x : ℚ × ℚ) (hdet : a * d - b * c ≠ 0) :
+  OddZeta.coefficientPairInverse a b c d (OddZeta.coefficientPairMap a b c d x) = x
+OddZeta.integral_image_iff_inverse_integer_pair (a b c d : ℚ) (x : ℚ × ℚ) (hdet : a * d - b * c ≠ 0) :
+  OddZeta.hasIntegralCoefficientImage a b c d x ↔ ∃ u v, x = OddZeta.coefficientPairInverse a b c d (↑u, ↑v)
+OddZeta.integer_adjugate_lift (a b c d u v : ℤ) :
+  a * (d * u - b * v) + b * (a * v - c * u) = (a * d - b * c) * u ∧
+    c * (d * u - b * v) + d * (a * v - c * u) = (a * d - b * c) * v
+OddZeta.square_adjugate_lift (a b c d u v : ℤ) :
+  a * ((a * d - b * c) * (d * u - b * v)) + b * ((a * d - b * c) * (a * v - c * u)) = (a * d - b * c) ^ 2 * u ∧
+    c * ((a * d - b * c) * (d * u - b * v)) + d * ((a * d - b * c) * (a * v - c * u)) = (a * d - b * c) ^ 2 * v
+OddZeta.square_scaled_primitive_content (g u v : ℤ) (hprimitive : u.gcd v = 1) : ↑((g ^ 2 * u).gcd (g ^ 2 * v)) = g ^ 2
+OddZeta.square_adjugate_normalization (a b c d : ℚ) (y : ℚ × ℚ) (hdet : a * d - b * c ≠ 0) :
+  ((a * d - b * c) * (d * y.1 - b * y.2) / (a * d - b * c) ^ 2,
+      (a * d - b * c) * (a * y.2 - c * y.1) / (a * d - b * c) ^ 2) =
+    OddZeta.coefficientPairInverse a b c d y
+OddZeta.divided_kernel_coordinates_have_integral_image (a b c d x y h : ℤ) (hfirst : h ∣ a * x + b * y)
+  (hsecond : h ∣ c * x + d * y) (hh : ↑h ≠ 0) : OddZeta.hasIntegralCoefficientImage ↑a ↑b ↑c ↑d (↑x / ↑h, ↑y / ↑h)
+'OddZeta.coefficientPairMap_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.coefficientPairInverse_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integral_image_iff_inverse_integer_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.integer_adjugate_lift' depends on axioms: [propext, Quot.sound]
+'OddZeta.square_adjugate_lift' depends on axioms: [propext, Quot.sound]
+'OddZeta.square_scaled_primitive_content' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.square_adjugate_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.divided_kernel_coordinates_have_integral_image' depends on axioms: [propext, Classical.choice, Quot.sound]

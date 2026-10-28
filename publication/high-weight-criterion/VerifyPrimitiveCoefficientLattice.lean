@@ -1,0 +1,19 @@
+import OddZeta.PrimitiveCoefficientLattice
+
+#check OddZeta.coefficientPairMap_inverse
+#check OddZeta.coefficientPairInverse_map
+#check OddZeta.integral_image_iff_inverse_integer_pair
+#check OddZeta.integer_adjugate_lift
+#check OddZeta.square_adjugate_lift
+#check OddZeta.square_scaled_primitive_content
+#check OddZeta.square_adjugate_normalization
+#check OddZeta.divided_kernel_coordinates_have_integral_image
+
+#print axioms OddZeta.coefficientPairMap_inverse
+#print axioms OddZeta.coefficientPairInverse_map
+#print axioms OddZeta.integral_image_iff_inverse_integer_pair
+#print axioms OddZeta.integer_adjugate_lift
+#print axioms OddZeta.square_adjugate_lift
+#print axioms OddZeta.square_scaled_primitive_content
+#print axioms OddZeta.square_adjugate_normalization
+#print axioms OddZeta.divided_kernel_coordinates_have_integral_image

@@ -37,6 +37,12 @@ assumptions are used to replace them.
   scope and formal checks for the polynomial root-count core. The complete
   paper proof is Theorem 2.1 and
   `notes/augmented-rank-discrete-residue-proof.md`.
+- `VerifyPrimitiveCoefficientLattice.lean`,
+  `primitive-coefficient-lattice-axioms.log`, and
+  `primitive-coefficient-lattice-verification.md`: the exact inverse-image
+  and primitive adjugate normalization checks. The paper's proposition
+  All primitive coefficient pairs identifies the optimal independent-pair
+  cost. `notes/twenty-cost-methods.md` records the twenty-route comparison.
 - The repository's `OddZeta` directory: complete Lean library sources.
 
 The downloadable source archive additionally contains the pinned Lean
@@ -81,6 +87,10 @@ Alternatively one may use the signed-pair trace rate. Theorem 2.1 now
 supplies full augmented rank for every specified consecutive-block profile.
 The individual-content substitution weakens the shared-content sufficient
 condition; that new rate is still unproved for the actual family.
+Optimizing over the full rational coefficient lattice further weakens the
+condition to a bound for its second successive minimum. Its exact cost
+identity does not prove that bound. No route in the twenty-method
+comparison is presented as having completed the all-odd theorem.
 
 The Smith formula and the projector identify the integer content exactly.
 Neither identity is a lower asymptotic bound for that content. The

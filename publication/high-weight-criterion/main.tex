@@ -42,6 +42,8 @@ combination gives an integer lower bound that rules out an overstrong
 cofactor-norm saving proposed in the supplied note.
 Individual primitive normalization gives a sharper signed-pair criterion,
 using each form's own coefficient gcd instead of the common content.
+The full rational preimage of integer coefficient pairs identifies the
+optimal independent-pair Euclidean primitive cost exactly.
 The construction-specific relative-cost bound is a hypothesis, not a
 conclusion. Signed pairs provide nonvanishing without a positivity
 assumption. This paper does not prove the unconditional irrationality
@@ -617,6 +619,95 @@ actual family. No Loewner comparison between
 \(G^\sharp\) and \(G/\Gamma^2\) is asserted: unequal diagonal
 scalings need not commute with \(G\).
 
+\begin{proposition}[All primitive coefficient pairs]
+\label{prop:coefficient-lattice}
+Let \(\Lambda=\ker_\Z C\), \(V=\operatorname{span}_\R\Lambda\),
+and \(\Phi(v)=(Y(v),Z(v))\). By Theorem~\ref{thm:rank}, \(\Phi\)
+is a linear isomorphism from \(V\) to \(\R^2\). Define
+\[
+ \Lambda^{\rm coeff}=\Phi^{-1}(\Z^2)
+       \subset\operatorname{span}_\Q\Lambda.
+\]
+For an integral basis \(a,b\) of \(\Lambda\), put
+\(B=(\Phi(a)\mid\Phi(b))\) and \(\delta=\det B\ne0\).
+Then \(\Lambda^{\rm coeff}\) is a rational rank-two lattice with
+\begin{equation}
+ [\Lambda^{\rm coeff}:\Lambda]=|\delta|,\qquad
+ \covol(\Lambda^{\rm coeff})=H/|\delta|,
+ \qquad H=\covol(\Lambda).
+ \label{eq:coefficient-covolume}
+\end{equation}
+Moreover the optimal independent-pair Euclidean primitive cost is exactly
+\begin{equation}
+ \min_{\substack{w_1,w_2\in\Lambda\\w_1,w_2\text{ independent}}}
+       \max_{i=1,2}\frac{\|w_i\|_2}{\gcd(Y(w_i),Z(w_i))}
+       =\lambda_2(\Lambda^{\rm coeff}).
+ \label{eq:optimal-pair-cost}
+\end{equation}
+The minimum is attained. In particular the right side is at most
+\(\lambda_2(\Lambda)/\Gamma\), and at most
+\(\max(\|a\|_2/h_a,\|b\|_2/h_b)\).
+\end{proposition}
+\begin{proof}
+In coordinates \(a,b\), the new lattice is \(B^{-1}\Z^2\).
+The index of \(B\Z^2\) in \(\Z^2\) is \(|\delta|\), and the
+coordinate change multiplies area by \(|\delta|^{-1}\).
+This proves \eqref{eq:coefficient-covolume}.
+
+For nonzero \(w\in\Lambda\), put \(h=\gcd(Y(w),Z(w))>0\).
+Then \(w/h\in\Lambda^{\rm coeff}\) and \(\Phi(w/h)\) is primitive
+in \(\Z^2\). Conversely, if \(v\in\Lambda^{\rm coeff}\) has
+primitive image, clear its rational coordinates by a positive integer
+\(t\). The vector \(w=tv\) lies in \(\Lambda\) and its coefficient
+gcd is exactly \(t\), so \(w/h(w)=v\).
+Explicitly, if \(z=\Phi(v)\in\Z^2\) is primitive, take the integer
+coordinate vector \(x=\delta\operatorname{adj}(B)z\). Then
+\[
+ Bx=\delta^2z,\qquad \gcd((Bx)_1,(Bx)_2)=\delta^2,\qquad
+ x/\delta^2=B^{-1}z.
+\]
+This accounts for every denominator in the converse.
+
+Any two independent primitive-normalized vectors are independent vectors
+of \(\Lambda^{\rm coeff}\), so their maximum length is at least its
+second successive minimum. Conversely choose a Gauss-reduced basis of
+\(\Lambda^{\rm coeff}\). Its longer norm equals that second minimum.
+Its image under \(\Phi\) is a basis of \(\Z^2\), so both image
+columns are primitive; the preceding construction realizes each basis
+vector as \(w/h(w)\). This proves the attained equality
+\eqref{eq:optimal-pair-cost}. Finally \(\Lambda/\Gamma\) is contained
+in \(\Lambda^{\rm coeff}\), and \(a/h_a,b/h_b\) are two independent
+vectors in it. These inclusions prove the last comparisons.
+\end{proof}
+
+For the reduced basis of \(\Lambda^{\rm coeff}\), the two integer
+coefficient forms have determinant \(\pm1\), so cannot both vanish.
+The signed norm bound gives, for each form,
+\begin{equation}
+ |L_i|\le\sqrt{r+1}\,d_n^s S_{s,n}
+                    \lambda_2(\Lambda^{\rm coeff}_{s,n}).
+ \label{eq:optimal-pair-bound}
+\end{equation}
+Thus a sufficient arithmetic estimate is
+\begin{equation}
+ \limsup\frac1n\log\lambda_2(\Lambda^{\rm coeff}_{s,n})<a_s-s.
+ \label{eq:coefficient-rate}
+\end{equation}
+This is a less restrictive optimization than choosing a fixed integral
+basis and dividing by a shared content. It is not an estimate established
+for the family. In particular, writing
+\(\kappa^{\rm coeff}=\lambda_2/\lambda_1\) for this new lattice,
+the Gauss angle bound gives only
+\[
+ \lambda_2(\Lambda^{\rm coeff})^2
+       \le\frac2{\sqrt3}\,\kappa^{\rm coeff}\frac H{|\delta|}.
+\]
+The required quantitative bound on this ratio remains unproved.
+Changing the common clearing convention does not create an arithmetic
+saving: replacing \(D,\Phi\) by \(cD,c\Phi\), \(c>0\), scales
+\(\Lambda^{\rm coeff}\) by \(1/c\) and leaves
+\(D\lambda_2(\Lambda^{\rm coeff})\) unchanged.
+
 However, a signed combination that eliminates the target itself is a
 nonzero rational period and has an integral lower bound after clearing.
 In the notation of Section~\ref{sec:shape}, put
@@ -714,6 +805,11 @@ and propagation of zeros along the polynomial difference equation.
 Its degree and reflection assumptions are derived in the paper proof
 of Theorem~\ref{thm:rank}; the complete family identification is not
 claimed as a Lean theorem.
+\item \texttt{OddZeta/PrimitiveCoefficientLattice.lean}:
+the two-sided coefficient-map inverse, the integral-image characterization,
+integer adjugate lifts, their exact primitive content, and normalization.
+The lattice covolume and successive-minimum statements in
+Proposition~\ref{prop:coefficient-lattice} are paper proofs.
 \end{itemize}
 The publication folder also contains \texttt{SignedCancellation.lean}
 and exact cancellation examples at weight seven and indices six and eight.
@@ -741,6 +837,8 @@ An unconditional application to all odd weights would require a proof
 of \eqref{eq:cost} for explicitly constructed nonnegative integral
 cancellation vectors at each fixed weight, or alternatively the signed
 pair rate hypothesis in \eqref{eq:individual-rate}.
+The weaker optimal-pair hypothesis \eqref{eq:coefficient-rate} also
+suffices and likewise remains unproved for this family.
 The exact projector criterion and the Smith formula specify the
 arithmetic content entering the first route. Individual normalization
 weakens that route's shared-content requirement but does not establish

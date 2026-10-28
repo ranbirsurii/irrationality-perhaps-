@@ -37,3 +37,4 @@ import OddZeta.PositiveCancellationCost
 import OddZeta.GramSpectralBounds
 import OddZeta.PrimitivePairNormalization
 import OddZeta.AugmentedRankRootCount
+import OddZeta.PrimitiveCoefficientLattice

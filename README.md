@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [twenty-method cost comparison](notes/twenty-cost-methods.md) develops
+the full rational lattice of integer coefficient pairs as an exact
+optimization of primitive cost. Its second Euclidean minimum equals the
+best independent-pair primitive cost, with no restriction to a shared gcd
+or one chosen integral basis. `PrimitiveCoefficientLattice.lean` verifies
+the coefficient-map inverse and the explicit integer lifts and their gcds.
+The lattice-geometric optimization is proved on paper. This improvement
+does not establish the necessary all-index second-minimum rate; none of
+the twenty routes has completed the irrationality proof here.
+
 The [augmented-rank proof](notes/augmented-rank-discrete-residue-proof.md)
 now proves, on paper, full augmented rank r+1 and lower-row rank r-1 for
 every odd s=2r+1>=5 and even n>=2r in the actual consecutive-block profile.
