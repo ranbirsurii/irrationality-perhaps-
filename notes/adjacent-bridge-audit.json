@@ -1,0 +1,530 @@
+{
+  "scope": "Universal integer polynomial bridge certificate; paper boundary argument identifies rational period coordinates. Finite checks of coordinate transport and p-adic formulas. No winning gcd estimate.",
+  "polynomial_identity_verified": true,
+  "common_bridge_denominator_degree_at_most": 33,
+  "hypergeometric_term_checks": 32,
+  "period_checks": [
+    {
+      "index": 2,
+      "bridge_coefficients": [
+        "26290185784435/5068227499224",
+        "13817026661819/236517283297120",
+        "3858562125/662248393231936"
+      ],
+      "casoratian": "10347631144249/324000",
+      "casoratian_ratio": "170789566275098775/8112542817091216",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    },
+    {
+      "index": 4,
+      "bridge_coefficients": [
+        "186625411900236941/259094097578816512",
+        "16036586148573247/3627317366103431168",
+        "4949942417/15181294780008780"
+      ],
+      "casoratian": "253021579666813/376320",
+      "casoratian_ratio": "686570052464754304/11385971085006585",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    },
+    {
+      "index": 6,
+      "bridge_coefficients": [
+        "440768853861325/1706965405185276",
+        "686995867835801/573540376142252736",
+        "72030659375/969275368185535488"
+      ],
+      "casoratian": "109465888466957/2700",
+      "casoratian_ratio": "3109888855443742463/29555789886078390",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    },
+    {
+      "index": 8,
+      "bridge_coefficients": [
+        "122331023005025083/941775104941301760",
+        "3604311186209805/7031920783561719808",
+        "892440945/31392503498043392"
+      ],
+      "casoratian": "3109888855443742463/729000",
+      "casoratian_ratio": "5110169868265831332147000/34242986187291048260093",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    },
+    {
+      "index": 12,
+      "bridge_coefficients": [
+        "1921262483227830195647945/37329369291070136990767872",
+        "190033764342860785371493/1119881078732104109723036160",
+        "399006816544000/48605949597747574206729"
+      ],
+      "casoratian": "3588258619798784836251891291/29679104000",
+      "casoratian_ratio": "298094156164117997866514967259625/1315316075298525947083748950116",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    },
+    {
+      "index": 20,
+      "bridge_coefficients": [
+        "601291394154443613296536831/35660475727626078852648000000",
+        "1578371041466782551332641/33283110679117673595804800000",
+        "91379260087744926033/45504252881606194369264375000"
+      ],
+      "casoratian": "2885705738254525525434299259500581825/4461171264",
+      "casoratian_ratio": "189657649279998943463580034593998664/560306983028603860809476042421875",
+      "period_coordinate_identity_verified": true,
+      "exterior_square_transport_verified": true
+    }
+  ],
+  "local_term_checks": [
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 2,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 2,
+      "exponent": 4,
+      "term_valuation": -19
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 3,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 5,
+      "exponent": 1,
+      "term_valuation": -5
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 7,
+      "exponent": 1,
+      "term_valuation": -5
+    },
+    {
+      "index": 2,
+      "length": 2,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 2,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 2,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 3,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 5,
+      "exponent": 1,
+      "term_valuation": -5
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 7,
+      "exponent": 1,
+      "term_valuation": -5
+    },
+    {
+      "index": 2,
+      "length": 1,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 2,
+      "exponent": 4,
+      "term_valuation": -19
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 2,
+      "exponent": 5,
+      "term_valuation": -24
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 3,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 4,
+      "length": 4,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 2,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 2,
+      "exponent": 4,
+      "term_valuation": -20
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 3,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 4,
+      "length": 3,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 2,
+      "exponent": 5,
+      "term_valuation": -24
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 2,
+      "exponent": 6,
+      "term_valuation": -29
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -13
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 3,
+      "exponent": 4,
+      "term_valuation": -18
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 8,
+      "length": 8,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 2,
+      "exponent": 4,
+      "term_valuation": -20
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 2,
+      "exponent": 5,
+      "term_valuation": -25
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -13
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 3,
+      "exponent": 4,
+      "term_valuation": -18
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 8,
+      "length": 7,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 2,
+      "exponent": 5,
+      "term_valuation": -23
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 2,
+      "exponent": 6,
+      "term_valuation": -28
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 3,
+      "exponent": 4,
+      "term_valuation": -20
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 12,
+      "length": 12,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -14
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 2,
+      "exponent": 5,
+      "term_valuation": -24
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 2,
+      "exponent": 6,
+      "term_valuation": -29
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 3,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 3,
+      "exponent": 4,
+      "term_valuation": -20
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 5,
+      "exponent": 2,
+      "term_valuation": -10
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 5,
+      "exponent": 3,
+      "term_valuation": -15
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 7,
+      "exponent": 2,
+      "term_valuation": -9
+    },
+    {
+      "index": 12,
+      "length": 11,
+      "prime": 7,
+      "exponent": 3,
+      "term_valuation": -14
+    }
+  ]
+}

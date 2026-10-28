@@ -32,6 +32,13 @@ expresses h_n/M_n as the gcd of two explicit coefficient minors divided
 by the lower-period row mass. It also checks why analytic bounds on S_n
 do not bound M_n and why modular nonvanishing does not give a gcd lower
 bound. The required growth of the determinantal gcd remains unproved.
+The [Smith and exterior-square calculation](notes/smith-exterior-square-progress.md)
+constructs an exact adjacent-family bridge with a degree-33 common
+denominator, extends the recurrence to all three rational period
+coordinates, and proves its nonzero Casoratian and compound-matrix
+transport. Independent integer-polynomial and unimodular-witness checks
+are included. These identify the proposed recurrence lattice; its winning
+gcd growth estimate remains unproved.
 
 The [coefficient-sign reduction](notes/coefficient-sign-reduction.md)
 constructs exact Cauchy contours and a harmonic-binomial expression for
