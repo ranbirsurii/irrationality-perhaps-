@@ -841,3 +841,11 @@ is irrational.
 All Lean source files use ordinary visible code and contain no `sorry` or
 `admit`.
 
+# Exact transition-norm follow-up
+
+The [transition growth analysis](notes/transition-growth-methods.md) derives
+the optimal weighted infinity-to-one norm of the transfer map and an exact
+directional lower certificate. The accompanying rational checks cover
+eighteen transferred pairs. This sharpens the metric formulation but does
+not prove the uniform arithmetic rate or irrationality.
+
