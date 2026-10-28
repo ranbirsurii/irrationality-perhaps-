@@ -1,0 +1,35 @@
+import OddZeta.RationalCentering
+import OddZeta.SymmetricPadePeriods
+import OddZeta.PoisedKernelPositivity
+import OddZeta.PadeNormalizedElimination
+import OddZeta.PadeCombinedFive
+
+#print axioms OddZeta.rational_centering_den_divisibilities
+#print axioms OddZeta.rational_centering_den_bounds
+#print axioms OddZeta.integer_centering_preserves_denominator
+#print axioms OddZeta.involution_residue_sum_zero
+#print axioms OddZeta.barnesFiveExample_partial_fractions
+#print axioms OddZeta.barnesFiveSummand_partial_fractions
+#print axioms OddZeta.barnesFiveExample_hasSum
+#print axioms OddZeta.barnesFiveSummand_hasSum
+#print axioms OddZeta.barnesFiveExample_lower
+#print axioms OddZeta.pade_lower_period_elimination
+#print axioms OddZeta.pade_coordinate_elimination
+#print axioms OddZeta.poisedRationalKernel_zero_integer
+#print axioms OddZeta.poisedRationalKernel_pos_integer
+#print axioms OddZeta.poisedRationalKernel_nonneg_integer
+#print axioms OddZeta.hasSum_pos_of_nonneg_of_pos
+#print axioms OddZeta.poisedRationalKernel_hasSum_pos
+#print axioms OddZeta.rational_rescaling_preserves_primitive_height
+#print axioms OddZeta.rational_lower_period_annihilator
+#print axioms OddZeta.padeWeightMass_pos
+#print axioms OddZeta.normalizedPadeWeight_l1
+#print axioms OddZeta.normalizedPadeWeight_cancellation
+#print axioms OddZeta.normalized_lower_period_annihilator
+#print axioms OddZeta.normalizedPadeWeight_bound
+#print axioms OddZeta.normalizedPadeWeight_tendsto_zero
+#print axioms OddZeta.poisedFiveCombined_kernel
+#print axioms OddZeta.poisedFiveCombined_partial_fractions
+#print axioms OddZeta.consecutive_three_hasSum
+#print axioms OddZeta.poisedFiveCombined_hasSum
+#print axioms OddZeta.poisedFiveCombined_positive

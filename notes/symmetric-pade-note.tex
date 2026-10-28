@@ -1,0 +1,408 @@
+\documentclass[11pt]{article}
+\usepackage[left=0.85in,right=0.85in,top=0.65in,bottom=0.65in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\HH}[2]{H_{#1}^{(#2)}}
+\title{Explicit symmetric Pad\'e kernels\\and exact odd-zeta cancellation}
+\author{}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We identify the differential equations behind the moment data and construct
+explicit symmetric rational kernels with Barnes-integral representations.
+Finite rational linear conditions cancel every unwanted zeta coefficient.
+An exact term ratio and tail bound yield a saddle-point limit for
+normalized positive sums.
+Two kernel families and a finite search over subsidiary conditions are
+computed with complete gcd reduction. The construction produces pure-target
+forms, including several small finite forms for $\zeta(5)$, but does not
+establish a sequence of nonzero primitive forms tending to zero.
+The all-odd irrationality theorem is not proved.
+\end{abstract}
+
+\section{Which differential equation is actually available?}
+The existing coefficients are defined by
+\[
+ \Delta_{N,a}(X)=\det[X-\HH{a+i+j}{s}]_{0\le i,j<N}=A_{N,a}X+B_{N,a},
+ \quad Q=\operatorname{lcm}(1,\ldots,a+2N-2)^s,
+\]
+\[
+ U=Q^NA_{N,a},\qquad V=Q^NB_{N,a},\qquad
+ g=\gcd(|U|,|V|),\qquad u=U/g.
+\]
+An empty lcm is one. These formulas define $u$ arithmetically; no linear
+differential equation or single Barnes integral for the gcd quotient
+has been established.
+
+There is an exact equation for the moment-generating data. For $|z|<1$,
+absolute convergence gives
+\[
+ \sum_{n\ge0}\HH{n}{s}z^n=\frac{\operatorname{Li}_s(z)}{1-z},
+ \qquad \operatorname{Li}_s(z)=\sum_{n\ge1}\frac{z^n}{n^s}.
+\]
+With $\theta=z\,d/dz$, we have
+$\theta^s\operatorname{Li}_s=z/(1-z)$, and hence
+\begin{equation}
+ \bigl((1-z)\theta-1\bigr)\theta^s\operatorname{Li}_s=0.
+ \label{eq:polylog}
+\end{equation}
+For $s\ge2$, its indicial exponents are
+\[
+ \begin{array}{c|c}
+ 0&0\ (s\text{ times}),\ 1\\
+ 1&0,1,\ldots,s-2,\ s-1,\ s-1\\
+ \infty&0\ (s+1\text{ times})
+ \end{array}
+\]
+Indeed, the indicial polynomials are respectively
+$\rho^s(\rho-1)$, a nonzero multiple of
+$\rho(\rho-1)\cdots(\rho-s+1)(\rho-s+1)$, and a nonzero
+multiple of $\rho^{s+1}$ after setting $z=1/w$.
+These exponents do not determine an integral period lattice.
+
+\section{The exact arithmetic price of subtracting a counterterm}
+Let $\operatorname{den}(q)>0$ denote a reduced rational denominator.
+For rational $x,c$, elementary denominator arithmetic gives
+\begin{equation}
+ \operatorname{den}(x-c)\mid\operatorname{den}(x)\operatorname{den}(c),
+ \qquad
+ \operatorname{den}(x)\mid\operatorname{den}(x-c)\operatorname{den}(c).
+ \label{eq:center}
+\end{equation}
+The first follows by subtraction; the second by $x=(x-c)+c$.
+Consequently, subtracting a rational counterterm with denominator $m$
+can reduce the denominator of $x$ by at most a factor $m$.
+An integer counterterm leaves it unchanged. Lean verifies these statements.
+
+Euler--Maclaurin expansions can sharply estimate analytic remainders.
+To use a subtraction in an integer linear form, its rational denominator
+must still enter \eqref{eq:center}. A nonrational logarithmic counterterm
+adds another period unless its coefficient is independently canceled.
+Merely introducing and subtracting an intermediate scale does not alter
+the original reduced coefficient.
+
+\section{A concrete Barnes family with subsidiary conditions}
+Fix $r,n\ge1$, put $s=2r+1$, $A=2r$, and choose $0\le m\le rn$.
+These kernels have a different arithmetic budget from the single-shift
+determinants; the earlier lower bound is not asserted for them. Define
+\begin{equation}
+ R_{r,n,m}(t)=
+ \frac{\prod_{v=1}^{m}(t-v)(t+n+v)}
+      {\prod_{j=0}^{n}(t+j)^A}.
+ \label{eq:kernel}
+\end{equation}
+This is a proper rational function of decay at least $t^{-2r}$.
+Away from the apparent gamma poles its exact gamma-ratio representation is
+\[
+ R_{r,n,m}(t)=
+ \frac{\Gamma(t)^{A+1}\Gamma(t+n+m+1)}
+      {\Gamma(t-m)\Gamma(t+n+1)^{A+1}}.
+\]
+Both sides continue as the same rational function. Direct cancellation gives
+\begin{align}
+ R_{r,n,m+1}(t)&=
+ [t(t+n)-(m+1)(n+m+1)]R_{r,n,m}(t),\\
+ \frac{R_{r,n,m}(t+1)}{R_{r,n,m}(t)}
+ &=\frac{t^{A+1}(t+n+m+1)}
+         {(t-m)(t+n+1)^{A+1}},
+ \label{eq:ratio}
+\end{align}
+where the second identity is used away from zeros and poles.
+These are actual recurrences for the rational kernel.
+
+\begin{proposition}
+For $0<c<1$,
+\begin{equation}
+ \Lambda_{r,n,m}:=-\sum_{k=1}^{\infty}R'_{r,n,m}(k)
+ =\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+       \left(\frac{\pi}{\sin\pi t}\right)^2R_{r,n,m}(t)\dd t.
+ \label{eq:barnes}
+\end{equation}
+Moreover $\Lambda_{r,n,m}\in
+\Q+\Q\zeta(3)+\cdots+\Q\zeta(2r+1)$, with explicitly computable
+rational coefficients.
+\end{proposition}
+\begin{proof}
+The series converges absolutely by the decay of $R'$.
+The integrand in \eqref{eq:barnes} has residue $R'(k)$ at each positive
+integer. Close the upward vertical line to the right along half-integer
+rectangles. The orientation is clockwise; the remaining edges vanish by
+rational decay and the exponential decay of $\sin(\pi t)^{-2}$.
+This proves the sign and normalization of \eqref{eq:barnes}.
+
+Write $R=\sum_{j=0}^n\sum_{k=1}^A c_{j,k}(t+j)^{-k}$.
+Its reflection symmetry $R(-n-t)=R(t)$ gives
+$c_{n-j,k}=(-1)^kc_{j,k}$. Differentiating the finite expansion and using
+$\sum_{\ell\ge1}(\ell+j)^{-q}=\zeta(q)-H_j^{(q)}$ gives
+\[
+ \Lambda=\sum_{q=2}^{A+1}(q-1)\left(\sum_jc_{j,q-1}\right)\zeta(q)
+          -\sum_{j=0}^n\sum_{k=1}^A k c_{j,k}\HH{j}{k+1}.
+\]
+Even $q$ vanish by the reflection identity.
+The coefficients follow from the finite Taylor formula
+\[
+ c_{j,k}=\frac1{(A-k)!}
+ \left.\frac{d^{A-k}}{dt^{A-k}}[(t+j)^A R(t)]\right|_{t=-j}.
+\]
+\end{proof}
+
+Take $r$ block lengths $m_1,\ldots,m_r$, and denote their coefficients of
+$\zeta(2q+1)$ by $a_{q,j}$. Choose rational, then integer, weights satisfying
+\[
+ \sum_{j=1}^r w_j a_{q,j}=0\qquad(1\le q<r).
+\]
+There is a nonzero rational solution because there are $r-1$ equations.
+The target coefficient must separately be nonzero; the finite audits check
+both rank and this nonvanishing. The resulting form is
+\[
+ L=\sum_jw_j\Lambda_{r,n,m_j}=a\zeta(s)+b.
+\]
+For consecutive block lengths, the combined kernel is
+$R_{r,n,m_{\min}}(t)P(t(t+n))$ with $\deg P\le r-1$.
+Thus the subsidiary conditions define a concrete polynomial deformation.
+
+A second audited family replaces \eqref{eq:kernel} by
+\[
+ S_{r,n,m}(t)=
+ \frac{(2t+n)^\epsilon\prod_{v=1}^{m}(t-v)(t+n+v)}
+      {\prod_{j=0}^{n}(t+j)^s},\qquad \epsilon\equiv n\pmod2,
+\]
+with $2m+\epsilon\le s(n+1)-2$.
+Then $S(-n-t)=-S(t)$, so $\sum_{k\ge1}S(k)$ again has only odd zeta
+terms and a rational constant. Its total simple-pole residue is zero
+by proper decay; this accounts for the convergent first-order pole terms.
+
+There is also an analytic nonvanishing mechanism. At positive integers,
+$S(k)=0$ for $k\le m$ and $S(k)>0$ for $k>m$: beyond the numerator
+zeros every displayed factor is positive. Lean verifies these inequalities
+for the actual rational kernel and the positive-value conclusion for any
+of its convergent sums. If the subsidiary weights have one sign and are
+not all zero, the combined integer summands have that sign and are
+strictly nonzero beyond all block lengths. Their sum is therefore nonzero.
+Constructing such weights with adequate size bounds remains an arithmetic
+requirement; positivity is not assumed for arbitrary nullvectors.
+
+\subsection{The functional Pad\'e bridge}
+Let $c_{j,q}$ be the partial-fraction coefficients of $S$. Define
+\[
+ P_q(z)=\sum_{j=0}^n c_{j,q}z^{n-j},\qquad
+ P_0(z)=\sum_{j=0}^n\sum_{q=1}^s c_{j,q}
+              \sum_{\ell=1}^j\frac{z^{n-j+\ell}}{\ell^q}.
+\]
+All these polynomials have degree at most $n$. Reindexing absolutely
+convergent series for $|z|<1$ gives the exact functional identity
+\begin{equation}
+ \sum_{q=1}^sP_q(z)\operatorname{Li}_q(z)-P_0(z)
+ =z^n\sum_{k\ge1}S(k)z^k=O(z^{n+m+1}).
+ \label{eq:functional}
+\end{equation}
+The zero order follows from the first $m$ numerator zeros.
+Reflection gives $P_q(1)=0$ for even $q$, and proper decay gives
+$P_1(1)=0$. Hence the logarithmic term
+$P_1(z)\operatorname{Li}_1(z)$ tends to zero at $z=1$:
+$P_1(z)=O(1-z)$ and $\operatorname{Li}_1(z)=-\log(1-z)$.
+The additional odd-coefficient conditions cancel the remaining unwanted
+values. This supplies an actual functional Pad\'e problem at $0$ and
+subsidiary conditions at $1$, rather than assuming an identification with
+the polylogarithm differential system.
+
+\section{What the cancellations achieve, and their remaining cost}
+At $r=2,n=1$, choosing the two weights $-23,-145$ for block lengths
+$2,1$ gives, with $T=t(t+1)$,
+\[
+ K(t)=\frac{-23T^2+39T+14}{T^4}
+ =-\frac{17}{t^3}+\frac{14}{t^4}
+   +\frac{17}{(t+1)^3}+\frac{14}{(t+1)^4}.
+\]
+Consequently
+\[
+ -K'(t)=-\frac{51}{t^4}+\frac{56}{t^5}
+         +\frac{51}{(t+1)^4}+\frac{56}{(t+1)^5},
+ \qquad -\sum_{k\ge1}K'(k)=112\zeta(5)-107.
+\]
+Lean verifies the rational identities and the corresponding
+\texttt{HasSum} identity for the actual real zeta value.
+It also verifies $112\zeta(5)-107\ge5$.
+Thus exact lower-period cancellation alone does not give smallness.
+
+The two families were checked at $92$ weight/index/profile choices.
+A separate search enumerated $2140$ distinct nonzero-target two-kernel
+forms for $\zeta(5)$, with complete gcd reduction.
+The indices are $2,4,8,12,20$, with respectively
+$21,66,231,496,1326$ distinct candidates.
+For the first profile the full combined kernel is explicitly
+\[
+ F(t)=601088S_{2,2,2}(t)+37632S_{2,2,3}(t)
+ =\frac{256(147t^2+294t+143)(t-1)(t-2)(t+3)(t+4)}
+ {t^5(t+1)^5(t+2)^5}.
+\]
+Its partial fractions give
+$\sum_{k\ge1}F(k)=91776\zeta(5)-95165>0$, with the entire
+$\zeta(3)$ coefficient canceled. The next best primitive form is
+$1216512\zeta(5)-1261435$.
+Both absolute values are certified below one. All signs and finite
+comparisons use exact rational zeta enclosures.
+Finite smallness is not a limit theorem.
+
+If $D$ clears the denominators of $a,b$ and
+$g=\gcd(|Da|,|Db|)$, the necessary combined estimate is
+\[
+ 0<|L_{\rm prim}|=\frac Dg|L|
+ \le\frac Dg\sum_j|w_j|\,|\Lambda_j|\longrightarrow0.
+\]
+A Barnes saddle estimate must therefore be paired with bounds on the
+subsidiary-condition weights and the exact arithmetic normalization.
+These bounds have not been proved to win for every odd target.
+
+The general contour, gamma-ratio, indicial, functional Pad\'e, and
+saddle-limit arguments are paper proofs here. Lean verifies the centering budget, finite period-coordinate
+elimination, the explicit $\zeta(5)$ series identities, and integer-kernel
+positivity. No all-index target nonvanishing or winning arithmetic estimate
+is asserted.
+
+There are specialized alternatives to a general Siegel--Shidlovskii
+statement for $G$-functions. Fischler's multipoint multiplicity argument
+\cite{Fischler} proves the infinitely-many-odd-values result, whereas
+Rivoal \cite{Rivoal} shows that the direct general $G$-function analogue
+is false. Recent Hurwitz-zeta Pad\'e asymptotics \cite{Kandaian} assume
+determinantal nondegeneracy and a regular equilibrium regime; they do
+not assert the integer coefficient estimate above.
+The explicit families here provide objects on which to test such methods,
+without assuming their missing arithmetic conclusion.
+
+\section{Analytic control of the positive summands}
+This calculation concerns the sums before the subsidiary-condition
+combination and final primitive normalization. Restrict to even $n$,
+fix $0<\beta<s/2$, and let the integers $m=m_n$ satisfy $m_n/n\to\beta$. Put
+\[
+ F_{n,m}(k)=\frac{(n!)^s}{(m!)^2}S_{r,n,m}(k),\qquad
+ {\cal A}_{n,m}=\sum_{k>m}F_{n,m}(k).
+\]
+The summands are positive and have the exact ratio
+\[
+ \frac{F_{n,m}(k+1)}{F_{n,m}(k)}
+ =\frac{k^{s+1}(k+n+m+1)}{(k-m)(k+n+1)^{s+1}}.
+\]
+Define, for $x>\beta$,
+\[
+ \begin{aligned}
+ \Phi_{s,\beta}(x)={}&(s+1)[x\log x-(x+1)\log(x+1)]\\
+ &+(x+1+\beta)\log(x+1+\beta)\\
+ &-(x-\beta)\log(x-\beta)-2\beta\log\beta.
+ \end{aligned}
+\]
+There is a unique maximizing point $x_\beta$. Indeed, with
+$v=x/(x+1)$, the equation $\Phi'=0$ becomes
+\[
+ G(v):=\beta(1+v^{s+1})-\sum_{j=1}^s v^j=0.
+\]
+For $0<v<1$,
+$G'(v)=\beta(s+1)v^s-\sum_{j=1}^sjv^{j-1}<0$, because
+$\sum jv^{j-1}\ge s(s+1)v^s/2$ and $2\beta<s$.
+Also $G(\beta/(1+\beta))>0$ and $G(1)<0$.
+The same argument, with $\beta$ replaced by $m/(n+1)$, proves
+unimodality of the exact discrete summands.
+
+Here is a uniform tail bound, so the infinite sum introduces no missing
+exponential factor. Set
+\[
+ E=s(n+1)-2m-2,\quad B=2m^2+sn(n+1),\quad
+ K=\max\{2m,m+1,\lceil B/E\rceil\}.
+\]
+For large $n$, $E>0$ and $K=O(n)$. For real $t\ge K$,
+\[
+ \frac{d}{dt}\log[t^2S(t)]
+ \le-\frac E t+\frac B{t^2}\le0.
+\]
+To verify this, use
+$\sum_{v=1}^m(t-v)^{-1}\le m/t+2m^2/t^2$,
+$\sum_{v=1}^m(t+n+v)^{-1}\le m/t$, and
+$\sum_{j=0}^n(t+j)^{-1}\ge(n+1)/t-n(n+1)/t^2$.
+Thus $F(k)\le F(K)(K/k)^2$ for $k\ge K$, and
+\[
+ \max_{k>m}F(k)\le {\cal A}_{n,m}
+ \le(2K+1)\max_{k>m}F(k).
+\]
+Finally the elementary factorial estimate
+$\log(q!)=q\log q-q+O(\log(q+2))$, obtained by bounding
+the sum of $\log j$ between its adjacent integrals, gives
+$n^{-1}\log F_{n,m}(\lfloor nx\rfloor)\to\Phi_{s,\beta}(x)$
+locally uniformly for $x>\beta$. The exact ratio locates the peak at
+$k/n\to x_\beta$. Consequently
+\begin{equation}
+ \lim_{\substack{n\to\infty\\ n\ \mathrm{even}}}
+ \frac1n\log{\cal A}_{n,m_n}
+ =\Phi_{s,\beta}(x_\beta).
+ \label{eq:analyticrate}
+\end{equation}
+In particular the certified rate for $s=5$, $\beta=1$ lies in
+$(-4.970794,-4.970793)$. This proves exponential decay of those normalized
+positive sums. The scripts certify $44$ negative saddle-rate intervals
+and $22$ finite positive-sum enclosures against independent period
+enclosures.
+
+For $\beta=1$, decay follows at every odd weight, not just the tested
+weights. For $x>1$, $B(x):=x\log x-(x+1)\log(x+1)<0$, and hence
+\[
+ \Phi_{s,1}(x)=\Phi_{3,1}(x)+(s-3)B(x)\le\Phi_{3,1}(x).
+\]
+The certified base maximum is less than $-1.99$. Thus, for each fixed
+odd $s\ge3$, $(n!)^{s-2}\sum_{k\ge1}S_{r,n,n}(k)\le e^{-1.99n}$
+for all sufficiently large even $n$.
+
+\subsection{Completion of the lower-period analytic step}
+For a fixed $s=2r+1$, use the $r$ normalized sums with block lengths
+$m_j=n-j$, $0\le j<r$. Each has rate limit $\Phi_{s,1}(x_1)$, so
+all are bounded by $e^{-1.99n}$ for sufficiently large even $n$.
+Write their lower-period coefficient matrix as $C_n\in
+M_{r-1,r}(\Q)$. Dimension gives a nonzero $w_n\in\ker C_n$.
+These weights are computable: when $C_n$ has full row rank, use the
+signed maximal minors $w_{n,j}=(-1)^j\det C_n^{\widehat j}$.
+Laplace expansion with a repeated row proves $C_nw_n=0$.
+Otherwise rational row reduction and a free coordinate produce a kernel vector.
+Put $M_n=\sum_j|w_{n,j}|>0$ and $\widehat w_{n,j}=w_{n,j}/M_n$.
+Then, exactly,
+\[
+ C_n\widehat w_n=0,\qquad
+ \sum_j|\widehat w_{n,j}|=1,\qquad
+ L_n:=\sum_j\widehat w_{n,j}{\cal A}_{n,n-j}
+      =a_n\zeta(s)+b_n,
+\]
+\[
+ |L_n|\le\sum_j|\widehat w_{n,j}|\,|{\cal A}_{n,n-j}|
+       \le e^{-1.99n}.
+\]
+This completes lower-period cancellation and preserves analytic decay.
+Lean verifies the rational kernel-vector existence, normalization,
+cancellation, norm bound, and resulting convergence implication.
+
+This normalization does not itself give small integer forms.
+If $a_n\ne0$, multiplying both rational coefficients by the same nonzero
+rational does not change the reduced denominator of $b_n/a_n$; Lean verifies
+this invariance. One must still prove nonvanishing and
+$(D_n/g_n)|L_n|\to0$ after the full integer normalization.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{Rivoal}
+T. Rivoal, \emph{Remarks on the impossibility of a Siegel--Shidlovskii
+like theorem for G-functions}, Hardy--Ramanujan Journal 38 (2015).
+\url{https://hrj.episciences.org/1357}.
+\bibitem{Fischler}
+S. Fischler, \emph{Shidlovsky's multiplicity estimate and Irrationality
+of zeta values}, 2016.
+\url{https://arxiv.org/abs/1609.09770}.
+\bibitem{Kandaian}
+A. Kandaian, \emph{Multipoint Pad\'e Approximation of the Hurwitz Zeta
+Function and a Riemann--Hilbert Steepest Descent Analysis}, preprint, 2026.
+\url{https://arxiv.org/abs/2602.08399}.
+\end{thebibliography}
+\end{document}

@@ -17,6 +17,11 @@ import OddZeta.PolynomialSmallnessCriterion
 import OddZeta.HeightGrowthComparison
 import OddZeta.HarmonicDenominatorGrowth
 import OddZeta.ThirdIntervalPrimeCost
+import OddZeta.RationalCentering
+import OddZeta.SymmetricPadePeriods
+import OddZeta.PoisedKernelPositivity
+import OddZeta.PadeNormalizedElimination
+import OddZeta.PadeCombinedFive
 import OddZeta.AperyModernIdentification
 import OddZeta.AperyFormalPeriod
 import OddZeta.AdamsGeneral

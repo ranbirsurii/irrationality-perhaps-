@@ -3,6 +3,60 @@
 This project formalizes exact algebraic pieces from both supplied chat texts,
 plus the integer-smallness argument needed for an irrationality proof.
 
+## Explicit symmetric Padé cancellation
+
+The latest [research note](notes/symmetric-pade-note.pdf)
+([TeX](notes/symmetric-pade-note.tex)) gives the actual harmonic/polylog
+differential equation and a symmetric gamma-ratio kernel with a Barnes
+integral. It constructs subsidiary linear conditions that eliminate lower
+odd zeta terms. These kernels have their own arithmetic budget; the
+single-shift Hankel obstruction is not asserted for them.
+
+`RationalCentering.lean` proves the denominator cost of subtracting a
+rational counterterm, including invariance under integer subtraction
+and under common rational rescaling of a coefficient pair.
+`SymmetricPadePeriods.lean` proves residue-sum cancellation, general finite
+period-coordinate elimination, and the explicit rational identities and
+actual real-zeta series evaluation giving `112*zeta(5)-107`.
+`PoisedKernelPositivity.lean` proves that the actual integer kernel values
+vanish at `1,...,m`, are positive thereafter, and force any convergent sum
+to be positive. One-sign combinations therefore provide analytic
+nonvanishing. The general Barnes contour argument and polylog indicial
+calculations are paper proofs.
+`PadeNormalizedElimination.lean` proves rational lower-period nullvector
+existence and normalization, preserving cancellation and any common bound.
+`PadeCombinedFive.lean` proves the actual series identity
+`sum_k (601088*S_(2,2,2)(k)+37632*S_(2,2,3)(k)) = 91776*zeta(5)-95165`
+and its strict positivity, including the factored rational kernel and
+full partial fractions.
+The added Lean modules have no proof placeholders or added axioms.
+
+The [symmetric-kernel audit](scripts/symmetric_pade_audit.py) checks 92
+weight/index/profile cases across derivative and well-poised families.
+The [profile search](scripts/pade_profile_search.py) certifies the best
+among 2140 distinct two-kernel forms for zeta(5) at five finite indices.
+The first two best primitive forms have absolute value below one; a
+sequence tending to zero has not been proved. Exact data and the
+[verification record](notes/pade-verification-summary.md) are included.
+No full all-odd irrationality claim is made.
+
+The paper also constructs the functional Padé identity for
+`1, Li_1, ..., Li_s`, including its high-order zero at zero and subsidiary
+conditions at one. Its analytic section proves a saddle-rate limit for
+normalized positive sums using exact unimodality and an explicit tail bound.
+For weight 5 with block length `m=n`, the rate lies in
+`(-4.970794, -4.970793)`. The
+[analytic audit](scripts/analytic_sum_control.py) certifies 44 negative
+saddle-rate intervals and 22 finite positive-sum bounds. These are estimates
+before the final primitive arithmetic cost.
+At block length `m=n`, a monotonicity argument in the paper extends analytic
+decay to every fixed odd weight: the normalized individual sums are at most
+`exp(-1.99*n)` for all sufficiently large even indices. The arithmetic
+bound for the final primitive integer forms is still unproved. With block
+lengths `m=n-j`, `0<=j<r`, normalizing a nonzero rational nullvector to
+sum of absolute weights one cancels all lower periods and preserves
+this analytic bound. All-index nonvanishing is still required.
+
 ## Growth comparisons and a proved large-shift obstruction
 
 The new four-page [growth note](notes/height-growth-note.pdf)
