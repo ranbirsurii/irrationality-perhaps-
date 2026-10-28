@@ -1,0 +1,28 @@
+OddZeta.poised_kernel_weight_shift (r n m : ℕ) (t : ℚ) :
+  OddZeta.poisedRationalKernel (r + 1) n m t =
+    OddZeta.poisedRationalKernel r n m t / (∏ j ∈ Finset.range (n + 1), (t + ↑j)) ^ 2
+OddZeta.normalized_kernel_weight_shift (r n m : ℕ) (t : ℚ) :
+  OddZeta.normalizedOddKernel (r + 1) n m t =
+    OddZeta.normalizedOddKernel r n m t * (↑n.factorial / ∏ j ∈ Finset.range (n + 1), (t + ↑j)) ^ 2
+OddZeta.odd_kernel_phase_weight_shift (s x : ℝ) :
+  OddZeta.oddKernelPhase (s + 2) x = OddZeta.oddKernelPhase s x - 2 * OddZeta.oddKernelEntropy x
+OddZeta.odd_kernel_entropy_derivative (x : ℝ) (hx : 1 ≤ x) :
+  HasDerivAt OddZeta.oddKernelEntropy (Real.log (x + 1) - Real.log x) x
+OddZeta.odd_kernel_entropy_lower (x : ℝ) (hx : 1 ≤ x) : 2 * Real.log 2 ≤ OddZeta.oddKernelEntropy x
+OddZeta.odd_kernel_phase_shift_bound (s x : ℝ) (hx : 1 ≤ x) :
+  OddZeta.oddKernelPhase (s + 2) x ≤ OddZeta.oddKernelPhase s x - 4 * Real.log 2
+'OddZeta.poised_kernel_weight_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.normalized_kernel_weight_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.odd_kernel_phase_weight_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.odd_kernel_entropy_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.odd_kernel_entropy_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.odd_kernel_phase_shift_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.poised_kernel_length_shift (r n m k : ℕ) (t : ℚ) :
+  OddZeta.poisedRationalKernel r n (m + k) t =
+    OddZeta.poisedRationalKernel r n m t * ∏ v ∈ Finset.range k, (t - ↑(m + v + 1)) * (t + ↑n + ↑(m + v + 1))
+OddZeta.normalized_kernel_length_shift (r n m k : ℕ) (t : ℚ) :
+  OddZeta.normalizedOddKernel r n (m + k) t =
+    OddZeta.normalizedOddKernel r n m t * (↑m.factorial / ↑(m + k).factorial) ^ 2 *
+      ∏ v ∈ Finset.range k, (t - ↑(m + v + 1)) * (t + ↑n + ↑(m + v + 1))
+'OddZeta.poised_kernel_length_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.normalized_kernel_length_shift' depends on axioms: [propext, Classical.choice, Quot.sound]

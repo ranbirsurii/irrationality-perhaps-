@@ -1466,6 +1466,285 @@ This statement concerns those boundary contributions only. Any use of
 short-interval prime estimates for a new positive main-term saving still
 requires a proved valuation formula for the actual coefficients or minors.
 
+\section{Shared parameters and an alternative numerator-length family}
+\label{sec:parametric-profiles}
+The preceding constructions admit common parameters. Fix \(s=2r+1\ge7\),
+even \(n\ge2r\), and an independent integer \(r\le B\le n\).
+Use the blocks \(m_j=B-j\), \(0\le j\le r\), with \(m_0^{\rm base}=B-r\).
+The case \(B=n\) is the original family; allowing \(B<n\) changes its
+numerator zeros, saddle, and coefficient lattice.
+
+\begin{proposition}[Parametric rank and primitive profiles]
+The augmented coefficient matrix for these blocks has rank \(r+1\).
+Its lower-period kernel has rank two. The adjugate and Gauss algorithm
+of Section~\ref{sec:combined-seven} constructs two primitive forms
+\(p_i\zeta(s)+q_i\) whose coefficient pairs have determinant \(\pm1\).
+Writing \(v_i\) for their rational cancellation vectors and \(D=d_n^s\),
+their exact combined profile is the degree-at-most-\(r\) polynomial
+\begin{equation}
+ Q_{s,n,B,i}(u)=\sum_{j=0}^r v_{i,j}
+ \left(\frac{(B-r)!}{(B-j)!}\right)^2
+ \prod_{h=B-r+1}^{B-j}(u-h(n+h)).
+ \label{eq:parametric-profile}
+\end{equation}
+It is nonzero and satisfies
+\[
+ p_i\zeta(s)+q_i=D\sum_{k=B-r+1}^{\infty}
+ T_{s,n,B-r}(k)Q_{s,n,B,i}(k(k+n)).
+\]
+The individual integer lift has coefficient gcd exactly equal to the
+least denominator of the coordinates of \(v_i\).
+\end{proposition}
+\begin{proof}
+Repeat the rational-antidifference proof of Theorem~\ref{thm:rank}.
+The combined numerator now has degree at most \(2B\), so the numerator
+of its antidifference has degree at most \(2B-s+1=2(B-r)\).
+The common integer zeros, boundary value, and reflection supply
+\(2(B-r)+2\) distinct roots. Therefore it vanishes. The original block
+numerators have distinct degrees \(2B,2B-2,\ldots,2B-2r\), proving
+full augmented rank. Since \(B\le n\), all blocks remain proper and
+the same denominator theorem applies. The inverse-image lattice, Gauss
+reduction, and primitive-lift argument then apply in \(\Q^{r+1}\).
+Factoring the common smallest block gives
+\eqref{eq:parametric-profile}; the Newton products have distinct degrees,
+so a nonzero coefficient vector cannot give the zero polynomial.
+\end{proof}
+
+Write \(Q=\sum_{\ell=0}^r q_\ell u^\ell\), and define
+\[
+ J_{s,n,B,i}=\sum_{\ell=0}^r|q_\ell|(12n^2)^\ell,\qquad
+ F_B=\left(\frac{B!}{(B-r)!}\right)^2.
+\]
+Multiplication by \(F_B\) makes the profile transformation integral:
+its \(j\)-th column is the coefficient vector of
+\[
+ \left(\frac{B!}{(B-j)!}\right)^2
+       \prod_{h=B-r+1}^{B-j}(u-h(n+h)).
+\]
+Its determinant, up to sign, is the product of those integer scales.
+The monic Newton change is unimodular. Hence the ratio of its output
+content to its input content divides \(F_B\), exactly as in
+Proposition~\ref{prop:cubic-content}. This proves the corresponding
+prime-power statement in every degree on paper.
+
+For \(B=n\), coefficient norm comparison gives
+\begin{equation}
+ \|v_i\|_1\le J_{s,n,n,i}\le56^r\|v_i\|_1.
+ \label{eq:parametric-norm}
+\end{equation}
+For \(r\le B\le n\) the upper constant may be replaced by
+\((14n^2)^r\); this is polynomial in \(n\) at every fixed weight.
+To verify the lower bound, scale \(u=n^2z\). All Newton roots lie in
+\([0,2]\), and the factorial multipliers of the scaled Newton coefficients
+are at least one. The coefficient of the \(k\)-th Newton basis polynomial
+is \(\sum_{\ell=k}^r c_\ell h_{\ell-k}(\alpha_1,\ldots,\alpha_{k+1})\),
+where \(h_j\) is the complete homogeneous polynomial. The bound
+\(h_{\ell-k}\le\binom\ell k2^{\ell-k}\) gives total inverse coefficient
+norm at most \(\sum_\ell3^\ell|c_\ell|\le J\).
+The upper bound follows by multiplying the weighted norms of the
+linear factors; each is at most \(14\). For \(B=n\) the scaled factorial
+multiplier is at most \(4^r\). A dummy additional root may be used in
+the top Newton coefficient, where only \(h_0=1\) occurs.
+
+\subsection{What the weight shift proves}
+For the normalized kernels there is an exact identity
+\begin{equation}
+ T_{s+2,n,m}(t)=T_{s,n,m}(t)
+       \left(\frac{n!}{\prod_{h=0}^n(t+h)}\right)^2.
+ \label{eq:parametric-weight-shift}
+\end{equation}
+At numerator length \(B\sim\beta n\), the associated phase is
+\begin{align*}
+ \Phi_s(x;\beta)={}&-(s+1)E(x)
+ +(x+1+\beta)\log(x+1+\beta)\\
+ &-(x-\beta)\log(x-\beta)-2\beta\log\beta,\\
+ E(x)={}&(x+1)\log(x+1)-x\log x,
+ \qquad x>\beta>0.
+\end{align*}
+Thus \(\Phi_{s+2}=\Phi_s-2E\). At \(\beta=1\),
+\(E'(x)=\log(1+1/x)>0\) and \(E(1)=\log4\), so
+\[
+ \Phi_{s+2}(x;1)\le\Phi_s(x;1)-2\log4.
+\]
+The actual rational-kernel identity, phase identity, derivative,
+entropy lower bound, and phase comparison are proved in
+\texttt{ParametricWeightShift.lean}. Its normalized definition includes
+the poised parity factor and agrees with \(T\) when \(n\) is even.
+The same module proves the factorial-normalized block-length identity
+used to factor each combined profile, for arbitrary natural parameters.
+
+Put \(\beta_s=2397\cdot4^{s-7}\) and
+\(A_s=\log\beta_s\). The elementary factorial and positive-moment proof
+of Proposition~\ref{prop:elementary-seven} now gives, at \(B=n\),
+\begin{equation}
+ |p_i\zeta(s)+q_i|
+ \le C_s(n+1)^{2s+2}d_n^sJ_{s,n,n,i}\,\beta_s^{-n},
+ \quad C_s=12\cdot5^{2s}3^{2s+(s+1)r}.
+ \label{eq:parametric-bound}
+\end{equation}
+There are \(2s\) factorial-error terms. The fixed-offset comparison
+cost is at most \(3^{(s+1)r}/4^r\). For the moments through degree
+\(r\), use \(t^{2r+2}T_{s,n,n-r}(t)\) and cutoff \(3n\);
+the resulting denominators \(2r+1-2\ell\) are at least one.
+These observations prove \eqref{eq:parametric-bound} by precisely the
+factorial and moment inequalities already displayed, with the stated
+enlarged constant. In particular
+\[
+ (A_{s+2}-(s+2))-(A_s-s)=2\log4-2>2/3.
+\]
+The raw analytic margin therefore improves with weight. The required
+arithmetic assertion is still
+\(\limsup_n\log J_{s,n,n,i}/n<A_s-s\), separately at each fixed weight.
+Equation~\eqref{eq:parametric-weight-shift} does not assert a polynomial
+bound on the change of this primitive coefficient height: the
+lower-period constraints and the coefficient lattice change with \(s\).
+
+For the alternative family, even with \(B=B_n\) varying between \(r\)
+and \(n\), truncation at \(K=n^2\) has the unconditional bound
+\[
+ R_{s,n,B,i}(n^2)\le
+ 2\cdot6^r n^{2r}d_n^s\|v_i\|_1\,4^n n^{-(s-4)n}.
+\]
+Indeed the moment exponent is \(2r+2\), the profile coefficient norm
+is at most \(3^rn^{2r}\|v_i\|_1\), and discarding the factorial
+denominator gives \(T_{s,n,B-r}(n^2)\le4^n n^{-(s-4)n-2s}\).
+The elementary Cramer envelope bounds \(\log\|v_i\|_1=O_s(n)\)
+uniformly over these \(B\). Thus the tail tends to zero faster than
+exponentially for every fixed odd \(s\ge7\). Decay of the corresponding
+finite signed sum, or an adequate bound for \(J\), is not proved by
+this tail estimate. The shared parameters and alternative family do
+not yet establish the unconditional all-odd irrationality theorem.
+
+\section{A separate single-target derivative family}
+The following construction eliminates the lower-period lattice entirely.
+Fix \(r\ge2\), \(s=2r+1\), \(m\ge1\), and \(n\ge rm\), and put
+\[
+ R(t)=\frac{(n!)^2}{(m!)^{2r}}
+       \frac{\prod_{v=1}^m(t-v)^{2r}}{\prod_{h=0}^n(t+h)^2},
+ \qquad d=2r-1.
+\]
+The rational function has degree at most \(-2\), and its first \(d\)
+derivatives vanish at the positive integer zeros through \(m\).
+Write its partial fractions as
+\[
+ R(t)=\sum_{j=0}^n\left(\frac{b_j}{t+j}+\frac{c_j}{(t+j)^2}\right).
+\]
+An explicit pole expansion gives
+\begin{align*}
+ c_j&=\binom nj^2\binom{j+m}m^{2r}>0,\\
+ b_j&=c_j\bigl((2r+2)H_j-2rH_{j+m}-2H_{n-j}\bigr),
+ \qquad\sum_jb_j=0.
+\end{align*}
+The last identity is the vanishing residue at infinity. Termwise
+differentiation and summation therefore give the single-target form
+\begin{align*}
+ \mathcal L_{r,n,m}
+ &:=-\frac1{d!}\sum_{k=1}^{\infty}R^{(d)}(k)=A\zeta(s)+B,\\
+ A&=(s-1)\sum_jc_j,\\
+ B&=-\sum_j\bigl((s-1)c_jH_j^{(s)}+b_jH_j^{(s-1)}\bigr).
+\end{align*}
+Indeed \(-R^{(d)}/d!\) has coefficients \(b_j\) at pole order
+\(s-1\), and \((s-1)c_j\) at order \(s\); the summed \(s-1\)
+coefficient is zero. No lower odd zeta value survives.
+
+Here \(c_j\in\Z\), \(d_nb_j\in\Z\), and \(d_n^sB\in\Z\).
+For the middle assertion, write
+\(R(t)=\binom{t-1}m^{2r}Q_n(t)^2\), where
+\(Q_n(t)=n!/\prod_{h=0}^n(t+h)\). The first Taylor coefficient
+of the integer-valued binomial factor at an integer is cleared by
+\(d_m\), by Vandermonde expansion; that of the regular pole factor
+is cleared by \(d_n\). Since \(m\le n\), \(d_m\mid d_n\).
+The harmonic denominators then prove the final assertion. Thus with
+\(D=d_n^s\) and \(g=\gcd(DA,DB)>0\), the primitive form is
+\((D/g)\mathcal L_{r,n,m}\). All arithmetic factors are explicit.
+
+\subsection{Poisson summation and an explicit error bound}
+Extend \(R\) by zero to the left of \(m\), and let
+\(f(t)=-R^{(d)}(t)/d!\) for \(t>m\), zero otherwise.
+This is continuous, decays integrably, and has integrable piecewise
+derivatives. Its derivative has a finite jump at \(m\), so its
+distributional second derivative is a finite measure. Moreover
+\(\int_\R f=0\), since \(R^{(d-1)}(m)=0\).
+Define
+\[
+ V=|R^{(2r)}(m)|+\int_m^\infty|R^{(2r+1)}(t)|\,dt.
+\]
+Integration by parts in the Fourier coefficient gives
+\( |\widehat f(\ell)|\le V/(d!(2\pi\ell)^2)\) for \(\ell\ne0\).
+Periodization of \(f\) converges uniformly and has these Fourier
+coefficients; the displayed bound makes its Fourier series absolutely
+convergent. This justifies Poisson summation for this particular
+piecewise-smooth function, giving
+\[
+ \mathcal L_{r,n,m}
+ =-\frac1{d!}\sum_{\ell\ne0}(2\pi i\ell)^d
+       \int_m^\infty R(t)e^{-2\pi i\ell t}\,dt,
+ \qquad
+ |\mathcal L_{r,n,m}|\le\frac V{12d!}.
+\]
+The constant is \(\sum_{\ell\ne0}(2\pi\ell)^{-2}=1/12\).
+This bound can be made entirely rational:
+\begin{align*}
+ V&\le W_{r,n,m},\\
+ W_{r,n,m}&=
+ \frac{(2r)!}{m^{2r+2}\binom{n+m}m^2}
+ +(2r)!\sum_{j=0}^n\frac{|b_j|}{(m+j)^{2r+1}}
+ +(2r+1)!\sum_{j=0}^n\frac{c_j}{(m+j)^{2r+2}}.
+\end{align*}
+The first term is the exact value of \(R^{(2r)}(m)\); integrate the
+absolute partial-fraction majorant for \(R^{(2r+1)}\) to get the other
+two terms. Consequently the primitive bound is
+\[
+ \left|\frac Dg\mathcal L_{r,n,m}\right|
+       \le\frac{D W_{r,n,m}}{12g(2r-1)!}.
+\]
+No negative exponential rate or all-index nonvanishing is established
+for this last expression. At eighteen tested parameter choices at
+weights five, seven, and nine, independent rational zeta enclosures
+place the primitive form outside \([-1,1]\). This finite observation
+does not decide the limiting behavior. The separate construction,
+integrality argument, and Poisson representation are paper results;
+they are not claimed as a completed Lean irrationality theorem.
+
+\subsection{Transferring back to the original decay family}
+Useful identities from the derivative family can be used in the original
+family without replacing its construction. This requires an explicit
+transition, including its arithmetic cost. At a common even index
+\(n\ge\max(2r,rm)\), let \((a,b)\in\Z^2\) be the primitive coefficient
+pair of the derivative form, and let \(M\) be the original full cleared
+Pad\'e coefficient matrix, with \(D=d_n^s\) and \(\delta=\det M\ne0\).
+Define
+\[
+ z=(0,\ldots,0,a,b)^T,\qquad
+ x=\operatorname{adj}(M)z,\qquad v=x/\delta.
+\]
+Then \(Mv=z\), and the two families give exactly the same primitive form:
+\begin{equation}
+ \frac Dg\mathcal L_{r,n,m}
+ =a\zeta(s)+b
+ =D\sum_{j=0}^r v_j\cA_{s,n,n-j}.
+ \label{eq:cross-family-transition}
+\end{equation}
+If \(t\) is the least denominator of \(v\) and \(w=tv\), then
+\(Mw=tz\) and the target-and-constant gcd is precisely \(t\), because
+\(\gcd(a,b)=1\). Thus the transition preserves primitive normalization
+exactly. It incurs the absolute mass \(\|v\|_1\), or equivalently
+the weighted profile height of this particular transferred vector.
+For \(s\ge7\), Proposition~\ref{prop:elementary-seven} and its
+parametric extension apply with that actual height:
+\[
+ |a\zeta(s)+b|
+ \le C_s(n+1)^{2s+2}d_n^s
+       J_s(v)\,(2397\cdot4^{s-7})^{-n}.
+\]
+The transferred \(v\) need not be a vector in a reduced pair, so no
+small-cost assertion is inferred from its existence. A quantitative
+bound for this transition, or the direct derivative bound, would be a
+valid way of combining the earlier estimates. Neither is established
+at the required exponential rate here. Exact tests verify eighteen
+primitive transition identities; their complete majorants remain above
+one at those indices. No limiting conclusion is extrapolated from them.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

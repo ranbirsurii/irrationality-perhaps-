@@ -1,0 +1,20 @@
+import OddZeta.ParametricWeightShift
+
+#check OddZeta.poised_kernel_weight_shift
+#check OddZeta.normalized_kernel_weight_shift
+#check OddZeta.odd_kernel_phase_weight_shift
+#check OddZeta.odd_kernel_entropy_derivative
+#check OddZeta.odd_kernel_entropy_lower
+#check OddZeta.odd_kernel_phase_shift_bound
+
+#print axioms OddZeta.poised_kernel_weight_shift
+#print axioms OddZeta.normalized_kernel_weight_shift
+#print axioms OddZeta.odd_kernel_phase_weight_shift
+#print axioms OddZeta.odd_kernel_entropy_derivative
+#print axioms OddZeta.odd_kernel_entropy_lower
+#print axioms OddZeta.odd_kernel_phase_shift_bound
+
+#check OddZeta.poised_kernel_length_shift
+#check OddZeta.normalized_kernel_length_shift
+#print axioms OddZeta.poised_kernel_length_shift
+#print axioms OddZeta.normalized_kernel_length_shift

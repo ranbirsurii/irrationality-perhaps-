@@ -5,6 +5,26 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+A [separate double-pole derivative construction](notes/isolated-derivative-family.md)
+isolates one odd zeta value algebraically and gives an explicit primitive
+Poisson-summation bound. It removes the lower-period lattice, but neither
+its required decay nor all-index nonvanishing is proved. Its eighteen
+checked primitive values exceed one in absolute value; these finite
+results are not extrapolated to a limiting statement.
+An exact adjugate transition now places these primitive forms back in
+the original decay family and preserves their coefficient normalization.
+The transition's actual norm remains in the bound; its required growth
+estimate is not inferred from the algebraic identification.
+
+The [parametric construction and alternative family](publication/high-weight-criterion/parametric-weight-verification.md)
+now use shared parameters for every fixed odd weight s>=7 and an
+independent numerator length B. The manuscript proves rank, primitive
+normalization, the degree-r combined profile, and a tail bound for all
+allowed parameters. Eight Lean theorems prove the actual kernel weight
+and length shifts and parametric phase improvement. The required primitive coefficient
+growth rate is still unproved; the alternate family is not presented
+as a completed irrationality proof.
+
 The [cubic arithmetic continuation](publication/high-weight-criterion/cubic-arithmetic-verification.md)
 gives the exact integer formula for the weighted cubic height, its
 prime-power divisibility conditions, and its constant-factor equivalence
