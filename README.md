@@ -5,6 +5,14 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [cubic arithmetic continuation](publication/high-weight-criterion/cubic-arithmetic-verification.md)
+gives the exact integer formula for the weighted cubic height, its
+prime-power divisibility conditions, and its constant-factor equivalence
+with the optimal primitive cost. Five new Lean theorems check the integer
+inverse and all-modulus content identities. The record examines the
+Guth-Maynard and character-twisted estimates against their actual
+hypotheses; no unproved application supplies the missing growth bound.
+
 The [elementary analytic continuation](publication/high-weight-criterion/elementary-decay-verification.md)
 proves an all-index combined-cubic majorant with factor 2397^(-n), using
 elementary saddle calculus, factorial bounds, and four positive moments.

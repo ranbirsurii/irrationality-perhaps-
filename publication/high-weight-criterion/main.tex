@@ -1355,6 +1355,117 @@ kernel's decay. Exact evaluations verify the elementary upper bound is
 less than one for both forms at \(n=40\); they do not establish its
 eventual rate.
 
+\subsection{An exact integer formula for the cubic height}
+Write \(x=\delta v\in\Z^4\) for the Cramer numerator used in constructing
+one reduced form in Section~\ref{sec:combined-seven}. Put
+\[
+ A=(n-2)(2n-2),\quad B=(n-1)(2n-1),\quad C=2n^2,
+ \qquad F=n^2(n-1)^2(n-2)^2.
+\]
+Define the integral vector \(b=R_nx\), where
+\[
+ R_n=\begin{pmatrix}
+ -ABC&ABn^2&-An^2(n-1)^2&F\\
+ AB+AC+BC&-(A+B)n^2&n^2(n-1)^2&0\\
+ -(A+B+C)&n^2&0&0\\
+ 1&0&0&0
+ \end{pmatrix}.
+\]
+The cubic coefficients and their primitive height satisfy the exact
+identities
+\begin{equation}
+ q_{\ell,n,i}=\frac{b_\ell}{F\delta},\qquad
+ J_{n,i}=\frac{g_b}{F|\delta|}
+          \sum_{\ell=0}^3|b_\ell/g_b|(12n^2)^\ell,
+ \quad g_b=\gcd(b_0,b_1,b_2,b_3)>0.
+ \label{eq:integer-cubic-height}
+\end{equation}
+They follow by expanding \eqref{eq:combined-cubic}, since multiplication
+by \(F\) clears all four factorial ratios.
+
+\begin{proposition}[Integral content and coefficient norm comparison]
+\label{prop:cubic-content}
+For \(g_x=\gcd(x_0,x_1,x_2,x_3)>0\),
+\begin{equation}
+ \frac{g_b}{g_x}\in\Z_{>0},\qquad \frac{g_b}{g_x}\mid F.
+ \label{eq:cubic-content-ratio}
+\end{equation}
+In particular \(v_p(g_b)=v_p(g_x)\) whenever
+\(p\nmid n(n-1)(n-2)\). Furthermore, for every rational vector \(v\)
+and its cubic profile,
+\begin{equation}
+ \|v\|_1\le J\le43904\|v\|_1.
+ \label{eq:cubic-mass-equivalence}
+\end{equation}
+For the constructed reduced pair this gives
+\[
+ \lambda_2(\Lambda^{\rm coeff})\le\max_iJ_{n,i}
+       \le87808\lambda_2(\Lambda^{\rm coeff}).
+\]
+Thus the cubic-height and optimal-pair conditions have exactly the same
+upper exponential rate. Equation~\eqref{eq:integer-cubic-height} is an
+explicit arithmetic target, not a bound establishing the required rate.
+\end{proposition}
+\begin{proof}
+The monic Newton-basis change in \(R_n\) is unimodular over \(\Z\).
+Explicitly, its inverse recovers
+\begin{align*}
+ x_0&=b_3,\\
+ n^2x_1&=b_2+(A+B+C)b_3,\\
+ n^2(n-1)^2x_2&=b_1+(A+B)b_2+(A^2+AB+B^2)b_3,\\
+ Fx_3&=b_0+Ab_1+A^2b_2+A^3b_3.
+\end{align*}
+Hence \(g_b\) equals the gcd of
+\(x_0,n^2x_1,n^2(n-1)^2x_2,Fx_3\).
+All scales divide \(F\). Therefore \(g_x\mid g_b\), while
+\(g_b\mid Fx_j\) for every \(j\), and Bezout gives
+\(g_b\mid Fg_x\). This proves \eqref{eq:cubic-content-ratio}.
+The inverse identities and the equivalent common-divisibility test
+for every integer modulus are checked in \texttt{CubicArithmeticFrame.lean}.
+
+For the norm estimate, set \(z=u/n^2\) and
+\(\alpha=A/n^2,\beta=B/n^2,\gamma=C/n^2\), all in \([0,2]\).
+The scaled cubic has monomial coefficients \(c_\ell=q_\ell n^{2\ell}\)
+and Newton coefficients
+\[
+ d_0=\frac{n^4v_0}{(n-1)^2(n-2)^2},\quad
+ d_1=\frac{n^4v_1}{(n-1)^2(n-2)^2},\quad
+ d_2=\frac{n^2v_2}{(n-2)^2},\quad d_3=v_3.
+\]
+Each multiplier lies between one and sixteen for \(n\ge6\).
+The inverse Newton formulas and \(\alpha,\beta,\gamma\le2\) give
+\[
+ \sum_j|v_j|\le\sum_j|d_j|
+ \le|c_0|+3|c_1|+9|c_2|+27|c_3|
+ \le\sum_\ell12^\ell|c_\ell|=J.
+\]
+Conversely each linear Newton factor has weighted coefficient norm
+at most \(12+2=14\), so
+\(J\le14^3\sum_j|d_j|\le16\cdot14^3\|v\|_1\).
+This proves \eqref{eq:cubic-mass-equivalence}. For the reduced pair,
+\(\max_i\|v_i\|_2=\lambda_2\) and
+\(\|v_i\|_2\le\|v_i\|_1\le2\|v_i\|_2\), proving the last comparison.
+\end{proof}
+
+Combining this proposition with the proved prime-refined envelope gives
+the unconditional all-index arithmetic upper bound
+\[
+ J_{n,i}\le526848\,
+ \frac{d_n^6\bigl(P_7(n)\binom n{n/2}^7\binom{3n/2}n^2\bigr)^2}
+ {G_{7,3,n}G_{7,5,n}},\qquad P_7(n)=(n+1)(9n+7)^6.
+\]
+Its upper exponential rate is
+\(17/4+10\log2+6\log3\), approximately \(17.7732\).
+This is a valid envelope but does not prove a rate below
+\(\log2397-7\). Improving prime counts near a fixed finite number of
+boundaries cannot change this leading rate when the valuation weights
+are bounded: intervals of length \(O(n^\theta)\), \(\theta<1\),
+contain at most \(O(n^\theta)\) integers, and their total weighted
+log-prime contribution is \(O(n^\theta\log n)=o(n)\).
+This statement concerns those boundary contributions only. Any use of
+short-interval prime estimates for a new positive main-term saving still
+requires a proved valuation formula for the actual coefficients or minors.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

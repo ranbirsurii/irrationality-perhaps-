@@ -45,3 +45,4 @@ import OddZeta.CramerKernelEnvelope
 import OddZeta.FiniteFieldTranslationTrace
 import OddZeta.CombinedKernelCubic
 import OddZeta.WeightSevenElementaryBounds
+import OddZeta.CubicArithmeticFrame

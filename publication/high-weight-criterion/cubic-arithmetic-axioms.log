@@ -1,0 +1,24 @@
+OddZeta.cubic_frame_inverse_first (a b c s1 x0 x1 : ℤ) : OddZeta.cubicFrame2 a b c s1 x0 x1 + (a + b + c) * x0 = s1 * x1
+OddZeta.cubic_frame_inverse_second (a b c s1 s2 x0 x1 x2 : ℤ) :
+  OddZeta.cubicFrame1 a b c s1 s2 x0 x1 x2 + (a + b) * OddZeta.cubicFrame2 a b c s1 x0 x1 +
+      (a ^ 2 + a * b + b ^ 2) * x0 =
+    s2 * x2
+OddZeta.cubic_frame_inverse_third (a b c s1 s2 s3 x0 x1 x2 x3 : ℤ) :
+  OddZeta.cubicFrame0 a b c s1 s2 s3 x0 x1 x2 x3 + a * OddZeta.cubicFrame1 a b c s1 s2 x0 x1 x2 +
+        a ^ 2 * OddZeta.cubicFrame2 a b c s1 x0 x1 +
+      a ^ 3 * x0 =
+    s3 * x3
+OddZeta.cubic_frame_divisibility_iff (a b c s1 s2 s3 x0 x1 x2 x3 d : ℤ) :
+  d ∣ OddZeta.cubicFrame0 a b c s1 s2 s3 x0 x1 x2 x3 ∧
+      d ∣ OddZeta.cubicFrame1 a b c s1 s2 x0 x1 x2 ∧ d ∣ OddZeta.cubicFrame2 a b c s1 x0 x1 ∧ d ∣ x0 ↔
+    d ∣ x0 ∧ d ∣ s1 * x1 ∧ d ∣ s2 * x2 ∧ d ∣ s3 * x3
+OddZeta.cubic_frame_coprime_divisibility (a b c s1 s2 s3 x0 x1 x2 x3 d : ℤ) (h1 : IsCoprime d s1) (h2 : IsCoprime d s2)
+  (h3 : IsCoprime d s3) :
+  d ∣ OddZeta.cubicFrame0 a b c s1 s2 s3 x0 x1 x2 x3 ∧
+      d ∣ OddZeta.cubicFrame1 a b c s1 s2 x0 x1 x2 ∧ d ∣ OddZeta.cubicFrame2 a b c s1 x0 x1 ∧ d ∣ x0 ↔
+    d ∣ x0 ∧ d ∣ x1 ∧ d ∣ x2 ∧ d ∣ x3
+'OddZeta.cubic_frame_inverse_first' depends on axioms: [propext, Quot.sound]
+'OddZeta.cubic_frame_inverse_second' depends on axioms: [propext, Quot.sound]
+'OddZeta.cubic_frame_inverse_third' depends on axioms: [propext, Quot.sound]
+'OddZeta.cubic_frame_divisibility_iff' depends on axioms: [propext, Quot.sound]
+'OddZeta.cubic_frame_coprime_divisibility' depends on axioms: [propext, Quot.sound]

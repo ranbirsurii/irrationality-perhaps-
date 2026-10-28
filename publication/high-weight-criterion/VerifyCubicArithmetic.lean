@@ -1,0 +1,13 @@
+import OddZeta.CubicArithmeticFrame
+
+#check OddZeta.cubic_frame_inverse_first
+#check OddZeta.cubic_frame_inverse_second
+#check OddZeta.cubic_frame_inverse_third
+#check OddZeta.cubic_frame_divisibility_iff
+#check OddZeta.cubic_frame_coprime_divisibility
+
+#print axioms OddZeta.cubic_frame_inverse_first
+#print axioms OddZeta.cubic_frame_inverse_second
+#print axioms OddZeta.cubic_frame_inverse_third
+#print axioms OddZeta.cubic_frame_divisibility_iff
+#print axioms OddZeta.cubic_frame_coprime_divisibility
