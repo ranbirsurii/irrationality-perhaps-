@@ -250,6 +250,29 @@ C_0*(n+1)^12*K_n/140^n would then tend to zero. The constant enclosures
 are in `row-balance-rate-budget.json`; they enclose constants, not
 sampled indices. Statement (7) is not proved by (5).
 
+There is also a direct joint target that avoids prescribing separate
+rates for kappa_n and Gamma_n. Before bounding the longer basis
+length by the area, positive rounding gives
+
+\[
+ K_n^{\rm new}\le3d_n^5(1+2R_n)\lambda_{2,n}/\Gamma_n.
+\]
+
+Since (1) is proved, it is sufficient to establish
+
+\[
+ \boxed{\liminf\frac{\log\Gamma_n-\log\lambda_{2,n}}n
+                         >5-\log140.}                        \tag{8}
+\]
+
+For example Gamma_n>=exp(0.06*n)*lambda_(2,n) at arbitrarily large
+even indices would suffice: the cost upper rate along those indices
+would be at most 4.94, strictly below log(140). This follows from the
+proved comparison, with no assumption about kappa_n on that subsequence.
+It is a possible replacement for the two separate arithmetic estimates,
+not a proved joint bound. Neither (7) with the content estimate nor
+(8) has been established.
+
 Gamma_n is a sufficient auxiliary content, not a logically mandatory
 symbol in every possible proof. It could be replaced by a direct bound
 on the selected h_n/M_n. Removing it without a replacement would,
