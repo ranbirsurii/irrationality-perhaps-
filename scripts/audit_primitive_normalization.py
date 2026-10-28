@@ -85,6 +85,20 @@ def audit(n):
     assert content > 0
     cost = Q(clearing * mass, content)
 
+    # Determinantal arithmetic formula, before choosing cancellation weights.
+    integer_rows = [[clearing * x for x in row] for row in rows]
+    assert all(x.denominator == 1 for row in integer_rows for x in row)
+    (x0, y0, z0), (x1, y1, z1) = [list(map(int, row)) for row in integer_rows]
+    lower_gcd = gcd(x0, x1)
+    minors = [x1 * y0 - x0 * y1, x1 * z0 - x0 * z1]
+    minor_gcd = gcd(*minors)
+    lower_mass = abs(x0) + abs(x1)
+    assert minor_gcd > 0 and lower_gcd > 0
+    assert minor_gcd == lower_gcd * content
+    assert lower_mass == lower_gcd * mass
+    assert Q(content, mass) == Q(minor_gcd, lower_mass)
+    assert cost == Q(clearing * lower_mass, minor_gcd)
+
     # Independent normalization: start with the rational, mass-one pair,
     # compute its least denominator, then remove its own integer content.
     normalized = [x / mass for x in combined[1:]]
@@ -131,6 +145,12 @@ def audit(n):
         'independent_least_denominator': str(least_denominator),
         'independent_content': str(minimal_content),
         'independent_normalizations_agree': True,
+        'cleared_coefficient_rows': [[str(x) for x in row]
+                                     for row in ((x0, y0, z0), (x1, y1, z1))],
+        'lower_period_minors': list(map(str, minors)),
+        'minor_gcd': str(minor_gcd),
+        'lower_period_row_mass': str(lower_mass),
+        'determinantal_ratio_agrees': True,
         'laurent_convolution_crosschecked': crosschecked,
         'exact_primitive_form_lower_bound': str(primitive_lower),
         'primitive_form_lower_bound_exceeds_one': primitive_lower > 1,

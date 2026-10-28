@@ -27,6 +27,11 @@ checks both primitive normalization procedures through index 160. It also
 gives exact positive lower bounds exceeding one at the six audited indices
 8,12,20,40,80,160. These finite results establish no limiting arithmetic
 rate. Further compilation is paused pending the requested complete bound.
+The [determinantal reformulation](notes/determinantal-arithmetic-budget.md)
+expresses h_n/M_n as the gcd of two explicit coefficient minors divided
+by the lower-period row mass. It also checks why analytic bounds on S_n
+do not bound M_n and why modular nonvanishing does not give a gcd lower
+bound. The required growth of the determinantal gcd remains unproved.
 
 The [coefficient-sign reduction](notes/coefficient-sign-reduction.md)
 constructs exact Cauchy contours and a harmonic-binomial expression for
