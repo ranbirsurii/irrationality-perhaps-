@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [dual-lattice continuation](notes/dual-transference-and-new-proposals.md)
+applies the new proposals through planar transference and exact binary-form
+Gauss reduction. It identifies the optimal primitive-pair Euclidean
+normalization cost squared as
+nu/delta^2, with nu the second reduced diagonal of the explicit integral
+dual form. The implementation checks exact unimodular witnesses and the
+ambient primal Gram construction on three existing stored records. These
+finite comparisons improve the earlier common-content bounds but do not
+establish a uniform rate or add a new Lean theorem.
+
 The [twenty-method cost comparison](notes/twenty-cost-methods.md) develops
 the full rational lattice of integer coefficient pairs as an exact
 optimization of primitive cost. Its second Euclidean minimum equals the
