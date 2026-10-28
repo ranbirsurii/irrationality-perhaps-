@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [local-jet and positive-rounding derivation](notes/local-jets-and-positive-rounding.md)
+constructs strictly positive integer weights at every even index and
+proves an upper bound using the longer reduced-basis length and the
+balance of the distinguished row. Adding this candidate removes a
+separate search-radius factor from the sufficient cost estimate.
+Exact finite-difference and first-lift identities state the outstanding
+local minor congruences. Their required higher-order vanishing and the
+winning lattice-shape rate remain unproved; earlier finite records
+have not been regenerated.
+
 The [quotient-prime loss argument](notes/quotient-prime-loss-and-content.md)
 proves that bounded valuation losses supported on divisors of fixed,
 nonzero smaller-quotient coefficients total o(n). This handles the

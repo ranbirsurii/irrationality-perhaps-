@@ -45,6 +45,31 @@ def saturated_kernel_basis(x):
     return a, b
 
 
+def positive_rounding_weights(x, a, b):
+    positive = sum(max(value, 0) for value in x)
+    negative = sum(max(-value, 0) for value in x)
+    assert positive > 0 and negative > 0
+    interior = [negative if value >= 0 else positive for value in x]
+    assert dot(x, interior) == 0
+    aa, ab, bb = dot(a, a), dot(a, b), dot(b, b)
+    gram_determinant = aa*bb-ab*ab
+    assert gram_determinant > 0
+    av, bv = dot(a, interior), dot(b, interior)
+    coordinates = [Q(bb*av-ab*bv, gram_determinant),
+                   Q(aa*bv-ab*av, gram_determinant)]
+    assert all(value.denominator == 1 for value in coordinates)
+    covering_twice = max(abs(u)+abs(v) for u, v in zip(a, b))
+    assert covering_twice > 0
+    scale = Q(covering_twice, min(interior))
+    targets = [scale*value+Q(1, 2) for value in coordinates]
+    s, t = [value.numerator//value.denominator for value in targets]
+    weights = [s*u+t*v for u, v in zip(a, b)]
+    assert all(value > 0 for value in weights)
+    assert dot(x, weights) == 0
+    common = gcd(*weights)
+    return [value//common for value in weights]
+
+
 def lattice_arithmetic_bound(rows, a, b, w, clearing):
     x = [row[0] for row in rows]
     images = [[sum(vector[i]*rows[i][j] for i in range(3)) for j in (1, 2)]
@@ -124,6 +149,8 @@ def search(n, radius):
             g = gcd(*w)
             candidates.add(tuple(value//g for value in w))
 
+    rounding_weights = positive_rounding_weights(x, a, b)
+    consider(rounding_weights)
     for i in range(3):
         if x[i] == 0:
             consider([int(j == i) for j in range(3)])
@@ -169,7 +196,9 @@ def search(n, radius):
     lattice['lattice_saving_rate_interval'] = outward_interval(saving_log[0]/n, saving_log[1]/n)
     return {'index': n, 'profile': [n, n-1, n-2], 'search_radius': radius,
             'candidate_count': len(candidates),
-            'scope': 'Best cost among the recorded finite box and two-block rays; no global optimality.',
+            'scope': 'Best cost among the finite box, two-block rays, and constructive '
+                     'positive rounding vector; no global optimality.',
+            'positive_rounding_weights': list(map(str, rounding_weights)),
             'cleared_coordinate_rows': [[str(value) for value in row] for row in rows],
             'coefficient_matrix_determinant': str(determinant(rows)),
             'saturated_gauss_basis': [[str(value) for value in vector] for vector in (a, b)],
