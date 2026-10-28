@@ -5,6 +5,13 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [analytic large-index extension](notes/analytic-large-index-extension.md)
+proves an explicit bound `S_n <= C_0 (n+1)^12 / 140^n` for every even
+n>=4, using factorial inequalities, a global saddle bound, and uniform
+tail control. It requires no finite-index audits. An explicit exponential
+bound holds from n=5,760,000 onward. The primitive integer normalization
+cost still has to be bounded before concluding irrationality.
+
 The [three-block enlargement](notes/three-block-positive-forms.md) uses
 lengths n,n-1,n-2 and a saturated integer cancellation lattice. The
 uniform denominator and positivity theorems apply to this profile.
