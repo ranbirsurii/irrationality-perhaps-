@@ -77,7 +77,10 @@ def check_trace(s, n, m, p, coordinates):
 def check_case(s, n):
     r = (s - 1) // 2
     d = lcm(*range(1, n + 1))
-    E = (n + 1) * ((s + 2) * n + s) ** (s - 1) * 2 ** ((s + 3) * n)
+    polynomial = (n + 1) * ((s + 2) * n + s) ** (s - 1)
+    old_E = polynomial * 2 ** ((s + 3) * n)
+    E = polynomial * comb(n, n // 2) ** s * comb(3 * n // 2, n) ** 2
+    assert E <= old_E
     primes = primes_to((s - 2) * n // 2)
     divisors = {k: prod(p for p in primes if n < p <= (s - 2) * n // (k - 1))
                 for k in range(3, s - 1, 2)}
@@ -127,6 +130,7 @@ def check_case(s, n):
     assert len(vectors) == 2
     return {'weight': s, 'index': n, 'all_block_count': n + 1,
             'independent_coefficient_algorithms_agree': True,
+            'sharper_central_binomial_envelope_verified': True,
             'coefficient_envelope_checks': (n + 1) * r,
             'prime_divisibility_checks': prime_checks,
             'full_translation_trace_polynomial_checks': trace_checks,

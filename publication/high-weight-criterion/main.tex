@@ -875,6 +875,21 @@ The failed comparison concerns this particular envelope; it is not a
 lower bound for the optimal cost and does not exclude sharper savings.
 \end{proof}
 
+\begin{remark}[A sharper coefficient envelope]
+Every occurrence of \(E_s(n)\) in the cost envelopes can also be replaced by
+\[
+ \widetilde E_s(n)=P_s(n)\binom n{n/2}^{s}\binom{3n/2}n^2.
+\]
+Indeed the central binomial coefficient bounds \(\binom nj\), and
+\((j+v)(n-j+v)\le(n/2+v)^2\) for each \(v\). Therefore
+\(\binom{j+m}m\binom{n-j+m}m\le\binom{n/2+m}m^2
+\le\binom{3n/2}n^2\). The local Taylor majorization is unchanged.
+Stirling's formula gives the smaller coefficient exponent
+\((s-2)\log2+3\log3\). Thus the resulting cost exponent improves
+by a further \((r-1)\log(32/27)\). This refinement also falls short
+of the required rate; it is an upper envelope, not a lower obstruction.
+\end{remark}
+
 \begin{proposition}[A common prime divisor at every weight]
 \label{prop:uniform-prime-divisor}
 For odd \(3\le k\le s-2\), define

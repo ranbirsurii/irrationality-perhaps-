@@ -147,6 +147,10 @@ Five Cramer-envelope and six finite-field trace theorems also check in Lean.
 Seven independent exact cases check all block lengths, 226 coefficient
 bounds, 506 prime divisibilities, and 70 full trace-polynomial identities;
 these support the implementation and are not the all-index proof.
+A central-binomial product majorant saves a further
+(r-1)log(32/27) in the envelope's exponent. It too is proved at every
+eligible index and checked independently; the refined exponent still
+does not meet the required rate.
 
 ## Literature scoped to the actual task
 

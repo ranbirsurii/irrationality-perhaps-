@@ -18,6 +18,10 @@ The existing manuscript now contains three additional propositions:
    factors improves the all-index cost envelope. At weight seven the
    upper exponent improves by exactly 7/4.
 
+A central-binomial majorant further sharpens the coefficient exponent to
+(s-2)log(2)+3log(3), saving another (r-1)log(32/27) in the cost envelope.
+Its proof is included in the manuscript and the independent exact checks.
+
 The last two envelopes do not satisfy the required arithmetic budget.
 The sharper reduced-form family estimate remains unproved. Consequently
 no unconditional irrationality theorem for all odd zeta values, or for

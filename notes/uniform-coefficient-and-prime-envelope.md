@@ -113,3 +113,30 @@ An upper bound that is too large does not imply a lower bound for W_n.
 It neither disproves the desired estimate nor completes irrationality.
 The selected sharper route remains the exact reduced binary form,
 whose unproved family estimate is recorded in the manuscript.
+
+## Central-binomial sharpening
+
+The elementary bound can be improved further without new assumptions.
+Replace E_s(n) throughout by
+
+  Etilde_s(n)=P_s(n) binom(n,n/2)^s binom(3n/2,n)^2.
+
+The first binomial factor is maximal at n/2. For the remaining two,
+each paired numerator factor satisfies
+
+  (j+v)(n-j+v)=(n/2+v)^2-(j-n/2)^2 <= (n/2+v)^2.
+
+After multiplying and dividing by (m!)^2, their product is bounded by
+binom(n/2+m,m)^2, which is at most binom(3n/2,n)^2 for m<=n.
+The same Taylor majorant therefore proves the sharpened envelope.
+Stirling's formula gives its exponent (s-2)log(2)+3log(3), saving
+log(32/27) per lower row. The refined cost exponent is consequently
+
+  B''_s=B'_s-(r-1)log(32/27).
+
+This further improvement is included in the exact independent checks.
+It still does not meet the required cost rate. In particular it remains
+larger than (r-1)((s-2)log(2)+3log(3)), because the prime saving is less
+than r(r-1); this lower bound for the displayed upper envelope already
+exceeds s-5 for r>=3. This is a comparison of sufficient envelopes, not
+a lower bound for the actual optimized cost.
