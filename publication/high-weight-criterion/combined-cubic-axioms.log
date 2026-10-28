@@ -15,3 +15,16 @@ OddZeta.cubic_absolute_majorant (a b c d u : ℝ) :
 'OddZeta.combined_cubic_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.combined_cubic_coefficients_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.cubic_absolute_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.weight_seven_stationary_factor (x : ℝ) :
+  (x - 1) * (x + 1) ^ 8 - x ^ 8 * (x + 2) = OddZeta.weightSevenStationary (x * (x + 1))
+OddZeta.weight_seven_stationary_shift (z : ℝ) :
+  OddZeta.weightSevenStationary (2 + z) = 5 * z ^ 4 + 38 * z ^ 3 + 95 * z ^ 2 + 77 * z - 3
+OddZeta.weight_seven_stationary_upper_endpoint : 0 < OddZeta.weightSevenStationary (25309 / 25000 * (25309 / 25000 + 1))
+OddZeta.weight_seven_saddle_base_bound : 2397 * (25309 / 25000 + 2) ^ 2 * (25309 / 25000 - 1) < (25309 / 25000 + 1) ^ 8
+OddZeta.weight_seven_moment_cutoff (n : ℝ) (hn : 6 ≤ n) :
+  2 * (n - 3) ≤ 3 * n ∧ 2 * (n - 3) ^ 2 + 7 * n * (n + 1) ≤ 3 * n * (7 * (n + 1) - 2 * (n - 3) - 8)
+'OddZeta.weight_seven_stationary_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_stationary_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_stationary_upper_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_saddle_base_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_moment_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]

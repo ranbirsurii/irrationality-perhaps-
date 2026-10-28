@@ -1,4 +1,5 @@
 import OddZeta.CombinedKernelCubic
+import OddZeta.WeightSevenElementaryBounds
 
 #check OddZeta.combined_cubic_expansion
 #check OddZeta.quadratic_pair_factor
@@ -11,3 +12,15 @@ import OddZeta.CombinedKernelCubic
 #print axioms OddZeta.combined_cubic_reflection
 #print axioms OddZeta.combined_cubic_coefficients_injective
 #print axioms OddZeta.cubic_absolute_majorant
+
+#check OddZeta.weight_seven_stationary_factor
+#check OddZeta.weight_seven_stationary_shift
+#check OddZeta.weight_seven_stationary_upper_endpoint
+#check OddZeta.weight_seven_saddle_base_bound
+#check OddZeta.weight_seven_moment_cutoff
+
+#print axioms OddZeta.weight_seven_stationary_factor
+#print axioms OddZeta.weight_seven_stationary_shift
+#print axioms OddZeta.weight_seven_stationary_upper_endpoint
+#print axioms OddZeta.weight_seven_saddle_base_bound
+#print axioms OddZeta.weight_seven_moment_cutoff
