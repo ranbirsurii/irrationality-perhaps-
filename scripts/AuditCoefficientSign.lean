@@ -1,0 +1,9 @@
+import OddZeta.PadeCoefficientSign
+
+#print axioms OddZeta.harmonicPower_mono_index
+#print axioms OddZeta.harmonicPower_subadditive
+#print axioms OddZeta.harmonicPower_positive
+#print axioms OddZeta.padeFiveLogCurvature_lower
+#print axioms OddZeta.padeFiveLocalAmplitude_positive
+#print axioms OddZeta.padeFiveLocalAmplitude_lower
+#print axioms OddZeta.padeFiveLocalCoefficient_signed_positive

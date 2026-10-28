@@ -1,0 +1,7 @@
+'OddZeta.harmonicPower_mono_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.harmonicPower_subadditive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.harmonicPower_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeFiveLogCurvature_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeFiveLocalAmplitude_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeFiveLocalAmplitude_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeFiveLocalCoefficient_signed_positive' depends on axioms: [propext, Classical.choice, Quot.sound]

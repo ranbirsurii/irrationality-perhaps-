@@ -5,6 +5,14 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [coefficient-sign reduction](notes/coefficient-sign-reduction.md)
+constructs exact Cauchy contours and a harmonic-binomial expression for
+the weight-five zeta(3) coefficient. `PadeCoefficientSign.lean` proves
+the uniform local-amplitude bound `E_(n,m,j) >= (3/2)*H_n^(2) > 0`
+for n>0, m<=n and j<=n. The Laurent-coefficient identification is a
+paper proof. The global alternating-sum sign remains unproved;
+40 even-index adjacent-sign checks through n=80 are finite evidence.
+
 The [proposal refinement](notes/proposal-arithmetic-refinement.md) applies
 the new denominator and telescoping proposals to these specific kernels.
 The concise derivation is in the [three-page note](notes/pade-arithmetic-note.pdf)
