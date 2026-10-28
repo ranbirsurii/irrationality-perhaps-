@@ -1,0 +1,11 @@
+import OddZeta.GramSpectralBounds
+
+#check OddZeta.reduced_gram_eigenvalue_bounds
+#check OddZeta.gram_cost_bound_from_eigenvalue
+#print axioms OddZeta.gram_eigenvalues_are_roots
+#print axioms OddZeta.reduced_gram_eigenvalue_bounds
+#print axioms OddZeta.reduced_gram_condition_number_bounds
+#print axioms OddZeta.gram_larger_eigenvalue_le_det_div
+#print axioms OddZeta.reduced_integer_gram_uniform_gap
+#print axioms OddZeta.reduced_integer_gram_max_le_twice_det
+#print axioms OddZeta.gram_cost_bound_from_eigenvalue

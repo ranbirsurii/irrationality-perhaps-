@@ -20,6 +20,10 @@ assumptions are used to replace them.
   exact actual weight-seven cancellations at indices six and eight.
 - `analytic-rate-certificates.json`: exact global sharp-saddle and rate
   enclosures, reproduced by `scripts/check_high_weight_rates.py`.
+- `VerifyGramSpectralBounds.lean`, `gram-spectral-axioms.log`, and
+  `gram-spectral-verification.md`: verified Gram eigenvalue estimates and
+  their scope. The continuation is derived in
+  `notes/normalized-gram-spectral-bound.md` in the repository.
 - The repository's `OddZeta` directory: complete Lean library sources.
 
 The downloadable source archive additionally contains the pinned Lean

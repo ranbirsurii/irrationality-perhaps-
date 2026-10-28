@@ -1,0 +1,12 @@
+OddZeta.reduced_gram_eigenvalue_bounds (A B C : ℝ) (hA : 0 ≤ A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) :
+  A / 2 ≤ OddZeta.gramEigenMin A B C ∧
+    OddZeta.gramEigenMin A B C ≤ A ∧ C ≤ OddZeta.gramEigenMax A B C ∧ OddZeta.gramEigenMax A B C ≤ 3 * C / 2
+OddZeta.gram_cost_bound_from_eigenvalue (A B C P Γ K : ℝ) (hA : 0 ≤ A) (hAC : A ≤ C) (hB : 2 * |B| ≤ A) (hP : 0 ≤ P)
+  (hΓ : 0 < Γ) (hK : K ≤ P * √C / Γ) : K ≤ P * √(OddZeta.gramEigenMax A B C) / Γ
+'OddZeta.gram_eigenvalues_are_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_gram_eigenvalue_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_gram_condition_number_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.gram_larger_eigenvalue_le_det_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_integer_gram_uniform_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.reduced_integer_gram_max_le_twice_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.gram_cost_bound_from_eigenvalue' depends on axioms: [propext, Classical.choice, Quot.sound]

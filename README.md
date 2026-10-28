@@ -5,6 +5,16 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Higher weights and the new supplied notes
 
+The [normalized Gram spectral calculation](notes/normalized-gram-spectral-bound.md)
+applies the two-dimensional eigenvalue estimates to the actual cancellation
+lattice. `GramSpectralBounds.lean` proves the explicit eigenvalue formulas,
+Gauss-reduced bounds, condition-number comparison, and the unconditional
+gap `mu_min >= 1/2`, with `mu_max <= 2 * H_n^2` for the integral reduced
+basis. The note derives the signed-form bound in terms of
+`mu_max(G_n) / Gamma_n^2` and states the quantitative normalized spectral
+estimate still needed. Rank and the existing operator-level motivic
+identifications do not establish that estimate.
+
 The [organized manuscript source](publication/high-weight-criterion/main.tex)
 gives an exact Smith-content reduction and a direct comparison extending
 the raw weight-five bound to every fixed higher weight. The new

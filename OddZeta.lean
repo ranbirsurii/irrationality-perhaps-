@@ -34,3 +34,4 @@ import OddZeta.AperyRegulatorComparison
 import OddZeta.HighWeightRelativeCost
 import OddZeta.KernelProjectorContent
 import OddZeta.PositiveCancellationCost
+import OddZeta.GramSpectralBounds
