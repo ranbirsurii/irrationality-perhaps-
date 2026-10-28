@@ -1848,6 +1848,110 @@ quadratic estimate and the majorant-to-limit implication. The actual
 moment-family identification and the sufficient arithmetic majorant
 remain separate from those abstract formal statements.
 
+\section{Uniform analytic contraction of the moment certificates}
+The analytic estimates can be strengthened without changing the blocks.
+Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and
+\(w_n(t)=t(t+n)/(12n^2)\). Direct cancellation of the finite products gives
+\[
+ \frac{T_{n+2}(t+2)}{T_n(t)}=
+ \frac{((n+1)(n+2))^s}{((m+1)(m+2))^2}
+ \frac{[t(t+1)]^{s+1}\prod_{j=1}^6(t+n+m+j)}
+ {\prod_{j=1}^4(t+n+j)^{s+1}}.
+\]
+This formula holds for \(t>m\), with \(m\) increasing to \(m+2\)
+in the numerator kernel. In particular the integer shift aligns the
+entire positive summation range.
+
+\begin{proposition}[Kernel and moment contraction]
+Put
+\[
+ a_s=\frac{16^{-(s-7)}}{100},\qquad
+ b_s=\frac{27\,16^{-(s-7)}}{100},\qquad
+ J_{\ell,n}=\sum_{k>n-r}T_n(k)w_n(k)^\ell.
+\]
+For every \(r\ge3\), \(s=2r+1\), even \(n\ge4r\), and
+\(0\le\ell\le2r\),
+\[
+ J_{0,n+2}\le a_sJ_{0,n},\qquad
+ J_{\ell,n+2}\le b_sJ_{\ell,n}.
+\]
+\end{proposition}
+\begin{proof}
+With \(x=t/n\) and \(t\ge m+1\), the displayed kernel ratio is at most
+\[
+ C_{s,n}f_s(x),\quad
+ C_{s,n}=\frac{(1+2/n)^{3s+1}(1+3/n)^6}{(1-r/n)^4},\quad
+ f_s(x)=\frac{x^{2s+2}(x+2)^6}{(x+1)^{4s+4}}.
+\]
+Indeed \(t\ge n/2\), so \(t(t+1)\le t^2(1+2/n)\).
+The six upper factors are at most \((t+2n)(1+3/n)\), and
+each lower factor is at least \(t+n\). The factorial prefactor is
+at most \(n^{2s-4}(1+2/n)^{2s}/(1-r/n)^4\); all powers of \(n\) cancel.
+Since \(x^2/(x+1)^4\le1/16\) and \(x+2\le2(x+1)\),
+\[
+ f_s(x)\le16^{-(s-7)}\frac{64x^{16}}{(x+1)^{26}}
+ \le16^{-(s-7)}\frac{64\cdot8^{16}5^{10}}{13^{26}}.
+\]
+The last maximum occurs at \(x=8/5\), by logarithmic differentiation.
+Also \(\log(1+u)\le u\) gives
+\[
+ C_{s,n}\le(4/3)^4\exp((12r+26)/n)
+ \le(4/3)^4 e^{31/6}<2304.
+\]
+Here \(e<3\) suffices for the last bound. Exact integer comparison gives
+\(2304\cdot64\cdot8^{16}5^{10}/13^{26}<1/100\).
+This proves the pointwise kernel contraction with factor \(a_s\).
+
+For \(k\ge n-r+1\ge3n/4\), the coordinate ratio is
+\[
+ \frac{w_{n+2}(k+2)}{w_n(k)}
+ =\left(\frac n{n+2}\right)^2
+   (1+2/k)(1+4/(k+n))<e^{5/n}.
+\]
+Its \(\ell\)-th power is at most \(e^{10r/n}\le e^{5/2}<27\).
+Multiply the pointwise bounds and sum over the aligned ranges.
+Convergence follows from the earlier moment-tail bounds.
+\end{proof}
+
+Let \(n_0=4r\), \(j=(n-n_0)/2\), and let
+\(H_n=(J_{p+q,n})_{0\le p,q\le r}\) be the true moment matrix.
+Iteration of the proposition gives
+\[
+ J_{0,n}\le a_s^jJ_{0,n_0},\qquad
+ \operatorname{tr}H_n\le b_s^j\operatorname{tr}H_{n_0}.
+\]
+The computable certificates retain this decay. At \(K=3n\),
+\(w_n(K)=1\), so
+\(t_{2i}=KT_n(K)/(4r+1-4i)\). Since \(T_n(K)\le J_{0,n}\),
+\begin{align*}
+ \mu_n&\le(1+3n/(4r+1))a_s^jJ_{0,n_0},\\
+ \operatorname{tr}G_n
+ &\le b_s^j[\operatorname{tr}H_{n_0}+3n(r+1)^2J_{0,n_0}].
+\end{align*}
+These statements use the trace of a positive matrix, rather than an
+invalid inference from entrywise inequalities to quadratic-form order.
+
+To keep normalization explicit, let \(A_n\) be the rational coefficient
+matrix before clearing denominators, so \(M_n=DA_n\). The corresponding
+raw profile map is \(F_n^{\rm raw}=DF_n\). Thus
+\(S_n^{\rm raw}=D^2S_n\), and its reduced second coefficient is
+\(\nu_n^{\rm raw}=D^2\nu_n\). In particular
+\(D^2\mu_n\nu_n=\mu_n\nu_n^{\rm raw}\) exactly.
+
+For every raw weighted profile \(z_n\), positivity and the trace bound yield
+the clean majorant
+\[
+ |L_n|^2\le C_r(n+1)^2(a_sb_s)^j\|z_n\|_2^2,\qquad
+ C_r=3(r+1)^2J_{0,n_0}
+       [\operatorname{tr}H_{n_0}+J_{0,n_0}].
+\]
+This is an all-weight analytic bound with a polynomial prefactor.
+The selected primitive forms have profiles
+\(z_n=F_n^{\rm raw}U_ne_i\). Their norms have not been bounded at the
+rate needed to conclude smallness. The moment contraction therefore
+strengthens the proved analytic side of the same remaining limit;
+it does not establish the irrationality conclusion.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

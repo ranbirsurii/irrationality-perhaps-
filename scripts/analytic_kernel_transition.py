@@ -26,6 +26,10 @@ def main():
                 assert kernel(s,n+2,m+2,t+2) == kernel(s,n,m,t)*shift(s,n,m,t)
                 if n >= 4*r:
                     assert shift(s,n,m,t) <= Q(1,100)*Q(1,16)**(s-7)
+                    w=t*(t+n)/Q(12*n*n)
+                    wn=(t+2)*(t+n+4)/Q(12*(n+2)**2)
+                    for ell in range(2*r+1):
+                        assert shift(s,n,m,t)*(wn/w)**ell <= Q(27,100)*Q(1,16)**(s-7)
             data=construct(r,n)
             value=Q(data['kernel_mass_majorant'])*Q(data['raw_reduced_second'])
             assert value==Q(data['full_moment_bound'])
