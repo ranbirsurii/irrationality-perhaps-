@@ -42,6 +42,76 @@ epsilon>0, would suffice. This is a statement about the complete output
 gcd relative to the cancellation weights. A saving in a basis denominator
 alone does not establish it. No such lower bound is proved here.
 
+## The exact rate identity and the conditional comparison proof
+
+All limits here are taken along even n. Put
+
+\[
+ S_n=\max\{\mathcal A_{n,n},\mathcal A_{n,n-1}\}>0,
+ \quad R_n=\frac{d_n^5M_n}{h_n}S_n,
+ \quad x_n=\frac{\log h_n-\log M_n}{n}.
+\]
+
+The two positive sums have the same logarithmic rate lambda_5. Their
+maximum therefore does too. Since log(d_n)/n -> 1, the exact identity
+
+\[
+ \frac{\log R_n}{n}
+   =\frac{5\log d_n}{n}+\frac{\log S_n}{n}-x_n
+\]
+
+gives, in the extended real numbers,
+
+\[
+ \boxed{\limsup\frac{\log R_n}{n}
+        =5+\lambda_5-\liminf x_n.}
+\]
+
+The liminf is essential; separate limsup estimates on log(M_n) and
+log(h_n) cannot simply be subtracted. No hypothesis about the growth of
+M_n alone is necessary if x_n is controlled directly.
+
+Here is a complete real-analysis implication. Suppose a real gamma
+satisfies gamma>5+lambda_5 and x_n>=gamma eventually. Set
+epsilon=(gamma-5-lambda_5)/3>0. The two established analytic limits give,
+eventually,
+
+\[
+ 5\log d_n\le(5+\varepsilon)n,\qquad
+ \log S_n\le(\lambda_5+\varepsilon)n.
+\]
+
+Consequently
+
+\[
+ 0<R_n\le
+ \exp\{(5+\lambda_5+2\varepsilon-\gamma)n\}
+ =\exp(-\varepsilon n)\longrightarrow0.
+\]
+
+Thus explicit logarithmic bounds and comparison with a geometric sequence
+are successive steps of the same argument. If the boxed liminf is strictly
+larger than 5+lambda_5, one can choose gamma strictly between them; the
+definition of liminf then supplies the assumed eventual inequality.
+
+The constructed M_n has not been proved subexponential. In particular it
+cannot be assigned rate zero merely because it is an auxiliary multiplier.
+At n=160 the exact audit encloses log(M_n)/n near 5.692461891 and
+log(h_n)/n near 3.037107485. These finite values do not prove their limits.
+
+For completeness, the other stated component rates alone do not imply
+R_n->0. As an abstract counterexample to that inference, take M_n=h_n=1,
+keep d_n=lcm(1,...,n), and take S_n=exp(lambda_5*n). These positive
+sequences have precisely the stated denominator and analytic rates, but
+log(R_n)/n -> 5+lambda_5>0, so R_n->infinity. This is not asserted to be
+our constructed family; it shows why a quantified arithmetic saving is
+an indispensable additional input.
+
+The implication above is complete. Its eventual arithmetic hypothesis is
+unproved for the present forms. It is not an unconditional smallness
+theorem or a complete Lean formalization, and no further compilation was
+performed on the strength of that hypothesis.
+
 Rescaling integer weights multiplies h_n and M_n equally. Overclearing
 coefficient denominators likewise multiplies the clearing factor and
 the full gcd equally. Neither changes the primitive form. Those
