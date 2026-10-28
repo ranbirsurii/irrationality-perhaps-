@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\title{Global nonvanishing after lower-period\\cancellation at weight five}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Two explicit third-order recurrence certificates establish the adjacent
+coefficient signs needed to cancel $\zeta(3)$ at every even index.
+A uniform recurrence cone proves positivity from three initial values;
+the argument does not extrapolate finite sign checks. The certificates
+are checked independently in $\Z[n,t]$. Lean verifies the cone induction,
+its coefficient inequalities, and positivity of the specified recurrence
+states. Their identification with the Laurent coefficients is a paper
+proof here. The winning primitive arithmetic bound, and hence
+irrationality of $\zeta(5)$, remain unproved.
+\end{abstract}
+
+\section{The coefficients and the claim}
+For $a=0,1$ and $n\ge2$, put
+\[
+ R_n^{(a)}(t)=(n!)^3
+ \frac{\prod_{v=1}^{n-a}(t-v)(t+n+v)}
+      {\prod_{j=0}^n(t+j)^5}.
+\]
+Let $\phi_3$ sum all third-order partial-fraction coefficients in the integer
+pole orbit, and set $v_n^{(a)}=\phi_3(R_n^{(a)})$. In the original normalization,
+\[
+ T_{n,m}(t)=\frac{(n!)^5}{(m!)^2}
+ \frac{\prod_{v=1}^m(t-v)(t+n+v)}{\prod_{j=0}^n(t+j)^5},
+ \qquad
+ \alpha_{n,n}=v_n^{(0)},\quad \alpha_{n,n-1}=n^2v_n^{(1)}.
+\]
+For even $n$, $\alpha_{n,m}$ is the coefficient of $\zeta(3)$ in
+$\mathcal A_{n,m}:=\sum_{k\ge1}T_{n,m}(k)$.
+The sums converge absolutely by rational decay and are strictly positive:
+their summands vanish for $k\le m$ and are positive for $k>m$.
+Partial-fraction summation identifies $\alpha$ with the stated coefficient.
+Reflection $T_{n,m}(-n-t)=-T_{n,m}(t)$ cancels the even zeta terms;
+proper decay gives $\sum_jc_{j,1}=0$, leaving a rational constant and
+only $\zeta(3),\zeta(5)$.
+
+\begin{theorem}
+For every even $n\ge2$,
+\[
+ (-1)^{n/2}\alpha_{n,n}>0,\qquad
+ (-1)^{n/2+1}\alpha_{n,n-1}>0.
+\]
+In particular $\alpha_{n,n}\alpha_{n,n-1}<0$. Consequently
+\[
+ (-1)^{n/2+1}\bigl[
+ \alpha_{n,n-1}\mathcal A_{n,n}
+ -\alpha_{n,n}\mathcal A_{n,n-1}\bigr]>0.
+\]
+The last expression belongs to $\Q+\Q\zeta(5)$.
+\end{theorem}
+
+The proof is computer assisted through finite polynomial certificates.
+The two accompanying JSON files specify all polynomials below by integer
+coefficient lists in ascending powers; the standard-library verifier
+checks the displayed identities by complete coefficient expansion.
+
+\section{An exact index recurrence}
+Fix $a$. The certificate gives $q_0,\ldots,q_3$ and
+$X(n,t)=\sum_{k=0}^{30}x_k(n)t^k$. Define
+\[
+ U=t^6(t+2n-a+1),\qquad V=(t-n+a-1)(t+n+6)^6,
+\]
+\[
+ H_\ell(n,t)=
+ \prod_{i=1}^{2\ell}(t-n+a-i)
+ \prod_{i=1}^{4\ell}(t+2n-a+i)
+ \prod_{i=2\ell+1}^{6}(t+n+i)^6.
+\]
+The first checked identity, in $\Z[n,t]$, is
+\begin{equation}
+ U(n,t)X(n,t+1)-V(n,t)X(n,t)
+           =\sum_{\ell=0}^3q_\ell(n)H_\ell(n,t).
+ \label{eq:cert}
+\end{equation}
+The files also specify $P_0,\ldots,P_3$ and verify
+\[
+ q_\ell(n)\prod_{i=2\ell+1}^{6}(n+i)^3=g_a(n)P_\ell(n),\qquad
+ g_0=\prod_{i=3}^6(n+i)^3,\quad g_1=\prod_{i=2}^6(n+i)^3.
+\]
+All $P_\ell$ have degree $25$ for $a=0$ and degree $36$ for $a=1$.
+
+To interpret the certificate, put
+\[
+ D(n,t)=\prod_{i=1}^6(t+n+i)^6,\quad
+ B(n,t)=\frac{R_n^{(a)}(t)}{D(n,t)},\quad G(n,t)=V(n,t)X(n,t)B(n,t).
+\]
+Direct cancellation gives the rational-function identities
+\[
+ \frac{B(n,t+1)}{B(n,t)}
+ =\frac{t^6(t+2n-a+1)}{(t-n+a)(t+n+7)^6},
+ \qquad
+ B(n,t)H_\ell(n,t)=
+ \frac{R_{n+2\ell}^{(a)}(t)}{\prod_{i=1}^{2\ell}(n+i)^3}.
+\]
+Thus \eqref{eq:cert}, multiplied by $B$, gives a rational telescoper
+whose right side is a linear combination of the four shifted kernels.
+
+The functional $\phi_3$ is translation invariant: replacing $G(t)$ by
+$G(t+1)$ shifts each integer pole by one without changing its third-order
+coefficient. All these rational functions have finitely many integer poles.
+Applying $\phi_3$, clearing the factorial factors, and using $g_a(n)>0$
+therefore proves
+\begin{equation}
+ \sum_{\ell=0}^3P_\ell(n)v_{n+2\ell}^{(a)}=0\qquad(n\ge2).
+ \label{eq:rec}
+\end{equation}
+This does not assume numerical linear independence of zeta values:
+the functional is applied before evaluating any period.
+
+\section{A cone that preserves the sign}
+The verifier checks that each coefficient of
+\[
+ -P_0(x+2),\quad P_1(x+2),\quad P_2(x+2),\quad P_3(x+2)
+\]
+is a nonnegative integer, with a positive constant term. The same is true of
+\[
+ \Omega(x)=10^6P_2(x+2)-10^9P_3(x+2)-1000P_1(x+2)+P_0(x+2).
+\]
+These are polynomial positivity certificates for all real $x\ge0$,
+not sign evaluations at finitely many indices. For $n\ge2$, set
+\[
+ A=-P_0(n)>0,\quad B=P_1(n)>0,\quad C=P_2(n)>0,\quad D=P_3(n)>0.
+\]
+Then
+\begin{equation}
+ 10^6 C>10^9D+1000B+A.
+ \label{eq:cone}
+\end{equation}
+
+Let $u_k^{(a)}=(-1)^{k+1+a}v_{2k+2}^{(a)}$. Equation \eqref{eq:rec} becomes
+\[
+ D u_{k+3}=C u_{k+2}-B u_{k+1}-A u_k,
+\]
+where the coefficients are evaluated at $n=2k+2$. Suppose
+$u_k>0$, $u_{k+1}\ge1000u_k$, and $u_{k+2}\ge1000u_{k+1}$.
+Then \eqref{eq:cone} gives
+\[
+ D u_{k+3}\ge
+ \left(C-\frac B{1000}-\frac A{10^6}\right)u_{k+2}
+ \ge1000D u_{k+2}.
+\]
+The cone is therefore preserved.
+
+Direct Laurent expansion at the first three indices gives
+\[
+ (u_0^{(0)},u_1^{(0)},u_2^{(0)})
+ =\left(882,\frac{9149875}{2},\frac{225341478859}{5}\right),
+\]
+\[
+ (u_0^{(1)},u_1^{(1)},u_2^{(1)})
+ =\left(\frac{785}{8},\frac{16148335}{128},\frac{89419424171}{162}\right).
+\]
+Both triples satisfy the cone by exact rational comparisons.
+Induction proves $u_k^{(0)},u_k^{(1)}>0$ for every $k\ge0$, establishing
+the two asserted coefficient signs. The cancellation weights
+$\alpha_{n,n-1}$ and $-\alpha_{n,n}$ have the common sign
+$(-1)^{n/2+1}$; strict positivity of both $\mathcal A$ sums proves the
+last inequality in the theorem. The $\zeta(3)$ coefficient cancels
+algebraically. No separate all-index assertion about the nonzero
+$\zeta(5)$ coefficient is needed or made.
+
+\section{Verification scope and remaining arithmetic}
+The files
+\texttt{pade-sign-recurrence-0.json} and
+\texttt{pade-sign-recurrence-1.json} contain the complete certificates.
+Run
+\begin{quote}
+ \texttt{python scripts/verify\_sign\_recurrences.py}
+\end{quote}
+from the included Lean project. This verifier uses only integer and
+rational arithmetic from Python's standard library. SymPy 1.14.0 is
+needed only to rediscover the certificates, not to check them.
+
+The Lean module \texttt{PadeSignRecurrence.lean} proves the cone step,
+its induction, the coefficient inequalities using nonnegative Horner
+coefficient lists, and positivity of the two explicitly defined recurrence
+states. The step identifying those states with the actual Laurent-coefficient
+sequences uses the paper argument from \eqref{eq:cert} to \eqref{eq:rec}.
+That connection is not yet formalized in Lean; no complete Lean theorem
+about the global Laurent-coefficient signs is claimed here.
+
+Nonvanishing after lower-period cancellation is now established for this
+family at every even index. The primitive arithmetic multiplier remains
+\[
+ K_n=\frac{d_n^5\sum_j|w_{n,j}|}{h_n},
+ \qquad d_n=\operatorname{lcm}(1,\ldots,n),
+\]
+where the $w_{n,j}$ are integer cancellation weights obtained by clearing
+the two rational weights, and $h_n$ is the full coefficient gcd.
+The needed limiting comparison
+between $K_n$ and the analytic decay is still unproved.
+This note does not prove irrationality of $\zeta(5)$ or of all odd zeta values.
+\end{document}

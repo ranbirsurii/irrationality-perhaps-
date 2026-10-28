@@ -5,13 +5,36 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [global sign proof](notes/global-coefficient-sign.md) establishes
+`(-1)^(n/2)*alpha_(n,n)>0` and `(-1)^(n/2+1)*alpha_(n,n-1)>0`
+for every even n>=2. Two exact third-order recurrence certificates and
+a uniform positivity cone prove the result; this is not an extrapolation
+from finite sign checks. The two-block weight-five combined form is
+therefore nonzero at every such index. The [independent verifier](scripts/verify_sign_recurrences.py)
+checks the universal polynomial identities using only integer arithmetic.
+`PadeSignRecurrence.lean` verifies the induction, coefficient inequalities,
+and positivity of the explicitly defined recurrence states. Their identification
+with the actual Laurent-coefficient sequences remains a paper proof.
+The winning primitive arithmetic growth bound is still unproved.
+The [three-page proof](notes/global-sign-note.pdf) and
+[TeX source](notes/global-sign-note.tex) include the recurrence argument
+and the precise formalization scope.
+The [arithmetic comparison](notes/arithmetic-twists-comparison.md) states
+the exact remaining gcd-to-weight inequality and records the scope of
+the Connes-Consani twistor and cyclic-homology constructions examined.
+The [independent arithmetic audit](notes/primitive-normalization-audit.md)
+checks both primitive normalization procedures through index 160. It also
+gives exact positive lower bounds exceeding one at the six audited indices
+8,12,20,40,80,160. These finite results establish no limiting arithmetic
+rate. Further compilation is paused pending the requested complete bound.
+
 The [coefficient-sign reduction](notes/coefficient-sign-reduction.md)
 constructs exact Cauchy contours and a harmonic-binomial expression for
 the weight-five zeta(3) coefficient. `PadeCoefficientSign.lean` proves
 the uniform local-amplitude bound `E_(n,m,j) >= (3/2)*H_n^(2) > 0`
 for n>0, m<=n and j<=n. The Laurent-coefficient identification is a
-paper proof. The global alternating-sum sign remains unproved;
-40 even-index adjacent-sign checks through n=80 are finite evidence.
+paper proof. Its original finite sign evidence is superseded by the
+global recurrence argument linked above.
 
 The [proposal refinement](notes/proposal-arithmetic-refinement.md) applies
 the new denominator and telescoping proposals to these specific kernels.
@@ -25,8 +48,9 @@ checks and 19 full-gcd combined-form ledgers, all with one-sign weights.
 `PadeArithmeticBudget.lean` proves the leading-magnitude binomial identity,
 the block recurrence, positivity for convergent nonnegative combinations,
 and invariance of primitive cost under extra common denominator clearing.
-The complete denominator theorem is a paper proof; the winning limiting
-primitive-cost bound and all-index one-sign nullvector theorem are unproved.
+The complete denominator theorem is a paper proof. The winning limiting
+primitive-cost bound is unproved; a general all-weight one-sign nullvector
+theorem is unproved beyond the weight-five result above.
 
 The [symmetric-kernel note](notes/symmetric-pade-note.pdf)
 ([TeX](notes/symmetric-pade-note.tex)) gives the actual harmonic/polylog

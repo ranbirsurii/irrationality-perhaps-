@@ -1,0 +1,8 @@
+'OddZeta.evalNatPoly_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.evalNatPoly_cons_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.thirdOrderRatioCone_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.thirdOrderState_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeSignCoefficients0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeAlphaRecurrenceState0_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeSignCoefficients1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.padeAlphaRecurrenceState1_positive' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -2,8 +2,9 @@
 
 This note takes the sign direction first. It proves a uniform local
 amplitude bound and gives the exact finite sum and coefficient contours
-for the global coefficient. It does not prove the global adjacent-sign
-theorem or a winning primitive arithmetic bound.
+for the global coefficient. The global adjacent-sign theorem is now proved
+by the separate [recurrence argument](global-coefficient-sign.md). A winning
+primitive arithmetic bound remains unproved.
 
 ## The actual coefficient and its contours
 
@@ -115,8 +116,9 @@ One sufficient target for n even is now
        \quad\text{for }m=n,n-1.
 \]
 
-It would imply alpha_(n,n)*alpha_(n,n-1)<0. The uniform local sign
-theorem does not prove this last alternating-sum inequality. Even a
+It implies alpha_(n,n)*alpha_(n,n-1)<0. The uniform local sign theorem
+alone does not prove this alternating-sum inequality. The separate recurrence
+argument now proves it for m=n,n-1. In general, even a
 symmetric sequence of strictly positive amplitudes can have the wrong
 alternating-sum sign: at n=2, amplitudes (1,1,1) give sum 1, while the
 proposed middle-parity sign would require a negative sum. The actual
