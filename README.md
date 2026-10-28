@@ -843,6 +843,12 @@ All Lean source files use ordinary visible code and contain no `sorry` or
 
 # Exact transition-norm follow-up
 
+The [signed moment metric](notes/moment-metric-reduction.md) retains
+polynomial cross terms, includes a certified infinite tail, and chooses
+primitive pairs by a rational moment Gram form. Exact checks cover 22
+forms, through index 160 at weight seven. A favorable all-index rate for
+the reduced second coefficient remains unproved.
+
 The [transition growth analysis](notes/transition-growth-methods.md) derives
 the optimal weighted infinity-to-one norm of the transfer map and an exact
 directional lower certificate. The accompanying rational checks cover
