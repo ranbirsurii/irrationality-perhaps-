@@ -18,6 +18,7 @@ def pairing(x, G, y):
 
 
 def construct(r, n):
+    assert r >= 3 and n >= 2*r and n % 2 == 0
     s = 2*r+1
     m = n-r
     K = 3*n
@@ -50,6 +51,14 @@ def construct(r, n):
     mu = moments[0]+tails[0]
     gram = pairing(u,G,u), pairing(u,G,v), pairing(v,G,v)
     reduced, U, steps = reduce_binary_form(*gram)
+    alpha, beta, nu = reduced
+    for h,k in ((Q(0),Q(0)),(Q(1),Q(0)),(Q(0),Q(1)),
+                (Q(2),Q(-3)),(Q(2,3),Q(-5,7))):
+        p,q = U[0][0]*h+U[0][1]*k, U[1][0]*h+U[1][1]*k
+        z = [p*x+q*y for x,y in zip(u,v)]
+        value = pairing(z,G,z)
+        assert value == alpha*h*h+2*beta*h*k+nu*k*k
+        assert value <= Q(3,2)*nu*(h*h+k*k)
     enclosure_order = max(96, 2*n)
     lo, hi = euler_maclaurin_zeta_interval(s, enclosure_order)
     forms = []
@@ -66,6 +75,8 @@ def construct(r, n):
                       'old_over_moment_squared': str(old*old/square_bound),
                       'moment_bound_below_one': square_bound < 1})
     return {'weight':s,'index':n,'cutoff':K,'enclosure_order':enclosure_order,
+            'rational_combination_checks':5,
+            'reduced_gram':list(map(str,reduced)),
             'gauss_steps':steps,'forms':forms}
 
 
@@ -73,7 +84,9 @@ def main():
     sys.set_int_max_str_digits(200000)
     records=[]
     for r,n in ((3,6),(3,8),(3,12),(3,20),(3,40),(3,80),(3,160),
-                (4,8),(4,12),(4,20),(4,40)):
+                (4,8),(4,12),(4,20),(4,40),
+                (5,10),(5,20),(6,12),(6,24),(7,14),(7,28),
+                (8,16),(8,32),(10,20),(10,40)):
         row=construct(r,n)
         records.append(row)
         print('moment metric',2*r+1,n,'small bounds',sum(f['moment_bound_below_one'] for f in row['forms']),flush=True)

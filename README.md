@@ -845,8 +845,10 @@ All Lean source files use ordinary visible code and contain no `sorry` or
 
 The [signed moment metric](notes/moment-metric-reduction.md) retains
 polynomial cross terms, includes a certified infinite tail, and chooses
-primitive pairs by a rational moment Gram form. Exact checks cover 22
-forms, through index 160 at weight seven. A favorable all-index rate for
+primitive pairs by a rational moment Gram form. Its homogeneous bound
+holds for every form in the cancellation span at each odd weight at
+least seven. Exact checks cover 42 selected forms across weights up to
+21, through index 160 at weight seven. A favorable all-index rate for
 the reduced second coefficient remains unproved.
 
 The [transition growth analysis](notes/transition-growth-methods.md) derives
