@@ -5,6 +5,20 @@ plus the integer-smallness argument needed for an irrationality proof.
 
 ## Explicit symmetric Padé cancellation
 
+The [three-block enlargement](notes/three-block-positive-forms.md) uses
+lengths n,n-1,n-2 and a saturated integer cancellation lattice. The
+uniform denominator and positivity theorems apply to this profile.
+Exact finite searches through n=1280 produce positive primitive forms
+below one; the n=1280 form is below 10^(-126), certified with rational
+positive-sum bounds. A new uniform lattice-cost inequality is proved,
+but its required limiting rate remains unproved. These finite bounds
+do not establish irrationality.
+The [uniform block-length recurrence](notes/uniform-block-recurrence.md)
+has explicit polynomial coefficients with proved signs. It shows that
+the last three blocks generate the whole positive rational cone for
+0<=m<=n and states a quantified sufficient arithmetic saving for decay.
+That saving is certified at selected finite indices, not proved eventually.
+
 The [global sign proof](notes/global-coefficient-sign.md) establishes
 `(-1)^(n/2)*alpha_(n,n)>0` and `(-1)^(n/2+1)*alpha_(n,n-1)>0`
 for every even n>=2. Two exact third-order recurrence certificates and
@@ -39,6 +53,13 @@ coordinates, and proves its nonzero Casoratian and compound-matrix
 transport. Independent integer-polynomial and unimodular-witness checks
 are included. These identify the proposed recurrence lattice; its winning
 gcd growth estimate remains unproved.
+The [exterior spectrum calculation](notes/exterior-spectrum-and-smith-growth.md)
+computes the limiting characteristic polynomial and proves exactly that
+the second determinantal divisor of powers of the limiting companion
+matrix is `27^(k-1)`. Its arithmetic growth differs from its real exterior
+spectral rate. The proposed spectral-to-Smith inference is therefore
+false, including in this constant model; no corresponding arithmetic
+rate is inferred for the actual varying coefficient lattice.
 
 The [coefficient-sign reduction](notes/coefficient-sign-reduction.md)
 constructs exact Cauchy contours and a harmonic-binomial expression for

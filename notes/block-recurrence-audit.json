@@ -1,0 +1,173 @@
+{
+  "scope": "Universal polynomial identity and coefficient-sign proof; paper boundary argument yields the full period-vector recurrence. No limiting primitive-cost estimate.",
+  "polynomial_identity_verified": true,
+  "uniform_signs": [
+    {
+      "index": 0,
+      "sign": 1,
+      "shifted_term_count": 15
+    },
+    {
+      "index": 1,
+      "sign": -1,
+      "shifted_term_count": 21
+    },
+    {
+      "index": 2,
+      "sign": -1,
+      "shifted_term_count": 10
+    },
+    {
+      "index": 3,
+      "sign": -1,
+      "shifted_term_count": 3
+    }
+  ],
+  "period_coordinate_checks": [
+    {
+      "index": 4,
+      "length": 0,
+      "recurrence_coefficients": [
+        "6",
+        "-6602",
+        "-3440",
+        "-648"
+      ]
+    },
+    {
+      "index": 4,
+      "length": 1,
+      "recurrence_coefficients": [
+        "512",
+        "-49600",
+        "-38592",
+        "-9216"
+      ]
+    },
+    {
+      "index": 8,
+      "length": 0,
+      "recurrence_coefficients": [
+        "10",
+        "-90846",
+        "-17360",
+        "-1368"
+      ]
+    },
+    {
+      "index": 8,
+      "length": 2,
+      "recurrence_coefficients": [
+        "10206",
+        "-1760850",
+        "-834624",
+        "-122400"
+      ]
+    },
+    {
+      "index": 8,
+      "length": 5,
+      "recurrence_coefficients": [
+        "933120",
+        "-16891056",
+        "-14076720",
+        "-3161088"
+      ]
+    },
+    {
+      "index": 12,
+      "length": 0,
+      "recurrence_coefficients": [
+        "14",
+        "-501906",
+        "-49328",
+        "-2088"
+      ]
+    },
+    {
+      "index": 12,
+      "length": 4,
+      "recurrence_coefficients": [
+        "343750",
+        "-36177050",
+        "-16614000",
+        "-2205000"
+      ]
+    },
+    {
+      "index": 12,
+      "length": 9,
+      "recurrence_coefficients": [
+        "32000000",
+        "-368407200",
+        "-316052000",
+        "-69696000"
+      ]
+    },
+    {
+      "index": 20,
+      "length": 0,
+      "recurrence_coefficients": [
+        "22",
+        "-4929498",
+        "-198128",
+        "-3528"
+      ]
+    },
+    {
+      "index": 20,
+      "length": 8,
+      "recurrence_coefficients": [
+        "20194758",
+        "-1475019882",
+        "-660668400",
+        "-80368200"
+      ]
+    },
+    {
+      "index": 20,
+      "length": 17,
+      "recurrence_coefficients": [
+        "1904684544",
+        "-15585042816",
+        "-13754966400",
+        "-2994278400"
+      ]
+    },
+    {
+      "index": 40,
+      "length": 0,
+      "recurrence_coefficients": [
+        "42",
+        "-127651838",
+        "-1423568",
+        "-7128"
+      ]
+    },
+    {
+      "index": 40,
+      "length": 18,
+      "recurrence_coefficients": [
+        "3669578718",
+        "-206864783762",
+        "-90961025600",
+        "-10316224800"
+      ]
+    },
+    {
+      "index": 40,
+      "length": 37,
+      "recurrence_coefficients": [
+        "349268620544",
+        "-2229721819696",
+        "-2018817094320",
+        "-435750681600"
+      ]
+    }
+  ],
+  "positive_cone_generators": [
+    "length n",
+    "length n-1",
+    "length n-2"
+  ]
+}

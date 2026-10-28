@@ -1,0 +1,256 @@
+{
+  "scope": "Exact limiting-operator characteristic polynomials and universal paper counterexamples. Finite matrix checks support the derivations; no identification of actual lattice growth with the constant model.",
+  "limiting_transfer": [
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      729,
+      -15146217,
+      -30510
+    ]
+  ],
+  "limiting_exterior_transfer": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      -729,
+      0,
+      -30510
+    ],
+    [
+      0,
+      -729,
+      15146217
+    ]
+  ],
+  "transfer_charpoly_ascending": [
+    -729,
+    15146217,
+    30510,
+    1
+  ],
+  "exterior_charpoly_ascending": [
+    -531441,
+    -22241790,
+    -15146217,
+    1
+  ],
+  "exterior_root_intervals": [
+    [
+      "-288835142927/200000000000",
+      "-722087857317/500000000000"
+    ],
+    [
+      "-12147888767/500000000000",
+      "-24295777533/1000000000000"
+    ],
+    [
+      "15146218468471492167/1000000000000",
+      "1893277308558936521/125000000000"
+    ]
+  ],
+  "exterior_log_spectral_radius_interval": [
+    "16533261452721/1000000000000",
+    "8266630726361/500000000000"
+  ],
+  "exterior_log_spectral_radius_per_original_index_interval": [
+    "206665768159/25000000000",
+    "8266630726361/1000000000000"
+  ],
+  "scaled_integral_conjugate": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      -1,
+      0,
+      -1130
+    ],
+    [
+      0,
+      -27,
+      560971
+    ]
+  ],
+  "conjugating_diagonal": [
+    "1/27",
+    "1",
+    "1"
+  ],
+  "constant_model_exact_divisor_formula": "delta_2(A^k)=27^(k-1), k>=1",
+  "constant_model_log_divisor_rate_per_original_index_interval": [
+    "823959216501/500000000000",
+    "1647918433003/1000000000000"
+  ],
+  "constant_model_power_checks": [
+    {
+      "power": 1,
+      "second_determinantal_divisor": "1"
+    },
+    {
+      "power": 2,
+      "second_determinantal_divisor": "27"
+    },
+    {
+      "power": 3,
+      "second_determinantal_divisor": "729"
+    },
+    {
+      "power": 4,
+      "second_determinantal_divisor": "19683"
+    },
+    {
+      "power": 5,
+      "second_determinantal_divisor": "531441"
+    },
+    {
+      "power": 6,
+      "second_determinantal_divisor": "14348907"
+    },
+    {
+      "power": 7,
+      "second_determinantal_divisor": "387420489"
+    },
+    {
+      "power": 8,
+      "second_determinantal_divisor": "10460353203"
+    },
+    {
+      "power": 9,
+      "second_determinantal_divisor": "282429536481"
+    },
+    {
+      "power": 10,
+      "second_determinantal_divisor": "7625597484987"
+    },
+    {
+      "power": 11,
+      "second_determinantal_divisor": "205891132094649"
+    },
+    {
+      "power": 12,
+      "second_determinantal_divisor": "5559060566555523"
+    },
+    {
+      "power": 13,
+      "second_determinantal_divisor": "150094635296999121"
+    },
+    {
+      "power": 14,
+      "second_determinantal_divisor": "4052555153018976267"
+    },
+    {
+      "power": 15,
+      "second_determinantal_divisor": "109418989131512359209"
+    },
+    {
+      "power": 16,
+      "second_determinantal_divisor": "2954312706550833698643"
+    },
+    {
+      "power": 17,
+      "second_determinantal_divisor": "79766443076872509863361"
+    },
+    {
+      "power": 18,
+      "second_determinantal_divisor": "2153693963075557766310747"
+    },
+    {
+      "power": 19,
+      "second_determinantal_divisor": "58149737003040059690390169"
+    },
+    {
+      "power": 20,
+      "second_determinantal_divisor": "1570042899082081611640534563"
+    }
+  ],
+  "unimodular_counterexample": [
+    [
+      1000,
+      1,
+      0
+    ],
+    [
+      999,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "unimodular_exterior_spectral_radius_interval": [
+    1000,
+    1001
+  ],
+  "unimodular_smith_factors_all_powers": [
+    1,
+    1,
+    1
+  ],
+  "unimodular_power_checks": [
+    {
+      "power": 1,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 2,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 3,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 4,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 5,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 6,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 7,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 8,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 9,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 10,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 11,
+      "second_determinantal_divisor": 1
+    },
+    {
+      "power": 12,
+      "second_determinantal_divisor": 1
+    }
+  ]
+}
