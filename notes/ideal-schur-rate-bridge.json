@@ -1,0 +1,451 @@
+{
+  "cases": [
+    {
+      "weight": 7,
+      "index": 8,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 8,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 8,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 8,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 8,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 20,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 20,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 20,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 20,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 20,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 40,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 40,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 40,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 40,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 40,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 80,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 80,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 80,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 80,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 80,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 160,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1,
+        2
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 160,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1,
+        2
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 160,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1,
+        2
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 160,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1,
+        2
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 7,
+      "index": 160,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1,
+        2
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 9,
+      "index": 12,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 9,
+      "index": 12,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 9,
+      "index": 12,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 9,
+      "index": 12,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 9,
+      "index": 12,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 11,
+      "index": 12,
+      "cutoff_multiple": "5/4",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 11,
+      "index": 12,
+      "cutoff_multiple": "3/2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 11,
+      "index": 12,
+      "cutoff_multiple": "2",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 11,
+      "index": 12,
+      "cutoff_multiple": "3",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    },
+    {
+      "weight": 11,
+      "index": 12,
+      "cutoff_multiple": "6",
+      "integer_slices_tested": [
+        1
+      ],
+      "primitive_ideal_norm_identity": true,
+      "rate_base": "99/100",
+      "finite_epsilon_test_passed": true
+    }
+  ],
+  "all_index_epsilon_bound_proved": false,
+  "scope": "Exact finite Schur tests and ideal identities; no extrapolation to larger indices."
+}

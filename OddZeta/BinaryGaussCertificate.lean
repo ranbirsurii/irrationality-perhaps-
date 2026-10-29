@@ -1,4 +1,5 @@
 import OddZeta.BinaryGaussMinimum
+import Mathlib.Tactic.FieldSimp
 
 namespace OddZeta
 
@@ -100,5 +101,103 @@ theorem binary_certificate_attainment (A B C mu nu : ℝ) (a b c d : ℤ)
     norm_num
   · rw [mul_comm c b, h]
     norm_num
+
+theorem binary_pullback_determinant (A B C a b c d : ℝ) :
+    binaryQuadratic A B C a c * binaryQuadratic A B C b d -
+      (A*a*b+B*(a*d+b*c)+C*c*d)^2 =
+      (a*d-b*c)^2*(A*C-B^2) := by
+  unfold binaryQuadratic
+  ring
+
+theorem unimodular_nonzero_pair (a b c d x y : ℤ)
+    (hd : a*d-b*c=1 ∨ a*d-b*c= -1) (hxy : x ≠ 0 ∨ y ≠ 0) :
+    a*x+b*y ≠ 0 ∨ c*x+d*y ≠ 0 := by
+  have hdn : a*d-b*c ≠ 0 := by rcases hd with h | h <;> rw [h] <;> norm_num
+  by_cases hfirst : a*x+b*y=0
+  · right
+    intro hsecond
+    have hx : (a*d-b*c)*x=0 := by
+      calc
+        _ = d*(a*x+b*y)-b*(c*x+d*y) := by ring
+        _ = 0 := by rw [hfirst,hsecond]; ring
+    have hy : (a*d-b*c)*y=0 := by
+      calc
+        _ = a*(c*x+d*y)-c*(a*x+b*y) := by ring
+        _ = 0 := by rw [hfirst,hsecond]; ring
+    exact hxy.elim
+      (fun h => h ((mul_eq_zero.mp hx).resolve_left hdn))
+      (fun h => h ((mul_eq_zero.mp hy).resolve_left hdn))
+  · exact Or.inl hfirst
+
+theorem binary_unimodular_lower_bound_iff (A B C : ℝ) (a b c d : ℤ) (m : ℝ)
+    (hd : a*d-b*c=1 ∨ a*d-b*c= -1) :
+    (∀ x y : ℤ, x ≠ 0 ∨ y ≠ 0 → m ≤ binaryQuadratic A B C x y) ↔
+    (∀ u v : ℤ, u ≠ 0 ∨ v ≠ 0 →
+      m ≤ binaryQuadratic A B C ((a:ℝ)*u+b*v) ((c:ℝ)*u+d*v)) := by
+  constructor
+  · intro h u v huv
+    have hz := unimodular_nonzero_pair a b c d u v hd huv
+    have hr := h (a*u+b*v) (c*u+d*v) hz
+    simpa only [Int.cast_add,Int.cast_mul] using hr
+  · intro h x y hxy
+    obtain ⟨u,v,hx,hy⟩ := unimodular_integer_preimage a b c d hd x y
+    have huv : u ≠ 0 ∨ v ≠ 0 := by
+      by_cases hu : u=0
+      · right
+        intro hv
+        have hx0 : x=0 := by simpa [hu,hv] using hx.symm
+        have hy0 : y=0 := by simpa [hu,hv] using hy.symm
+        exact hxy.elim (fun h => h hx0) (fun h => h hy0)
+      · exact Or.inl hu
+    have hxR : (a:ℝ)*u+b*v=x := by exact_mod_cast hx
+    have hyR : (c:ℝ)*u+d*v=y := by exact_mod_cast hy
+    simpa only [hxR,hyR] using h u v huv
+
+theorem quadratic_ideal_norm_identity (a b c x y : ℝ) :
+    (a*x+b*y/2)^2+(4*a*c-b^2)*(y/2)^2 =
+      a*(a*x^2+b*x*y+c*y^2) := by ring
+
+theorem scaled_primitive_gram_determinant (eta a b c : ℝ) :
+    (eta*a)*(eta*c)-(eta*b/2)^2 = eta^2*(4*a*c-b^2)/4 := by ring
+
+theorem primitive_integer_value_floor (a b c x y : ℤ) (eta : ℝ)
+    (heta : 0 ≤ eta) (hp : 0 < a*x^2+b*x*y+c*y^2) :
+    eta ≤ eta*((a:ℝ)*x^2+b*x*y+c*y^2) := by
+  have hi : (1:ℤ) ≤ a*x^2+b*x*y+c*y^2 := by omega
+  have hr : (1:ℝ) ≤ (a:ℝ)*x^2+b*x*y+c*y^2 := by exact_mod_cast hi
+  simpa only [mul_one] using mul_le_mul_of_nonneg_left hr heta
+
+theorem binary_schur_square (A B C x y : ℝ) (hA : A ≠ 0) :
+    binaryQuadratic A B C x y =
+      A*(x+B/A*y)^2+(A*C-B^2)/A*y^2 := by
+  unfold binaryQuadratic
+  field_simp
+  <;> ring
+
+theorem binary_schur_large_second_coordinate (A B C T x y : ℝ)
+    (hA : 0 < A) (hlarge : T ≤ (A*C-B^2)/A*y^2) :
+    T ≤ binaryQuadratic A B C x y := by
+  rw [binary_schur_square A B C x y hA.ne']
+  exact hlarge.trans (le_add_of_nonneg_left (mul_nonneg hA.le (sq_nonneg _)))
+
+theorem binary_schur_small_coordinate_test (A B C T x y : ℝ)
+    (hA : 0 < A)
+    (hgap : (T-(A*C-B^2)/A*y^2)/A ≤ (x+B/A*y)^2) :
+    T ≤ binaryQuadratic A B C x y := by
+  have h := (div_le_iff₀ hA).mp hgap
+  rw [binary_schur_square A B C x y hA.ne']
+  nlinarith
+
+theorem schur_shift_perturbation (x theta xi v : ℝ) :
+    |(|x+theta*v|-|x+xi*v|)| ≤ |theta-xi| * |v| := by
+  calc
+    _ ≤ |(x+theta*v)-(x+xi*v)| := abs_abs_sub_abs_le_abs_sub _ _
+    _ = _ := by rw [show (x+theta*v)-(x+xi*v)=(theta-xi)*v by ring,abs_mul]
+
+theorem schur_uniform_range_perturbation (x theta xi v d V : ℝ)
+    (hd : 0 ≤ d) (hslope : |theta-xi| ≤ d) (hv : |v| ≤ V) :
+    |(|x+theta*v|-|x+xi*v|)| ≤ d*V := by
+  exact (schur_shift_perturbation x theta xi v).trans
+    (mul_le_mul hslope hv (abs_nonneg v) hd)
 
 end OddZeta

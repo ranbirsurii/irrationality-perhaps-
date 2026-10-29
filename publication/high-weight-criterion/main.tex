@@ -2145,6 +2145,90 @@ identification are the paper arguments above. Twelve exact rational
 tests across weights \(7,9,11,13,15,17,21\) satisfy the stopping rule
 already at \(K=2n\); that finite observation is not extrapolated.
 
+\subsection{The ideal interpretation and the full growing integer range}
+The index \(n\) is not the dimension of \(Q_n\): this coefficient form
+is binary, and \(\mu_n\) is kernel mass. Under a unimodular change
+\(Q\mapsto U^{\mathsf T}QU\), the determinant and the set of values on
+nonzero integer vectors are unchanged. In particular \(\alpha_n\) is
+intrinsic. A new basis can prove a short-vector bound, but cannot change
+this minimum. Binary Gauss reduction already attains the second minimum.
+
+An ideal representation is available without a conjectural motivic
+identification. Write
+\[
+ Q=\eta\begin{pmatrix}a&b/2\\b/2&c\end{pmatrix},\quad
+ \Delta=4ac-b^2>0,\quad \beta=(b+\sqrt{-\Delta})/2.
+\]
+Here \(a,b,c\) are primitive integers, \(a>0\), and \(\eta>0\) is
+rational. Since \(\beta^2-b\beta+ac=0\), the subgroup
+\(I=(a,\beta)\) is an ideal of \(\Z[\beta]\). Direct multiplication gives
+\[
+ N(ax+\beta y)=a(ax^2+bxy+cy^2).
+\]
+If \(m\) is the least positive integer represented by the primitive form,
+then \(\alpha=\eta m\), \(\det Q=\eta^2\Delta/4\), and
+\(C=\mu\eta\Delta/(4m)\). The elementary norm bound gives only
+\(m\ge1\), recovering the content bound. A discriminant or ideal-class
+estimate yielding the required larger minimum has not been established.
+
+The direct analytic reduction is more explicit. Write the entries of
+\(Q_n\) as \(A_n,B_n,C_n^{\rm entry}\), and put
+\[
+ \theta_n=B_n/A_n,\quad h_n=\det Q_n/A_n,\quad
+ r=99/100,\quad T_n=\mu_n\det Q_n\,r^{-n}.
+\]
+Completing the square gives
+\[
+ Q_n(u,v)=A_n(u+\theta_nv)^2+h_nv^2.
+\]
+Thus \(\alpha_n\ge T_n\) is equivalent to \(A_n\ge T_n\) and the
+following finite-range inequalities, where \(\|x\|_{\Z}\) is distance
+to the nearest integer:
+\begin{equation}
+ \|\theta_nv\|_{\Z}^2\ge\sigma_n^2(V_n^2-v^2),\qquad
+ 1\le |v|<V_n,\qquad
+ \sigma_n^2=\frac{\det Q_n}{A_n^2},\quad
+ V_n^2=\mu_nA_n r^{-n}.
+ \label{eq:schur-full-range}
+\end{equation}
+Outside this range the second square term suffices. This targets a fixed
+\(\varepsilon=-\log r>1/100\), rather than a constant improvement.
+
+Here is the uniform asymptotic over the full growing range. Use the same
+adaptive tail rule with \(\delta_n=16^{-n}\) and coordinate vectors
+\((1,0),(0,1)\). For \(z=\zeta(s)\), the prefix errors have absolute
+value at most \(\delta_n\); \(1\le\mu/P\le1+\delta_n\), and
+\(\mu H_{ii}\le\delta_n^2\). Expanding the rank-one prefix matrix gives
+\[
+ z^2\le\mu A_n\le z^2+15\delta_n,\quad
+ |\mu B_n-z|\le11\delta_n,\quad
+ 1\le\mu C_n^{\rm entry}\le1+8\delta_n,\quad
+ 0<\det(\mu Q_n)\le400\delta_n.
+\]
+Consequently
+\begin{align*}
+ V_n&=z(100/99)^{n/2}(1+O_s(16^{-n})),\\
+ \theta_n&=z^{-1}+O_s(16^{-n}),\qquad
+ \sigma_n^2\le400\cdot16^{-n}.
+\end{align*}
+Distance to the integers is 1-Lipschitz. Simultaneously for every integer
+\(1\le|v|<V_n\), therefore,
+\[
+ \left|\|\theta_nv\|_{\Z}-\|v/z\|_{\Z}\right|
+ \le37\delta_nV_n
+ =O_s\left((\sqrt{100/99}/16)^n\right).
+\]
+The right side of \eqref{eq:schur-full-range} is at most
+\(7600((100/99)/16)^n\). Taking minima over the same full range gives
+the corresponding uniform perturbation estimate for those minima.
+An arithmetic lower bound for \(\min_{1\le v<V_n}\|v/z\|_{\Z}\)
+strong enough to close \eqref{eq:schur-full-range} is still unproved.
+This analytic asymptotic does not itself exclude exact rational resonance.
+Forty exact finite checks pass the Schur tests, but are not extrapolated.
+Lean verifies the algebraic norm and Schur identities, basis invariance
+and the uniform perturbation inequality; the family asymptotics are the
+paper derivation here.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and

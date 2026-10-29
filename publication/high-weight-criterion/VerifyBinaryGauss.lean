@@ -72,3 +72,17 @@ import OddZeta.FiniteFieldTranslationTrace
 #print axioms OddZeta.translation_trace_small_polynomial_zero
 #print axioms OddZeta.translation_trace_composition_coefficient_vanishes
 #print axioms OddZeta.translation_trace_pade_degree_inequality
+
+#print axioms OddZeta.binary_pullback_determinant
+#print axioms OddZeta.unimodular_nonzero_pair
+#print axioms OddZeta.binary_unimodular_lower_bound_iff
+#print axioms OddZeta.quadratic_ideal_norm_identity
+#print axioms OddZeta.scaled_primitive_gram_determinant
+#print axioms OddZeta.primitive_integer_value_floor
+
+#print axioms OddZeta.binary_schur_square
+#print axioms OddZeta.binary_schur_large_second_coordinate
+#print axioms OddZeta.binary_schur_small_coordinate_test
+
+#print axioms OddZeta.schur_shift_perturbation
+#print axioms OddZeta.schur_uniform_range_perturbation
