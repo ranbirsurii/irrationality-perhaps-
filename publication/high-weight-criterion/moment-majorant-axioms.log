@@ -12,3 +12,14 @@ OddZeta.moment_rhs_limit_of_majorant (R : ℕ → ℝ) (C k alpha : ℝ) (ha : 0
 'OddZeta.reduced_moment_quadratic_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.shifted_polynomial_exp_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.moment_rhs_limit_of_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.weighted_gram_double_sum.{u_1} {ι : Type u_1} (I : Finset ι) (w p q : ι → ℝ) :
+  (∑ i ∈ I, w i * p i ^ 2) * ∑ i ∈ I, w i * q i ^ 2 - (∑ i ∈ I, w i * p i * q i) ^ 2 =
+    1 / 2 * ∑ i ∈ I, ∑ j ∈ I, w i * w j * (p i * q j - q i * p j) ^ 2
+OddZeta.log_scalar_cost (mu d a : ℝ) (hm : 0 < mu) (hd : 0 < d) (ha : 0 < a) :
+  Real.log (mu * d / a) = Real.log mu + Real.log d - Real.log a
+OddZeta.sandwich_limit_of_log_rate (C R : ℕ → ℝ) (delta : ℝ) (hd : 0 < delta) (hC : ∀ᶠ (n : ℕ) in Filter.atTop, 0 < C n)
+  (hlog : ∀ᶠ (n : ℕ) in Filter.atTop, Real.log (C n) ≤ -delta * ↑n) (hR : ∀ᶠ (n : ℕ) in Filter.atTop, 0 ≤ R n)
+  (hsand : ∀ᶠ (n : ℕ) in Filter.atTop, R n ≤ 4 / 3 * C n) : Filter.Tendsto R Filter.atTop (nhds 0)
+'OddZeta.weighted_gram_double_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.log_scalar_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.sandwich_limit_of_log_rate' depends on axioms: [propext, Classical.choice, Quot.sound]

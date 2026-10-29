@@ -1952,6 +1952,168 @@ rate needed to conclude smallness. The moment contraction therefore
 strengthens the proved analytic side of the same remaining limit;
 it does not establish the irrationality conclusion.
 
+\section{Explicit residue evaluation of the raw determinant}
+The determinant admits an exact contour representation for the actual
+certified matrix. This gives concrete contours and residues without
+assuming an unspecified Barnes phase. Fix the preceding \(s,n,m,K\),
+and write the columns of \(F_n^{\rm raw}\) as \(u,v\). Set
+\[
+ P(z)=\sum_{i=0}^r u_i w_n(z)^i,\qquad
+ Q(z)=\sum_{i=0}^r v_i w_n(z)^i,\qquad
+ W(z)=\pi\cot(\pi z)T_n(z).
+\]
+The rational kernel has the exact gamma expression
+\[
+ T_n(z)=
+ \frac{\Gamma(n+1)^s\Gamma(z)^{s+1}\Gamma(z+n+m+1)}
+ {\Gamma(m+1)^2\Gamma(z-m)\Gamma(z+n+1)^{s+1}}.
+\]
+Take \(\gamma_n\) to be the positively oriented rectangle with vertices
+\(m+\tfrac12\pm i\) and \(K+\tfrac12\pm i\). All gamma arguments
+in its closed interior have positive real part. The only poles of
+\(W\) inside are \(m+1,\ldots,K\), and their residues are \(T_n(k)\).
+No pole lies on the rectangle. For every polynomial \(f\), the residue
+theorem therefore evaluates the contour completely:
+\[
+ \frac1{2\pi i}\int_{\gamma_n}W(z)f(z)\,dz
+       =\sum_{k=m+1}^K T_n(k)f(k).
+\]
+
+Put \(e_i=(r+1)t_{2i}\), the explicit diagonal tail correction.
+Let \(D_{\rm fin}\), \(D_{\rm mix}\), and \(D_{\rm tail}\) denote
+\begin{align*}
+ D_{\rm fin}
+ &=\sum_{m<k<\ell\le K}T_n(k)T_n(\ell)
+      [P(k)Q(\ell)-Q(k)P(\ell)]^2,\\
+ D_{\rm mix}
+ &=\sum_{i=0}^r e_i\sum_{k=m+1}^K T_n(k)
+      [P(k)v_i-Q(k)u_i]^2,\\
+ D_{\rm tail}
+ &=\sum_{0\le i<j\le r}e_i e_j(u_i v_j-v_i u_j)^2.
+\end{align*}
+Then the full certified determinant, including all tail terms, is
+\begin{equation}
+ \det S_n^{\rm raw}=D_{\rm fin}+D_{\rm mix}+D_{\rm tail}.
+ \label{eq:exact-residue-determinant}
+\end{equation}
+Indeed \(S_n^{\rm raw}\) is the sum of the rank-one matrices with
+vectors \((P(k),Q(k))\), weights \(T_n(k)\), and vectors
+\((u_i,v_i)\), weights \(e_i\). Expanding its two-by-two determinant
+gives one squared exterior product for each unordered pair of vectors.
+Every term in \eqref{eq:exact-residue-determinant} is nonnegative.
+The finite term has the explicit double contour expression
+\[
+ D_{\rm fin}=\frac1{2(2\pi i)^2}
+ \int_{\gamma_n}\int_{\gamma_n}W(z)W(t)
+          [P(z)Q(t)-Q(z)P(t)]^2\,dt\,dz,
+\]
+and the mixed term is
+\[
+ D_{\rm mix}=\sum_{i=0}^r\frac{e_i}{2\pi i}
+       \int_{\gamma_n}W(z)[P(z)v_i-Q(z)u_i]^2\,dz.
+\]
+These expressions are evaluated by the finite sums above; they leave
+no unspecified residue contribution. Exact rational calculations at
+eight cases in weights \(7,9,11,13\) verify the full determinant
+identity and the scalar sandwich using the actual reduced coefficient.
+
+\subsection{What the kernel saddle evaluates}
+For fixed weight the factorial kernel has phase
+\[
+ \phi_s(x)=-(s+1)[(x+1)\log(x+1)-x\log x]
+       +(x+2)\log(x+2)-(x-1)\log(x-1),\qquad x>1.
+\]
+Its critical equation and second derivative are explicit:
+\[
+ x^{s+1}(x+2)=(x-1)(x+1)^{s+1},\qquad
+ \phi_s''(x)=\frac{s+1}{x(x+1)}-
+                       \frac3{(x+2)(x-1)}.
+\]
+For every \(s\ge7\), the second derivative changes sign once, at
+\(x_c(x_c+1)=2(s+1)/(s-2)\), with \(1<x_c<2\).
+Thus \(\phi_s'\) decreases before \(x_c\) and increases thereafter.
+It tends to \(+\infty\) at \(1\), is negative at \(2\), and tends
+to zero at infinity. Consequently there is exactly one critical point
+\(x_s\in(1,x_c)\), and \(\phi_s''(x_s)<0\).
+The kernel phase \(\phi_s(x)+\phi_s(y)\) has a nonsingular diagonal
+Hessian at \((x_s,x_s)\). Rational root brackets and negative-Hessian
+certificates accompany the eight exact evaluations.
+
+This proves nondegeneracy for the kernel phase, but it does not evaluate
+the complete determinant's exponential rate. The factor
+\([P(z)Q(t)-Q(z)P(t)]^2\) depends on \(n\) through the actual inverse
+coefficient matrix. It vanishes on \(z=t\), so its saddle contribution
+cannot be replaced by a fixed nonzero prefactor. The certified determinant
+also includes \(D_{\rm mix}\) and \(D_{\rm tail}\). The explicit
+representation retains these quantities rather than assigning them
+an unproved polynomial size.
+
+\subsection{Logarithmic closure and the all-weight conclusion}
+For \(d_n=\det S_n^{\rm raw}>0\) in this subsection, define
+\(C_n=\mu_n d_n/\alpha_n\). Positivity gives the exact identity
+\[
+ \log C_n=\log\mu_n+\log d_n-\log\alpha_n.
+\]
+If the individual normalized logarithms converge to finite limits,
+their sum converges to the corresponding sum of limits. Without those
+convergence statements, a sufficient rate budget is the upper rate
+of \(\log\mu_n+\log d_n\) minus the lower rate of \(\log\alpha_n\).
+In particular \(\alpha_n\) is a reduced lattice minimum, not a
+normalization with an established gamma-product asymptotic.
+
+\begin{corollary}[All odd weights, conditional on the actual scalar rate]
+Suppose that for every \(r\ge3\), with \(s=2r+1\), there is
+\(\delta_s>0\) such that along the eligible even indices eventually
+\[
+ \log\mu_{s,n}+\log\det S_{s,n}^{\rm raw}
+           -\log\alpha_{s,n}\le-\delta_s n.
+\]
+Then \(\zeta(s)\) is irrational for every odd \(s\ge7\).
+\end{corollary}
+\begin{proof}
+Exponentiation and the proved sandwich give
+\(0\le R_{s,n}\le(4/3)e^{-\delta_s n}\to0\).
+The two selected primitive integer forms have squares bounded by
+\(R_{s,n}\), and their unimodular coefficient pairs prevent simultaneous
+vanishing. If \(\zeta(s)=p/q\) with nonzero integer \(q\), any nonzero
+one of these forms has absolute value at least \(1/|q|\). For sufficiently
+large eligible \(n\), both squares are less than \(1/q^2\), a contradiction.
+This proof is applied separately at each fixed odd weight.
+\end{proof}
+The scalar rate hypothesis in this corollary is not proved here.
+The supplied saddle outline states its negativity without specifying
+the full prefactor and the reduced-minimum rate required to evaluate it.
+An estimate \(v_p(x_n)=O(n)\) gives a factor \(p^{O(n)}\), which is
+exponential for fixed \(p\), rather than a polynomial overhead.
+Such valuations are not discarded in the rate budget.
+The companion Lean module verifies the finite double-sum Gram identity,
+the logarithmic decomposition, and the sandwich-to-limit implication
+with the logarithmic bound as an explicit argument. The contour-family
+identification and a negative rate for the actual scalar cost are not
+claimed as Lean-verified or unconditional irrationality results.
+
+\subsection{The older weight-five cost and its denominator rate}
+The older estimate involving
+\(3d_n^5(1+2R_n)\Gamma_n^{-1}
+\sqrt{2\kappa_n\|x_n/g_n\|_2/\sqrt3}\)
+uses \(d_n=\operatorname{lcm}(1,\ldots,n)\). Its residual \(R_n\)
+is distinct from the complete moment cost denoted \(R_n\) above.
+If the residual has logarithmic rate zero, the lower rate of
+\(\Gamma_n\) is \(\gamma\), and the upper rate of
+\(\kappa_n\|x_n/g_n\|_2\) is \(\varepsilon\), then the upper
+rate of this older cost is \(5-\gamma+\varepsilon/2\), since
+\(\log d_n/n\to1\). If multiplied by a raw form with upper rate
+\(-a\), the complete rate is instead
+\(5-a-\gamma+\varepsilon/2\). Neither calculation drops the
+denominator contribution. In the current raw moment formulation that
+clearing factor cancels by an exact matrix identity; its remaining
+reduced coefficient rate is still unproved. No hypothesis about
+\(\Gamma_n\) is added to that equivalent formulation.
+The alternative budget \(\varepsilon/2-\gamma\) would be valid if
+\(\gamma\) were a lower rate of the relative saving
+\(\Gamma_n/d_n^5\), rather than of \(\Gamma_n\) alone. That stronger
+relative saving is not established here.
+
 \appendix
 \section{Global decay with the sharp saddle constant}
 Here is the full analytic proof of \eqref{eq:base} and its sharper version.

@@ -9,6 +9,15 @@ assumptions are used to replace them.
 
 ## Contents
 
+The explicit contour continuation is documented in
+`contour-determinant-verification.md`. It evaluates the actual finite
+moment determinant by residues, includes the tail corrections, and
+proves the kernel's unique nondegenerate real saddle at every odd
+weight at least seven. The all-odd corollary retains the unproved
+negative scalar rate as an explicit hypothesis. Seven generic Lean
+lemmas in `MomentMajorant.lean` have been checked; they do not establish
+that family-specific rate.
+
 The latest continuation is documented in `combined-kernel-verification.md`.
 It constructs the exact primitive weight-seven pair, identifies its cubic
 combined kernel, and proves decay of the tail beyond n^2 on paper. The
