@@ -337,4 +337,13 @@ theorem bounded_cost_nonpositive_upper_rate (R : ℕ → ℝ) (B : ℝ)
   have hlog := Real.log_le_log hr hbound
   exact (div_le_div_of_nonneg_right hlog (Nat.cast_nonneg n)).trans hsmall.le
 
+theorem signed_prefix_certificate_sharp (L P e : ℝ) (h : |L-P| ≤ e) :
+    |L| ≤ |P|+e ∧ |P|+e ≤ |L|+2*e := by
+  have h1 : |L| ≤ |L-P|+|P| := by
+    simpa using abs_add_le (L-P) P
+  have h2 : |P| ≤ |L-P|+|L| := by
+    have h2 := abs_add_le (P-L) L
+    simpa only [sub_add_cancel, abs_sub_comm P L] using h2
+  constructor <;> linarith
+
 end OddZeta

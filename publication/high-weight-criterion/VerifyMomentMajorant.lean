@@ -1,5 +1,8 @@
 import OddZeta.MomentMajorant
 
+#check OddZeta.signed_prefix_certificate_sharp
+#print axioms OddZeta.signed_prefix_certificate_sharp
+
 #check OddZeta.moment_cost_common_factor_invariant
 #print axioms OddZeta.moment_cost_common_factor_invariant
 

@@ -1,3 +1,5 @@
+OddZeta.signed_prefix_certificate_sharp (L P e : ℝ) (h : |L - P| ≤ e) : |L| ≤ |P| + e ∧ |P| + e ≤ |L| + 2 * e
+'OddZeta.signed_prefix_certificate_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
 OddZeta.moment_cost_common_factor_invariant (D mu nu h : ℝ) (hh : h ≠ 0) :
   (D / h) ^ 2 * mu * (h ^ 2 * nu) = D ^ 2 * mu * nu
 'OddZeta.moment_cost_common_factor_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]

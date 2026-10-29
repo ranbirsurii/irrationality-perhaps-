@@ -2668,6 +2668,64 @@ exact pencil identities check the formulas. Lean verifies the general
 matrix adjugate image identity; the root-partition and family arguments
 here are paper proofs.
 
+\subsection{A cancellation-preserving certificate for the adjugate forms}
+The adjugate combinations can be bounded without splitting their signed
+coefficients. Put \(m_0=n-r\), \(u=t(t+n)\), and
+\[
+ R_m(u)=\left(\frac{m_0!}{m!}\right)^2
+         \prod_{v=m_0+1}^m(u-v(n+v)).
+\]
+The exact identity \((t-v)(t+n+v)=u-v(n+v)\) gives
+\(T_{s,n,m}=T_{s,n,m_0}R_m\). For coprime \(p,q\), let
+\[
+ H_n(u)=\frac D\Delta\sum_j(pU_j+qV_j)R_{n-j}(u)
+       =\sum_{\ell=0}^rh_\ell u^\ell.
+\]
+Then, exactly,
+\[
+ L_n=p\zeta(s)+q
+   =\sum_{t>m_0}T_{s,n,m_0}(t)H_n(t(t+n)).
+\]
+The added early terms vanish at the integer zeros of \(R_m\).
+Normalization is already included in \(H_n\); no further factor
+\(D\) or \(\Gamma\) is charged.
+
+For integer \(K\ge\max(1,m_0+1)\), define
+\begin{align*}
+ \alpha&=s(n+1)-2n>1,\\
+ C_K&=\frac{(n!)^s}{(m_0!)^2}
+             \left(1+\frac{n+m_0}K\right)^{m_0},\\
+ V_K&=\sum_{\ell=0}^r|h_\ell|
+             \left(1+\frac nK\right)^\ell K^{-2(r-\ell)},\\
+ e_K&=\frac{C_KV_KK^{1-\alpha}}{\alpha-1}.
+\end{align*}
+For \(t>K\), the kernel is bounded by
+\(C_Kt^{2m_0-s(n+1)}\), while
+\(|H_n(t(t+n))|\le V_Kt^{2r}\). The integral comparison for
+\(\sum_{t>K}t^{-\alpha}\) therefore bounds the absolute tail by
+\(e_K\). Keep the finite prefix signed and put
+\[
+ F_K=\sum_{t=m_0+1}^KT_{s,n,m_0}(t)H_n(t(t+n)),\qquad
+ R_K=|F_K|+e_K.
+\]
+The triangle inequality in both directions proves
+\[
+ |L_n|\le R_K\le |L_n|+2e_K.
+\]
+All certificate quantities are rational. At fixed \(n,p,q\),
+\(e_K\to0\); hence doubling \(K\) eventually makes
+\(e_K\le4^{-n}\), giving
+\[
+ |L_n|\le R_n\le |L_n|+2\,4^{-n}.
+\]
+The cutoff affects evaluation only, not the integer coefficients.
+Thus this majorant preserves any actual decay of the forms without
+introducing a positive floor. It does not prove a decaying integer-pair
+selection. Eight exact certificates agree with independent zeta
+enclosures; the tested raw root choices are not a successful decay
+selection. Lean verifies the two-sided sharpness implication; the
+kernel and tail application above is a paper argument.
+
 \subsection{An all-index Laurent coefficient envelope}
 Let \(n\ge1\), \(0\le m\le n\), \(s\ge3\), and write
 \[
