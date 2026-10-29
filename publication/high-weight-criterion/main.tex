@@ -2066,6 +2066,85 @@ at least \(1/|q|\); hence \(|q|>10^{439}\). This finite exclusion
 does not prove irrationality. The uniform negative rate of
 \eqref{eq:prefix-large-index-equality} remains unproved.
 
+\subsection{An adaptive cutoff gives a uniform subunit certificate}
+There is a unified way to prove negative unscaled logarithms at every
+index, while keeping the distinction from a negative exponential rate.
+Fix \(s=2r+1\ge7\) and an eligible \(n\). Retain the same kernel and
+coefficient lattice, but choose the prefix cutoff adaptively. Write
+\(Q=H+qq^{\mathsf T}/P\) as above, with all clearing factors included.
+Choose the unimodular coefficient basis
+\[
+ y_1=(1,-1),\qquad y_2=(2^s,-2^s-1),\qquad
+ B=\tfrac32(2/3)^s,\quad \delta=B^2/16.
+\]
+Starting with \(K=2n\), double \(K\) until the tail power is admissible
+and the following rational comparisons hold:
+\begin{equation}
+ \frac{\tau_0}{P}\le\delta,\qquad
+ \mu\max_i y_i^{\mathsf T}Hy_i\le\delta^2.
+ \label{eq:adaptive-prefix-rule}
+\end{equation}
+This is a terminating rule for every fixed \(s,n\). Indeed the kernel
+has decay order \(E=(2r-1)n+4r+1>4r+2\). As \(K\to\infty\),
+the logarithmic-derivative budget tends to \(E\), so its integer tail
+power is at least \(E-1\) eventually. Hence
+\(\tau_j=O_{s,n}(K^{-E+2j+1})\to0\) for \(0\le j\le2r\).
+The fixed profile map gives \(H\to0\); both \(P\) and \(\mu\) tend
+to the positive total kernel mass. Both quantities in
+\eqref{eq:adaptive-prefix-rule} therefore tend to zero. No uniform bound
+on the terminating cutoff is needed for this argument.
+
+The two integer forms are the positive Dirichlet tails
+\[
+ \zeta(s)-1=\sum_{k\ge2}k^{-s},\qquad
+ 2^s\zeta(s)-(2^s+1)=\sum_{k\ge3}(2/k)^s.
+\]
+Integral comparison bounds them respectively by
+\(2^{-s}(1+2/(s-1))\) and
+\((2/3)^s(1+3/(s-1))\). For \(s\ge7\), both are at most \(B\):
+the first comparison uses \((8/9)(3/4)^s\le1\).
+The coefficient determinant is \(-1\). Their signed-prefix values \(a_i=qy_i\) differ from
+the full forms by tails \(b_i\), where
+\[
+ b_i^2\le\tau_0\,y_i^{\mathsf T}Hy_i
+       \le\mu\,y_i^{\mathsf T}Hy_i\le\delta^2.
+\]
+Consequently \(|a_i|\le B+\delta\),
+\(\mu/P\le1+\delta\), and the complete squared certificates satisfy
+\[
+ \mu y_i^{\mathsf T}Qy_i
+ \le(1+\delta)(B+\delta)^2+\delta
+ \le2B^2.
+\]
+For the last inequality, \(0<B\le1\) gives
+\(\delta\le B/16\) and \(\delta\le1/16\). Hence the preceding
+expression is at most \(((17/16)^3+1/16)B^2\le2B^2\).
+The second binary minimum is at most the larger value on this
+unimodular basis. At the terminating cutoff, therefore,
+\begin{equation}
+ 0<C_n\le R_n\le\tfrac92(4/9)^s<1/64
+ \quad\text{at every eligible index}.
+ \label{eq:adaptive-subunit-cost}
+\end{equation}
+Indeed \(B\le B_7=64/729\), and
+\(2(64/729)^2<1/64\). In particular both unscaled logarithms
+are less than \(-\log64\), uniformly in the weight and index. The exact
+logarithmic sandwich equality gives the normalized statement
+\[
+ \limsup\frac{\log C_n}{n}
+ =\limsup\frac{\log R_n}{n}\le0.
+\]
+Strict negativity of this common normalized rate is not established:
+the right side of \eqref{eq:adaptive-subunit-cost} is a constant in
+\(n\), so it does not force decay to zero. This distinction prevents
+the cutoff construction from being mistaken for an irrationality proof.
+The eight new Lean lemmas verify the adaptive quadratic inequalities,
+the margins, neighboring form bounds, negative logarithms, the uniform
+geometric-weight cap, the explicit logarithmic bound and the nonpositive upper-rate implication. The termination and family
+identification are the paper arguments above. Twelve exact rational
+tests across weights \(7,9,11,13,15,17,21\) satisfy the stopping rule
+already at \(K=2n\); that finite observation is not extrapolated.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and

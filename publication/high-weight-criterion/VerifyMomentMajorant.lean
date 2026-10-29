@@ -45,3 +45,22 @@ import OddZeta.MomentMajorant
 
 #check OddZeta.near_prefix_tail_rate_positive
 #print axioms OddZeta.near_prefix_tail_rate_positive
+
+#check OddZeta.adaptive_prefix_quadratic_bound
+#check OddZeta.adaptive_prefix_unit_margin
+#check OddZeta.adjacent_integer_form_bounds
+#check OddZeta.adaptive_prefix_log_negative
+#check OddZeta.bounded_cost_nonpositive_upper_rate
+#print axioms OddZeta.adaptive_prefix_quadratic_bound
+#print axioms OddZeta.adaptive_prefix_unit_margin
+#print axioms OddZeta.adjacent_integer_form_bounds
+#print axioms OddZeta.adaptive_prefix_log_negative
+#print axioms OddZeta.bounded_cost_nonpositive_upper_rate
+
+#check OddZeta.adaptive_prefix_seed_margin
+#check OddZeta.geometric_weight_seed_cap
+#print axioms OddZeta.adaptive_prefix_seed_margin
+#print axioms OddZeta.geometric_weight_seed_cap
+
+#check OddZeta.geometric_prefix_log_bound
+#print axioms OddZeta.geometric_prefix_log_bound

@@ -261,4 +261,80 @@ theorem log_sandwich_rate_gap_tends_zero (C R : ℕ → ℝ)
   exact squeeze_zero' (hb.mono fun _ h => h.1) (hb.mono fun _ h => h.2)
     (tendsto_const_div_atTop_nhds_zero_nat (Real.log (4/3:ℝ)))
 
+theorem adaptive_prefix_quadratic_bound (mu P a E B delta : ℝ)
+    (hP : 0 < P) (hmu : 0 ≤ mu) (hd : 0 ≤ delta)
+    (hB : 0 ≤ B+delta) (ha : |a| ≤ B+delta)
+    (hratio : mu/P ≤ 1+delta) (htail : mu*E ≤ delta) :
+    mu*(a^2/P+E) ≤ (1+delta)*(B+delta)^2+delta := by
+  have hs : a^2 ≤ (B+delta)^2 := by
+    have h := mul_self_le_mul_self (abs_nonneg a) ha
+    nlinarith [sq_abs a]
+  have hm := mul_le_mul hratio hs (sq_nonneg a) (by linarith : 0 ≤ 1+delta)
+  calc
+    _ = (mu/P)*a^2+mu*E := by ring
+    _ ≤ _ := add_le_add hm htail
+
+theorem adaptive_prefix_unit_margin (e : ℝ) (he : 0 < e) (hupper : e ≤ 1) :
+    (1+e/16)*(1-e+e/16)^2+e/16 ≤ 1-e/2 := by
+  have hx : 0 ≤ 1-e+e/16 := by linarith
+  have hs : (1-e+e/16)^2 ≤ 1-3*e/4 := by
+    have hm := mul_self_le_mul_self hx (show 1-e+e/16 ≤ 1-e/2 by linarith)
+    nlinarith [mul_nonneg he.le (sub_nonneg.mpr hupper)]
+  have hs1 : (1-e+e/16)^2 ≤ 1 := by linarith
+  have ht := mul_nonneg (show 0 ≤ e/16 by positivity) (sub_nonneg.mpr hs1)
+  nlinarith
+
+theorem adaptive_prefix_seed_margin (B : ℝ) (hB : 0 < B) (hu : B ≤ 1) :
+    (1+B^2/16)*(B+B^2/16)^2+B^2/16 ≤ 2*B^2 := by
+  have hsq : B^2 ≤ B := by nlinarith [mul_nonneg hB.le (sub_nonneg.mpr hu)]
+  have hs1 : B^2 ≤ 1 := by nlinarith
+  have hx : B+B^2/16 ≤ (17/16:ℝ)*B := by linarith
+  have hxsq := mul_self_le_mul_self (show 0 ≤ B+B^2/16 by positivity) hx
+  have hs : (B+B^2/16)^2 ≤ (17/16:ℝ)^2*B^2 := by nlinarith
+  have hm := mul_le_mul (show 1+B^2/16 ≤ (17/16:ℝ) by linarith)
+    hs (sq_nonneg (B+B^2/16)) (by norm_num : (0:ℝ) ≤ 17/16)
+  nlinarith [sq_nonneg B]
+
+theorem geometric_weight_seed_cap (s : ℕ) (hs : 7 ≤ s) :
+    2*((3/2:ℝ)*(2/3:ℝ)^s)^2 < (1/64:ℝ) := by
+  have hi : s=7+(s-7) := by omega
+  have hp : (2/3:ℝ)^(s-7) ≤ 1 := pow_le_one₀ (by norm_num) (by norm_num)
+  have hb : (3/2:ℝ)*(2/3:ℝ)^s ≤ (64/729:ℝ) := by
+    rw [hi,pow_add]
+    norm_num at hp ⊢
+    nlinarith
+  have hpos : (0:ℝ) ≤ (3/2:ℝ)*(2/3:ℝ)^s := by positivity
+  have hsq := mul_self_le_mul_self hpos hb
+  nlinarith
+
+theorem geometric_prefix_log_bound (s : ℕ) (hs : 7 ≤ s) (R : ℝ)
+    (hR : 0 < R) (hb : R ≤ 2*((3/2:ℝ)*(2/3:ℝ)^s)^2) :
+    Real.log R < -Real.log 64 := by
+  have hlog := Real.log_lt_log hR (hb.trans_lt (geometric_weight_seed_cap s hs))
+  rw [Real.log_div (by norm_num : (1:ℝ) ≠ 0) (by norm_num : (64:ℝ) ≠ 0),
+    Real.log_one,zero_sub] at hlog
+  exact hlog
+
+theorem adjacent_integer_form_bounds (x e : ℝ)
+    (hl : 1+e ≤ x) (hu : x ≤ 2-e) :
+    |x-1| ≤ 1-e ∧ |x-2| ≤ 1-e := by
+  constructor <;> rw [abs_le] <;> constructor <;> linarith
+
+theorem adaptive_prefix_log_negative (R e : ℝ)
+    (hR : 0 < R) (he : 0 < e) (hbound : R ≤ 1-e/2) :
+    Real.log R < 0 := by
+  exact Real.log_neg hR (by linarith)
+
+theorem bounded_cost_nonpositive_upper_rate (R : ℕ → ℝ) (B : ℝ)
+    (hB : 0 < B) (hR : ∀ᶠ n in atTop, 0 < R n)
+    (hb : ∀ᶠ n in atTop, R n ≤ B) :
+    ∀ eps : ℝ, 0 < eps → ∀ᶠ n in atTop, Real.log (R n)/(n:ℝ) ≤ eps := by
+  intro eps heps
+  have hs : ∀ᶠ n : ℕ in atTop, Real.log B/(n:ℝ) < eps :=
+    (tendsto_const_div_atTop_nhds_zero_nat (Real.log B)).eventually
+      (gt_mem_nhds heps)
+  filter_upwards [hR,hb,hs] with n hr hbound hsmall
+  have hlog := Real.log_le_log hr hbound
+  exact (div_le_div_of_nonneg_right hlog (Nat.cast_nonneg n)).trans hsmall.le
+
 end OddZeta

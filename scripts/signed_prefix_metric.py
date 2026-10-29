@@ -60,6 +60,13 @@ def construct(r,n,multiple):
     determinant=new_gram[0]*new_gram[2]-new_gram[1]**2
     scalar=D*D*mass*determinant/red[0]
     assert scalar<=cost<=Q(4,3)*scalar
+    raw_gram=[D*D*x for x in new_gram]
+    form_denominator=lcm(raw_gram[0].denominator,(2*raw_gram[1]).denominator,raw_gram[2].denominator)
+    form_integers=[int(form_denominator*x) for x in (raw_gram[0],2*raw_gram[1],raw_gram[2])]
+    form_content=Q(gcd(*form_integers),form_denominator)
+    assert 0<form_content<=D*D*red[0]
+    content_bound=Q(4,3)*mass*D**4*determinant/form_content
+    assert cost<=content_bound
     hh=tuple((r+1)*sum((x[i]*y[i]*tail[2*i] for i in range(r+1)),Q(0))
              for x,y in ((u,u),(u,v),(v,v)))
     prefixq=[sum((x[i]*moments[i] for i in range(r+1)),Q(0)) for x in (u,v)]
@@ -103,6 +110,14 @@ def construct(r,n,multiple):
             'scalar_sandwich_lower':str(scalar),
             'cost_over_scalar':str(cost/scalar),
             'rank_one_update_identity_verified':True,
+            'rational_quadratic_content':str(form_content),
+            'content_only_cost_upper_bound':str(content_bound),
+            'raw_binary_gram':list(map(str,raw_gram)),
+            'raw_reduced_gram':list(map(str,(D*D*x for x in red))),
+            'kernel_mass_majorant':str(mass),
+            'prefix_mass':str(moments[0]),
+            'tail_mass':str(tail[0]),
+            'raw_tail_gram':list(map(str,(D*D*x for x in hh))),
             'excludes_rational_denominators_at_most_power_of_ten':excluded_digits,
             'forms':checks,'exact_psd_improvement':True}
     if (r,n,multiple)==(3,8,Q(6)):

@@ -63,3 +63,25 @@ OddZeta.signed_prefix_rank_one_determinant (h11 h12 h22 q1 q2 P : ℝ) :
 OddZeta.near_prefix_tail_rate_positive (s : ℕ) (hs : 7 ≤ s) :
   1 < ↑s * (5 / 4) * Real.log (9 / 5) - 1 - 5 / 4 * Real.log 5
 'OddZeta.near_prefix_tail_rate_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.adaptive_prefix_quadratic_bound (mu P a E B delta : ℝ) (hP : 0 < P) (hmu : 0 ≤ mu) (hd : 0 ≤ delta)
+  (hB : 0 ≤ B + delta) (ha : |a| ≤ B + delta) (hratio : mu / P ≤ 1 + delta) (htail : mu * E ≤ delta) :
+  mu * (a ^ 2 / P + E) ≤ (1 + delta) * (B + delta) ^ 2 + delta
+OddZeta.adaptive_prefix_unit_margin (e : ℝ) (he : 0 < e) (hupper : e ≤ 1) :
+  (1 + e / 16) * (1 - e + e / 16) ^ 2 + e / 16 ≤ 1 - e / 2
+OddZeta.adjacent_integer_form_bounds (x e : ℝ) (hl : 1 + e ≤ x) (hu : x ≤ 2 - e) : |x - 1| ≤ 1 - e ∧ |x - 2| ≤ 1 - e
+OddZeta.adaptive_prefix_log_negative (R e : ℝ) (hR : 0 < R) (he : 0 < e) (hbound : R ≤ 1 - e / 2) : Real.log R < 0
+OddZeta.bounded_cost_nonpositive_upper_rate (R : ℕ → ℝ) (B : ℝ) (hB : 0 < B) (hR : ∀ᶠ (n : ℕ) in Filter.atTop, 0 < R n)
+  (hb : ∀ᶠ (n : ℕ) in Filter.atTop, R n ≤ B) (eps : ℝ) : 0 < eps → ∀ᶠ (n : ℕ) in Filter.atTop, Real.log (R n) / ↑n ≤ eps
+'OddZeta.adaptive_prefix_quadratic_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.adaptive_prefix_unit_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.adjacent_integer_form_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.adaptive_prefix_log_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.bounded_cost_nonpositive_upper_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.adaptive_prefix_seed_margin (B : ℝ) (hB : 0 < B) (hu : B ≤ 1) :
+  (1 + B ^ 2 / 16) * (B + B ^ 2 / 16) ^ 2 + B ^ 2 / 16 ≤ 2 * B ^ 2
+OddZeta.geometric_weight_seed_cap (s : ℕ) (hs : 7 ≤ s) : 2 * (3 / 2 * (2 / 3) ^ s) ^ 2 < 1 / 64
+'OddZeta.adaptive_prefix_seed_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.geometric_weight_seed_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.geometric_prefix_log_bound (s : ℕ) (hs : 7 ≤ s) (R : ℝ) (hR : 0 < R) (hb : R ≤ 2 * (3 / 2 * (2 / 3) ^ s) ^ 2) :
+  Real.log R < -Real.log 64
+'OddZeta.geometric_prefix_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
