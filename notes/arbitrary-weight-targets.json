@@ -1,0 +1,89 @@
+{
+  "thresholds": [
+    {
+      "weight": 7,
+      "allowed_cost_rate_interval": [
+        "390986617217/500000000000",
+        "156394646887/200000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-156394646887/200000000000",
+        "-390986617217/500000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 9,
+      "allowed_cost_rate_interval": [
+        "777280978337/500000000000",
+        "62182478267/40000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-62182478267/40000000000",
+        "-777280978337/500000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 11,
+      "allowed_cost_rate_interval": [
+        "2327150678913/1000000000000",
+        "1163575339457/500000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-1163575339457/500000000000",
+        "-2327150678913/1000000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 13,
+      "allowed_cost_rate_interval": [
+        "3099739401153/1000000000000",
+        "1549869700577/500000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-1549869700577/500000000000",
+        "-3099739401153/1000000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 15,
+      "allowed_cost_rate_interval": [
+        "3872328123393/1000000000000",
+        "1936164061697/500000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-1936164061697/500000000000",
+        "-3872328123393/1000000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 21,
+      "allowed_cost_rate_interval": [
+        "96720223283/15625000000",
+        "6190094290113/1000000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-6190094290113/1000000000000",
+        "-96720223283/15625000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    },
+    {
+      "weight": 51,
+      "allowed_cost_rate_interval": [
+        "17778925123709/1000000000000",
+        "1777892512371/100000000000"
+      ],
+      "required_Gamma_over_lambda2_rate_threshold_interval": [
+        "-1777892512371/100000000000",
+        "-17778925123709/1000000000000"
+      ],
+      "uniform_sufficient_cost_allowance": "3/4"
+    }
+  ],
+  "actual_joint_bound_proved": false
+}

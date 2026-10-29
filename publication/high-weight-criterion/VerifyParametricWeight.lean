@@ -1,5 +1,10 @@
 import OddZeta.ParametricWeightShift
 
+#check OddZeta.sharp_odd_decay_allowance
+#check OddZeta.sharp_odd_decay_three_quarters
+#print axioms OddZeta.sharp_odd_decay_allowance
+#print axioms OddZeta.sharp_odd_decay_three_quarters
+
 #check OddZeta.poised_kernel_weight_shift
 #check OddZeta.normalized_kernel_weight_shift
 #check OddZeta.odd_kernel_phase_weight_shift

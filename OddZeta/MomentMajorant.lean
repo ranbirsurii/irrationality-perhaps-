@@ -91,4 +91,51 @@ theorem sandwich_limit_of_log_rate (C R : ℕ → ℝ) (delta : ℝ)
   simpa only [Real.rpow_zero,mul_one] using
     hs.trans (mul_le_mul_of_nonneg_left he (by norm_num : (0:ℝ) ≤ 4/3))
 
+theorem smallness_of_allowed_exponential_cost
+    (sigma decay eta : ℝ) (hgap : sigma+eta < decay)
+    (index : ℕ → ℕ) (hi : Tendsto index atTop atTop)
+    (D W S L : ℕ → ℝ) (hD : ∀ n, 0 ≤ D n) (hW : ∀ n, 0 ≤ W n)
+    (hb : ∀ᶠ n in atTop, |L n| ≤ D n*W n*S n)
+    (hd : ∀ e : ℝ, 0 < e → ∀ᶠ n in atTop,
+      D n ≤ Real.exp ((sigma+e)*(index n:ℝ)))
+    (hw : ∀ e : ℝ, 0 < e → ∀ᶠ n in atTop,
+      W n ≤ Real.exp ((eta+e)*(index n:ℝ)))
+    (hs : ∀ e : ℝ, 0 < e → ∀ᶠ n in atTop,
+      S n ≤ Real.exp ((-decay+e)*(index n:ℝ))) :
+    Tendsto L atTop (nhds 0) := by
+  let e : ℝ := (decay-sigma-eta)/6
+  have he : 0 < e := by dsimp [e]; linarith
+  have hg : 0 < (decay-sigma-eta)/2 := by linarith
+  have hm : ∀ᶠ n in atTop,
+      |L n| ≤ Real.exp (-((decay-sigma-eta)/2)*(index n:ℝ)) := by
+    filter_upwards [hb,hd e he,hw e he,hs e he] with n h hn hw' hs'
+    have hp := mul_le_mul hn hw' (hW n) (Real.exp_pos _).le
+    calc
+      |L n| ≤ D n*W n*S n := h
+      _ ≤ D n*W n*Real.exp ((-decay+e)*(index n:ℝ)) :=
+        mul_le_mul_of_nonneg_left hs' (mul_nonneg (hD n) (hW n))
+      _ ≤ (Real.exp ((sigma+e)*(index n:ℝ))*
+          Real.exp ((eta+e)*(index n:ℝ)))*Real.exp ((-decay+e)*(index n:ℝ)) :=
+        mul_le_mul_of_nonneg_right hp (Real.exp_pos _).le
+      _ = _ := by
+        rw [← Real.exp_add, ← Real.exp_add]
+        congr 1
+        dsimp [e]
+        ring
+  have ht : Tendsto (fun n => Real.exp (-((decay-sigma-eta)/2)*(index n:ℝ)))
+      atTop (nhds 0) := by
+    have ha := Tendsto.const_mul_atTop hg (tendsto_natCast_atTop_atTop.comp hi)
+    simpa only [Function.comp_def,neg_mul] using
+      Real.tendsto_exp_neg_atTop_nhds_zero.comp ha
+  apply Metric.tendsto_atTop.2
+  intro eps heps
+  obtain ⟨N,hN⟩ := (Metric.tendsto_atTop.1 ht) eps heps
+  obtain ⟨M,hM⟩ := eventually_atTop.1 hm
+  refine ⟨max N M, ?_⟩
+  intro n hn
+  have hx := hN n (le_trans (le_max_left _ _) hn)
+  have hy := hM n (le_trans (le_max_right _ _) hn)
+  rw [Real.dist_eq,sub_zero] at hx ⊢
+  exact hy.trans_lt ((le_abs_self _).trans_lt hx)
+
 end OddZeta

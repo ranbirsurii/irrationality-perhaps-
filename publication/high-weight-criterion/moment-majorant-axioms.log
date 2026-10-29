@@ -23,3 +23,11 @@ OddZeta.sandwich_limit_of_log_rate (C R : ℕ → ℝ) (delta : ℝ) (hd : 0 < d
 'OddZeta.weighted_gram_double_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.log_scalar_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.sandwich_limit_of_log_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.smallness_of_allowed_exponential_cost (sigma decay eta : ℝ) (hgap : sigma + eta < decay) (index : ℕ → ℕ)
+  (hi : Filter.Tendsto index Filter.atTop Filter.atTop) (D W S L : ℕ → ℝ) (hD : ∀ (n : ℕ), 0 ≤ D n)
+  (hW : ∀ (n : ℕ), 0 ≤ W n) (hb : ∀ᶠ (n : ℕ) in Filter.atTop, |L n| ≤ D n * W n * S n)
+  (hd : ∀ (e : ℝ), 0 < e → ∀ᶠ (n : ℕ) in Filter.atTop, D n ≤ Real.exp ((sigma + e) * ↑(index n)))
+  (hw : ∀ (e : ℝ), 0 < e → ∀ᶠ (n : ℕ) in Filter.atTop, W n ≤ Real.exp ((eta + e) * ↑(index n)))
+  (hs : ∀ (e : ℝ), 0 < e → ∀ᶠ (n : ℕ) in Filter.atTop, S n ≤ Real.exp ((-decay + e) * ↑(index n))) :
+  Filter.Tendsto L Filter.atTop (nhds 0)
+'OddZeta.smallness_of_allowed_exponential_cost' depends on axioms: [propext, Classical.choice, Quot.sound]

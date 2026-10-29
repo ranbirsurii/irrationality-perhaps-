@@ -1745,6 +1745,85 @@ at the required exponential rate here. Exact tests verify eighteen
 primitive transition identities; their complete majorants remain above
 one at those indices. No limiting conclusion is extrapolated from them.
 
+\section{A sufficient target for arbitrary cancellation weights}
+Fix any odd \(s=2r+1\ge7\), and let indices run through any unbounded
+sequence of eligible even integers. Set
+\[
+ A_s=\log2397+(s-7)\log4,\qquad D_n=d_n^s.
+\]
+The fixed-weight analytic estimates above give
+\(S_{s,n}\le B_s(n+1)^{2s+2}e^{-A_sn}\), with \(B_s>0\)
+independent of \(n\). Choose any independent integer cancellation
+vectors \(w_{1,n},w_{2,n}\in\Lambda_{s,n}\), and put
+\[
+ h_{i,n}=\gcd(Y(w_{i,n}),Z(w_{i,n})),\qquad
+ \Theta_{s,n}=\max_{i=1,2}\frac{\|w_{i,n}\|_1}{h_{i,n}}.
+\]
+Full augmented rank makes each \(h_{i,n}\) positive and the two
+target-and-constant pairs independent. Consequently the primitive forms
+\[
+ \ell_{i,n}=\frac{Y(w_{i,n})}{h_{i,n}}\zeta(s)
+              +\frac{Z(w_{i,n})}{h_{i,n}}
+\]
+cannot both vanish. The triangle inequality gives the exact bound
+\[
+ \max_i|\ell_{i,n}|\le D_n S_{s,n}\Theta_{s,n}.
+\]
+Thus the following is a sufficient target, with no positivity restriction
+on the selected weights:
+\begin{equation}
+ \limsup_{n\to\infty}\frac{\log\Theta_{s,n}}n<A_s-s.
+ \label{eq:arbitrary-weight-target}
+\end{equation}
+Indeed \(\log D_n/n\to s\), so the complete majorant has strictly
+negative upper logarithmic rate. Both forms then tend to zero. If
+\(\zeta(s)=p/q\), each nonzero integer-coefficient form has absolute
+value at least \(1/|q|\), contradicting their joint nonvanishing.
+Clearing rational weights also works: further integer scaling multiplies
+the norm and its coefficient content by the same factor.
+
+For a Gauss-reduced integral basis, the individual contents are at least
+\(\Gamma_{s,n}\), and the ambient dimension is \(r+1\). Therefore
+\(\Theta_{s,n}\le\sqrt{r+1}\lambda_{2,s,n}/\Gamma_{s,n}\), and an
+equivalent sufficient joint rate target for this majorant is
+\begin{equation}
+ \liminf_{n\to\infty}
+ \frac{\log\Gamma_{s,n}-\log\lambda_{2,s,n}}n>s-A_s.
+ \label{eq:arbitrary-weight-joint-target}
+\end{equation}
+The reduced-angle identity
+\(\lambda_2^2=\kappa H/\sin\phi\), where
+\(\sqrt3/2\le\sin\phi\le1\), rewrites its left side using
+\(\log\Gamma-\tfrac12\log\kappa-\tfrac12\log H\).
+This retains correlation between the factors.
+
+There is a simple uniform allowance: \(A_s-s>3/4\) for every \(s\ge7\).
+For an elementary exact verification, use
+\(\log(1+x)>2x/(2+x)\) for \(x>0\). Applying it at
+\(x=1/4,1/5,1/6,1/7\) gives
+\[
+ \log2>\frac29+\frac2{11}+\frac2{13}+\frac2{15}.
+\]
+Applying it at \(x=349/2048\) gives
+\(\log(2397/2048)>698/4445\). These rational inequalities imply
+\(\log2397>31/4\); the slope \(\log4-1\) is positive.
+Hence either eventual estimate
+\[
+ \Theta_{s,n}\le e^{3n/4},\qquad\text{or}\qquad
+ \Gamma_{s,n}\ge e^{-3n/4}\lambda_{2,s,n}
+\]
+is sufficient at every fixed odd weight. The allowance \(A_s-s\) is
+approximately \(0.7819732344\) at weight seven and increases by
+\(2(\log4-1)\) at each weight shift. More generally any cost rate
+\(\eta_s<A_s-s\) suffices.
+
+The Lean files prove the abstract decay implication for arbitrary
+\(\eta_s\) and the uniform \(3/4\) allowance. The lattice
+identifications and irrationality application in this section are paper
+arguments. Neither sufficient target has been established for the actual
+family here; this section does not assert unconditional odd-zeta
+irrationality.
+
 \section{Signed moment reduction and a polynomial--exponential majorant}
 Fix any integer \(r\ge3\), \(s=2r+1\), and even \(n\ge2r\).
 Put \(m=n-r\), \(K=3n\), \(D=d_n^s\), and

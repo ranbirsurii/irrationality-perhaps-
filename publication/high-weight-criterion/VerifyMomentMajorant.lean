@@ -16,3 +16,6 @@ import OddZeta.MomentMajorant
 #print axioms OddZeta.weighted_gram_double_sum
 #print axioms OddZeta.log_scalar_cost
 #print axioms OddZeta.sandwich_limit_of_log_rate
+
+#check OddZeta.smallness_of_allowed_exponential_cost
+#print axioms OddZeta.smallness_of_allowed_exponential_cost

@@ -1,3 +1,7 @@
+OddZeta.sharp_odd_decay_allowance (s : ℕ) (hs : 7 ≤ s) : ↑s + 1 / 3 < OddZeta.sharpOddDecay s
+OddZeta.sharp_odd_decay_three_quarters (s : ℕ) (hs : 7 ≤ s) : ↑s + 3 / 4 < OddZeta.sharpOddDecay s
+'OddZeta.sharp_odd_decay_allowance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.sharp_odd_decay_three_quarters' depends on axioms: [propext, Classical.choice, Quot.sound]
 OddZeta.poised_kernel_weight_shift (r n m : ℕ) (t : ℚ) :
   OddZeta.poisedRationalKernel (r + 1) n m t =
     OddZeta.poisedRationalKernel r n m t / (∏ j ∈ Finset.range (n + 1), (t + ↑j)) ^ 2

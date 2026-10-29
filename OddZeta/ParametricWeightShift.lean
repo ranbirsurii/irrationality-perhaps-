@@ -85,4 +85,64 @@ theorem odd_kernel_phase_shift_bound (s x : ℝ) (hx : 1 ≤ x) :
   rw [odd_kernel_phase_weight_shift]
   linarith [odd_kernel_entropy_lower x hx]
 
+noncomputable def sharpOddDecay (s : ℕ) : ℝ :=
+  Real.log 2397+((s:ℝ)-7)*Real.log 4
+
+theorem sharp_odd_decay_allowance (s : ℕ) (hs : 7 ≤ s) :
+    (s:ℝ)+1/3 < sharpOddDecay s := by
+  have htwo : (2:ℝ)/3 < Real.log 2 := by
+    have h := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<1)
+    norm_num only [mul_one, show (1:ℝ)+2=3 by norm_num,
+      show (1:ℝ)+1=2 by norm_num] at h
+    exact h
+  have hbase : 11*Real.log 2 < Real.log 2397 := by
+    have h := Real.log_lt_log (by norm_num : (0:ℝ)<2^11)
+      (by norm_num : (2:ℝ)^11<2397)
+    simpa only [Real.log_pow,Nat.cast_ofNat] using h
+  have hfour : Real.log 4=2*Real.log 2 := by
+    convert Real.log_pow (2:ℝ) 2 using 1 <;> norm_num
+  have hsr : (7:ℝ) ≤ s := by exact_mod_cast hs
+  have hp : 0 ≤ ((s:ℝ)-7)*(Real.log 4-1) :=
+    mul_nonneg (by linarith) (by rw [hfour]; linarith)
+  have heq : sharpOddDecay s-(s:ℝ) =
+      (Real.log 2397-7)+((s:ℝ)-7)*(Real.log 4-1) := by
+    unfold sharpOddDecay
+    ring
+  linarith
+
+theorem sharp_odd_decay_three_quarters (s : ℕ) (hs : 7 ≤ s) :
+    (s:ℝ)+3/4 < sharpOddDecay s := by
+  have h1 := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<1/4)
+  have h2 := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<1/5)
+  have h3 := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<1/6)
+  have h4 := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<1/7)
+  norm_num at h1 h2 h3 h4
+  have hl4 : Real.log 4=2*Real.log 2 := by
+    convert Real.log_pow (2:ℝ) 2 using 1 <;> norm_num
+  have hl8 : Real.log 8=3*Real.log 2 := by
+    convert Real.log_pow (2:ℝ) 3 using 1 <;> norm_num
+  have hsum : Real.log ((5:ℝ)/4)+Real.log ((6:ℝ)/5)+
+      Real.log ((7:ℝ)/6)+Real.log ((8:ℝ)/7)=Real.log 2 := by
+    rw [Real.log_div (by norm_num : (5:ℝ)≠0) (by norm_num : (4:ℝ)≠0),
+      Real.log_div (by norm_num : (6:ℝ)≠0) (by norm_num : (5:ℝ)≠0),
+      Real.log_div (by norm_num : (7:ℝ)≠0) (by norm_num : (6:ℝ)≠0),
+      Real.log_div (by norm_num : (8:ℝ)≠0) (by norm_num : (7:ℝ)≠0),hl4,hl8]
+    ring
+  have htwo : (2:ℝ)/9+2/11+2/13+2/15 < Real.log 2 := by linarith
+  have hr := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<349/2048)
+  norm_num at hr
+  rw [Real.log_div (by norm_num : (2397:ℝ)≠0) (by norm_num : (2048:ℝ)≠0)] at hr
+  have hl2048 : Real.log 2048=11*Real.log 2 := by
+    convert Real.log_pow (2:ℝ) 11 using 1 <;> norm_num
+  rw [hl2048] at hr
+  have hbase : (31:ℝ)/4 < Real.log 2397 := by linarith
+  have hsr : (7:ℝ) ≤ s := by exact_mod_cast hs
+  have hp : 0 ≤ ((s:ℝ)-7)*(Real.log 4-1) :=
+    mul_nonneg (by linarith) (by rw [hl4]; linarith)
+  have heq : sharpOddDecay s-(s:ℝ) =
+      (Real.log 2397-7)+((s:ℝ)-7)*(Real.log 4-1) := by
+    unfold sharpOddDecay
+    ring
+  linarith
+
 end OddZeta
