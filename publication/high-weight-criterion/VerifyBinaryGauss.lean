@@ -89,3 +89,6 @@ import OddZeta.FiniteFieldTranslationTrace
 
 #print axioms OddZeta.schur_variable_point_bound
 #print axioms OddZeta.variable_point_balance_identity
+
+#print axioms OddZeta.continued_fraction_local_gap_bound
+#print axioms OddZeta.nearest_denominator_balance_bound

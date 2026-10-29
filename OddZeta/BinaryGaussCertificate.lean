@@ -219,4 +219,29 @@ theorem variable_point_balance_identity (h H V : ℝ) (hH : H ≠ 0) (hV : V ≠
   field_simp
   <;> ring
 
+theorem continued_fraction_local_gap_bound (qprev q a : ℝ)
+    (hq : 0 < q) (hp : qprev ≤ q) :
+    (a*q+qprev)/q ≤ a+1 := by
+  apply (div_le_iff₀ hq).2
+  nlinarith
+
+theorem nearest_denominator_balance_bound (q Q W : ℝ)
+    (hq : 0 < q) (hQ : 0 < Q) (hW : 0 < W)
+    (hl : q^2 ≤ W) (hu : W ≤ Q^2) :
+    min (q^2/W+W/q^2) (Q^2/W+W/Q^2) ≤ 2*(Q/q) := by
+  have hqQ : q ≤ Q := by nlinarith
+  have hg : 1 ≤ Q/q := (le_div_iff₀ hq).2 (by simpa using hqQ)
+  by_cases hm : W ≤ q*Q
+  · have h1 : q^2/W ≤ 1 := (div_le_one hW).2 hl
+    have h2 : W/q^2 ≤ Q/q := by
+      apply (div_le_div_iff₀ (sq_pos_of_pos hq) hq).2
+      nlinarith [mul_nonneg hq.le (sub_nonneg.mpr hm)]
+    exact (min_le_left _ _).trans (by linarith)
+  · have hm' : q*Q ≤ W := le_of_not_ge hm
+    have h1 : Q^2/W ≤ Q/q := by
+      apply (div_le_div_iff₀ hW hq).2
+      nlinarith [mul_nonneg hQ.le (sub_nonneg.mpr hm')]
+    have h2 : W/Q^2 ≤ 1 := (div_le_one (sq_pos_of_pos hQ)).2 hu
+    exact (min_le_right _ _).trans (by linarith)
+
 end OddZeta

@@ -2271,6 +2271,46 @@ Lean verifies the quadratic point bound and balance identity, alongside
 the existing independent-pair minimum theorem. No irrationality
 conclusion is inferred before the stated balance estimate is proved.
 
+\subsection{Local partial quotients and limsup closure}
+Suppose consecutive convergent denominators bracket the balance scale:
+\(q\le H_n\le Q\). Select \(V=q\) when \(H_n^2\le qQ\), and
+\(V=Q\) otherwise. Each term in
+\((V/H_n)^2+(H_n/V)^2\) is at most \(Q/q\). The recurrence
+\(Q=a_n^*q+q_{\rm previous}\), with \(0\le q_{\rm previous}\le q\),
+therefore proves
+\[
+ \lambda_n^2+\lambda_n^{-2}\le2(a_n^*+1),\qquad
+ R_n\le40(a_n^*+1)4^{-n}.
+\]
+Taking extended-real upper limits yields the precise rate budget
+\[
+ \limsup_{n\to\infty}\frac{\log R_n}{n}
+ \le-\log4+
+       \limsup_{n\to\infty}\frac{\log(a_n^*+1)}n.
+\]
+If the second upper limit is \(\gamma<\log4\), then for every
+\(0<\varepsilon<\log4-\gamma\), the definition of limsup gives
+\(R_n\le e^{-\varepsilon n}\) eventually. The constants vanish after
+division by \(n\). This is a complete conditional rate implication,
+not a proof that the actual quotient rate satisfies its hypothesis.
+Rational expansions ending before the bracket require terminal control
+as well. Both algebraic bracket inequalities are checked in Lean.
+
+Ten literature routes are compared, with primary-source links and their
+actual hypotheses, in the companion note
+\texttt{ten-local-gap-methods.md}: local convergent recurrence,
+metrical continued fractions~\cite{levy-original}, Roth approximation~\cite{roth-original}, quantitative
+nondivergence~\cite{nondiv-source}, polynomial continued fractions with factorial reduction~\cite{pcf-source},
+ideal/discriminant bounds~\cite{odlyzko-source}, Siegel-lemma zeta constructions~\cite{fischler-source},
+elimination with arithmetic factors~\cite{lai-source}, G-function approximation~\cite{gfunction-source}, and
+Mellin/transfinite-diameter criteria~\cite{brown-source}. The closest direct route is the
+local recurrence proved here. The metrical theorem concerns almost
+every fixed slope, Roth requires algebraic irrational inputs, and the
+zeta dimension bounds do not isolate every target. The arithmetic
+rate and terminal control needed here are not supplied by those
+conclusions. No unconditional irrationality conclusion is appended
+to this limsup calculation.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and
@@ -2637,7 +2677,39 @@ This proves the complete raw decay estimate. Section~\ref{sec:higher-decay} exte
 higher fixed weight. The primitive integer normalization cost remains in
 \eqref{eq:bound}; no analytic step here discards that factor.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
+\bibitem{levy-original}
+P. L\'evy, \emph{Sur le d\'eveloppement en fraction continue d'un nombre choisi au hasard},
+Compositio Mathematica 3 (1936), 286--303,
+\href{https://www.numdam.org/item/CM_1936__3__286_0/}{original article}.
+\bibitem{roth-original}
+K. F. Roth, \emph{Rational approximations to algebraic numbers},
+Mathematika 2 (1955),
+\href{https://www.cambridge.org/core/journals/mathematika/article/rational-approximations-to-algebraic-numbers/EFB89E2873019B246F004FAA06E05A7F}{publisher record}.
+\bibitem{nondiv-source}
+D. Kleinbock, \emph{Quantitative nondivergence and its Diophantine applications},
+Clay Mathematics Proceedings 10 (2010),
+\href{https://www.claymath.org/library/proceedings/cmip010c.pdf}{proceedings}.
+\bibitem{pcf-source}
+N. Ben David et al., \emph{On the connection between irrationality measures and polynomial continued fractions},
+Arnold Mathematical Journal 10 (2024), 529--566,
+\href{https://doi.org/10.1007/s40598-024-00250-z}{article}.
+\bibitem{odlyzko-source}
+A. M. Odlyzko, \emph{Bounds for discriminants and related estimates for class numbers, regulators and zeros of zeta functions},
+Journal de Th\'eorie des Nombres de Bordeaux 2 (1990), 119--141,
+\href{https://www.numdam.org/item/JTNB_1990__2_1_119_0.pdf}{article}.
+\bibitem{fischler-source}
+S. Fischler, \emph{Linear independence of odd zeta values using Siegel's lemma},
+\href{https://arxiv.org/abs/2109.10136}{arXiv:2109.10136}, revised 2025.
+\bibitem{lai-source}
+L. Lai, \emph{A note on the number of irrational odd zeta values, II},
+\href{https://arxiv.org/abs/2501.05321}{arXiv:2501.05321}.
+\bibitem{gfunction-source}
+S. Fischler and T. Rivoal, \emph{Rational approximation to values of G-functions, and their expansions in integer bases},
+\href{https://www.imo.universite-paris-saclay.fr/~stephane.fischler/approxG.pdf}{author manuscript}, 2017.
+\bibitem{brown-source}
+F. Brown, \emph{Mellin transforms, transfinite diameter and rational approximations of integrals},
+\href{https://arxiv.org/abs/2604.20741}{arXiv:2604.20741}, 2026.
 \bibitem{discrete-residues}
 C. E. Arreche and H. P. Sitaula,
 \emph{Computing discrete residues of rational functions},
