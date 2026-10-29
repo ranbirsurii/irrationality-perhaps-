@@ -1,3 +1,10 @@
+OddZeta.slope_error_transfer (alpha sigma p q delta : ℝ) (h : |alpha - sigma| ≤ delta) :
+  |p * alpha + q| ≤ |p * sigma + q| + |p| * delta
+OddZeta.nonzero_small_form_of_independent_slope_pair (alpha sigma delta E : ℝ) (p0 q0 p1 q1 : ℤ)
+  (happrox : |alpha - sigma| ≤ delta) (hdet : p0 * q1 - p1 * q0 ≠ 0) (h0 : |↑p0 * sigma + ↑q0| + |↑p0| * delta ≤ E)
+  (h1 : |↑p1 * sigma + ↑q1| + |↑p1| * delta ≤ E) : ∃ p q, 0 < |↑p * alpha + ↑q| ∧ |↑p * alpha + ↑q| ≤ E
+'OddZeta.slope_error_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.nonzero_small_form_of_independent_slope_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
 OddZeta.psd_gram_eigenmax_bounds (A B C : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) :
   A ≤ OddZeta.gramEigenMax A B C ∧ C ≤ OddZeta.gramEigenMax A B C ∧ OddZeta.gramEigenMax A B C ≤ A + C
 OddZeta.individually_scaled_gram_psd (A B C h k : ℝ) (hBC : B ^ 2 ≤ A * C) (hh : 0 < h) (hk : 0 < k) :

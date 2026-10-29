@@ -1,5 +1,10 @@
 import OddZeta.PrimitivePairNormalization
 
+#check OddZeta.slope_error_transfer
+#check OddZeta.nonzero_small_form_of_independent_slope_pair
+#print axioms OddZeta.slope_error_transfer
+#print axioms OddZeta.nonzero_small_form_of_independent_slope_pair
+
 #check OddZeta.psd_gram_eigenmax_bounds
 #check OddZeta.individually_scaled_gram_psd
 #check OddZeta.primitive_pair_spectral_bounds

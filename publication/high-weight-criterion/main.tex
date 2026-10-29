@@ -2726,6 +2726,61 @@ enclosures; the tested raw root choices are not a successful decay
 selection. Lean verifies the two-sided sharpness implication; the
 kernel and tail application above is a paper argument.
 
+\subsection{Compressing cofactor-root heights}
+The full cofactor-root fractions can be replaced by shorter integer
+pairs. Choose \(V_j\ne0\), which exists by invertibility, and put
+\(g=\gcd(U_j,V_j)\), \(p_0=-V_j/g\), \(q_0=U_j/g\).
+A signed-prefix certificate \(R_0\) gives
+\[
+ |p_0\zeta(s)+q_0|\le R_0,\qquad
+ \sigma=-q_0/p_0,\qquad \delta=R_0/|p_0|,
+\]
+so \(|\zeta(s)-\sigma|\le\delta\). All these bounds use rational
+kernel data and do not assume irrationality.
+
+For consecutive continued-fraction convergents \(P_i/Q_i\) of
+\(\sigma\), define
+\[
+ E=\max_{i=0,1}\bigl(|Q_i\sigma-P_i|+Q_i\delta\bigr).
+\]
+The initial \(1/0\) is allowed. Their determinant is \(\pm1\),
+and therefore the primitive forms \(L_i=Q_i\zeta(s)-P_i\)
+cannot both vanish. The triangle inequality gives \(|L_i|\le E\).
+Minimizing \(E\) over the finite list of consecutive pairs defines
+a positive rational \(E_n\), including terminal pairs. Consequently
+at every eligible index there exist integers \(p,q\) such that
+\[
+ 0<|p\zeta(s)+q|\le E_n.
+\]
+Classical choice may select this nonzero member because its existence
+follows from the unit determinant; it does not prove \(E_n\to0\).
+Lean verifies the error-transfer inequality and this independent-pair
+existence implication.
+
+For \(V=\max(Q_0,Q_1)\), the continued-fraction error bound gives
+\[
+ E\le V^{-1}+V\delta.
+\]
+Thus \(\delta_n\le Ce^{-cn}\), together with a denominator window
+\(e^{an}\le V_n\le e^{bn}\), \(0<a\le b<c\), would imply
+\[
+ E_n\le e^{-an}+Ce^{-(c-b)n}\longrightarrow0.
+\]
+This uses the root-accuracy budget rather than the earlier fixed
+\(4^{-n}\) metric scale. A uniform estimate for \(E_n\), or for
+these rates, remains unproved.
+
+Ten profiles at weights \(7,9,11\) give thirty exact signed-prefix
+certificates. At weight seven, the certified common bounds for
+\(n=6,8,12,16,20\) are respectively below
+\[
+ 9\cdot10^{-9},\quad 2\cdot10^{-12},\quad4\cdot10^{-21},
+ \quad8\cdot10^{-30},\quad3\cdot10^{-37}.
+\]
+Each inequality is checked by rational arithmetic and independent zeta
+enclosures. These finite improvements do not prove an asymptotic rate
+or unconditional all-odd irrationality.
+
 \subsection{An all-index Laurent coefficient envelope}
 Let \(n\ge1\), \(0\le m\le n\), \(s\ge3\), and write
 \[

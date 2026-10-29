@@ -5,6 +5,36 @@ import Mathlib.Tactic.FieldSimp
 
 namespace OddZeta
 
+theorem slope_error_transfer (alpha sigma p q delta : ℝ)
+    (h : |alpha-sigma| ≤ delta) :
+    |p*alpha+q| ≤ |p*sigma+q|+|p| * delta := by
+  calc
+    |p*alpha+q| = |(p*sigma+q)+p*(alpha-sigma)| := by congr 1; ring
+    _ ≤ |p*sigma+q|+|p*(alpha-sigma)| := abs_add_le _ _
+    _ ≤ |p*sigma+q|+|p| * delta := by
+      rw [abs_mul]
+      exact add_le_add le_rfl (mul_le_mul_of_nonneg_left h (abs_nonneg p))
+
+theorem nonzero_small_form_of_independent_slope_pair
+    (alpha sigma delta E : ℝ) (p0 q0 p1 q1 : ℤ)
+    (happrox : |alpha-sigma| ≤ delta)
+    (hdet : p0*q1-p1*q0 ≠ 0)
+    (h0 : |(p0:ℝ)*sigma+q0|+|(p0:ℝ)| * delta ≤ E)
+    (h1 : |(p1:ℝ)*sigma+q1|+|(p1:ℝ)| * delta ≤ E) :
+    ∃ p q : ℤ, 0 < |(p:ℝ)*alpha+q| ∧ |(p:ℝ)*alpha+q| ≤ E := by
+  have hb0 := (slope_error_transfer alpha sigma p0 q0 delta happrox).trans h0
+  have hb1 := (slope_error_transfer alpha sigma p1 q1 delta happrox).trans h1
+  by_cases hz : (p0:ℝ)*alpha+q0 = 0
+  · have hn : (p1:ℝ)*alpha+q1 ≠ 0 := by
+      intro hz1
+      have hd : (p0:ℝ)*(q1:ℝ)-(p1:ℝ)*(q0:ℝ) ≠ 0 := by exact_mod_cast hdet
+      apply hd
+      calc
+        _ = (p0:ℝ)*((p1:ℝ)*alpha+q1)-(p1:ℝ)*((p0:ℝ)*alpha+q0) := by ring
+        _ = 0 := by rw [hz,hz1]; ring
+    exact ⟨p1,q1,abs_pos.mpr hn,hb1⟩
+  · exact ⟨p0,q0,abs_pos.mpr hz,hb0⟩
+
 theorem psd_gram_eigenmax_bounds (A B C : ℝ)
     (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) :
     A ≤ gramEigenMax A B C ∧ C ≤ gramEigenMax A B C ∧
