@@ -1,0 +1,99 @@
+{
+  "polynomial_identity_checks": 120,
+  "independent_integral_checks": 360,
+  "hypergeometric_term_checks": 48,
+  "examples": [
+    {
+      "weight": 5,
+      "index": 6,
+      "numerator_length": 6,
+      "integer_transform_coefficients": [
+        "27132",
+        "-81396",
+        "108528",
+        "-81396",
+        "35910",
+        "-8778",
+        "924"
+      ],
+      "coefficient_l1_mass": "344064"
+    },
+    {
+      "weight": 5,
+      "index": 12,
+      "numerator_length": 10,
+      "integer_transform_coefficients": [
+        "92561040",
+        "-501372300",
+        "1263458196",
+        "-1943781840",
+        "2015773760",
+        "-1468635168",
+        "759638880",
+        "-274916928",
+        "66512160",
+        "-9699690",
+        "646646"
+      ],
+      "coefficient_l1_mass": "8396996608"
+    },
+    {
+      "weight": 7,
+      "index": 6,
+      "numerator_length": 3,
+      "integer_transform_coefficients": [
+        "286",
+        "-546",
+        "364",
+        "-84"
+      ],
+      "coefficient_l1_mass": "1280"
+    },
+    {
+      "weight": 7,
+      "index": 12,
+      "numerator_length": 9,
+      "integer_transform_coefficients": [
+        "20160075",
+        "-102553425",
+        "239291325",
+        "-335007855",
+        "309238020",
+        "-194705420",
+        "83445180",
+        "-23430420",
+        "3905070",
+        "-293930"
+      ],
+      "coefficient_l1_mass": "1312030720"
+    },
+    {
+      "weight": 9,
+      "index": 8,
+      "numerator_length": 4,
+      "integer_transform_coefficients": [
+        "2380",
+        "-6120",
+        "6120",
+        "-2805",
+        "495"
+      ],
+      "coefficient_l1_mass": "17920"
+    },
+    {
+      "weight": 11,
+      "index": 10,
+      "numerator_length": 5,
+      "integer_transform_coefficients": [
+        "20349",
+        "-65835",
+        "87780",
+        "-60060",
+        "21021",
+        "-3003"
+      ],
+      "coefficient_l1_mass": "258048"
+    }
+  ],
+  "required_primitive_cost_rate_proved": false
+}
