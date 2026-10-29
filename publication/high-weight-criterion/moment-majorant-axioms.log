@@ -31,3 +31,35 @@ OddZeta.smallness_of_allowed_exponential_cost (sigma decay eta : ℝ) (hgap : si
   (hs : ∀ (e : ℝ), 0 < e → ∀ᶠ (n : ℕ) in Filter.atTop, S n ≤ Real.exp ((-decay + e) * ↑(index n))) :
   Filter.Tendsto L Filter.atTop (nhds 0)
 'OddZeta.smallness_of_allowed_exponential_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.signed_prefix_cauchy (P T a b E : ℝ) (hP : 0 < P) (hT : 0 < T) (hb : b ^ 2 ≤ T * E) :
+  (a + b) ^ 2 ≤ (P + T) * (a ^ 2 / P + E)
+OddZeta.signed_prefix_energy_gain (P T a b : ℝ) (hP : 0 < P) (hT : 0 < T) :
+  a ^ 2 / P + b ^ 2 / T - (a + b) ^ 2 / (P + T) = (T * a - P * b) ^ 2 / (P * T * (P + T))
+OddZeta.signed_prefix_merge_le (P T a b : ℝ) (hP : 0 < P) (hT : 0 < T) : (a + b) ^ 2 / (P + T) ≤ a ^ 2 / P + b ^ 2 / T
+OddZeta.prefix_tail_power_budget (E B K p t : ℝ) (hK : 0 < K) (ht : K ≤ t) (hB : 0 ≤ B) (hbudget : B ≤ (E - p) * K) :
+  -E / t + B / t ^ 2 ≤ -p / t
+'OddZeta.signed_prefix_cauchy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.signed_prefix_energy_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.signed_prefix_merge_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.prefix_tail_power_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.weighted_prefix_energy_le.{u_1} {ι : Type u_1} (I : Finset ι) (w p : ι → ℝ) (hw : ∀ i ∈ I, 0 ≤ w i)
+  (hP : 0 < ∑ i ∈ I, w i) : (∑ i ∈ I, w i * p i) ^ 2 / ∑ i ∈ I, w i ≤ ∑ i ∈ I, w i * p i ^ 2
+OddZeta.log_sandwich_rate_gap (C R : ℝ) (n : ℕ) (hn : 0 < n) (hC : 0 < C) (hl : C ≤ R) (hu : R ≤ 4 / 3 * C) :
+  0 ≤ (Real.log R - Real.log C) / ↑n ∧ (Real.log R - Real.log C) / ↑n ≤ Real.log (4 / 3) / ↑n
+OddZeta.log_sandwich_rate_gap_tends_zero (C R : ℕ → ℝ) (hC : ∀ᶠ (n : ℕ) in Filter.atTop, 0 < C n)
+  (hl : ∀ᶠ (n : ℕ) in Filter.atTop, C n ≤ R n) (hu : ∀ᶠ (n : ℕ) in Filter.atTop, R n ≤ 4 / 3 * C n) :
+  Filter.Tendsto (fun n => (Real.log (R n) - Real.log (C n)) / ↑n) Filter.atTop (nhds 0)
+'OddZeta.weighted_prefix_energy_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.log_sandwich_rate_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.log_sandwich_rate_gap_tends_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.prefix_positive_pole_ratio (K t h : ℝ) (hK : h < K) (ht : K ≤ t) (hh : 0 ≤ h) : t / (t - h) ≤ K / (K - h)
+OddZeta.prefix_negative_pole_ratio (K t h : ℝ) (hK : 0 < K) (ht : K ≤ t) (hh : 0 ≤ h) : K / (K + h) ≤ t / (t + h)
+OddZeta.signed_prefix_rank_one_determinant (h11 h12 h22 q1 q2 P : ℝ) :
+  (h11 + q1 ^ 2 / P) * (h22 + q2 ^ 2 / P) - (h12 + q1 * q2 / P) ^ 2 =
+    h11 * h22 - h12 ^ 2 + (q1 ^ 2 * h22 - 2 * q1 * q2 * h12 + q2 ^ 2 * h11) / P
+'OddZeta.prefix_positive_pole_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.prefix_negative_pole_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.signed_prefix_rank_one_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.near_prefix_tail_rate_positive (s : ℕ) (hs : 7 ≤ s) :
+  1 < ↑s * (5 / 4) * Real.log (9 / 5) - 1 - 5 / 4 * Real.log 5
+'OddZeta.near_prefix_tail_rate_positive' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -30,3 +30,6 @@ OddZeta.primitive_gcd_pair_nonvanishing (a b c d : ℤ) (α : ℝ) (hdet : a * d
 'OddZeta.integral_normalized_pair_nonvanishing' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.pair_gcd_positive_of_determinant' depends on axioms: [propext, Quot.sound]
 'OddZeta.primitive_gcd_pair_nonvanishing' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.integer_pair_rational_denominator_bound (u v w z p q : ℤ) (x B : ℝ) (hq : q ≠ 0) (hvalue : ↑q * x = ↑p)
+  (hdet : u * z - v * w ≠ 0) (hfirst : |↑u * x + ↑v| ≤ B) (hsecond : |↑w * x + ↑z| ≤ B) : 1 ≤ |↑q| * B
+'OddZeta.integer_pair_rational_denominator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

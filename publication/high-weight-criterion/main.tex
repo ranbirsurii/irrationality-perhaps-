@@ -21,7 +21,7 @@
 \title{Relative arithmetic content in symmetric odd-zeta forms\\
 \large Exact reductions, higher-weight decay, and a conditional irrationality criterion}
 \author{}
-\date{28 October 2026}
+\date{29 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -1926,6 +1926,145 @@ The companion Lean module \texttt{MomentMajorant.lean} checks the reduced
 quadratic estimate and the majorant-to-limit implication. The actual
 moment-family identification and the sufficient arithmetic majorant
 remain separate from those abstract formal statements.
+
+\section{Exact signed-prefix cancellation and the large-index equality}
+The moment inequality can retain the signed finite sum before squaring.
+Fix \(s=2r+1\ge7\), \(m=n-r\), and a cutoff \(K>m\). Write
+\[
+ m_j=\sum_{m<k\le K}T(k)w(k)^j,\quad P=m_0>0,\quad
+ a_z=\sum_{j=0}^r z_jm_j,\quad
+ b_z=\sum_{k>K}T(k)\sum_{j=0}^r z_jw(k)^j.
+\]
+Suppose \(\tau_j\) bounds the full tail moment of order \(j\).
+Set \(E_z=(r+1)\sum_jz_j^2\tau_{2j}\) and
+\(\mu=P+\tau_0\). Tail Cauchy--Schwarz gives
+\(b_z^2\le\tau_0E_z\). The exact identity
+\[
+ (P+\tau_0)(a_z^2/P+E_z)-(a_z+b_z)^2
+ =\frac{(\tau_0a_z-Pb_z)^2}{P\tau_0}
+    +(P+\tau_0)(E_z-b_z^2/\tau_0)
+\]
+proves
+\begin{equation}
+ \left|\sum_{k>m}T(k)\sum_jz_jw(k)^j\right|^2
+ \le\mu\left(\frac{a_z^2}{P}+E_z\right).
+ \label{eq:signed-prefix-bound}
+\end{equation}
+The prefix variance identity proves
+\(a_z^2/P\le\sum_{m<k\le K}T(k)(\sum_jz_jw(k)^j)^2\).
+Thus the new rational matrix
+\[
+ \widehat G=(m_im_j/P)_{i,j=0}^r
+       +(r+1)\diag(\tau_0,\tau_2,\ldots,\tau_{2r})
+\]
+is no larger than the earlier moment matrix in every quadratic direction.
+This is a uniform algebraic improvement; it permits signed profiles.
+
+Here the tail need not use a fixed power. For \(t\ge K>m\), monotonicity
+of the individual fractions gives
+\[
+ t\frac{T'(t)}{T(t)}
+ \le\sum_{h=1}^m\frac K{K-h}+m
+       -s\sum_{j=0}^n\frac K{K+j}=-b_{s,n,K}.
+\]
+Indeed \(t/(t-h)\) decreases, \(t/(t+j)\) increases, and
+\(t/(t+n+h)\le1\). Choose \(p=\lfloor b_{s,n,K}\rfloor>4r+1\).
+Integrating the logarithmic derivative proves
+\(T(t)\le T(K)(K/t)^p\). Integral comparison then gives the explicit,
+complete infinite-tail certificate
+\begin{equation}
+ \tau_j=T(K)\frac K{p-2j-1}
+             \left(\frac{K(K+n)}{12n^2}\right)^j,
+ \qquad 0\le j\le2r.
+ \label{eq:prefix-tail-certificate}
+\end{equation}
+For fixed rational \(c>1\), restrict to indices with \(K=cn\) integral.
+Riemann sums give
+\[
+ \frac pn\longrightarrow d_s(c)
+ =sc\log\frac{c+1}{c}-1-c\log\frac c{c-1}.
+\]
+If \(d_s(c)>0\), then \(p>4r+1\) eventually and
+\[
+ \frac{\tau_j}{T(cn)}\longrightarrow
+ \frac c{d_s(c)}\left(\frac{c(c+1)}{12}\right)^j>0.
+\]
+In particular \(d_s(5/4)>1\) for every \(s\ge7\).
+The elementary bounds \(\log(9/5)>4/7\) and
+\(\log5\le9/4\) give \(d_7(5/4)>19/16\), and the expression
+increases with \(s\). The companion Lean proof checks this uniform
+positive coefficient; hence this cutoff supplies a valid tail power
+for all sufficiently large indices at each fixed weight.
+Consequently Stirling's formula in the exact factorial kernel proves the
+all-index tail rate
+\[
+ \frac{\log\tau_j}{n}\longrightarrow\Phi_s(c),\qquad
+ \Phi_s(c)=(s+1)c\log c+(c+2)\log(c+2)
+ -(c-1)\log(c-1)-(s+1)(c+1)\log(c+1).
+\]
+Fixed endpoint offsets contribute only \(O(\log n)\) to the logarithm.
+This evaluates the tail rate, independently of any integer reduction.
+
+Retain the coefficient-to-profile map \(F\) and set
+\(Q=D^2F^{\mathsf T}\widehat GF\). Gauss reduction over
+\(\mathrm{GL}_2(\Z)\) gives entries \(\alpha,\beta,\nu\), with
+\(0<\alpha\le\nu\) and \(2|\beta|\le\alpha\). Put
+\[
+ R_n=\mu\nu,\qquad C_n=\frac{\mu\det Q}{\alpha}.
+\]
+Since \(\det Q=\alpha\nu-\beta^2\), one obtains the exact estimates
+\begin{equation}
+ C_n\le R_n\le\frac43C_n,\qquad
+ 0\le\frac{\log R_n-\log C_n}{n}
+       \le\frac{\log(4/3)}n\longrightarrow0.
+ \label{eq:prefix-large-index-equality}
+\end{equation}
+Their upper logarithmic rates are equal, even if neither ordinary rate
+exists. No negative sign is inferred from this equality alone.
+If \(H\) is the pulled-back tail matrix and \(q\) the pulled-back
+prefix row, then \(Q=H+qq^{\mathsf T}/P\) and
+\[
+ \det Q=\det H+
+ \frac{q_1^2H_{22}-2q_1q_2H_{12}+q_2^2H_{11}}P.
+\]
+This retains the exact off-diagonal cancellation in the determinant.
+
+An explicit arithmetic attempt is also available. Write
+\(q=(a/t,b/t)\), with \(\gcd(a,b)=1\), and put \(N=a^2+b^2\).
+A centered B\'ezout solution \(ax+by=1\) has
+\(x^2+y^2\le N\): its norm squared is
+\([1+(ay-bx)^2]/N\), and the determinant may be centered modulo \(N\).
+The case \(N=1\) is immediate. The vectors \((b,-a),(x,y)\) form a
+unimodular basis. The trace bound on the positive tail matrix proves
+\[
+ R_n\le\mu\left(\frac1{t^2P}+\operatorname{tr}(H)N\right).
+\]
+This is unconditional as a basis estimate, but it does not close the
+decay proof: in the recorded weight-seven case \(n=160,K=960\), its
+right side has positive logarithm greater than \(15307\).
+
+For clarity, a concrete normalized integer pair at \(s=7,n=8,K=48\) is
+\begin{align*}
+ \ell_1&=22177603708244749601\,\zeta(7)-22362770673271245300,\\
+ \ell_2&=14836825409810353538\,\zeta(7)-14960702180624020999.
+\end{align*}
+Their coefficient determinant has absolute value one. The companion
+\texttt{WeightSevenIntegerCertificate.lean} supplies explicit integer
+block weights and checks their two lower-period cancellations, exact
+contents, primitive coefficient pairs, nonvanishing, metric reduction,
+and the complete rational squared certificate \(R_8<10^{-38}\).
+The family interpretation and infinite-tail inequality are the paper
+arguments above; the concrete Lean certificate checks the supplied
+matrix and metric arithmetic rather than assuming an asymptotic rate.
+
+Exact rational computations cover forty index/cutoff combinations at
+weights \(7,9,11\), including \(n=160,K=960\). Independent enclosures
+check the signed-prefix residual against the tail certificate as well
+as each complete form bound. At that last index \(R_n<10^{-878}\).
+If \(\zeta(7)=p/q\), one of the two independent integer forms has size
+at least \(1/|q|\); hence \(|q|>10^{439}\). This finite exclusion
+does not prove irrationality. The uniform negative rate of
+\eqref{eq:prefix-large-index-equality} remains unproved.
 
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.

@@ -19,3 +19,29 @@ import OddZeta.MomentMajorant
 
 #check OddZeta.smallness_of_allowed_exponential_cost
 #print axioms OddZeta.smallness_of_allowed_exponential_cost
+
+#check OddZeta.signed_prefix_cauchy
+#check OddZeta.signed_prefix_energy_gain
+#check OddZeta.signed_prefix_merge_le
+#check OddZeta.prefix_tail_power_budget
+#print axioms OddZeta.signed_prefix_cauchy
+#print axioms OddZeta.signed_prefix_energy_gain
+#print axioms OddZeta.signed_prefix_merge_le
+#print axioms OddZeta.prefix_tail_power_budget
+
+#check OddZeta.weighted_prefix_energy_le
+#check OddZeta.log_sandwich_rate_gap
+#check OddZeta.log_sandwich_rate_gap_tends_zero
+#print axioms OddZeta.weighted_prefix_energy_le
+#print axioms OddZeta.log_sandwich_rate_gap
+#print axioms OddZeta.log_sandwich_rate_gap_tends_zero
+
+#check OddZeta.prefix_positive_pole_ratio
+#check OddZeta.prefix_negative_pole_ratio
+#check OddZeta.signed_prefix_rank_one_determinant
+#print axioms OddZeta.prefix_positive_pole_ratio
+#print axioms OddZeta.prefix_negative_pole_ratio
+#print axioms OddZeta.signed_prefix_rank_one_determinant
+
+#check OddZeta.near_prefix_tail_rate_positive
+#print axioms OddZeta.near_prefix_tail_rate_positive

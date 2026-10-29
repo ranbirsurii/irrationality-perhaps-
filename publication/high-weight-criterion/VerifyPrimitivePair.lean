@@ -19,3 +19,6 @@ import OddZeta.PrimitivePairNormalization
 #print axioms OddZeta.integral_normalized_pair_nonvanishing
 #print axioms OddZeta.pair_gcd_positive_of_determinant
 #print axioms OddZeta.primitive_gcd_pair_nonvanishing
+
+#check OddZeta.integer_pair_rational_denominator_bound
+#print axioms OddZeta.integer_pair_rational_denominator_bound

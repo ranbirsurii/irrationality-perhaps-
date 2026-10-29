@@ -1,0 +1,10 @@
+'OddZeta.seven_eight_integer_lift_1' depends on axioms: [propext]
+'OddZeta.seven_eight_integer_lift_2' depends on axioms: [propext]
+'OddZeta.seven_eight_primitive_1' does not depend on any axioms
+'OddZeta.seven_eight_primitive_2' does not depend on any axioms
+'OddZeta.seven_eight_exact_content_1' depends on axioms: [propext]
+'OddZeta.seven_eight_exact_content_2' depends on axioms: [propext]
+'OddZeta.seven_eight_pair_determinant' depends on axioms: [propext]
+'OddZeta.seven_eight_pair_nonvanishing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.seven_eight_metric_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.seven_eight_metric_small' depends on axioms: [propext, Classical.choice, Quot.sound]

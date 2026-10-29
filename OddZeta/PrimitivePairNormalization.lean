@@ -136,4 +136,38 @@ theorem primitive_gcd_pair_nonvanishing (a b c d : ℤ) (α : ℝ)
     (Int.gcd_dvd_left _ _) (Int.gcd_dvd_right _ _) (ne_of_gt hh) (ne_of_gt hk) hdet,
     Int.gcd_div_gcd_div_gcd hpos.1, Int.gcd_div_gcd_div_gcd hpos.2⟩
 
+theorem integer_pair_rational_denominator_bound (u v w z p q : ℤ)
+    (x B : ℝ) (hq : q ≠ 0) (hvalue : (q:ℝ)*x=p)
+    (hdet : u*z-v*w ≠ 0)
+    (hfirst : |(u:ℝ)*x+v| ≤ B) (hsecond : |(w:ℝ)*x+z| ≤ B) :
+    1 ≤ |(q:ℝ)| * B := by
+  have hnonzero : u*p+v*q ≠ 0 ∨ w*p+z*q ≠ 0 := by
+    by_cases h : u*p+v*q=0
+    · right
+      intro h'
+      have hid : q*(u*z-v*w)=u*(w*p+z*q)-w*(u*p+v*q) := by ring
+      rw [h,h'] at hid
+      have hz : q*(u*z-v*w)=0 := by simpa using hid
+      exact hdet ((mul_eq_zero.mp hz).resolve_left hq)
+    · exact Or.inl h
+  have hone : ∀ a : ℤ, a ≠ 0 → (1:ℝ) ≤ |(a:ℝ)| := by
+    intro a ha
+    have hi : (1:ℤ) ≤ |a| := by have hp := abs_pos.mpr ha; omega
+    exact_mod_cast hi
+  rcases hnonzero with h | h
+  · have hi := hone (u*p+v*q) h
+    have hid : ((u*p+v*q:ℤ):ℝ)=(q:ℝ)*((u:ℝ)*x+v) := by
+      push_cast
+      rw [show (u:ℝ)*(p:ℝ)=(u:ℝ)*((q:ℝ)*x) by rw [hvalue]]
+      ring
+    rw [hid,abs_mul] at hi
+    exact hi.trans (mul_le_mul_of_nonneg_left hfirst (abs_nonneg _))
+  · have hi := hone (w*p+z*q) h
+    have hid : ((w*p+z*q:ℤ):ℝ)=(q:ℝ)*((w:ℝ)*x+z) := by
+      push_cast
+      rw [show (w:ℝ)*(p:ℝ)=(w:ℝ)*((q:ℝ)*x) by rw [hvalue]]
+      ring
+    rw [hid,abs_mul] at hi
+    exact hi.trans (mul_le_mul_of_nonneg_left hsecond (abs_nonneg _))
+
 end OddZeta

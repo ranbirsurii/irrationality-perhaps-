@@ -138,4 +138,127 @@ theorem smallness_of_allowed_exponential_cost
   rw [Real.dist_eq,sub_zero] at hx ⊢
   exact hy.trans_lt ((le_abs_self _).trans_lt hx)
 
+theorem weighted_prefix_energy_le {ι : Type*} (I : Finset ι)
+    (w p : ι → ℝ) (hw : ∀ i ∈ I, 0 ≤ w i)
+    (hP : 0 < ∑ i ∈ I, w i) :
+    (∑ i ∈ I, w i*p i)^2/(∑ i ∈ I, w i) ≤ ∑ i ∈ I, w i*p i^2 := by
+  have hid := weighted_gram_double_sum I w p (fun _ => 1)
+  simp only [one_pow,mul_one,one_mul] at hid
+  have hn : 0 ≤ (1/2:ℝ)*∑ i ∈ I, ∑ j ∈ I,
+      w i*w j*(p i-p j)^2 := by
+    apply mul_nonneg (by norm_num)
+    apply Finset.sum_nonneg
+    intro i hi
+    apply Finset.sum_nonneg
+    intro j hj
+    exact mul_nonneg (mul_nonneg (hw i hi) (hw j hj)) (sq_nonneg _)
+  rw [← hid] at hn
+  apply (div_le_iff₀ hP).2
+  nlinarith
+
+theorem signed_prefix_cauchy (P T a b E : ℝ)
+    (hP : 0 < P) (hT : 0 < T) (hb : b^2 ≤ T*E) :
+    (a+b)^2 ≤ (P+T)*(a^2/P+E) := by
+  have ht : 0 ≤ E-b^2/T := by
+    have h : b^2/T ≤ E := (div_le_iff₀ hT).2 (by simpa [mul_comm] using hb)
+    linarith
+  have hn := add_nonneg
+    (div_nonneg (sq_nonneg (T*a-P*b)) (mul_pos hP hT).le)
+    (mul_nonneg (add_pos hP hT).le ht)
+  have hid : (T*a-P*b)^2/(P*T)+(P+T)*(E-b^2/T) =
+      (P+T)*(a^2/P+E)-(a+b)^2 := by
+    field_simp
+    <;> ring
+  rw [hid] at hn
+  linarith
+
+theorem signed_prefix_energy_gain (P T a b : ℝ)
+    (hP : 0 < P) (hT : 0 < T) :
+    a^2/P+b^2/T-(a+b)^2/(P+T) =
+      (T*a-P*b)^2/(P*T*(P+T)) := by
+  have hsum : P+T ≠ 0 := (add_pos hP hT).ne'
+  field_simp
+  <;> ring
+
+theorem signed_prefix_merge_le (P T a b : ℝ)
+    (hP : 0 < P) (hT : 0 < T) :
+    (a+b)^2/(P+T) ≤ a^2/P+b^2/T := by
+  have h := div_nonneg (sq_nonneg (T*a-P*b))
+    (mul_pos (mul_pos hP hT) (add_pos hP hT)).le
+  rw [← signed_prefix_energy_gain P T a b hP hT] at h
+  linarith
+
+theorem prefix_tail_power_budget (E B K p t : ℝ)
+    (hK : 0 < K) (ht : K ≤ t) (hB : 0 ≤ B)
+    (hbudget : B ≤ (E-p)*K) :
+    -E/t+B/t^2 ≤ -p/t := by
+  have htpos : 0 < t := hK.trans_le ht
+  have hep : 0 ≤ E-p := by nlinarith
+  have hbt : B ≤ (E-p)*t := hbudget.trans (mul_le_mul_of_nonneg_left ht hep)
+  apply (le_of_sub_nonneg : 0 ≤ -p/t-(-E/t+B/t^2) → _)
+  have hid : -p/t-(-E/t+B/t^2)=((E-p)*t-B)/t^2 := by
+    field_simp
+    <;> ring
+  rw [hid]
+  exact div_nonneg (sub_nonneg.mpr hbt) (sq_nonneg t)
+
+theorem prefix_positive_pole_ratio (K t h : ℝ)
+    (hK : h < K) (ht : K ≤ t) (hh : 0 ≤ h) :
+    t/(t-h) ≤ K/(K-h) := by
+  apply (div_le_div_iff₀ (by linarith : 0 < t-h) (by linarith : 0 < K-h)).2
+  nlinarith [mul_nonneg hh (sub_nonneg.mpr ht)]
+
+theorem prefix_negative_pole_ratio (K t h : ℝ)
+    (hK : 0 < K) (ht : K ≤ t) (hh : 0 ≤ h) :
+    K/(K+h) ≤ t/(t+h) := by
+  apply (div_le_div_iff₀ (by linarith : 0 < K+h) (by linarith : 0 < t+h)).2
+  nlinarith [mul_nonneg hh (sub_nonneg.mpr ht)]
+
+theorem signed_prefix_rank_one_determinant (h11 h12 h22 q1 q2 P : ℝ) :
+    (h11+q1^2/P)*(h22+q2^2/P)-(h12+q1*q2/P)^2 =
+      h11*h22-h12^2+(q1^2*h22-2*q1*q2*h12+q2^2*h11)/P := by
+  ring
+
+theorem near_prefix_tail_rate_positive (s : ℕ) (hs : 7 ≤ s) :
+    1 < (s:ℝ)*(5/4)*Real.log (9/5:ℝ)-1-(5/4)*Real.log 5 := by
+  have hl := Real.lt_log_one_add_of_pos (by norm_num : (0:ℝ)<4/5)
+  norm_num at hl
+  have h2 := Real.log_le_sub_one_of_pos (by norm_num : (0:ℝ)<2)
+  have h54 := Real.log_le_sub_one_of_pos (by norm_num : (0:ℝ)<5/4)
+  rw [Real.log_div (by norm_num : (5:ℝ)≠0) (by norm_num : (4:ℝ)≠0)] at h54
+  have h4 : Real.log 4=2*Real.log 2 := by
+    convert Real.log_pow (2:ℝ) 2 using 1 <;> norm_num
+  have h5 : Real.log 5 ≤ (9:ℝ)/4 := by rw [h4] at h54; linarith
+  have hsr : (7:ℝ) ≤ s := by exact_mod_cast hs
+  have hg := mul_nonneg (sub_nonneg.mpr hsr)
+    (show 0 ≤ Real.log (9/5:ℝ) by linarith)
+  nlinarith
+
+theorem log_sandwich_rate_gap (C R : ℝ) (n : ℕ)
+    (hn : 0 < n) (hC : 0 < C) (hl : C ≤ R) (hu : R ≤ (4/3:ℝ)*C) :
+    0 ≤ (Real.log R-Real.log C)/(n:ℝ) ∧
+      (Real.log R-Real.log C)/(n:ℝ) ≤ Real.log (4/3:ℝ)/(n:ℝ) := by
+  have hR : 0 < R := hC.trans_le hl
+  have hlow := Real.log_le_log hC hl
+  have hhigh := Real.log_le_log hR hu
+  rw [Real.log_mul (by norm_num : (4/3:ℝ) ≠ 0) hC.ne'] at hhigh
+  have hnr : (0:ℝ) ≤ n := Nat.cast_nonneg n
+  constructor
+  · exact div_nonneg (sub_nonneg.mpr hlow) hnr
+  · exact div_le_div_of_nonneg_right (by linarith) hnr
+
+theorem log_sandwich_rate_gap_tends_zero (C R : ℕ → ℝ)
+    (hC : ∀ᶠ n in atTop, 0 < C n)
+    (hl : ∀ᶠ n in atTop, C n ≤ R n)
+    (hu : ∀ᶠ n in atTop, R n ≤ (4/3:ℝ)*C n) :
+    Tendsto (fun n => (Real.log (R n)-Real.log (C n))/(n:ℝ))
+      atTop (nhds 0) := by
+  have hb : ∀ᶠ n in atTop,
+      0 ≤ (Real.log (R n)-Real.log (C n))/(n:ℝ) ∧
+      (Real.log (R n)-Real.log (C n))/(n:ℝ) ≤ Real.log (4/3:ℝ)/(n:ℝ) := by
+    filter_upwards [hC,hl,hu,eventually_ge_atTop 1] with n hc hlo hup hn
+    exact log_sandwich_rate_gap (C n) (R n) n (by omega) hc hlo hup
+  exact squeeze_zero' (hb.mono fun _ h => h.1) (hb.mono fun _ h => h.2)
+    (tendsto_const_div_atTop_nhds_zero_nat (Real.log (4/3:ℝ)))
+
 end OddZeta
