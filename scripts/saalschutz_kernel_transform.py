@@ -1,6 +1,6 @@
 """Integer Pfaff--Saalschutz decomposition of the unchanged rational kernel."""
 from fractions import Fraction as Q
-from math import comb, factorial, prod, gcd
+from math import comb, factorial, prod, gcd, isqrt
 from pathlib import Path
 import json
 
@@ -19,6 +19,17 @@ def rising_poly(a,k):
 
 def coefficients(n,m):
     return [(-1)**j*comb(n+2*m+1,m-j)*comb(n+j,j) for j in range(m+1)]
+
+
+def optimized_mass_bound_squared(n,m):
+    if m==0:return Q(1),Q(0)
+    scale=10**12
+    root=Q(isqrt((n+1)*(n+2*m+1)*scale*scale),scale)
+    z=Q(m)/(n+m+1+root)
+    assert 0<z<1
+    envelope=(1+z)**(n+2*m+1)/(1-z)**(n+1)/z**m
+    fourier_factor=Q(11,28)*(1+z)**2/((n+2*m+1)*z)
+    return min(envelope**2,envelope**2*fourier_factor),z
 
 
 def beta_integral(n,m,P):
@@ -44,6 +55,11 @@ def main():
             assert lhs==rhs
             assert sum(map(abs,c))<=2**m*comb(n+2*m+1,m)
             assert sum(map(abs,c))**2*6**(2*(n-m))<=3*108**n
+            assert 14*(n+2*m+1)*sum(map(abs,c))**2*6**(2*(n-m))<=99*108**n
+            if 2*m==n:
+                assert 7*(2*n+1)*sum(map(abs,c))**2<=44*16**n
+            improved,_=optimized_mass_bound_squared(n,m)
+            assert sum(map(abs,c))**2<=improved
             assert comb(2*m,m)%gcd(*c)==0
             polynomial_checks+=1
             for P in (Q(1,4),Q(1,2),Q(3,4)):
@@ -68,7 +84,8 @@ def main():
             assert transformed==kernel(s,n,m,t)
         records.append({'weight':s,'index':n,'numerator_length':m,
                         'integer_transform_coefficients':list(map(str,c)),
-                        'coefficient_l1_mass':str(sum(map(abs,c)))})
+                        'coefficient_l1_mass':str(sum(map(abs,c))),
+                        'optimized_mass_bound_squared':str(optimized_mass_bound_squared(n,m)[0])})
     root=Path(__file__).resolve().parents[1]
     (root/'notes/saalschutz-kernel-transform.json').write_text(json.dumps({
         'polynomial_identity_checks':polynomial_checks,'independent_integral_checks':integral_checks,

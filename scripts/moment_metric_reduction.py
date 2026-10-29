@@ -17,21 +17,23 @@ def pairing(x, G, y):
     return sum((x[i]*G[i][j]*y[j] for i in range(len(x)) for j in range(len(y))), Q(0))
 
 
-def construct(r, n):
+def construct(r, n, numerator_length=None):
     assert r >= 3 and n >= 2*r and n % 2 == 0
+    length=n if numerator_length is None else numerator_length
+    assert r<=length<=n
     s = 2*r+1
-    m = n-r
+    m = length-r
     K = 3*n
     D = lcm(*range(1, n+1))**s
-    blocks = [normalized_log_jet_coordinates(s, n, n-j) for j in range(r+1)]
+    blocks = [normalized_log_jet_coordinates(s, n, length-j) for j in range(r+1)]
     matrix_q = [[D*x for x in row] for row in zip(*blocks)]
     assert all(x.denominator == 1 for row in matrix_q for x in row)
     M = [list(map(int, row)) for row in matrix_q]
     delta, a = adjugate_column(M, r-1)
     again, b = adjugate_column(M, r)
     assert delta == again and delta != 0
-    u = weighted_profile(r, n, [Q(x, delta) for x in a])
-    v = weighted_profile(r, n, [Q(x, delta) for x in b])
+    u = weighted_profile(r, n, [Q(x, delta) for x in a], length)
+    v = weighted_profile(r, n, [Q(x, delta) for x in b], length)
     moments = [Q(0)]*(2*r+1)
     peak = Q(0)
     for k in range(m+1, K+1):
@@ -77,7 +79,7 @@ def construct(r, n):
                       'old_same_pair_bound_squared': str(old*old),
                       'old_over_moment_squared': str(old*old/square_bound),
                       'moment_bound_below_one': square_bound < 1})
-    return {'weight':s,'index':n,'cutoff':K,'enclosure_order':enclosure_order,
+    return {'weight':s,'index':n,'numerator_length':length,'cutoff':K,'enclosure_order':enclosure_order,
             'rational_combination_checks':5,
             'reduced_gram':list(map(str,reduced)),
             'kernel_mass_majorant':str(mu),

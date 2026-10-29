@@ -9,13 +9,15 @@ from integer_determinants import adjugate_column
 from weight_seven_combined_kernel import multiply
 
 
-def weighted_profile(r, n, vector):
+def weighted_profile(r, n, vector, numerator_length=None):
+    length=n if numerator_length is None else numerator_length
+    assert r<=length<=n
     out = [Q(0)] * (r + 1)
     for j, value in enumerate(vector):
         polynomial = [Q(1)]
-        for h in range(n-r+1, n-j+1):
+        for h in range(length-r+1, length-j+1):
             polynomial = multiply(polynomial, [-h*(n+h), 1])
-        scale = value * Q(factorial(n-r)**2, factorial(n-j)**2)
+        scale = value * Q(factorial(length-r)**2, factorial(length-j)**2)
         for ell, coefficient in enumerate(polynomial):
             out[ell] += scale * coefficient * (12*n*n)**ell
     return out
