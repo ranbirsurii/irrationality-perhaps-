@@ -2229,6 +2229,48 @@ Lean verifies the algebraic norm and Schur identities, basis invariance
 and the uniform perturbation inequality; the family asymptotics are the
 paper derivation here.
 
+\subsection{Moving integer points for the arithmetic minimum}
+One can use variable integer points at the actual slope \(\theta_n\).
+Adjacent continued-fraction convergents \(p/q,p'/q'\) give a unimodular
+pair \((-p,q),(-p',q')\). With \(V=q'\ge q\), their errors are at most
+\(1/V\). The terminal rational case has final error zero; the initial
+pair with denominator zero also satisfies this bound. These facts
+follow from the convergent recurrence and its determinant identity.
+The Schur formula therefore bounds both quadratic values by
+\(A_n/V^2+h_nV^2\). Since the second binary minimum is at most the
+maximum on an independent integer pair,
+\begin{equation}
+ R_n\le\mu_n(A_n/V_n^2+h_nV_n^2).
+ \label{eq:variable-point-cost}
+\end{equation}
+This constructs the points rather than assuming a lower bound on
+\(\alpha_n\). Put \(H_n=(A_n/h_n)^{1/4}\) and
+\(\lambda_n=V_n/H_n\). The right side is exactly
+\[
+ \mu_n\sqrt{\det Q_n}(\lambda_n^2+\lambda_n^{-2}).
+\]
+Choose the adjacent convergent pair giving the smaller envelope at the
+last denominator below \(H_n\) or the first above it; if the rational
+expansion ends earlier, use its terminal pair. The envelope decreases
+up to \(H_n\) and increases afterwards, so this is an exact selection
+rule among the convergent candidates.
+
+For the stronger adaptive tolerance \(16^{-n}\), the preceding
+determinant estimate gives the quantitative bound
+\[
+ R_n\le20\cdot4^{-n}(\lambda_n^2+\lambda_n^{-2}).
+\]
+Thus it suffices to prove
+\(\limsup n^{-1}\log(\lambda_n^2+\lambda_n^{-2})<\log4\).
+The arithmetic balance estimate for this explicit sequence has not
+been established. Forty exact checks on the earlier fixed-cutoff
+metrics verify the unimodular points and \eqref{eq:variable-point-cost};
+their envelope is within a factor \(2.073\) of the Gauss-optimal cost
+in those cases. Those finite records are not an asymptotic assertion.
+Lean verifies the quadratic point bound and balance identity, alongside
+the existing independent-pair minimum theorem. No irrationality
+conclusion is inferred before the stated balance estimate is proved.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and

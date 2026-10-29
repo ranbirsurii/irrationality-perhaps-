@@ -126,3 +126,5 @@ OddZeta.translation_trace_pade_degree_inequality (s n m p k : ℤ) (hs : 2 ≤ s
 'OddZeta.binary_schur_small_coordinate_test' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.schur_shift_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.schur_uniform_range_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.schur_variable_point_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.variable_point_balance_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

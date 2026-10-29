@@ -86,3 +86,6 @@ import OddZeta.FiniteFieldTranslationTrace
 
 #print axioms OddZeta.schur_shift_perturbation
 #print axioms OddZeta.schur_uniform_range_perturbation
+
+#print axioms OddZeta.schur_variable_point_bound
+#print axioms OddZeta.variable_point_balance_identity

@@ -200,4 +200,23 @@ theorem schur_uniform_range_perturbation (x theta xi v d V : ℝ)
   exact (schur_shift_perturbation x theta xi v).trans
     (mul_le_mul hslope hv (abs_nonneg v) hd)
 
+theorem schur_variable_point_bound (A h theta u v V : ℝ)
+    (hA : 0 ≤ A) (hh : 0 ≤ h) (hV : 0 < V)
+    (he : |u+theta*v| ≤ 1/V) (hv : |v| ≤ V) :
+    A*(u+theta*v)^2+h*v^2 ≤ A/V^2+h*V^2 := by
+  have he2 := mul_self_le_mul_self (abs_nonneg (u+theta*v)) he
+  have hv2 := mul_self_le_mul_self (abs_nonneg v) hv
+  have heq : (u+theta*v)^2 ≤ (1/V)^2 := by nlinarith [sq_abs (u+theta*v)]
+  have hvq : v^2 ≤ V^2 := by nlinarith [sq_abs v]
+  have hp := add_le_add (mul_le_mul_of_nonneg_left heq hA)
+    (mul_le_mul_of_nonneg_left hvq hh)
+  calc
+    _ ≤ A*(1/V)^2+h*V^2 := hp
+    _ = _ := by field_simp
+
+theorem variable_point_balance_identity (h H V : ℝ) (hH : H ≠ 0) (hV : V ≠ 0) :
+    h*H^4/V^2+h*V^2 = h*H^2*((V/H)^2+(H/V)^2) := by
+  field_simp
+  <;> ring
+
 end OddZeta
