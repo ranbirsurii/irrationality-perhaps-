@@ -12,6 +12,15 @@ signed kernel forms cannot both vanish. This supplies the alternative to
 positive-weight nonvanishing; the normalized arithmetic cost is still
 required. The older route-specific discussion below is retained.
 
+Subsequent arithmetic update: `image-content-prime-divisor.md` proves
+that the actual image content has lower logarithmic rate at least
+pi/(4sqrt(3))+(3/4)log3-1/2=0.777409057559... at every fixed odd
+weight in this construction. It also proves a joint-minor divisor that
+survives primitive Cramer normalization. The resulting explicit relative-
+cost upper rate is still 14.995737 at weight seven, exceeding the sharp
+analytic allowance 0.781973. The full relative-cost target remains open
+in this work. The earlier trivial Gamma lower bound is superseded.
+
 ## A direct higher-weight analytic comparison
 
 For the normalized kernels in the manuscript, put

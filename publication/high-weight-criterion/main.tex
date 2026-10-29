@@ -965,6 +965,142 @@ Thus this valid elementary upper envelope does not yet give the strict
 upper rate required in \eqref{eq:binary-rate}.
 \end{proof}
 
+\subsection{A surviving image-content divisor}
+The first-order residue congruence also yields a divisor of the actual
+image content. Put
+\[
+ B_{r,n}=\prod_{j=0}^r(n-j)\prod_{j=0}^{2r+2}(3n-j).
+\]
+Call \(p\) eligible when \(p\le n\), \(p>s\),
+\(p^2>3n+2r+3\), and \(p\nmid B_{r,n}\). Define
+\[
+ P_n=\prod_{p\text{ eligible}}p,\qquad
+ A_n=\prod_{\substack{p\text{ eligible}\\
+ \lfloor3n/(2p)\rfloor-3\lfloor n/(2p)\rfloor>0}}p.
+\]
+For the naturally cleared lower rows divided by \(G_{s,k,n}\), write
+\(\bar C\), let \(\delta_n=\Delta_{r-1}(\bar C)\), and put
+\[
+ J_n=\gcd\bigl(\Delta_r(\bar C;Y),\Delta_r(\bar C;Z)\bigr)
+     =\delta_n\Gamma_{s,n}.
+\]
+\begin{proposition}[Surviving content and joint minor saving]
+For the actual consecutive-block family,
+\[
+ A_n\mid\Gamma_{s,n},\qquad P_n^{r-1}A_n\mid J_n.
+\]
+Consequently
+\begin{equation}
+ \liminf_{\substack{n\to\infty\\n\text{ even}}}
+ \frac{\log\Gamma_{s,n}}n\ge
+ c_0:=\frac{\pi}{4\sqrt3}+\frac34\log3-\frac12
+ =0.777409057559\ldots.
+ \label{eq:surviving-image-rate}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Write \(n=pq+a\) and \(m=pq+b\), where \(b=a-j\) for each block.
+The exclusions ensure \(a>r\). Let
+\[
+ L_s(a,b)=\sum_{v=0}^a(-1)^{b+v}\binom av^s
+                 \binom{v+b}b\binom{a-v+b}b.
+\]
+In the ring of \(p\)-integral rational numbers, residue-class splitting
+gives
+\begin{align*}
+ p^{s-k}a_k(n,m)&\equiv L_s(a,b)a_k(q,q)\pmod p,\quad k=3,5,\ldots,s,\\
+ p^sb(n,m)&\equiv L_s(a,b)b_{\rm raw}(q,q)\pmod p.
+\end{align*}
+Here the small raw kernel has no extra factor \(2t+q\), even for odd
+\(q\), and its rational boundary uses all Laurent orders.
+For completeness, reduce \(p^sT_{s,n,m}(pX-v)\) for \(0\le v<p\).
+For \(v\le a\), extracting the factors divisible by \(p\) leaves
+the small kernel at \((q,q)\); Wilson's factorial-unit identity
+\((pq+a)!/p^q\equiv(-1)^qq!a!\pmod p\) gives its multiplier
+\((-1)^{b+v}\binom av^s\binom{v+b}b\binom{a-v+b}b\).
+A numerator carry makes both expressions zero, and \(v>a\) gives
+zero because the denominator has one fewer complete \(p\)-block.
+All factorial arguments are below \(p^2\). Summing over \(v\)
+proves the rational-function congruence with multiplier \(L_s(a,b)\).
+Taking principal parts proves the coefficient congruences: the order
+\(k\) coefficient at each original pole is multiplied by \(p^{s-k}\),
+while terms from the other residue classes vanish modulo \(p\).
+For the rational boundary use
+\[
+ H_{h,k}=p^{-k}H_{\lfloor h/p\rfloor,k}+U_{h,k},
+ \qquad U_{h,k}\in\Z_{(p)}.
+\]
+The discarded terms \(p^sc_{h,k}U_{h,k}\) are divisible by \(p^k\).
+This proves the rational-coordinate congruence too.
+
+If \(q\) is odd, \(a\) is odd and reflection \(v\mapsto a-v\)
+gives \(L_s(a,b)=0\). If \(q\) is even and the defining carry for
+\(A_n\) is positive, then \(3a\ge2p\). The boundary exclusions
+give \(3a-2p>2r+2\), hence \(a+2b\ge2p\) for every block.
+For every \(v\), either \(v+b\ge p\) or \(a-v+b\ge p\), so its
+corresponding binomial factor is divisible by \(p\). Thus
+\(L_s(a,b)\equiv0\pmod p\) in both cases.
+Since \(v_p(d_n)=1\), the entries of \(Z=d_n^sb\) are divisible
+by \(p\). The entries of \(Y=d_n^sa_s\) are also divisible by
+\(p\), because \(a_s\in\Z\). Therefore \(p\) divides both
+coefficient images of every integer kernel vector. This proves
+\(A_n\mid\Gamma\) without dividing by lower-row content.
+
+At any eligible prime, the scaled lower rows together with \(Z\)
+have rank at most one modulo \(p\): their column multipliers are
+\(L_s(a,a-j)\), and their row multipliers are the small-kernel
+coordinates. The natural clearing factors and the divisors above
+\(n\) only introduce row units. The row \(Y\) is zero modulo \(p\).
+An \(r\)-square matrix of rank at most one modulo \(p\) has
+determinant divisible by \(p^{r-1}\), as row reduction leaves
+\(r-1\) rows divisible by \(p\). At primes dividing \(A_n\),
+all rows vanish modulo \(p\), giving \(p^r\). This proves the
+joint-minor divisibility.
+
+The small-prime exclusions cost \(O(\sqrt n)\), and primes dividing
+\(B_{r,n}\) cost \(O(\log n)\). Hence \(\log P_n/n\to1\).
+The positive-carry condition is
+\(\{n/(2p)\}\ge1/3\). Apply the prime number theorem to its
+intervals and use the Chebyshev bound for the tail. The full interval
+rate is
+\[
+ \frac12\sum_{\ell\ge0}
+ \left(\frac1{\ell+1/3}-\frac1{\ell+1}\right)
+ =\frac\pi{4\sqrt3}+\frac34\log3.
+\]
+Restricting to \(p\le n\) removes the interval \((n,3n/2]\), of
+rate \(1/2\). Thus \(\log A_n/n\to c_0\), proving
+\eqref{eq:surviving-image-rate}.
+\end{proof}
+
+This gives a further bound on the actual relative cost. Each coordinate
+of a Cramer vector \(w_i\) is an \((r-1)\)-minor, so
+\(v_i=w_i/\delta_n\) is an integer kernel vector. Its relative mass
+is exactly
+\[
+ \frac{\|v_i\|_1}{\Gamma}=\frac{\|w_i\|_1}{J_n}.
+\]
+The two vectors have independent coefficient images. Dividing these
+images by \(\Gamma\) gives integer forms; subsequent individual
+primitive normalization can only decrease their costs. Using the
+central-binomial coefficient envelope \(E_s\) of rate
+\(b_s=(s-2)\log2+3\log3\), their maximum relative cost is at most
+\[
+ \frac{r!d_n^{r(r-1)}E_s(n)^{r-1}}
+ {\bigl(\prod_{k=3,5,\ldots,s-2}G_{s,k,n}\bigr)P_n^{r-1}A_n}.
+\]
+Its upper logarithmic rate is
+\[
+ r(r-1)+(r-1)b_s-\frac{s-2}{2}H_{r-1}-c_0.
+\]
+At weight seven this is approximately \(14.995737\), which exceeds
+the available sharp budget \(\log2397-7\approx0.781973\).
+The new divisor is a proved arithmetic gain, but this upper envelope
+still does not prove a negative full rate. Eight exact profiles and
+315 local congruences check the formulas. The local and asymptotic
+arguments are paper proofs; Lean verifies entry-divisor transfer under
+integer pairings and image contents, not the full residue calculation.
+
 However, a signed combination that eliminates the target itself is a
 nonzero rational period and has an integral lower bound after clearing.
 In the notation of Section~\ref{sec:shape}, put

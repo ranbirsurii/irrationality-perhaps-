@@ -44,12 +44,13 @@ The lower bound follows from kappa_n>=1 and H_n>=1. The harmless
 constant sqrt(5)/2 disappears after division by n.
 
 For the image content, full rank makes Gamma_n a positive integer.
-Consequently the unconditional lower bound presently justified here is
+The subsequent all-weight argument in `image-content-prime-divisor.md`
+strengthens the earlier trivial lower bound to
 
-    gamma_lower >= 0.
+    gamma_lower >= pi/(4sqrt(3))+(3/4)log3-1/2
+                   =0.777409057559... .
 
-This does not mean gamma_lower equals zero. A stronger useful lower
-bound has not been established by the current arguments. In particular,
+This is a lower bound, not an asserted value of gamma_lower. In particular,
 the proved constant c_g is a lower bound for the different lower-row gcd
 g_n, not for the coefficient-image content Gamma_n. It has already been
 used in H_n and cannot be counted a second time as a bound for Gamma_n.

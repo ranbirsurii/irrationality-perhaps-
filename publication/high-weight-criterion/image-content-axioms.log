@@ -1,0 +1,3 @@
+'OddZeta.dvd_integralPairing_of_entries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.entries_dvd_image_content' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.entries_dvd_projectedRowsContent' depends on axioms: [propext, Classical.choice, Quot.sound]

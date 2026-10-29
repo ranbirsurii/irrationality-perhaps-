@@ -8,6 +8,19 @@ namespace OddZeta
 def integralPairing {n : ℕ} (f v : Fin n → ℤ) : ℤ :=
   ∑ i, f i * v i
 
+theorem dvd_integralPairing_of_entries {n : ℕ} (c : ℤ) (f v : Fin n → ℤ)
+    (hf : ∀ i, c ∣ f i) : c ∣ integralPairing f v := by
+  exact Finset.dvd_sum (fun i _ => dvd_mul_of_dvd_left (hf i) (v i))
+
+theorem entries_dvd_image_content {n m k : ℕ}
+    (F : Fin m → Fin n → ℤ) (v : Fin k → Fin n → ℤ) (c : ℤ)
+    (hF : ∀ a j, c ∣ F a j) :
+    c ∣ Finset.univ.gcd (fun aj : Fin m × Fin k =>
+      integralPairing (F aj.1) (v aj.2)) := by
+  apply Finset.dvd_gcd
+  intro aj _
+  exact dvd_integralPairing_of_entries c (F aj.1) (v aj.2) (hF aj.1)
+
 def integralKernelProjection {n : ℕ} (ell u v : Fin n → ℤ) : Fin n → ℤ :=
   fun i => v i - u i * integralPairing ell v
 
@@ -70,6 +83,14 @@ noncomputable def projectedRowsContent {n m : ℕ}
     (ell u : Fin n → ℤ) (F : Fin m → Fin n → ℤ) : ℤ :=
   Finset.univ.gcd (fun aj : Fin m × Fin n =>
     projectedIntegralRow ell u (F aj.1) aj.2)
+
+theorem entries_dvd_projectedRowsContent {n m : ℕ}
+    (ell u : Fin n → ℤ) (F : Fin m → Fin n → ℤ) (c : ℤ)
+    (hF : ∀ a j, c ∣ F a j) : c ∣ projectedRowsContent ell u F := by
+  apply Finset.dvd_gcd
+  intro aj _
+  exact dvd_sub (hF aj.1 aj.2)
+    (dvd_mul_of_dvd_left (dvd_integralPairing_of_entries c (F aj.1) u (hF aj.1)) _)
 
 theorem dvd_projectedRowsContent_iff {n m : ℕ}
     (ell u : Fin n → ℤ) (F : Fin m → Fin n → ℤ) (c : ℤ)
