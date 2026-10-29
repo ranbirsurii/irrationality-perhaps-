@@ -5,6 +5,14 @@ import Mathlib.Tactic.Ring
 
 namespace OddZeta
 
+theorem integer_adjugate_vector_image {n : Type*} [Fintype n] [DecidableEq n]
+    (B : Matrix n n ℤ) (x : n → ℤ) :
+    B.mulVec (B.adjugate.mulVec x) = fun i => B.det * x i := by
+  rw [Matrix.mulVec_mulVec, Matrix.mul_adjugate]
+  simp only [Matrix.smul_mulVec, Matrix.one_mulVec]
+  funext i
+  simp
+
 theorem integer_det_row_envelope {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℤ) (H : n → ℤ) (hA : ∀ i j, |A i j| ≤ H i) :
     |A.det| ≤ (Fintype.card n).factorial * ∏ i, H i := by

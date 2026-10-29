@@ -2582,6 +2582,92 @@ This positivity statement concerns \(t>m\), whereas the arithmetic
 coefficients are extracted at the nonpositive poles. It alone makes
 no assertion about their primitive common divisors.
 
+\subsection{Root formulas and an adjugate polynomial pencil}
+There is an exact expression for the coefficients using only the roots
+of the rational kernel. Put \(Q(t)=\prod_{h=0}^n(t+h)\),
+\(\xi_h=-h\), and let \(N_m\) be the normalized numerator of \(T\).
+Its roots \(\rho\) are \(v,-n-v\) for \(1\le v\le m\).
+Define
+\[
+ L_h=\frac{N_m(\xi_h)}{Q'(\xi_h)^s},\qquad
+ p_{\ell,h}=\frac{(-1)^{\ell-1}}\ell
+ \left(\sum_\rho\frac1{(\xi_h-\rho)^\ell}
+       -s\sum_{j\ne h}\frac1{(\xi_h-\xi_j)^\ell}\right).
+\]
+For \(u=s-k\), the coefficient of \((t-\xi_h)^{-k}\) is exactly
+\begin{equation}
+ A_{k,h}=L_h
+ \sum_{e_1+2e_2+\cdots+ue_u=u}
+       \prod_{\ell=1}^u\frac{p_{\ell,h}^{e_\ell}}{e_\ell!}.
+ \label{eq:root-partition-laurent}
+\end{equation}
+For \(u=0\) the sum is one. Factor the regular part at \(\xi_h\)
+into \(1+(t-\xi_h)/(\xi_h-\rho)\) and
+\((1+(t-\xi_h)/(\xi_h-\xi_j))^{-s}\). Its formal logarithm
+after removal of \(L_h\) is \(\sum_{\ell\ge1}p_{\ell,h}(t-\xi_h)^\ell\).
+Exponentiation and coefficient extraction prove
+\eqref{eq:root-partition-laurent} over \(\Q\), without choosing
+analytic logarithms. Summing these coefficients and their harmonic
+boundary terms expresses the full rational augmented matrix \(\Phi\)
+in root differences.
+
+Let \(B=D\Phi\), \(D=d_n^s\), \(\Delta=\det B\ne0\), and
+let \(t,c\) index the target and constant rows. The adjugate columns
+\(U=\operatorname{adj}(B)e_t\), \(V=\operatorname{adj}(B)e_c\)
+give the polynomial vector \(W(X)=XU+V\), with exact identity
+\[
+ BW(X)=\Delta(0,\ldots,0,X,1)^T.
+\]
+All its coefficients are signed minors of the root expressions above.
+For integers \(p,q\), the vector \(w=pU+qV\) has coefficient
+pair \(\Delta(p,q)\). Its individual coefficient content is therefore
+\(h(w)=|\Delta|\gcd(p,q)\). For coprime \(p,q\), its primitive
+form is \(\operatorname{sgn}(\Delta)(p\zeta(s)+q)\), and its
+majorant is exactly
+\[
+ \frac{DS\|pU+qV\|_1}{|\Delta|}
+   =S\|\Phi^{-1}(0,\ldots,0,p,q)^T\|_1.
+\]
+The scalar clearing factor cancels; the inverse-matrix size remains.
+For \(U_j\ne0\), let \(\eta_j=-V_j/U_j\) be the root of \(W_j\).
+Then, for \(q>0\),
+\begin{equation}
+ \|pU+qV\|_1
+ =q\sum_{U_j\ne0}|U_j|\left|\frac pq-\eta_j\right|
+   +q\sum_{U_j=0}|V_j|.
+ \label{eq:adjugate-root-dispersion}
+\end{equation}
+A weighted median of these rational roots minimizes the first sum
+over real slopes. Rational choices also pay the denominator \(q\).
+Moreover
+\[
+ \eta_i-\eta_j=\frac{U_iV_j-U_jV_i}{U_iU_j}.
+\]
+These identities retain the correlation between adjugate entries and
+the determinant. They do not supply its required asymptotic estimate.
+In fact, Jacobi's complementary-minor identity gives, for \(i<j\),
+\[
+ U_iV_j-U_jV_i=(-1)^{i+j+1}\Delta\det C^{(ij)},
+\]
+where \(C\) consists of the lower-period rows of \(B\), and
+\(C^{(ij)}\) deletes columns \(i,j\). For \(U_k\ne0\), set
+\(g_k=\gcd(U_k,V_k)\), \(p=-V_k/g_k\), \(q=U_k/g_k\).
+Then \(p,q\) are coprime, \(w_k=0\), and
+\[
+ \frac{\|pU+qV\|_1}{|\Delta|}
+ =\frac{\sum_{j\ne k}|\det C^{(jk)}|}{g_k}.
+\]
+This identifies the root choice with a sparse Cramer vector normalized
+by its individual coefficient content. It is not an extra independent
+gcd saving. There are 53 exact complementary-minor checks and 28
+primitive root-cost checks in the six profiles.
+The unmixed columns give the primitive forms \(\zeta(s)\) and \(1\),
+so their own majorants cannot tend to zero. Suitable mixed pairs and
+their nonvanishing still require proof. Six actual profiles and 24
+exact pencil identities check the formulas. Lean verifies the general
+matrix adjugate image identity; the root-partition and family arguments
+here are paper proofs.
+
 \subsection{An all-index Laurent coefficient envelope}
 Let \(n\ge1\), \(0\le m\le n\), \(s\ge3\), and write
 \[

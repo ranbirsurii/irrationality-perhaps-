@@ -1,0 +1,1 @@
+'OddZeta.integer_adjugate_vector_image' depends on axioms: [propext, Classical.choice, Quot.sound]
