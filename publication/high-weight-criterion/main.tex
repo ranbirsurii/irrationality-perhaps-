@@ -2376,6 +2376,130 @@ five proposed routes are in \texttt{exact-multiplier-entropy.md}.
 No all-index partial-quotient rate or unconditional irrationality claim
 is inferred from the multiplier asymptotic.
 
+\subsection{Exact signed moments and Newton differences}
+Signed structure can be retained exactly before taking a branch bound.
+For \(c_j=(-1)^j\binom{n+2m+1}{m-j}\binom{n+j}{j}\),
+\[
+ \sum_{j=0}^m c_jy^j
+ =[z^m]\frac{(1+z)^{n+2m+1}}{(1+yz)^{n+1}}.
+\]
+Evaluation at \(y=1\), and then differentiation at that point, give
+\[
+ \sum_jc_j=\binom{2m}m,\qquad
+ \sum_jc_j\binom jk
+ =(-1)^k\binom{n+k}k\binom{2m-k}{m-k}\quad(0\le k\le m).
+\]
+For arbitrary values \(f(0),\ldots,f(m)\), finite Newton interpolation
+therefore proves the exact signed transform
+\begin{equation}
+ \sum_{j=0}^m c_jf(j)
+ =\sum_{k=0}^m(-1)^k\binom{n+k}k\binom{2m-k}{m-k}\Delta^kf(0).
+ \label{eq:signed-newton-transform}
+\end{equation}
+This retains destructive interference without presuming that consecutive
+absolute magnitudes match. For the actual branches
+\[
+ R_j(t)=\frac{(n!)^s}{(2m)!}
+          \frac{(t-m-j)_{2m}}{(t)_{n+1}^s},
+\]
+each Laurent coefficient is a polynomial in \(j\) of degree at most
+\(2m\); the rational constant functional is linear as well. Thus
+\eqref{eq:signed-newton-transform} applies to every coefficient of the
+actual form. Direct pole-jet computations and independent logarithmic
+jets agree in eight cases across weights \(7,9,11\), including the
+rational term. A further 1771 exact moment checks support the implementation.
+
+For fixed \(k\), the moment multiplier has rate \(\beta\log4\) when
+\(m/n\to\beta>0\). The signed mass has rate \(\log4\) at \(\beta=1\).
+The actual branch amplitudes have growing degree, so their higher
+differences cannot be discarded using a fixed-degree argument. They can,
+however, be evaluated exactly as follows; their primitive arithmetic
+normalization remains a separate calculation.
+Lean verifies the generalized-binomial Vandermonde identities underlying
+the unshifted and shifted signed moments. The full Newton transform and
+family identification here are paper arguments. This exact signed
+construction does not yet prove the required all-index cost estimate.
+
+Repeated Pascal subtraction proves the all-order identity
+\[
+ \Delta^k R_0(t)=(-1)^k\frac{(n!)^s}{(2m-k)!}
+       \frac{(t-m)_{2m-k}}{(t)_{n+1}^s}\qquad(0\le k\le2m).
+\]
+To check it, write the normalized numerator as
+\(\binom{t+m-j-1}{2m}\). Each backward difference reduces both
+binomial arguments by one and changes the sign. The generalized
+binomial difference identity is verified in Lean over \(\mathbb Q\).
+Put \(M_k=\binom{n+k}k\binom{2m-k}{m-k}\). For \(t>m\),
+\[
+ M_k|\Delta^kR_0(t)|=\pi_k(t)T_{s,n,m}(t),\qquad
+ \pi_k(t)=\binom mk\frac{(n+1)_k(t)_{m-k}}{(t+n+1)_m}.
+\]
+Rising-factorial Vandermonde gives \(\sum_k\pi_k(t)=1\), and all
+\(\pi_k(t)\) are nonnegative. Consequently
+\begin{equation}
+ \sum_{k=0}^m M_k|\Delta^kR_0(t)|=T_{s,n,m}(t).
+ \label{eq:signed-newton-no-loss}
+\end{equation}
+The same equality holds after summation over integers \(t>m\).
+Thus the raw analytic transform has no absolute multiplier loss.
+This positivity statement concerns \(t>m\), whereas the arithmetic
+coefficients are extracted at the nonpositive poles. It alone makes
+no assertion about their primitive common divisors.
+
+\subsection{An all-index Laurent coefficient envelope}
+Let \(n\ge1\), \(0\le m\le n\), \(s\ge3\), and write
+\[
+ T_{s,n,m}(t)=\sum_{h=0}^n\sum_{q=1}^s\frac{A_{q,h}}{(t+h)^q},
+ \qquad B_h=\binom nh^s\binom{h+m}m\binom{n-h+m}m.
+\]
+Choose \(\rho=1/(2(n+1))\). On \(|t+h|=\rho\), the numerator
+of \((t+h)^sT(t)\) increases in absolute value by at most
+\(\exp(2m\rho)\le e\) relative to its value at \(t=-h\).
+For the remaining denominator factors, use
+\(-\log(1-u)\le2u\) for \(0\le u\le1/2\). Their inverse
+product increases by at most
+\[
+ \exp\bigl(2s\rho(H_h+H_{n-h})\bigr)\le e^s,
+\]
+since \(H_h+H_{n-h}\le n\). The absolute value at the centre is
+\(B_h\), so Cauchy's coefficient estimate proves
+\begin{equation}
+ |A_{q,h}|\le e^{s+1}B_h[2(n+1)]^{s-q}.
+ \label{eq:direct-pole-envelope}
+\end{equation}
+This bound holds for every index. The ratio
+\[
+ \frac{B_{h+1}}{B_h}
+ =\left(\frac{n-h}{h+1}\right)^s
+   \frac{(h+m+1)(n-h)}{(h+1)(n-h+m)}
+\]
+is at least one up to the midpoint, and \(B_{n-h}=B_h\).
+Thus \(B_h\le B_{\lfloor n/2\rfloor}\).
+Let \(U_n\) be the maximum absolute value among the summed zeta-row
+coefficients and the rational coefficient
+\(-\sum_{h,q}A_{q,h}H_{h,q}\). Summing
+\eqref{eq:direct-pole-envelope} and using \(H_{h,q}\le n\) gives
+\[
+ U_n\le sn(n+1)e^{s+1}[2(n+1)]^{s-1}B_{\lfloor n/2\rfloor}.
+\]
+For fixed \(s\) and \(m/n\to\beta\in[0,1]\), Stirling's formula
+therefore gives the explicit envelope
+\begin{equation}
+ \limsup_{n\to\infty}\frac{\log U_n}{n}
+ \le s\log2+(1+2\beta)\log(1+2\beta)-2\beta\log(2\beta),
+ \label{eq:direct-pole-rate}
+\end{equation}
+with \(0\log0=0\), whenever \(U_n>0\) eventually.
+At \(\beta=1\) this upper bound is
+\((s-2)\log2+3\log3\), approximately \(6.761573\) at weight seven.
+It is a coefficient estimate before primitive cancellation, and is
+not a negative rate for the scalar cost. The signed analytic identity,
+the coefficient envelope, and the required primitive arithmetic gain
+are distinct statements. The first two are proved above; the last is
+not inferred from them. Exact rational checks verify 693 convex
+identities and the pole bounds in the eight actual coordinate cases.
+The Cauchy and asymptotic arguments are paper proofs.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and

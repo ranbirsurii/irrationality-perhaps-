@@ -1,6 +1,7 @@
 import OddZeta.PoisedKernelPositivity
 import Mathlib.Analysis.SpecialFunctions.Log.NegMulLog
 import Mathlib.Analysis.Calculus.Deriv.MeanValue
+import Mathlib.RingTheory.Binomial
 
 namespace OddZeta
 
@@ -177,5 +178,45 @@ theorem saalschutz_half_entropy_value (t : ℝ) (ht : 0 < t) (hu : t < 1)
     convert Real.log_pow (4:ℝ) 2 using 1 <;> norm_num
   norm_num only [Nat.cast_ofNat] at hlog
   linarith
+
+theorem saalschutz_signed_binomial_mass (n m : ℕ) :
+    (∑ ij ∈ Finset.antidiagonal m,
+      Ring.choose ((n+2*m+1:ℕ):ℤ) ij.1 *
+        Ring.choose (-((n+1:ℕ):ℤ)) ij.2) = ((2*m).choose m:ℤ) := by
+  rw [← Ring.add_choose_eq m (Commute.all _ _)]
+  have h : ((n+2*m+1:ℕ):ℤ)+ -((n+1:ℕ):ℤ)=((2*m:ℕ):ℤ) := by omega
+  rw [h,Ring.choose_natCast]
+
+theorem saalschutz_signed_shifted_mass (n m k : ℕ) (hk : k ≤ m) :
+    (∑ ij ∈ Finset.antidiagonal (m-k),
+      Ring.choose ((n+2*m+1:ℕ):ℤ) ij.1 *
+        Ring.choose (-((n+k+1:ℕ):ℤ)) ij.2) = ((2*m-k).choose (m-k):ℤ) := by
+  rw [← Ring.add_choose_eq (m-k) (Commute.all _ _)]
+  have h : ((n+2*m+1:ℕ):ℤ)+ -((n+k+1:ℕ):ℤ)=((2*m-k:ℕ):ℤ) := by omega
+  rw [h,Ring.choose_natCast]
+
+theorem generalized_binomial_backward_step (x : ℚ) (N : ℕ) :
+    Ring.choose (x-1) (N+1)-Ring.choose x (N+1)= -Ring.choose (x-1) N := by
+  have h := Ring.choose_succ_succ (x-1) N
+  rw [show x-1+1=x by ring] at h
+  linarith
+
+noncomputable def binomialBackwardDifference : ℕ → ℕ → ℚ → ℚ
+  | 0,N,x => Ring.choose x N
+  | k+1,N,x => binomialBackwardDifference k N (x-1)-binomialBackwardDifference k N x
+
+theorem binomial_backward_difference_closed (k N : ℕ) (hk : k ≤ N) (x : ℚ) :
+    binomialBackwardDifference k N x = (-1:ℚ)^k*Ring.choose (x-k) (N-k) := by
+  induction k generalizing N x with
+  | zero => simp [binomialBackwardDifference]
+  | succ k ih =>
+    have hk' : k ≤ N := by omega
+    rw [binomialBackwardDifference,ih N hk' (x-1),ih N hk' x]
+    have hN : N-k=(N-(k+1))+1 := by omega
+    rw [hN,show (x-1)-(k:ℚ)=(x-k)-1 by ring,← mul_sub,
+      generalized_binomial_backward_step]
+    have hx : x-((k+1:ℕ):ℚ)=(x-k)-1 := by push_cast; ring
+    rw [hx,pow_succ]
+    ring
 
 end OddZeta

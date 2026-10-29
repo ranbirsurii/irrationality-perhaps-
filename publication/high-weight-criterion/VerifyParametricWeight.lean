@@ -28,3 +28,9 @@ import OddZeta.ParametricWeightShift
 #print axioms OddZeta.saalschutz_entropy_strict_concavity
 #print axioms OddZeta.saalschutz_half_radius_identity
 #print axioms OddZeta.saalschutz_half_entropy_value
+
+#print axioms OddZeta.saalschutz_signed_binomial_mass
+#print axioms OddZeta.saalschutz_signed_shifted_mass
+
+#print axioms OddZeta.generalized_binomial_backward_step
+#print axioms OddZeta.binomial_backward_difference_closed

@@ -34,3 +34,7 @@ OddZeta.normalized_kernel_length_shift (r n m k : ℕ) (t : ℚ) :
 'OddZeta.saalschutz_entropy_strict_concavity' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.saalschutz_half_radius_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.saalschutz_half_entropy_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_signed_binomial_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_signed_shifted_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.generalized_binomial_backward_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.binomial_backward_difference_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
