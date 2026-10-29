@@ -23,3 +23,8 @@ import OddZeta.ParametricWeightShift
 #check OddZeta.normalized_kernel_length_shift
 #print axioms OddZeta.poised_kernel_length_shift
 #print axioms OddZeta.normalized_kernel_length_shift
+
+#print axioms OddZeta.saalschutz_entropy_stationary_factor
+#print axioms OddZeta.saalschutz_entropy_strict_concavity
+#print axioms OddZeta.saalschutz_half_radius_identity
+#print axioms OddZeta.saalschutz_half_entropy_value

@@ -145,4 +145,37 @@ theorem sharp_odd_decay_three_quarters (s : ℕ) (hs : 7 ≤ s) :
     ring
   linarith
 
+theorem saalschutz_entropy_stationary_factor (beta x : ℝ) :
+    (beta-x)*(1+x)-x*(1+beta+x)=beta-2*x-2*x^2 := by ring
+
+theorem saalschutz_entropy_strict_concavity (beta x : ℝ)
+    (hx : 0 < x) (hb : x < beta) :
+    -1/(beta-x)-1/(1+beta+x)+1/(1+x)-1/x < 0 := by
+  have h1 : 0 < (1:ℝ)/(beta-x) := one_div_pos.mpr (by linarith)
+  have h2 : 0 < (1:ℝ)/(1+beta+x) := one_div_pos.mpr (by linarith)
+  have h3 : (1:ℝ)/(1+x)<1/x := by
+    apply (div_lt_div_iff₀ (by linarith : 0 < 1+x) hx).2
+    nlinarith
+  simp only [neg_div]
+  linarith
+
+theorem saalschutz_half_radius_identity (t : ℝ) :
+    (1+t)^4-16*t*(1-t)^2=(t^2-6*t+1)^2 := by ring
+
+theorem saalschutz_half_entropy_value (t : ℝ) (ht : 0 < t) (hu : t < 1)
+    (hsaddle : t^2-6*t+1=0) :
+    2*Real.log (1+t)-Real.log (1-t)-(1/2:ℝ)*Real.log t=Real.log 4 := by
+  have heq : (1+t)^4=16*t*(1-t)^2 := by
+    have h := saalschutz_half_radius_identity t
+    rw [hsaddle] at h
+    nlinarith
+  have hlog := congrArg Real.log heq
+  rw [Real.log_pow,Real.log_mul (by positivity : (16:ℝ)*t ≠ 0)
+    (by positivity : (1-t)^2 ≠ 0),
+    Real.log_mul (by norm_num : (16:ℝ) ≠ 0) ht.ne',Real.log_pow] at hlog
+  have h16 : Real.log 16=2*Real.log 4 := by
+    convert Real.log_pow (4:ℝ) 2 using 1 <;> norm_num
+  norm_num only [Nat.cast_ofNat] at hlog
+  linarith
+
 end OddZeta

@@ -2311,6 +2311,71 @@ rate and terminal control needed here are not supplied by those
 conclusions. No unconditional irrationality conclusion is appended
 to this limsup calculation.
 
+\subsection{Exact multiplier entropy and the offset threshold}
+The proposed saddle-point improvement can be evaluated exactly for the
+integer transformation multipliers. Let \(m_n/n\to\beta\in(0,1]\), and
+\[
+ W_{n,m}=\sum_{j=0}^m
+ \binom{n+2m+1}{m-j}\binom{n+j}{j}.
+\]
+Uniform factorial estimates, with \(0\log0=0\), give
+\(\log|c_j|=nE_{m/n}(j/n)+O(\log(n+1))\), where
+\begin{align*}
+ E_\beta(x)={}&(1+2\beta)\log(1+2\beta)
+ -(\beta-x)\log(\beta-x)\\
+ &-(1+\beta+x)\log(1+\beta+x)
+ +(1+x)\log(1+x)-x\log x.
+\end{align*}
+On \(0<x<\beta\), its derivative is
+\(\log((\beta-x)(1+x)/(x(1+\beta+x)))\), and its second derivative
+is strictly negative. The stationary equation reduces to
+\(\beta-2x-2x^2=0\), so the unique maximum is
+\(x_\beta=(\sqrt{1+2\beta}-1)/2\). Comparing the sum with its largest
+term, and using an integer nearest \(nx_\beta\) for the lower bound,
+proves the exact all-index rate
+\[
+ \lim_{n\to\infty}\frac{\log W_{n,m_n}}n=c(\beta)=E_\beta(x_\beta).
+\]
+Equivalently, with \(t_\beta=\beta/(1+\beta+\sqrt{1+2\beta})\),
+\[
+ c(\beta)=(1+2\beta)\log(1+t_\beta)
+ -\log(1-t_\beta)-\beta\log t_\beta.
+\]
+The saddle equation gives
+\(c'(\beta)=\log((1+t_\beta)^2/t_\beta)>0\).
+At \(\beta=1/2\), \(t_\beta=3-2\sqrt2\); the polynomial identity
+\[
+ (1+t)^4-16t(1-t)^2=(t^2-6t+1)^2
+\]
+proves \(c(1/2)=\log4\). Direct substitution also gives
+\(c(1)=\log(6\sqrt3)\). Thus the exact threshold is
+\(c(\beta)<\log4\) precisely for \(\beta<1/2\).
+
+For the original fixed-weight construction \(m=n-r\), one has
+\(m/n\to1\): the earlier exponential mass base \(6\sqrt3\) is sharp.
+Varying a separate numerator-length offset is possible in the alternative
+family, but its analytic decay and primitive arithmetic normalization
+must both be retained. For example, the exact first positive kernel term is
+\[
+ T_{s,n,m}(m+1)=
+ \frac{(n!)^s(m!)^{s-1}(n+2m+1)!}{((n+m+1)!)^{s+1}}.
+\]
+At \(s=7,m/n\to1/2\), Stirling's formula and the LCM rate give
+\[
+ \frac1n\log\bigl(d_n^7 T_{7,n,m}(m+1)\bigr)
+ \longrightarrow7-\log2-12\log(3/2)>1.44.
+\]
+The raw positive sum is at least this term, so the smaller multiplier
+rate does not itself preserve the raw LCM-decay budget. This observation
+does not exclude signed cancellation or further primitive gcd savings.
+This calculation does not identify \(W\) with
+the local partial quotient \(a_n^*\). Four Lean lemmas verify the
+stationary algebra, concavity and exact half-threshold identity; the
+factorial asymptotic is the paper argument above. Detailed checks of the
+five proposed routes are in \texttt{exact-multiplier-entropy.md}.
+No all-index partial-quotient rate or unconditional irrationality claim
+is inferred from the multiplier asymptotic.
+
 \section{Uniform analytic contraction of the moment certificates}
 The analytic estimates can be strengthened without changing the blocks.
 Let \(n\ge4r\), \(m=n-r\), \(T_n=T_{s,n,m}\), and

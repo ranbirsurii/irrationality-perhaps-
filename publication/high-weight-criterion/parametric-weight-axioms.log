@@ -30,3 +30,7 @@ OddZeta.normalized_kernel_length_shift (r n m k : ℕ) (t : ℚ) :
       ∏ v ∈ Finset.range k, (t - ↑(m + v + 1)) * (t + ↑n + ↑(m + v + 1))
 'OddZeta.poised_kernel_length_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.normalized_kernel_length_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_entropy_stationary_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_entropy_strict_concavity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_half_radius_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.saalschutz_half_entropy_value' depends on axioms: [propext, Classical.choice, Quot.sound]
