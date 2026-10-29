@@ -185,5 +185,13 @@
       ]
     }
   ],
+  "independent_matrix_edge_checks": {
+    "matrices": 56,
+    "negative_determinants": 20,
+    "zero_target_cofactors": 34,
+    "jacobi_pairs": 280,
+    "primitive_root_costs": 162
+  },
+  "direct_partial_fraction_reconstructions": 189,
   "negative_cost_rate_proved": false
 }
