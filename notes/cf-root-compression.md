@@ -5,6 +5,12 @@ the cofactor-root approximants instead of using their full numerators
 and denominators. The finite improvement is substantial; no uniform
 irrationality conclusion is inferred from it.
 
+Subsequent update: `recentered-cf-root.md` absorbs the exact signed
+prefix into the rational centre. This supplies uniform accuracy at any
+prescribed geometric precision for the corrected centres. Their
+continued-fraction denominator gaps and a uniform decay estimate for
+the resulting integer forms remain to be controlled.
+
 ## A certified rational approximation, without knowing irrationality
 
 At each eligible index, choose a nonzero entry V_j of the constant

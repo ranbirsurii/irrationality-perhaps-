@@ -35,6 +35,31 @@ theorem nonzero_small_form_of_independent_slope_pair
     exact ⟨p1,q1,abs_pos.mpr hn,hb1⟩
   · exact ⟨p0,q0,abs_pos.mpr hz,hb0⟩
 
+theorem signed_prefix_recenter_error (alpha p q F e : ℝ) (hp : p ≠ 0)
+    (h : |p*alpha+q-F| ≤ e) :
+    |alpha-(F-q)/p| ≤ e/|p| := by
+  have heq : alpha-(F-q)/p=(p*alpha+q-F)/p := by field_simp [hp]; ring
+  rw [heq,abs_div]
+  exact div_le_div_of_nonneg_right h (abs_nonneg p)
+
+theorem signed_prefix_recenter_radius (p q F e : ℝ) :
+    |(F-q)/p-(-q/p)|+e/|p|=(|F|+e)/|p| := by
+  rw [show (F-q)/p-(-q/p)=F/p by ring,abs_div,← add_div]
+
+theorem integer_recenter_radius_le (p : ℤ) (e : ℝ) (hp : p ≠ 0) (he : 0 ≤ e) :
+    e/|(p:ℝ)| ≤ e := by
+  have hi := Int.one_le_abs hp
+  have hr : (1:ℝ) ≤ |(p:ℝ)| := by exact_mod_cast hi
+  apply (div_le_iff₀ (lt_of_lt_of_le zero_lt_one hr)).2
+  nlinarith
+
+theorem nested_interval_form_majorant (oldCenter newCenter oldRadius newRadius p q : ℝ)
+    (href : |newCenter-oldCenter|+newRadius ≤ oldRadius) :
+    |p*newCenter+q|+|p| * newRadius ≤ |p*oldCenter+q|+|p| * oldRadius := by
+  have h := slope_error_transfer newCenter oldCenter p q |newCenter-oldCenter| le_rfl
+  have hm := mul_le_mul_of_nonneg_left href (abs_nonneg p)
+  nlinarith
+
 theorem psd_gram_eigenmax_bounds (A B C : ℝ)
     (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) :
     A ≤ gramEigenMax A B C ∧ C ≤ gramEigenMax A B C ∧

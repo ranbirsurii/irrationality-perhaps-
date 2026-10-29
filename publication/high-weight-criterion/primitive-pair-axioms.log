@@ -5,6 +5,17 @@ OddZeta.nonzero_small_form_of_independent_slope_pair (alpha sigma delta E : ℝ)
   (h1 : |↑p1 * sigma + ↑q1| + |↑p1| * delta ≤ E) : ∃ p q, 0 < |↑p * alpha + ↑q| ∧ |↑p * alpha + ↑q| ≤ E
 'OddZeta.slope_error_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OddZeta.nonzero_small_form_of_independent_slope_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.signed_prefix_recenter_error (alpha p q F e : ℝ) (hp : p ≠ 0) (h : |p * alpha + q - F| ≤ e) :
+  |alpha - (F - q) / p| ≤ e / |p|
+OddZeta.signed_prefix_recenter_radius (p q F e : ℝ) : |(F - q) / p - -q / p| + e / |p| = (|F| + e) / |p|
+OddZeta.nested_interval_form_majorant (oldCenter newCenter oldRadius newRadius p q : ℝ)
+  (href : |newCenter - oldCenter| + newRadius ≤ oldRadius) :
+  |p * newCenter + q| + |p| * newRadius ≤ |p * oldCenter + q| + |p| * oldRadius
+'OddZeta.signed_prefix_recenter_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.signed_prefix_recenter_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.nested_interval_form_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OddZeta.integer_recenter_radius_le (p : ℤ) (e : ℝ) (hp : p ≠ 0) (he : 0 ≤ e) : e / |↑p| ≤ e
+'OddZeta.integer_recenter_radius_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 OddZeta.psd_gram_eigenmax_bounds (A B C : ℝ) (hA : 0 ≤ A) (hC : 0 ≤ C) (hBC : B ^ 2 ≤ A * C) :
   A ≤ OddZeta.gramEigenMax A B C ∧ C ≤ OddZeta.gramEigenMax A B C ∧ OddZeta.gramEigenMax A B C ≤ A + C
 OddZeta.individually_scaled_gram_psd (A B C h k : ℝ) (hBC : B ^ 2 ≤ A * C) (hh : 0 < h) (hk : 0 < k) :

@@ -2781,6 +2781,68 @@ Each inequality is checked by rational arithmetic and independent zeta
 enclosures. These finite improvements do not prove an asymptotic rate
 or unconditional all-odd irrationality.
 
+\subsection{Recentring the signed prefix improves the error budget}
+The approximation interval can be sharpened using its known rational
+prefix. If
+\[
+ p_0\zeta(s)+q_0=F_K+T_K,\qquad |T_K|\le e_K,\qquad p_0\ne0,
+\]
+the previous centre was \(\sigma_0=-q_0/p_0\), with radius
+\(\delta_0\ge(|F_K|+e_K)/|p_0|\). Use instead
+\[
+ \sigma_1=\frac{F_K-q_0}{p_0},\qquad
+ \delta_1=\frac{e_K}{|p_0|}.
+\]
+The exact identity \(\zeta(s)-\sigma_1=T_K/p_0\) proves the
+new enclosure. Moreover,
+\[
+ |\sigma_1-\sigma_0|+\delta_1
+   =\frac{|F_K|+e_K}{|p_0|}\le\delta_0.
+\]
+Thus the rational prefix is absorbed into the centre rather than
+charged as error. The new interval is contained in the old one.
+
+There is also a uniform accuracy consequence. Since \(p_0\) is a
+nonzero integer, \(|p_0|\ge1\). For any fixed \(b>1\), the certified
+cutoff procedure can choose \(e_K\le b^{-n}\), and then
+\(\delta_1=e_K/|p_0|\le b^{-n}\). This proves geometric accuracy
+for the corrected centres at any prescribed precision. The denominator
+of that centre and its continued-fraction gaps change with the cutoff;
+the accuracy statement does not by itself bound the selected integer
+forms.
+
+For any fixed integer pair, interval refinement gives
+\[
+ |q\sigma_1-p|+|q|\delta_1
+ \le |q\sigma_0-p|+|q|\delta_0.
+\]
+Retain the previous independent pair and add consecutive convergents
+of \(\sigma_1\). Minimizing their common interval bounds gives
+\(0<E_{1,n}\le E_{0,n}\). The retained pair is allowed even if
+it is not consecutive for the new centre: its unit determinant still
+gives nonvanishing, and the exact interval estimate remains valid.
+In particular, with \(\epsilon_{i,n}=-\log E_{i,n}/n\),
+\[
+ \epsilon_{1,n}-\epsilon_{0,n}
+   =\frac1n\log\frac{E_{0,n}}{E_{1,n}}\ge0.
+\]
+This is a pointwise improvement at every eligible index, not an
+assertion that either sequence already has a positive limiting rate.
+
+All ten tested profiles satisfy the stronger exact finite inequality
+\(8^nE_{1,n}<E_{0,n}\), giving epsilon gain greater than \(\log8\)
+on those profiles. At weight seven the directly certified common
+bounds for \(n=6,8,12,16,20\) are respectively below
+\[
+ 3\cdot10^{-14},\quad7\cdot10^{-27},\quad5\cdot10^{-37},
+ \quad4\cdot10^{-49},\quad3\cdot10^{-77}.
+\]
+The root-form cutoff precision is unchanged. Twelve rational-target
+controls retain their necessary positive floor, and thirty signed-prefix
+certificates agree with independent zeta enclosures. Lean verifies
+the correction and interval-comparison identities. A uniform strict
+gain or a uniform positive decay rate remains unproved.
+
 \subsection{An all-index Laurent coefficient envelope}
 Let \(n\ge1\), \(0\le m\le n\), \(s\ge3\), and write
 \[

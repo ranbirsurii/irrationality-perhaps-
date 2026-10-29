@@ -5,6 +5,16 @@ import OddZeta.PrimitivePairNormalization
 #print axioms OddZeta.slope_error_transfer
 #print axioms OddZeta.nonzero_small_form_of_independent_slope_pair
 
+#check OddZeta.signed_prefix_recenter_error
+#check OddZeta.signed_prefix_recenter_radius
+#check OddZeta.nested_interval_form_majorant
+#print axioms OddZeta.signed_prefix_recenter_error
+#print axioms OddZeta.signed_prefix_recenter_radius
+#print axioms OddZeta.nested_interval_form_majorant
+
+#check OddZeta.integer_recenter_radius_le
+#print axioms OddZeta.integer_recenter_radius_le
+
 #check OddZeta.psd_gram_eigenmax_bounds
 #check OddZeta.individually_scaled_gram_psd
 #check OddZeta.primitive_pair_spectral_bounds

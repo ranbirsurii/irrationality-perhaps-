@@ -24,7 +24,7 @@ def certify(s,n,U,V,det,D,p,q,eta):
     lo,hi=sorted((p*zl+q,p*zh+q))
     assert prefix-tail<=lo<=hi<=prefix+tail
     assert max(abs(lo),abs(hi))<=R
-    return R,K,lo*hi>0,abs(prefix)>tail
+    return R,K,lo*hi>0,abs(prefix)>tail,prefix,tail
 
 
 def convergent_pairs(sigma):
@@ -82,7 +82,7 @@ def check(s,n):
         g=gcd(u,v);p=-v//g;q=u//g
         roots.append((p,q))
     p0,q0=min(roots,key=lambda pair:max(map(abs,pair)))
-    rootR,rootK,_,_=certify(s,n,U,V,det,D,p0,q0,Q(1,4**n))
+    rootR,rootK,_,_,_,_=certify(s,n,U,V,det,D,p0,q0,Q(1,4**n))
     rootR=max(rootR,Q(1,4**n))
     sigma=Q(-q0,p0);delta=rootR/abs(p0)
     zl,zh=euler_maclaurin_zeta_interval(s,96)
@@ -94,7 +94,7 @@ def check(s,n):
     eta=min(E/16,Q(1,8*sum(Qi for Pi,Qi in pair)))
     for Pj,Qj in pair:
         p,q=Qj,-Pj
-        R,K,nonzero,prefix_nonzero=certify(s,n,U,V,det,D,p,q,eta)
+        R,K,nonzero,prefix_nonzero,_,_=certify(s,n,U,V,det,D,p,q,eta)
         assert R<=Q(9,8)*E
         certified.append({'pair':[str(p),str(q)],'signed_majorant':str(R),
                           'cutoff':K,'finite_nonzero':nonzero,
