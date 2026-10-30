@@ -1,0 +1,189 @@
+\section{A fifth-order congruence at upper-half primes}
+\label{sec:upper-half-fifth-order}
+
+This section concerns weight seven and the original four consecutive blocks.
+It proves a local arithmetic improvement, including the rational boundary.
+All congruences of rational numbers are in $\Z_{(p)}$.
+
+\begin{theorem}\label{thm:upper-half-row}
+Let $n$ be even, let $p>7$ be prime with $p<n<2p$, and let
+$p\le m\le n$. Write $H_2=\sum_{h=1}^{p-1}h^{-2}$.
+For the unscaled coefficients of $T_{7,n,m}$ one has
+\begin{align}
+ 98p^6b(n,m)+153p^3a_3(n,m)&\equiv0\pmod{p^2},\label{eq:upper-half-second}\\
+ 174p^7b(n,m)+(191+87p^2H_2)p^4a_3(n,m)
+       +247p^2a_5(n,m)&\equiv0\pmod{p^5}.\label{eq:upper-half-fifth}
+\end{align}
+In the first congruence both summands are $p$-integral.
+For the four-block cancellation lattice, if additionally $p\le n-3$
+and $p\ne29$, then $p^5\mid\Gamma_{7,n}$.
+\end{theorem}
+
+\begin{proof}
+Put $n=p+a$, $m=p+b$, so $a$ is odd and $0\le b\le a<p$.
+Write $c_{h,k}$ for the order-$k$ coefficient at $t=-h$.
+For $0\le v\le a$ form the rational function
+\[
+ R_v(X)=p^7T_{7,n,m}(pX-v).
+\]
+Its principal parts at $X=0,-1$ have coefficients
+\[
+ A_{v,k}=p^{7-k}c_{v,k},\qquad
+ B_{v,k}=p^{7-k}c_{p+v,k}.
+\]
+Let $F_v$ be the sum of just these two principal parts and put $F=\sum_vF_v$.
+The following reduction is coefficientwise, including Laurent coefficients
+at the two indicated poles:
+\[
+ F_v(X)\equiv R(X)P_v(X)\pmod{p^5},\qquad
+ R(X)=\frac{(X-1)(X+2)}{X^7(X+1)^7},\quad \deg P_v\le4.       \tag{A}
+\]
+Here is a direct justification that also covers numerator carries.
+The factorial prefactor has valuation five. The denominator has precisely
+the two $p$-divisible factors $pX,p(X+1)$, each to order seven.
+The numerator contains $p(X-1),p(X+2)$, and possibly $p(X-2)$ and
+$p(X+3)$. Thus, after factoring out $R$, the expression is $p^c$
+times a polynomial of degree $c$, times a quotient of products of
+$p$-adic-unit linear factors, where $c=0,1,2$.
+Expand the unit factors through order $4-c$ in $pX$.
+The result has degree at most four modulo $p^5$.
+Taking principal parts preserves this congruence, since the remaining
+factors are units at $0,-1$ and $RP_v$ is proper with only these poles.
+
+The poles $a<h<p$ omitted from $F$ have
+\[
+ p^{7-k}c_{h,k}\in p^7\Z_{(p)}.                              \tag{B}
+\]
+Indeed $p\mid\binom nh$, so the leading Laurent coefficient is divisible
+by $p^7$. Each jet of degree $u$ has valuation at least $-u$:
+all root differences have absolute value below $4p<p^2$ and each
+elementary reciprocal factor loses at most one power per degree.
+The jet degrees are at most six, below $p$, so their factorial
+denominators introduce no further $p$-adic loss.
+This proves (B) and shows that all $A_{v,k},B_{v,k}$ are $p$-integral.
+
+Reflection of the original kernel gives $F(-1-X)=-F(X)$ exactly.
+The function $R$ is reflection-even. Consequently the degree-four
+polynomial $\sum_vP_v$ is reflection-odd modulo $p^5$, and hence
+\[
+ F\equiv A W_7+B W_6\pmod{p^5},\qquad
+ W_7=(2X+1)R,\quad W_6=X(X+1)W_7,                            \tag{C}
+\]
+with $A,B\in\Z_{(p)}$.
+Cancellation of the monic numerator and denominator in this step is
+valid over $\Z/p^5\Z$, even though that ring has zero divisors.
+The rational approximation $RP_v$ in (A) decays at least as $X^{-8}$.
+Consequently the coefficients of $X^{-1},\ldots,X^{-7}$ in $F_v$
+at infinity vanish modulo $p^5$; no such exact decay of $F_v$ is assumed.
+
+We next verify that no harmonic boundary was discarded. Let
+$H_{v,k}=\sum_{j=1}^v j^{-k}$ and $H_{p-1,k}=\sum_{j=1}^{p-1}j^{-k}$.
+Splitting the multiple of $p$ from $H_{p+v,k}$ gives
+\[
+ H_{p+v,k}-p^{-k}
+ =H_{p-1,k}+\sum_{j=1}^v(p+j)^{-k}.
+\]
+Expand the last summands modulo $p^{5-k}$ for $k<5$.
+The coefficient multiplying $p^dH_{v,d}$ in the regular boundary error is
+\[
+ A_{v,d}+\sum_{k=1}^{d}(-1)^{d-k}\binom{d-1}{k-1}B_{v,k}.
+\]
+This is exactly the coefficient of $X^{-d}$ in $F_v$ at infinity,
+and vanishes modulo $p^5$ for $1\le d\le4$ by (A).
+Terms with $k\ge5$, and the omitted poles in (B), already vanish.
+Writing $B_k=\sum_vB_{v,k}$ and $b_F=-\sum_k B_k$, we obtain
+\[
+ p^7b\equiv b_F-\sum_{k=1}^4p^kH_{p-1,k}B_k\pmod{p^5}.      \tag{D}
+\]
+The finite-field power-sum identity gives
+$H_{p-1,2},H_{p-1,4}\in p\Z_{(p)}$.
+Pairing $j$ and $p-j$ then gives
+$H_{p-1,1},H_{p-1,3}\in p^2\Z_{(p)}$.
+Reflection and the vanishing $X^{-1}$ coefficient give $B_1=0$ modulo
+$p^5$; the vanishing $X^{-3}$ coefficient gives $B_2=B_3$ modulo $p^5$.
+By (B), $2B_3\equiv p^4a_3$ modulo $p^5$. Therefore (D) becomes
+\[
+ p^7b\equiv b_F-\frac{p^2H_2}{2}\,p^4a_3\pmod{p^5}.        \tag{E}
+\]
+
+Direct partial fractions of the two fixed rational functions in (C) give
+\[
+\begin{array}{c|rrr}
+ &a_3&a_5&b_F\\\hline
+ W_7&-196&-64&306\\
+ W_6&66&18&-98
+\end{array}
+\]
+Both rows satisfy $174b_F+191a_3+247a_5=0$.
+Apply this relation in (C), use (B), and substitute (E).
+This proves \eqref{eq:upper-half-fifth}.
+
+For \eqref{eq:upper-half-second}, repeat (A) modulo $p^3$.
+Now $\deg P_v\le2$, so reflection leaves only $A W_7$.
+Modulo $p$ the polynomials $P_v$ are constant; their reflection-odd sum
+is zero, so $A\in p\Z_{(p)}$.
+The boundary error (E) vanishes modulo $p^3$.
+The relation $98\cdot306+153\cdot(-196)=0$, followed by division by $p$,
+proves the first congruence and its integrality assertions.
+
+Finally let $w$ be any integer vector cancelling the $a_3,a_5$ rows.
+Apply \eqref{eq:upper-half-fifth} columnwise and pair with $w$.
+Its two lower-row terms vanish exactly, giving
+$p^5\mid174p^7\sum_jw_jb(n,n-j)$ in $\Z_{(p)}$.
+For $p>7$, $p\ne29$, the factor $174=6\cdot29$ is a unit.
+Moreover $v_p(d_n)=1$, so $p^5\mid Z_n(w)$ as an integer.
+Every target-row entry is divisible by $p^7$, since $a_7$ is an integer.
+Thus $p^5$ divides both coefficient images of every integer kernel vector,
+proving $p^5\mid\Gamma_{7,n}$ without dividing raw minors.
+\end{proof}
+
+\begin{corollary}
+Combining Theorem~\ref{thm:upper-half-row} with the earlier divisor $A_n$
+gives the stronger weight-seven content estimate
+\[
+ \liminf_{\substack{n\to\infty\\n\text{ even}}}
+ \frac{\log\Gamma_{7,n}}n
+ \ge 2+\frac{\pi}{4\sqrt3}+\frac34\log3-\frac12
+ =2.777409057559\ldots .
+\]
+\end{corollary}
+\begin{proof}
+Let $Q_n$ be the product of previously eligible primes
+$n/2<p\le n-3$, omitting 29. They already occur to the first power
+in $A_n$. The theorem supplies four additional powers, so
+$A_nQ_n^4\mid\Gamma_{7,n}$.
+The finitely many fixed exclusions and primes dividing the earlier
+boundary polynomial have logarithmic weight $O(\log n)$.
+The prime number theorem gives $\log Q_n/n\to1/2$.
+Add this gain of two to the previously proved rate for $A_n$.
+\end{proof}
+
+\paragraph{Attempt to close the complete cost.}
+For completeness the joint-minor saving must also survive normalization.
+On the primes in $Q_n$, the two naturally scaled lower rows used in the
+earlier Cramer envelope have all entries divisible by $p$.
+Their two-minor gcd therefore has valuation at least two.
+The new content bound gives $v_p(J_n)\ge2+5=7$, whereas the earlier
+joint divisor $P_n^2A_n$ supplied three powers.
+Consequently the improved joint divisor is $P_n^2A_nQ_n^4$;
+this justifies the following cost substitution without counting a Smith
+factor twice.
+The previous elementary Cramer envelope for the normalized weight-seven
+cost had upper exponent $14.995736480048\ldots$.
+Substituting $A_nQ_n^4$ for $A_n$ decreases this upper exponent by two,
+to $12.995736480048\ldots$.
+It therefore does not prove decay of the primitive forms.
+The signed polynomial moment bound remains valid, but its second integer
+minimum has not been bounded at the required asymptotic scale.
+The new theorem settles a higher local content estimate; it does not
+establish the irrationality of $\zeta(7)$ or of every odd zeta value.
+
+\paragraph{Verification scope.}
+Exact Laurent reconstruction checks both congruences in every one of
+the 1,380 nonboundary prime-index pairs through $n=240$.
+The fifth-order identity has 5,520 individual column checks.
+The Lean module \texttt{OddZeta/PadicRowTransfer.lean} checks the algebraic
+transfer of one- and two-row congruences to kernel divisibility, together
+with the fixed coarse row relation. The local rational-function reduction,
+harmonic boundary argument, and prime-number-theorem corollary above are
+paper proofs; their full formalization is not claimed.

@@ -1,0 +1,6 @@
+{
+  "profiles_checked": 861,
+  "maximum_index": 40,
+  "local_polynomial_bound": "proved on paper; exact finite checks passed",
+  "full_integer_form_cost_transfer_proved": false
+}

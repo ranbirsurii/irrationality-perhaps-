@@ -1,0 +1,5 @@
+'OddZeta.scaled_row_proportionality_on_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_row_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.weight_seven_row_transfer_image_content' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.two_scaled_rows_congruence_on_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.coarse_weight_seven_row_relation' does not depend on any axioms

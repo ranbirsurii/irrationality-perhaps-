@@ -49,3 +49,4 @@ import OddZeta.CubicArithmeticFrame
 import OddZeta.ParametricWeightShift
 import OddZeta.MomentMajorant
 import OddZeta.WeightSevenIntegerCertificate
+import OddZeta.PadicRowTransfer

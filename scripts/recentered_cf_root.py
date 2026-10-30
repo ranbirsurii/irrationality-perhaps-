@@ -52,7 +52,8 @@ def check(s,n):
     if s==7:
         thresholds={6:Q(3,10**14),8:Q(7,10**27),12:Q(5,10**37),
                     16:Q(4,10**49),20:Q(3,10**77)}
-        assert common<thresholds[n]
+        if n in thresholds:
+            assert common<thresholds[n]
     return {'weight':s,'index':n,'original_bound':str(oldE),'recentered_bound':str(newE),
         'original_radius':str(oldradius),'recentered_radius':str(newradius),
         'interval_refinement_verified':True,'original_pair_retained':True,

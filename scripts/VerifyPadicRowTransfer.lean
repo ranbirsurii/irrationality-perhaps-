@@ -1,0 +1,7 @@
+import OddZeta.PadicRowTransfer
+
+#print axioms OddZeta.scaled_row_proportionality_on_kernel
+#print axioms OddZeta.weight_seven_row_transfer
+#print axioms OddZeta.weight_seven_row_transfer_image_content
+#print axioms OddZeta.two_scaled_rows_congruence_on_kernel
+#print axioms OddZeta.coarse_weight_seven_row_relation
