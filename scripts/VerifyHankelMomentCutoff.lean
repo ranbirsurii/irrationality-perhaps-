@@ -1,0 +1,6 @@
+import OddZeta.HankelMomentCutoff
+
+#print axioms OddZeta.bernoulli_index_cancellation_factor
+#print axioms OddZeta.bernoulli_uncancelled_index_cutoff
+#print axioms OddZeta.denominator_bound_of_integer_weight_raise
+#print axioms OddZeta.weight_seven_polynomial_moment_raise

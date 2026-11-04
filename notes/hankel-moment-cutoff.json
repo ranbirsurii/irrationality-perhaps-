@@ -1,0 +1,70 @@
+{
+  "profiles": [
+    {
+      "weight": 5,
+      "maximum_degree": 102,
+      "possible_denominator_prime_cutoff": "105/2",
+      "observed_denominator_primes_above_weight": [
+        7,
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31,
+        37,
+        41,
+        43,
+        47
+      ]
+    },
+    {
+      "weight": 7,
+      "maximum_degree": 102,
+      "possible_denominator_prime_cutoff": "106/3",
+      "observed_denominator_primes_above_weight": [
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31
+      ]
+    },
+    {
+      "weight": 9,
+      "maximum_degree": 102,
+      "possible_denominator_prime_cutoff": "107/4",
+      "observed_denominator_primes_above_weight": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ]
+    },
+    {
+      "weight": 11,
+      "maximum_degree": 102,
+      "possible_denominator_prime_cutoff": "108/5",
+      "observed_denominator_primes_above_weight": [
+        13,
+        17,
+        19
+      ]
+    },
+    {
+      "weight": 13,
+      "maximum_degree": 102,
+      "possible_denominator_prime_cutoff": "109/6",
+      "observed_denominator_primes_above_weight": [
+        17
+      ]
+    }
+  ],
+  "exact_prime_tests": 21424,
+  "exact_weight_raise_identities_checked": 515,
+  "full_hankel_denominator_transfer_proved": false
+}
