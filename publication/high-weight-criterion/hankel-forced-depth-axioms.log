@@ -1,0 +1,6 @@
+'OddZeta.prime_power_denominator_of_negative_valuation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.scaled_unit_coefficient_forces_prime_power_denominator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OddZeta.terminal_pole_model_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OddZeta.scaled_pole_boundary_value' depends on axioms: [propext, Classical.choice, Quot.sound]

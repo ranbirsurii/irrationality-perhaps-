@@ -1,0 +1,6 @@
+import OddZeta.HankelForcedDepth
+
+#print axioms OddZeta.prime_power_denominator_of_negative_valuation
+#print axioms OddZeta.scaled_unit_coefficient_forces_prime_power_denominator
+#print axioms OddZeta.terminal_pole_model_coefficient
+#print axioms OddZeta.scaled_pole_boundary_value

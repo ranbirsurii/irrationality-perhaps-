@@ -1,0 +1,220 @@
+\section{An all-index large-prime calculation and a weight-dependent family}
+\label{sec:forced-hankel-depth}
+
+The local calculation below tests the proposed transfer from weight five
+using the actual monic polynomial. It involves no finite-index experiments.
+Write $P_{s,K}=\Delta_{s,K}/L_{s,K}$ and let $d_{s,6}(K)$ be the least
+positive integer clearing its coefficients. Thus
+\[
+ v_p(d_{s,6}(K))=-v_p^G(P_{s,K}).
+\]
+
+\begin{proposition}\label{prop:forced-large-prime-depth}
+Fix odd $s\ge9$. For every sufficiently large $K=40n$ and every prime
+$2K/3<p<K$, put $m=K-p+1$ and $h=K-N$, where $N=3n$.
+Then
+\[
+ v_p\bigl([X^{h-m}]P_{s,K}\bigr)=-sm,
+ \qquad p^{sm}\mid d_{s,6}(K).                         \tag{D1}
+\]
+Consequently
+\[
+ \liminf_{n\to\infty}\frac{\log d_{s,6}(40n)}{(40n)^2}
+ \ge \frac{s}{18}.                                    \tag{D2}
+\]
+\end{proposition}
+\begin{proof}
+All reductions in this proof are over $\Z_{(p)}$ and its residue field.
+For sufficiently large $K$, we have $p>s+1$ and $p^2>2K$.
+Set $I=\{N+1,\ldots,K\}$,
+\[
+ E(t)=\prod_{i\in I}(t+i^2),\quad e_i=E'(-i^2),\quad
+ \ell_i(t)=\frac{E(t)}{(t+i^2)e_i}.
+\]
+The Lagrange basis diagonalizes the coefficient of $X$ in the Gram
+matrix. Its diagonal entries are
+$b_i=i^{s-1}D_N(-i^2)^5/e_i$, all nonzero.
+After division by this diagonal matrix, followed by conjugation by
+$\operatorname{diag}(e_i)$, the monic polynomial becomes
+\[
+ P_{s,K}(X)=\det(XI+A),
+\]
+where
+\[
+ A_{ij}=\frac{\mu_s(Q_{ij})}
+ {e_i i^{s-1}D_N(-i^2)^5}
+ +\delta_{ij}\left(
+ \frac{1/(2i)-1/(s-1)}{i^{s-1}}-H_i^{(s)}\right).       \tag{D3}
+\]
+Here $\mu_s$ denotes the polynomial-moment functional and
+\[
+ Q_{ij}=\frac{D_N(t)^5E(t)}{(t+i^2)(t+j^2)}\quad(i\ne j),
+\]
+\[
+ Q_{ii}=\frac{D_N(t)^5 E(t)/(t+i^2)-D_N(-i^2)^5e_i}
+ {t+i^2}.
+\]
+Both formulas define polynomials in $\Z[t]$: in the second formula
+the numerator vanishes at $-i^2$, so division by the monic factor is
+exact. Their degrees are at most $K+4N-2$.
+
+We have $\mu_s(Q_{ij})\in\Z_{(p)}$. Indeed
+\[
+ 2(K+4N-2)+2 < (s-1)(p-1)
+\]
+for the stated range and sufficiently large $K$. The factorial
+$(s-1)!$ is a $p$-unit. To check the cancellation directly,
+put $L=2e+2$. Von Staudt--Clausen makes $B_L$ integral unless
+$p-1\mid L$. In the latter case write $L=k(p-1)$; the inequality
+gives $1\le k\le s-2$, and the numerator factor $L+k=kp$ cancels
+its possible denominator $p$.
+
+Since $K<3p/2$, a nonzero square class among $1,\ldots,K$ has at most
+three representatives. Each nonzero difference $i^2-j^2$ in the same
+class has valuation one, because $p^2>2K$. Hence
+$v_p(e_i)\le2$ for $p\nmid i$. Also
+$v_p(D_N(-i^2))\le1$, since $2N<p$ permits at most one matching
+root in $1,\ldots,N$. For the only multiple of $p$ in $I$, namely
+$i=p$, both $e_i$ and $D_N(-i^2)$ are units.
+It follows that the first term of (D3) has valuation at least $-7$
+when $i\ne p$, and at least $-(s-1)$ when $i=p$.
+Thus multiplication by $p^s$ makes every such entry zero modulo $p$.
+
+For $i<p$ the remaining diagonal term is integral. For $i>p$ its
+product with $p^s$ is $-1$ modulo $p$: the only nonintegral term of
+$H_i^{(s)}$ is $p^{-s}$, because $i<2p$.
+At $i=p$ the boundary term must be retained; it gives
+\[
+ p^s\left(
+ \frac{1/(2p)-1/(s-1)}{p^{s-1}}-p^{-s}
+ \right)=-\frac12-\frac{p}{s-1}\equiv-\frac12\pmod p.
+\]
+We have therefore proved the exact polynomial congruence
+\[
+ p^{sh}P_{s,K}(X/p^s)
+ \equiv X^{h-m}(X-\tfrac12)(X-1)^{m-1}\pmod p.         \tag{D4}
+\]
+The coefficient of $X^{h-m}$ on the right is $(-1)^m/2$, a unit.
+On the left it is $p^{sm}[X^{h-m}]P_{s,K}$. This proves (D1).
+As an independent way of checking this coefficient, in the elementary
+symmetric expansion of the reduced diagonal matrix there is exactly
+one nonzero term of order $m$: it selects all $m$ nonzero entries.
+
+Finally the prime number theorem and partial summation give
+\[
+ \sum_{2K/3<p<K}(K-p+1)\log p
+ =K^2\int_{2/3}^1(1-u)\,du+o(K^2)
+ =\frac{K^2}{18}+o(K^2).
+\]
+Summing (D1) proves (D2).
+\end{proof}
+
+\paragraph{The same calculation at weight seven.}
+There is a useful weaker conclusion at the primary target weight.
+For $2K/3<p<K$, the matrix $p^7A$ is integral, but its polynomial
+part need not vanish on rows where $p\mid D_N(-i^2)$.
+Call these rows bad. All other rows reduce to their diagonal pole
+term. The bad active indices $i>p$ are exactly
+$p+v$, $1\le v\le\min(N,K-p)$. The index $i=p$ is good.
+Thus at least
+\[
+ g=\max(0,K-p-N)+1
+\]
+good diagonal entries are nonzero. Order the bad rows before the
+good rows. The reduced matrix is block triangular, and its
+characteristic polynomial contains a degree-$g$ factor with unit
+constant coefficient from these good active entries. The remaining
+factor is monic. Its lowest nonzero coefficient shows that some
+coefficient $[X^k]p^{7h}P_{7,K}(X/p^7)$ is a unit with $k\le h-g$.
+Consequently
+\[
+ p^{7g}\mid d_{7,6}(K),\qquad
+ \liminf\frac{\log d_{7,6}(K)}{K^2}
+ \ge\frac72\left(\frac13-\frac3{40}\right)^2
+ =\frac{6727}{28800}.                                  \tag{D7}
+\]
+Here polynomial-moment integrality follows from
+$2(K+4N-2)+2<6(p-1)$. This lower bound, like (D2), measures a
+cost that a successful normalized decay estimate must include.
+
+\paragraph{Consequence for a fixed-power transfer.}
+This is a lower bound on a primitive denominator, rather than on
+an arbitrary clearing factor. It therefore survives changes of basis.
+For completeness a deliberately coarse upper bound at weight five is
+\[
+ \limsup\frac{\log d_{5,6}(K)}{K^2}\le\frac{139}{4}.
+                                                               \tag{D5}
+\]
+To verify the constant without numerical experiments, Proposition~
+\ref{prop:coarse-local-hankel} shows that
+$C_KF_{5,K}\in\Z[X]$ for
+\[
+ C_K=\operatorname{lcm}(1,\ldots,5K)^{6h}24^h,
+ \qquad \frac{\log C_K}{K^2}\longrightarrow\frac{111}{4}.
+\]
+The monic coefficient denominator divides the absolute value of the
+leading coefficient of this integer polynomial. Put $a=3/40$ and
+$l=37/40$. The leading coefficient satisfies
+$\log|L_{5,K}|\le(10Nh+4h)\log K$, since
+$0<j^2-v^2\le K^2$ for $N<j\le K$, $1\le v\le N$.
+Stirling's formula for $S_K$, with cancellation of the
+$K^2\log K$ terms, therefore gives
+\[
+ \limsup\frac{\log|S_KL_{5,K}|}{K^2}
+ \le-2l-12la\log a+12la-2l^2\log(2l)+3l^2.
+\]
+Discard the negative terms and use $\log(40/3)<3$ to bound this above by
+$36a+12a+3=33/5<7$. This proves (D5).
+Combining (D2) and (D5) gives
+\[
+ \liminf\frac{\log(d_{s,6}(K)/d_{5,6}(K))}{K^2}
+ \ge\frac{s}{18}-\frac{139}{4}.                         \tag{D6}
+\]
+In particular the fixed sixth-power family cannot have relative cost
+below one fixed finite margin for every odd weight. This conclusion
+does not rule out the weight-seven transfer or the irrationality of
+any zeta value. It rules out that specific all-weight estimate for
+these fixed parameters.
+
+\paragraph{An explicit family with weight-dependent power.}
+The calculation also supplies a concrete design choice. Replace
+$D_N^6$ by $D_N^{s+1}$, retaining $K=40n$, $N=3n$ and $h=37n$:
+\[
+ \widetilde\Delta_{s,K}(X)=\det\left[
+ \mu_{s,X}\left(\frac{D_N(t)^{s+1}t^{i+j}}{D_K(t)}\right)
+ \right]_{0\le i,j<h}.
+\]
+This is the existing weight-five family when $s=5$. Its leading
+coefficient and polynomial quotient degree are explicitly
+\[
+ \widetilde L_{s,K}=(-1)^{h(h-1)/2}
+ \prod_{j=N+1}^K j^{s-1}D_N(-j^2)^s,
+ \qquad \widetilde E_s=K+(s-1)N-2.
+\]
+The same positive measure representation proves
+$\widetilde\Delta_{s,K}(\zeta(s))>0$ for every odd $s\ge5$.
+In (D3) the factor $D_N(-i^2)^5$ becomes $D_N(-i^2)^s$.
+Thus the domination used in (D4) is no longer automatic. This
+constructs a family where numerator multiplicity can compensate
+for the increasing harmonic pole order. It does not prove the
+compensation or the required negative total rate: both the new
+local prime allocation and the logarithmic-energy estimate must
+be established in this normalization.
+
+\paragraph{Use of recent prime-distribution results.}
+The OpenAI preprint of 30 September 2026 states a zero-free half-plane
+for Dirichlet and specified Hecke $L$-functions; see
+\href{https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}
+{the primary preprint}. Such an input can sharpen a prime-summation
+error term. It cannot remove the nonzero coefficient in (D4), and
+the leading integral in (D2) already follows from the prime number
+theorem. No statement of that preprint is used as an additional
+axiom in the companion Lean files.
+
+\paragraph{Formalization scope.}
+\texttt{OddZeta/HankelForcedDepth.lean} verifies the scaled-coefficient
+denominator implication, the terminal model coefficient, and the
+special boundary value at $i=p$. The full Lagrange-basis calculation,
+its local valuation bounds, and the prime asymptotic above are paper
+proofs. They are not represented as a completed Lean proof of
+irrationality.

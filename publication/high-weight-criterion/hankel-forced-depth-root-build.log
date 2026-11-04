@@ -1,0 +1,3 @@
+Command: CompileLeanSingle.ps1 -Source OddZeta.lean -Output OddZeta.olean
+Result: exit code 0; the compiler produced no diagnostics.
+The focused module and its axiom driver were checked separately.
