@@ -85,3 +85,94 @@ Newton-polygon invariant together with exact local Schur elimination.
 It addresses the actual characteristic polynomial. It has not yet
 yielded the quantitative middle-band estimate needed for irrationality.
 No unconditional odd-zeta conclusion or new Lean axiom is introduced.
+
+## Working backwards: relative perturbation and cancellation
+
+The comparison must be relative, because separate denominator upper
+bounds cannot be subtracted. Write H_s=XI+M_s for the monic pencils and
+
+    E=H_5^(-1)(M_s-M_5).
+
+Then, exactly in Q_p(X),
+
+    P_s/P_5=det(I+E),
+    D_p(P_s)-D_p(P_5)=-v_G det(I+E).                       (3)
+
+This is also valid after eliminating unit blocks with Gauss-unit
+determinants. It gives a backwards target in the actual relative pencil.
+
+If E=N+R with N nilpotent, one can remove N at zero determinant cost:
+
+    det(I+E)=det(I+(I+N)^(-1)R).
+
+Here (I+N)^(-1) is a finite geometric series and det(I+N)=1, regardless
+of how large the denominators in N are. This is a genuine cancellation
+mechanism, stronger than bounding the sizes of all entries.
+
+Set W=(I+N)^(-1)R. If rank(W)<=r and every entry has Gauss valuation
+at least -a, where a>=0, then
+
+    -v_G det(I+E)<=r*a.                                  (4)
+
+Proof: expand det(I+W) into principal minors. Minors larger than r
+vanish exactly; every remaining q-minor has valuation at least -q*a,
+and hence at least -r*a. This proves (4) by the nonarchimedean triangle
+inequality. Formula (4) would close the required rate if the actual
+Hankel relative perturbation admitted such a decomposition with a
+sufficiently small prime-weighted sum of r*a. It is not legitimate to
+assign that decomposition from the desired conclusion.
+
+## First attempted construction: derive low rank from weight raising
+
+The exact identity 30 mu_7(t^e)=(2e+6)(2e+7) mu_5(t^e) is quadratic
+in e. That does not make the matrix perturbation rank two.
+For the polynomial-moment Hankel block H=(m_(i+j)), put D=diag(0,...,h-1).
+The corresponding transformed block is exactly
+
+    H_new = (4D^2 H+8D H D+4H D^2+26D H+26H D+42H)/30.
+
+Multiplication by D has full growing rank. The displayed formula does
+not produce a low-rank or nilpotent relative perturbation. Moreover,
+the full rational Hankel pencil contains pole moments; the identity
+above is asserted only for the polynomial-moment block.
+
+There is an all-dimension algebraic check of the rank issue. Let
+m_e=1/(e+1), the moments of Lebesgue measure on [0,1], and let H be the
+resulting h-by-h Hilbert matrix. Applying the same quadratic multiplier
+gives
+
+    (H_new-H)_(i,j)=(4(i+j)+22)/30 - 1/(3(i+j+1)).
+
+The first matrix on the right has rank at most two; H is positive
+definite and has rank h. Hence rank(H_new-H)>=h-2. Thus the exact form
+of the multiplier does not imply a bounded-rank difference, even for
+a positive original moment functional. This is a symbolic family,
+not a finite experiment or a counterexample to the actual Padé theorem.
+
+## Second attempted construction: use the derivative as a nilpotent
+
+Differentiation on a bounded-degree polynomial space is nilpotent, but
+the weight-raising operation above is a polynomial in the Euler operator
+t*d/dt, whose monomial eigenvalues are e. It is not a nilpotent
+operation. Replacing it by differentiation would change the moment
+functional and would require separate boundary and pole identities.
+The nilpotent cancellation in (3)-(4) therefore cannot be invoked from
+the moment-raising identity alone.
+
+## Other attempts and the stopping point of the deduction
+
+The proposed Newton-polygon method measures (3) exactly, but still needs
+an independently established bound. The local lattice construction
+in the companion note attains that exact value, but constructing it
+from the unknown slopes does not estimate the value. The coarse sieve
+controls very small primes only. The character and thermodynamic
+arguments need their missing arithmetic identifications or numerical
+variational bound; they have not supplied it for this pencil.
+
+Consequently the relative Schur perturbation is the most direct
+remaining route among these algebraic attempts, but no proved small
+defect decomposition has been obtained for the actual growing Hankel
+pencils. This note records failed implications as well as valid
+identities. It does not claim that every possible variant of the named
+research programs is exhausted, or that iteration must produce the
+unconditional theorem.
