@@ -1,0 +1,176 @@
+\section{A coarse small-prime sieve for powered Hankel forms}
+\label{sec:coarse-hankel-sieve}
+
+We now consider the separate positive Hankel construction from the
+November continuation, not the four-column linear-form matrix.
+Fix odd $s\ge5$, $K=40n$, $N=3n$, and $h=37n$. Write
+\[
+ D_m(t)=\prod_{j=1}^m(t+j^2),\quad
+ \Delta_{s,K}(X)=\det\left[
+ \mu_{s,X}\left(\frac{D_N(t)^6t^{i+j}}{D_K(t)}\right)
+ \right]_{0\le i,j<h}.
+\]
+The functional has polynomial moments
+\[
+ \mu_{s,X}(t^e)=(-1)^e B_{2e+2}
+ \frac{\prod_{j=3}^s(2e+j)}{(s-1)!}
+\]
+and pole moments
+\[
+ \mu_{s,X}((t+j^2)^{-1})=
+ j^{s-1}(X-H_j^{(s)})+\frac1{2j}-\frac1{s-1}.
+\]
+Its positive measure representation gives
+$\Delta_{s,K}(\zeta(s))>0$. Define
+\[
+ S_K=\frac{(K!)^{2h}4^{h-1}}
+ {(N!)^{12h}\prod_{i=1}^{h-1}((2i)!)^2},\qquad
+ F_{s,K}=S_K\Delta_{s,K}.
+\]
+For a rational polynomial, let $v_p^G$ denote the minimum of the
+coefficient valuations, with $v_p(0)=+\infty$.
+
+\begin{proposition}\label{prop:coarse-local-hankel}
+For each fixed odd $s\ge5$, for every sufficiently large $n$, and every
+prime $p$,
+\[
+ v_p^G(F_{s,K})\ge
+ -(s+1)h\lfloor\log_p(5K)\rfloor-hv_p((s-1)!).             \tag{A}
+\]
+\end{proposition}
+\begin{proof}
+We give the integer-valued-basis argument so that its dependence on
+the weight is explicit. Put $q_0(t)=1$ and, for $i\ge1$,
+\[
+ q_i(t)=\frac{(-1)^i2tD_{i-1}(t)}{(2i)!}.
+\]
+For integer $z$ these polynomials satisfy
+\[
+ q_i(-z^2)=\binom{z+i}{2i}+\binom{z+i-1}{2i},\qquad
+ \frac{D_N(-z^2)}{(N!)^2}=
+ \binom{N+z}{N}\binom{N-z}{N}.
+\]
+All displayed values are integers, using the generalized integer
+binomial convention. Set $c=(K!)^2/(N!)^{12}$.
+The determinant of the Gram matrix in the $q_i$ basis, multiplied
+entrywise by $c$, is exactly $F_{s,K}$.
+
+Here is the needed local functional estimate. Let $A(x)$ be
+integer-valued on $\Z$, of degree at most $d\ge2K$, and put
+$\Lambda=\lfloor\log_p(d+1)\rfloor$.
+For $g(x)=(K!)^2A(x)/\prod_{1\le |r|\le K}(x-r)$, every residue
+has valuation at least $-\Lambda$. Indeed the factorial residue factor
+at $r=\pm j$ is, up to sign,
+\[
+ j\,\frac{\binom{2K}{K+j}}{\binom{2K}{K}},
+\]
+and the valuation of the denominator binomial is at most
+$\lfloor\log_p(2K)\rfloor$. This last bound follows by counting the
+at-most-one factorial carry at each prime power.
+
+Let $P$ be the polynomial part of $g$. At the consecutive integers
+$m=K+1,\ldots,d-K+1$, the rational term has denominator
+\[
+ \frac{(K!)^2}{\prod_{1\le|r|\le K}(m-r)}
+ =\frac1{\binom{m-1}{K}\binom{m+K}{K}}.
+\]
+It has valuation at least $-2\Lambda$. The residue terms have the
+same bound. Hence all these values of $P$ have valuation at least
+$-2\Lambda$. Newton interpolation on this consecutive window shows
+that $P$ has binomial-basis coefficients of valuation at least
+$-2\Lambda$.
+
+Let $\mathcal B(x^j)=B_j$ and
+$\tau_s(P)=\mathcal B(P^{(s-2)})/(s-1)!$.
+In the binomial basis, differentiation loses at most $\Lambda$ per
+derivative, since
+\[
+ \frac{d}{dx}\binom{x}{m}
+ =\sum_{j=1}^m\frac{(-1)^{j-1}}j\binom{x}{m-j}.
+\]
+The Bernoulli functional loses one more $\Lambda$, since
+$\mathcal B(\binom{x}{m})=(-1)^m/(m+1)$.
+Consequently
+\[
+ v_p(\tau_s(P))\ge-(s+1)\Lambda-v_p((s-1)!).
+\]
+The pole part uses $H_{d(r)}^{(s)}-X$, where $d(r)=r$ for
+$r\ge0$ and $d(r)=-r-1$ otherwise. Its valuation is at least
+$-s\Lambda$, before multiplication by the residue. Thus the complete
+polynomial-valued functional has the same lower bound.
+Polynomial division and evaluation on the monomials and simple poles
+identify this functional with $\mu_{s,X}$ under $t=-x^2$ and the
+pullback $(-1)^Kx^s$.
+
+For the $(i,j)$ Gram entry its integer-valued numerator after pullback is
+\[
+ (-1)^Kx^s
+ \left(\frac{D_N(-x^2)}{(N!)^2}\right)^6q_i(-x^2)q_j(-x^2).
+\]
+Its degree is at most $d=s+12N+4h-4$.
+For fixed $s$ and sufficiently large $K=40n$, $d+1\le5K$.
+Apply the local estimate to every entry and expand the determinant.
+Every determinant term is a product of $h$ entries, proving (A).
+\end{proof}
+
+\begin{proposition}\label{prop:small-prime-budget}
+Fix $M>1$ and define the sufficient small-prime clearing factor
+\[
+ C_{s,M}(K)=\prod_{p\le K/M}
+ p^{(s+1)h\lfloor\log_p(5K)\rfloor+hv_p((s-1)!)}.
+\]
+Then $C_{s,M}(K)F_{s,K}$ has $p$-integral coefficients for every
+$p\le K/M$, and
+\[
+ \lim_{\substack{K\to\infty\\40\mid K}}
+ \frac{\log C_{s,M}(K)}{K^2}
+ =\frac{37(s+1)}{40M}.                                    \tag{B}
+\]
+In particular this part of the clearing cost is smaller than any
+prescribed positive constant by choosing a sufficiently large fixed $M$.
+\end{proposition}
+\begin{proof}
+The integrality follows from (A). Count prime powers exactly:
+\[
+ \sum_{p\le K/M}\lfloor\log_p(5K)\rfloor\log p
+ =\sum_{a\ge1}\vartheta\left(\min(K/M,(5K)^{1/a})\right).
+\]
+The $a=1$ term is $K/M+o(K)$ by the prime number theorem.
+Chebyshev's bound makes the terms $a\ge2$ collectively
+$O(\sqrt K\log K)=o(K)$. The factorial contribution is at most
+$h\log((s-1)!)=O_s(K)$. Finally $h/K=37/40$, proving (B).
+\end{proof}
+
+At weight seven the absolute cost in (B) is $7.4/M$. Thus $M=4000$
+gives $0.00185$ and $M=40000$ gives $0.000185$.
+The exact relative cost of these particular sufficient clearing factors is
+\[
+ \lim\frac1{K^2}\log\frac{C_{s,M}(K)}{C_{5,M}(K)}
+ =\frac{37(s-5)}{40M}.                                    \tag{C}
+\]
+This compares explicit local clearing factors. It is not an estimate
+for the ratio of the exact primitive monic denominators: subtracting
+two separate upper bounds would not establish that claim.
+
+\paragraph{Attempting the entire coarse sieve.}
+If (A) is used at every prime, its total sufficient arithmetic exponent
+is $5(s+1)37/40$, equal to $37$ at weight seven. This does not close
+the negative-rate inequality against the available archimedean estimate.
+The coarse sieve is effective for the very small primes; the band
+$K/M<p\ll K$ still requires sharper local cancellation.
+Strict positivity supplies nonvanishing but does not reduce this cost.
+
+\paragraph{Checks and the two additional chats.}
+Exact rational reconstruction of twelve Hankel determinant polynomials
+at weights $5,7,9$ and $(K,N)=(6,1),(8,1),(10,1),(12,1)$ checks
+178 local valuation inequalities with $d+1$ in place of $5K$.
+The leading coefficient is checked against its product formula,
+and each interpolated polynomial is checked at an additional integer.
+These are finite checks supporting the proof above, not a formal Lean
+verification of (A)--(C).
+The latest \emph{Bombieri Vinogradov Twin Primes} chat leaves a shifted
+covariance bound unproved. The latest \emph{Prove Sextic Spectral Bound}
+chat leaves its structured sextic mean-value saving unproved.
+Neither supplies a proved estimate for the middle-band Hankel valuation
+defects, and no identity identifying those defects with the character
+families in those chats has been established here.

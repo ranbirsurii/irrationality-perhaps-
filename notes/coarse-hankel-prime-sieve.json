@@ -1,0 +1,1026 @@
+{
+  "records": [
+    {
+      "weight": 5,
+      "K": 6,
+      "N": 1,
+      "degree": 5,
+      "monic_denominator": "93944778113488353563724742656000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 5,
+          "lower_bound": -165
+        },
+        {
+          "p": 3,
+          "gauss_valuation": 7,
+          "lower_bound": -95
+        },
+        {
+          "p": 5,
+          "gauss_valuation": 2,
+          "lower_bound": -60
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -2,
+          "lower_bound": -30
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -30
+        }
+      ]
+    },
+    {
+      "weight": 7,
+      "K": 6,
+      "N": 1,
+      "degree": 5,
+      "monic_denominator": "639054167365252660560120844311645388800000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 1,
+          "lower_bound": -220
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -1,
+          "lower_bound": -130
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -1,
+          "lower_bound": -85
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -2,
+          "lower_bound": -40
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -40
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 9,
+      "K": 6,
+      "N": 1,
+      "degree": 5,
+      "monic_denominator": "11545635656129918634991411644022612228370212061184000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": -9,
+          "lower_bound": -285
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -5,
+          "lower_bound": -160
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -3,
+          "lower_bound": -105
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -7,
+          "lower_bound": -55
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -50
+        }
+      ]
+    },
+    {
+      "weight": 5,
+      "K": 8,
+      "N": 1,
+      "degree": 7,
+      "monic_denominator": "7546291607266826652711692158375646144752928215479091200000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 29,
+          "lower_bound": -231
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -6,
+          "lower_bound": -133
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -16,
+          "lower_bound": -84
+        },
+        {
+          "p": 7,
+          "gauss_valuation": 6,
+          "lower_bound": -42
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -2,
+          "lower_bound": -42
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -42
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 7,
+      "K": 8,
+      "N": 1,
+      "degree": 7,
+      "monic_denominator": "638933652009597861395349911942382953221127946644881346435573706915840000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 22,
+          "lower_bound": -308
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -18,
+          "lower_bound": -182
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -22,
+          "lower_bound": -119
+        },
+        {
+          "p": 7,
+          "gauss_valuation": 4,
+          "lower_bound": -56
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -2,
+          "lower_bound": -56
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -56
+        }
+      ]
+    },
+    {
+      "weight": 9,
+      "K": 8,
+      "N": 1,
+      "degree": 7,
+      "monic_denominator": "14781783179419883452153535884729899935265014836376582036945210419724571612042378608640000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 9,
+          "lower_bound": -399
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -21,
+          "lower_bound": -224
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -29,
+          "lower_bound": -147
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -3,
+          "lower_bound": -77
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -2,
+          "lower_bound": -70
+        },
+        {
+          "p": 13,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -70
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 5,
+      "K": 10,
+      "N": 1,
+      "degree": 9,
+      "monic_denominator": "2392245088623813913768075880758801301556760269180927906374407141331022246278395696974397440000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 16,
+          "lower_bound": -297
+        },
+        {
+          "p": 3,
+          "gauss_valuation": 10,
+          "lower_bound": -171
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -9,
+          "lower_bound": -108
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -14,
+          "lower_bound": -108
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -6,
+          "lower_bound": -54
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -4,
+          "lower_bound": -54
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -54
+        }
+      ]
+    },
+    {
+      "weight": 7,
+      "K": 10,
+      "N": 1,
+      "degree": 9,
+      "monic_denominator": "14817720938853749974545468902410973355096857452682115068172484603774622639737341247503660073591218703443022577664000000000000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": -3,
+          "lower_bound": -396
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -4,
+          "lower_bound": -234
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -16,
+          "lower_bound": -153
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -18,
+          "lower_bound": -144
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -6,
+          "lower_bound": -72
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -4,
+          "lower_bound": -72
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -72
+        },
+        {
+          "p": 53,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 9,
+      "K": 10,
+      "N": 1,
+      "degree": 9,
+      "monic_denominator": "110597325976988674080336868482626318574342283860048414291546148395293680389165508693739215995350181959484511419271802793079632963108675256320000000000000000000000000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": -29,
+          "lower_bound": -513
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -11,
+          "lower_bound": -288
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -25,
+          "lower_bound": -189
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -29,
+          "lower_bound": -189
+        },
+        {
+          "p": 11,
+          "gauss_valuation": -6,
+          "lower_bound": -90
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -4,
+          "lower_bound": -90
+        },
+        {
+          "p": 17,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 19,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        },
+        {
+          "p": 53,
+          "gauss_valuation": 0,
+          "lower_bound": -90
+        }
+      ]
+    },
+    {
+      "weight": 5,
+      "K": 12,
+      "N": 1,
+      "degree": 11,
+      "monic_denominator": "35630555777034680303761800693844769781746561642986767497310304600614539421640468485112064903412187179083421360613059308582260050279530496000000000000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": 20,
+          "lower_bound": -363
+        },
+        {
+          "p": 3,
+          "gauss_valuation": 1,
+          "lower_bound": -209
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -21,
+          "lower_bound": -132
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -33,
+          "lower_bound": -132
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 10,
+          "lower_bound": -66
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -8,
+          "lower_bound": -66
+        },
+        {
+          "p": 17,
+          "gauss_valuation": -4,
+          "lower_bound": -66
+        },
+        {
+          "p": 19,
+          "gauss_valuation": -2,
+          "lower_bound": -66
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 53,
+          "gauss_valuation": 0,
+          "lower_bound": -66
+        },
+        {
+          "p": 59,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 7,
+      "K": 12,
+      "N": 1,
+      "degree": 11,
+      "monic_denominator": "19856464508917693030025238568522631873371619382117007369751940811947479933465666915694786160947740715250664664663130600603445241450448901615253670215593939633981784174310195200000000000000000000000000000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": -14,
+          "lower_bound": -484
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -18,
+          "lower_bound": -286
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -34,
+          "lower_bound": -187
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -40,
+          "lower_bound": -176
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 8,
+          "lower_bound": -88
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -8,
+          "lower_bound": -88
+        },
+        {
+          "p": 17,
+          "gauss_valuation": -4,
+          "lower_bound": -88
+        },
+        {
+          "p": 19,
+          "gauss_valuation": -2,
+          "lower_bound": -88
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 53,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 59,
+          "gauss_valuation": 0,
+          "lower_bound": -88
+        },
+        {
+          "p": 61,
+          "gauss_valuation": 0,
+          "lower_bound": 0
+        }
+      ]
+    },
+    {
+      "weight": 9,
+      "K": 12,
+      "N": 1,
+      "degree": 11,
+      "monic_denominator": "90006215089289210328918076059234094034691048698721094127783147529108496471263693047308436125220332709144358554804004169047427406377654620499050360882286132429642166947027192705499405501766752271595375191587895115776000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "prime_checks": [
+        {
+          "p": 2,
+          "gauss_valuation": -50,
+          "lower_bound": -627
+        },
+        {
+          "p": 3,
+          "gauss_valuation": -33,
+          "lower_bound": -352
+        },
+        {
+          "p": 5,
+          "gauss_valuation": -46,
+          "lower_bound": -231
+        },
+        {
+          "p": 7,
+          "gauss_valuation": -54,
+          "lower_bound": -231
+        },
+        {
+          "p": 11,
+          "gauss_valuation": 6,
+          "lower_bound": -110
+        },
+        {
+          "p": 13,
+          "gauss_valuation": -8,
+          "lower_bound": -110
+        },
+        {
+          "p": 17,
+          "gauss_valuation": -4,
+          "lower_bound": -110
+        },
+        {
+          "p": 19,
+          "gauss_valuation": -2,
+          "lower_bound": -110
+        },
+        {
+          "p": 23,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 29,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 31,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 37,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 41,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 43,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 47,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 53,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 59,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        },
+        {
+          "p": 61,
+          "gauss_valuation": 0,
+          "lower_bound": -110
+        }
+      ]
+    }
+  ],
+  "finite_relative_costs": [
+    {
+      "K": 6,
+      "N": 1,
+      "log_d7_over_d5_per_K_squared": 0.8207861998029765
+    },
+    {
+      "K": 8,
+      "N": 1,
+      "log_d7_over_d5_per_K_squared": 0.8248911141584792
+    },
+    {
+      "K": 10,
+      "N": 1,
+      "log_d7_over_d5_per_K_squared": 0.7780889960140348
+    },
+    {
+      "K": 12,
+      "N": 1,
+      "log_d7_over_d5_per_K_squared": 0.8594091740672442
+    }
+  ],
+  "small_prime_bound_proved_on_paper": true,
+  "full_irrationality_bound_proved": false
+}
